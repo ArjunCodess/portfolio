@@ -46,6 +46,7 @@ export const DATA = {
     cs50_images: [
         "/CS50T.png",
         "/CS50xPuzzleDay2024.png",
+        "/CS50xPuzzleDay2025.png",
         "/CS50x.png",
         "/ReadyPlayer50.png",
     ],
@@ -478,36 +479,10 @@ export const DATA = {
             description: "Completed [CS50T](https://cs50.harvard.edu/certificates/ce13e906-e90f-4469-b1aa-ff24e88fa4be) and [CS50x](https://cs50.harvard.edu/certificates/0b5006d6-7765-4383-b72d-adc7067786c0) (Harvard's intro to technology and computer science). Gold certificates in [Puzzle Day 2024](https://cs50.harvard.edu/certificates/83f288c3-144d-45ae-9cfa-a20fadcaf82f) & [2025](https://cs50.harvard.edu/certificates/2f63e5e4-7c6d-48d5-9dbf-6af88fef95f6) (solved all problems). Completed [Ready Player 50](https://cs50.harvard.edu/certificates/784280e3-a410-4c61-af9a-20368a95e56f) (2023) - a prompt injection challenge."
         }
     ],
-    personalityTraits: [
-        {
-            title: "Fast Builder",
-            description: "Builds and ships projects quickly, chasing momentum and turning ideas into reality through rapid iteration.",
-        },
-        {
-            title: "Consistent",
-            description: "Doesn't quit easily. Even when things feel stuck, keeps moving forward. 1,589 GitHub contributions in 2025.",
-        },
-        {
-            title: "Transparent",
-            description: "Building in public, sharing progress openly. Anti-hype, honest storytelling approach to work and projects.",
-        },
-        {
-            title: "Curious",
-            description: "Always eager to learn new things - from web dev to ML to electronics. Constantly exploring new technologies.",
-        },
-        {
-            title: "Small-circle",
-            description: "Prefers a small group of like-minded people, valuing quality over quantity in personal connections.",
-        },
-        {
-            title: "Growth-minded",
-            description: "Self-directed learner who masters skills by shipping projects. Completed CS50, FreeCodeCamp certifications independently.",
-        }
-    ],
     hobbiesInterests: [
         {
             title: "Competitive Programming",
-            description: "Solved 400 LeetCode problems (265k rank). Practicing algorithmic thinking and problem-solving daily.",
+            description: "Solved [400 LeetCode problems](https://leetcode.com/u/arjuncodess/) (265k rank). Practicing algorithmic thinking and problem-solving daily.",
         },
         {
             title: "Love Coding",
@@ -515,7 +490,7 @@ export const DATA = {
         },
         {
             title: "Technical Writing",
-            description: "Writing educational content on web development, AI, and programming. 34K followers on DEV.to with 400K+ views.",
+            description: "Writing educational content on web development, AI, and programming. [34K followers on DEV.to](https://dev.to/arjuncodess) with 400K+ views.",
         },
         {
             title: "Poetry & Creative Writing",
@@ -523,7 +498,7 @@ export const DATA = {
         },
         {
             title: "Language Learning",
-            description: "434-day Duolingo streak learning Spanish. Consistent daily practice builds discipline.",
+            description: "[434-day Duolingo streak](https://www.duolingo.com/profile/ArjunCodess) learning Spanish. Consistent daily practice builds discipline.",
         },
         {
             title: "Electronics & Arduino",
