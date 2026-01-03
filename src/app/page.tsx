@@ -118,16 +118,27 @@ export default function Page() {
                     <BlurFade delay={BLUR_FADE_DELAY * 9}>
                         <h2 className="text-xl font-bold">Harvard CS50 Certifications</h2>
                     </BlurFade>
-                    <div className="gap-4 columns-2">
-                        {DATA.cs50_images.map((imageUrl, idx) => (
-                            <BlurFade key={imageUrl} delay={BLUR_FADE_DELAY * 10 + idx * 0.05} inView>
-                                <CertificateImage
-                                    className="size-full object-contain hover:cursor-pointer py-2"
-                                    src={imageUrl}
-                                    alt={`CS50 Certificate ${idx + 1}`}
-                                />
-                            </BlurFade>
-                        ))}
+                    <div className="grid grid-cols-2 gap-4">
+                        {DATA.cs50_images.map((imageUrl, idx) => {
+                            const isLastElement = DATA.cs50_images.length % 2 === 1 && idx === DATA.cs50_images.length - 1;
+
+                            return (
+                                <BlurFade
+                                    key={imageUrl}
+                                    delay={BLUR_FADE_DELAY * 10 + idx * 0.05}
+                                    inView
+                                    className={isLastElement ? 'col-span-2 flex justify-center' : ''}
+                                >
+                                    <div className={isLastElement ? 'w-1/2' : ''}>
+                                        <CertificateImage
+                                            className="size-full object-contain hover:cursor-pointer py-2"
+                                            src={imageUrl}
+                                            alt={`CS50 Certificate ${idx + 1}`}
+                                        />
+                                    </div>
+                                </BlurFade>
+                            );
+                        })}
                     </div>
                     <BlurFade delay={BLUR_FADE_DELAY * 9}>
                         <p className="text-xs flex flex-row dark:text-neutral-300 text-neutral-700">try clicking on one of the above.<ArrowUp height={15} width={15} /></p>
@@ -228,40 +239,6 @@ export default function Page() {
                                         title={project.title}
                                         description={project.description}
                                         dates={project.dates}
-                                    />
-                                </BlurFade>
-                            ))}
-                        </ul>
-                    </BlurFade>
-                </div>
-            </section>
-            <section id="personalityTraits">
-                <div className="space-y-12 w-full py-12">
-                    <BlurFade delay={BLUR_FADE_DELAY * 13}>
-                        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                            <div className="space-y-2">
-                                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                                    Personality Traits
-                                </div>
-                                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                                    Hardworking + Creative = 🔥
-                                </h2>
-                                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                                    I try to get things done and always look for new ways to solve problems. I enjoy learning, and I work well in different situations. My goal is to bring fresh ideas and help make any project a <i>success.</i>
-                                </p>
-                            </div>
-                        </div>
-                    </BlurFade>
-                    <BlurFade delay={BLUR_FADE_DELAY * 14}>
-                        <ul className="mb-4 ml-4 divide-y divide-dashed border-l pr-2">
-                            {DATA.personalityTraits.map((project, id) => (
-                                <BlurFade
-                                    key={project.title}
-                                    delay={BLUR_FADE_DELAY * 15 + id * 0.05}
-                                >
-                                    <CustomCard
-                                        title={project.title}
-                                        description={project.description}
                                     />
                                 </BlurFade>
                             ))}
