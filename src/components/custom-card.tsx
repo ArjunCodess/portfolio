@@ -1,5 +1,4 @@
-import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
+import Markdown from "react-markdown";
 
 interface Props {
     title: string;
@@ -20,9 +19,18 @@ export function CustomCard({
                 )}
                 <h2 className="font-semibold leading-none">{title}</h2>
                 {description && (
-                    <span className="prose dark:prose-invert text-sm text-muted-foreground">
+                    <Markdown 
+                        className="prose dark:prose-invert text-sm text-muted-foreground"
+                        components={{
+                            a: ({ href, children }) => (
+                                <a href={href} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                                    {children}
+                                </a>
+                            ),
+                        }}
+                    >
                         {description}
-                    </span>
+                    </Markdown>
                 )}
             </div>
         </li>
