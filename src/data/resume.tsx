@@ -14,21 +14,30 @@ export const DATA = {
         "I'm Arjun Vijay Prakash, a 14-year-old [full-stack developer](https://github.com/ArjunCodess), [technical writer](https://dev.to/arjuncodess) and [student](https://www.cmseducation.org/campuses/kanpurrd/) from India. I've been building websites and apps since I was young. I love turning ideas into reality through code. I've already shipped over 20 projects and even made some money freelancing. I share my coding journey on my blog, where I've built a community of over 30,000 followers. I'm actively looking to collaborate on projects, as well as on my blog.",
     avatarUrl: "/me.jpeg",
     skills: [
-        "Clerk",
-        "Cloudinary",
-        "Drizzle ORM",
-        "Express.js",
-        "GSAP",
-        "JavaScript",
-        "MongoDB",
         "Next.js",
-        "Node.js",
-        "Python",
         "React.js",
-        "Shadcn/UI",
-        "SQL",
+        "TypeScript",
+        "JavaScript",
+        "Python",
         "Tailwind CSS",
-        "Typescript"
+        "Node.js",
+        "Drizzle ORM",
+        "PostgreSQL",
+        "MongoDB",
+        "Supabase",
+        "Neon",
+        "Clerk",
+        "Better Auth",
+        "Shadcn/UI",
+        "Framer Motion",
+        "Gemini AI",
+        "Vercel AI SDK",
+        "Flask",
+        "Selenium",
+        "Streamlit",
+        "Machine Learning",
+        "Remotion",
+        "Cloudinary",
     ],
     navbar: [
         { href: "/", icon: HomeIcon, label: "Home" },
@@ -105,64 +114,125 @@ export const DATA = {
     ],
     projects: [
         {
-            title: "PalettePro",
-            href: "https://palettepro.vercel.app",
-            dates: "January, 2024",
+            title: "WebCrawlAI",
+            href: "https://webcrawlai.onrender.com/",
+            dates: "2024",
             active: true,
             description:
-                "PalettePro is a color palette generator. Built with Next.js 14, Tailwind CSS, and TypeScript, it lets users upload images and get hex color codes for creative projects. Perfect for people who spend time struggling what color 'this' or 'that' is using.",
+                "AI-powered web scraping platform that leverages Gemini AI to extract specific information from websites — handles dynamic content, CAPTCHAs, and provides clean JSON output for easy integration.",
             technologies: [
-                "Next.js 14",
+                "Python",
+                "Flask",
+                "Selenium",
+                "Gemini AI",
+                "BeautifulSoup",
                 "Tailwind CSS",
-                "TypeScript",
-                "ColorThief",
-                "Vercel",
             ],
             links: [
                 {
                     type: "Live Website",
-                    href: "https://palettepro.vercel.app",
+                    href: "https://webcrawlai.onrender.com/",
                     icon: <Icons.globe className="size-3" />,
                 },
+                {
+                    type: "Source Code",
+                    href: "https://github.com/ArjunCodess/WebCrawlAI",
+                    icon: <Icons.github className="size-3" />,
+                },
             ],
-            image: "/project1.png",
+            image: "",
         },
         {
-            title: "TBH",
-            href: "https://tbh-link.vercel.app/",
-            dates: "June 2024 - August 2024",
+            title: "Analyzr",
+            href: "https://getanalyzr.vercel.app",
+            dates: "2024",
             active: true,
             description:
-                "TBH is a Q&A app where users can connect with friends and be themselves. It's built with Next.js, TypeScript, and Tailwind CSS, offering unique ways to share prompt images and interact with their audience.",
+                "Free and open-source analytics tool that requires just one line of code to set up. Comes with built-in Discord notifications and works seamlessly with any website for real-time tracking and custom events.",
             technologies: [
                 "Next.js",
                 "TypeScript",
+                "Supabase",
                 "Tailwind CSS",
-                "MongoDB",
-                "Vercel",
-                "NextAuth",
+                "Shadcn/UI",
             ],
             links: [
                 {
                     type: "Live Website",
-                    href: "https://tbh-link.vercel.app/",
+                    href: "https://getanalyzr.vercel.app",
                     icon: <Icons.globe className="size-3" />,
                 },
+                {
+                    type: "Source Code",
+                    href: "https://github.com/ArjunCodess/analyzr",
+                    icon: <Icons.github className="size-3" />,
+                },
             ],
-            image: "/project2.png",
+            image: "",
+        },
+        {
+            title: "Storyblok MCP",
+            href: "https://github.com/ArjunCodess/storyblok-mcp",
+            dates: "2025",
+            active: true,
+            description:
+                "Connect AI tools to Storyblok instantly - use natural language to manage your CMS like magic. Built for the Storyblok Headless CMS Challenge on DEV.to.",
+            technologies: [
+                "TypeScript",
+                "JavaScript",
+                "MCP Protocol",
+                "Storyblok API",
+            ],
+            links: [
+                {
+                    type: "Source Code",
+                    href: "https://github.com/ArjunCodess/storyblok-mcp",
+                    icon: <Icons.github className="size-3" />,
+                },
+            ],
+            image: "",
+        },
+        {
+            title: "MEN2 Predictor",
+            href: "https://huggingface.co/spaces/arjuncodess/men2-predictor",
+            dates: "2025",
+            active: true,
+            description:
+                "A machine learning pipeline for predicting Multiple Endocrine Neoplasia type 2 (MEN2) syndrome. Achieves 96.73% accuracy with 100% sensitivity on real clinical data from 152 patients across 20 studies.",
+            technologies: [
+                "Python",
+                "Machine Learning",
+                "scikit-learn",
+                "LightGBM",
+                "XGBoost",
+                "Gradio",
+            ],
+            links: [
+                {
+                    type: "HuggingFace Space",
+                    href: "https://huggingface.co/spaces/arjuncodess/men2-predictor",
+                    icon: <Icons.globe className="size-3" />,
+                },
+                {
+                    type: "Source Code",
+                    href: "https://github.com/ArjunCodess/men2-predictor",
+                    icon: <Icons.github className="size-3" />,
+                },
+            ],
+            image: "",
         },
         {
             title: "VendX",
-            href: "https://vendx.com",
+            href: "https://vendx-admin.vercel.app",
             dates: "July 2024",
             active: true,
             description:
-                "VendX is an e-commerce platform with an admin dashboard and storefront. Made with Next.js, Tailwind CSS, and DrizzleORM, it lets users manage products, categories, colors, and sizes. It's very flexible and user-friendly.",
+                "E-commerce platform with an admin dashboard and storefront. Made with Next.js, Tailwind CSS, and Drizzle ORM. Lets users manage products, categories, colors, and sizes.",
             technologies: [
                 "Next.js",
                 "TypeScript",
                 "Tailwind CSS",
-                "DrizzleORM",
+                "Drizzle ORM",
                 "Neon",
                 "Shadcn/UI",
                 "Clerk",
@@ -179,7 +249,164 @@ export const DATA = {
                     icon: <Icons.globe className="size-3" />,
                 },
             ],
-            image: "/project3.png",
+            image: "",
+        },
+        {
+            title: "TypeTheLyrics",
+            href: "https://typethelyrics.vercel.app",
+            dates: "2024",
+            active: true,
+            description:
+                "Practice typing skills while following along with synchronized lyrics from your favorite Spotify songs. Tracks WPM and accuracy with a leaderboard system.",
+            technologies: [
+                "Next.js",
+                "TypeScript",
+                "Supabase",
+                "Tailwind CSS",
+                "Spotify API",
+            ],
+            links: [
+                {
+                    type: "Live Website",
+                    href: "https://typethelyrics.vercel.app",
+                    icon: <Icons.globe className="size-3" />,
+                },
+            ],
+            image: "",
+        },
+        {
+            title: "Starfall",
+            href: "https://starfall-kit.vercel.app",
+            dates: "2024",
+            active: true,
+            description:
+                "Neon-powered full-stack web application starter kit. Comes with Next.js, Tailwind CSS, Shadcn/UI, Drizzle ORM, Clerk auth, and TypeScript all pre-configured.",
+            technologies: [
+                "Next.js",
+                "TypeScript",
+                "Tailwind CSS",
+                "Drizzle ORM",
+                "Neon",
+                "Clerk",
+            ],
+            links: [
+                {
+                    type: "Live Demo",
+                    href: "https://starfall-kit.vercel.app",
+                    icon: <Icons.globe className="size-3" />,
+                },
+                {
+                    type: "Documentation",
+                    href: "https://starfall-docs.vercel.app/",
+                    icon: <Icons.globe className="size-3" />,
+                },
+            ],
+            image: "",
+        },
+        {
+            title: "AstroScope",
+            href: "https://astroscope.streamlit.app/",
+            dates: "2024",
+            active: true,
+            description:
+                "Interactive dashboard that visualizes near-Earth asteroid data from NASA's NeoWs API. Provides insights into asteroid sizes, velocities, miss distances, and potential hazards.",
+            technologies: [
+                "Python",
+                "Streamlit",
+                "NASA API",
+                "Data Visualization",
+            ],
+            links: [
+                {
+                    type: "Live Dashboard",
+                    href: "https://astroscope.streamlit.app/",
+                    icon: <Icons.globe className="size-3" />,
+                },
+                {
+                    type: "Source Code",
+                    href: "https://github.com/ArjunCodess/astroscope",
+                    icon: <Icons.github className="size-3" />,
+                },
+            ],
+            image: "",
+        },
+        {
+            title: "ChemistryCheck",
+            href: "https://chemistrycheck.vercel.app",
+            dates: "2025",
+            active: true,
+            description:
+                "AI-powered chat analysis tool. Upload WhatsApp, Telegram, or Instagram exports and get insights into communication patterns, relationship dynamics, and potential red flags.",
+            technologies: [
+                "Next.js",
+                "TypeScript",
+                "Drizzle ORM",
+                "Gemini AI",
+                "Tailwind CSS",
+                "Better Auth",
+            ],
+            links: [
+                {
+                    type: "Live Website",
+                    href: "https://chemistrycheck.vercel.app",
+                    icon: <Icons.globe className="size-3" />,
+                },
+            ],
+            image: "",
+        },
+        {
+            title: "FlashReels",
+            href: "https://flashreels.vercel.app",
+            dates: "2025",
+            active: true,
+            description:
+                "AI-powered video creation platform. Generate professional reels with just a topic - AI handles script, images, voiceover, and captions automatically using Remotion.",
+            technologies: [
+                "Next.js",
+                "TypeScript",
+                "Remotion",
+                "Gemini AI",
+                "Fal.ai",
+                "Deepgram",
+                "Clerk",
+            ],
+            links: [
+                {
+                    type: "Live Website",
+                    href: "https://flashreels.vercel.app",
+                    icon: <Icons.globe className="size-3" />,
+                },
+            ],
+            image: "",
+        },
+        {
+            title: "TBH",
+            href: "https://mytbh.vercel.app/",
+            dates: "2024",
+            active: true,
+            description:
+                "Anonymous Q&A app where friends can ask questions, you can reply publicly, make threads, and keep conversations going. Features AI-powered daily prompts.",
+            technologies: [
+                "Next.js",
+                "TypeScript",
+                "MongoDB",
+                "Tailwind CSS",
+                "NextAuth",
+                "Gemini AI",
+            ],
+            links: [
+                {
+                    type: "Live Website",
+                    href: "https://mytbh.vercel.app/",
+                    icon: <Icons.globe className="size-3" />,
+                },
+                {
+                    type: "Source Code",
+                    href: "https://github.com/ArjunCodess/tbh",
+                    icon: <Icons.github className="size-3" />,
+                },
+            ],
+            image: "",
         },
         {
             title: "SortingWiz",
@@ -187,74 +414,24 @@ export const DATA = {
             dates: "January 2024",
             active: true,
             description:
-                "SortingWiz is a tool made with Python and Pygame that visualizes sorting algorithms. Users can watch the sorting process in real-time and control the speed. It supports Bubble Sort, Insertion Sort, Selection Sort, and Heap Sort.",
+                "Python and Pygame-based interactive sorting algorithm visualizer. Watch algorithms like Bubble Sort, Insertion Sort, Selection Sort, and Heap Sort in real-time.",
             technologies: [
                 "Python",
-                "Pygame"
+                "Pygame",
             ],
             links: [
                 {
                     type: "Video Demo",
                     href: "https://www.youtube.com/watch?v=hjY9Ifs8L6U",
-                    icon: <Icons.youtube className="size-3" />
+                    icon: <Icons.youtube className="size-3" />,
                 },
                 {
                     type: "Source Code",
                     href: "https://github.com/ArjunCodess/algorithm_visualizer_pygame",
-                    icon: <Icons.github className="size-3" />
-                }
+                    icon: <Icons.github className="size-3" />,
+                },
             ],
-            image: "/project4.png",
-        },
-        {
-            title: "Dropbox 2.0",
-            href: "https://dropbox-2-0-arjuncodess.vercel.app/",
-            dates: "January 2024",
-            active: true,
-            description:
-                "Dropbox 2.0 is a cloud storage app built with Next.js 14. Users can store and manage files with a drag-and-drop interface. The app uses Clerk for login and Firebase for secure file storage.",
-            technologies: [
-                "Next.js",
-                "Clerk",
-                "Shadcn/UI",
-                "Tailwind CSS",
-                "Firebase",
-                "TypeScript"
-            ],
-            links: [
-                {
-                    "type": "Website",
-                    "href": "https://dropbox-2-0-arjuncodess.vercel.app/",
-                    "icon": <Icons.globe className="size-3" />
-                }
-            ],
-            image: "/project5.png",
-        },
-        {
-            title: "Pixify",
-            href: "https://pixify-arjuncodess-projects.vercel.app/",
-            dates: "Jun 2024",
-            active: true,
-            description:
-                "Pixify is an image transformation app created with Next.js 14. It allows users to upload, manage, search, and edit images using AI. The app includes user authentication, image uploads to Cloudinary, and features like search and pagination.",
-            technologies: [
-                "Next.js",
-                "Clerk",
-                "Tailwind CSS",
-                "React Hook Form",
-                "Zod",
-                "Cloudinary",
-                "TypeScript",
-                "Tailwind CSS"
-            ],
-            links: [
-                {
-                    type: "Website",
-                    href: "https://pixify-arjuncodess-projects.vercel.app/",
-                    icon: <Icons.globe className="size-3" />
-                }
-            ],
-            image: "/project6.png",
+            image: "",
         },
     ],
     personalAchievements: [
