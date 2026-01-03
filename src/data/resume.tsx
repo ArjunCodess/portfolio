@@ -5,13 +5,13 @@ export const DATA = {
     name: "Arjun Vijay Prakash",
     personalBrand: 'ArjunCodess',
     initials: "ArjunCodess",
-    url: "https://arjuncodess.vercel.app",
+    url: "https://arjuncodess.is-a.dev",
     location: "Lucknow, Uttar Pradesh, India",
     locationLink: "https://www.google.com/maps/place/lucknow",
     description:
-        "I'm a 14-year-old full-stack developer, aspiring writer and student who loves to design & build stuff.",
+        "I'm a 16-year-old full-stack developer, AI/ML researcher, technical writer, and CTO at Pilot.",
     summary:
-        "I'm Arjun Vijay Prakash, a 14-year-old [full-stack developer](https://github.com/ArjunCodess), [technical writer](https://dev.to/arjuncodess) and [student](https://www.cmseducation.org/campuses/kanpurrd/) from India. I've been building websites and apps since I was young. I love turning ideas into reality through code. I've already shipped over 20 projects and even made some money freelancing. I share my coding journey on my blog, where I've built a community of over 30,000 followers. I'm actively looking to collaborate on projects, as well as on my blog.",
+        "I'm Arjun Vijay Prakash, a 16-year-old [full-stack developer](https://github.com/ArjunCodess), [technical writer](https://dev.to/arjuncodess), AI/ML researcher, and CTO at [Pilot](https://github.com/pilot-ops-crm) from India. I've been building websites and apps since I was young. I love turning ideas into reality through code. I've shipped over 20 projects and earned $1,375 through technical writing. I share my coding journey on my blog, where I've built a community of over 34,000 followers with 400,000+ views. Selected for INSEF Regional Fair (Online) for my MEN2 Predictor ML research project.",
     avatarUrl: "/me.jpeg",
     skills: [
         "Next.js",
@@ -90,26 +90,38 @@ export const DATA = {
     },
     work: [
         {
-            company: "Self Employed",
-            href: "/",
-            badges: [],
+            company: "Pilot",
+            href: "https://github.com/pilot-ops-crm",
+            badges: ["Open Source", "Building in Public", "Startup"],
             location: "Remote",
-            title: "Full Stack Developer",
+            title: "Chief Technology Officer (CTO)",
             logoUrl: "/logo.png",
-            start: "2020",
+            start: "2025",
             end: "Present",
             description:
-                "I have profound skills in Full-Stack Web Application Development and a little bit in design too. I have built projects ranging from simple games and mini implementations of data tools to more complex applications like social media platforms, e-commerce stores, and popular app clones. I'm learning new things all the time, so it's a mix of good and bad code on my GitHub.",
+                "Leading development of an AI-powered Instagram automation platform for creators. Architected full-stack application using Next.js, React, Node.js, PostgreSQL, Instagram API, and Gemini API. Building in public with transparent, open-source approach. [Live Website](https://pilot-ops.vercel.app/) | [GitHub](https://github.com/pilot-ops-crm)",
+        },
+        {
+            company: "Technical Writer",
+            href: "https://dev.to/arjuncodess",
+            badges: ["$1,375 Earned", "34K Followers", "400K+ Views"],
+            location: "Remote",
+            title: "Freelance Technical Writer",
+            logoUrl: "/logo.png",
+            start: "2025",
+            end: "Present",
+            description:
+                "Built a following of [34,000+ followers](https://dev.to/arjuncodess) and 400,000+ views on DEV.to. Earned $1,375 through technical writing as a 16-year-old in 2025, including [$500 from Runner H AI Challenge](https://dev.to/devteam/congrats-to-the-runner-h-ai-agent-prompting-challenge-winners-3aap). Created educational content on web development, AI, and programming.",
         },
     ],
     education: [
         {
             school: "City Montessori School",
-            href: "https://www.cmseducation.org/",
-            degree: "Intermediate +2 Course",
+            href: "https://cmseducation.org/",
+            degree: "High School (10th Grade) - First Pre-Board Score: 84.4% (Boards Pending)",
             logoUrl: "/cms.jfif",
-            start: "2012",
-            end: "2028",
+            start: "2025",
+            end: "2026",
         }
     ],
     projects: [
@@ -436,73 +448,86 @@ export const DATA = {
     ],
     personalAchievements: [
         {
-            title: "Learnt Full Stack Dev at 14",
-            dates: "2024",
-            description: "Self-taught full-stack development, mastering tech like MERN stack w/ Next.js at the age of 14.",
+            title: "INSEF Regional Fair (Online)",
+            dates: "2025",
+            description: "[Selected](https://sciencesociety.in/insef/Online_INSEF_Selection_2025.htm) to present MEN2 Predictor, a medical ML research project achieving 96.73% accuracy with 100% sensitivity in rare disease prediction.",
         },
         {
-            title: "Made 20+ Projects",
-            dates: "2020 - Present",
-            description: "Developed over 20 projects using code, using a variety of different kinds of languages, frameworks and libraries.",
+            title: "Runner H AI Agent Prompting Challenge",
+            dates: "2025",
+            description: "[Won $500](https://dev.to/devteam/congrats-to-the-runner-h-ai-agent-prompting-challenge-winners-3aap) in the DEV.to AI Agent Prompting Challenge for innovative use of AI tools.",
         },
         {
-            title: "Hit 30K+ Followers on Blog",
-            dates: "2024",
-            description: "Built a blog with a following of over 30,000, sharing insights and tips on coding and development.",
+            title: "Invisible Wars - Xavier University",
+            dates: "2025",
+            description: "Ranked [Top 25](https://www.xavier.edu/invisible-wars/) in the High School Cyber Defense Challenge.",
         },
         {
-            title: "Listed as the Top Writer on DEV.to",
-            dates: "2024",
-            description: "Recognized as a top writer on DEV.to for engaging and informative content on technology and programming.",
+            title: "HACKHAZARDS '25 Hackathon",
+            dates: "2025",
+            description: "Certified [Top 100](https://devfolio.co/projects/nirvanaai-4093) for Nirvana AI project on Devfolio.",
+        },
+        {
+            title: "Hit 34K+ Followers on DEV.to",
+            dates: "2025",
+            description: "Built a following of over [34,000](https://dev.to/arjuncodess) with 400,000+ views, sharing insights on coding, AI, and development.",
         },
         {
             title: "CS50 Achievements",
-            dates: "2023 - 2024",
-            description: "Completed CS50T and CS50x, two of Harvard's top computer science courses. Competed in Ready Player 50 in 2023 and Puzzle Day in 2024, successfully completing all levels of difficulty and earning gold certificates."
+            dates: "2023 - 2025",
+            description: "Completed [CS50T](https://cs50.harvard.edu/certificates/ce13e906-e90f-4469-b1aa-ff24e88fa4be) and [CS50x](https://cs50.harvard.edu/certificates/0b5006d6-7765-4383-b72d-adc7067786c0) (Harvard's intro to technology and computer science). Gold certificates in [Puzzle Day 2024](https://cs50.harvard.edu/certificates/83f288c3-144d-45ae-9cfa-a20fadcaf82f) & [2025](https://cs50.harvard.edu/certificates/2f63e5e4-7c6d-48d5-9dbf-6af88fef95f6) (solved all problems). Completed [Ready Player 50](https://cs50.harvard.edu/certificates/784280e3-a410-4c61-af9a-20368a95e56f) (2023) - a prompt injection challenge."
         }
     ],
     personalityTraits: [
         {
-            title: "Self-motivated",
-            description: "Driven to achieve my goals, always pushing myself to reach new heights in both personal and professional life.",
+            title: "Fast Builder",
+            description: "Builds and ships projects quickly, chasing momentum and turning ideas into reality through rapid iteration.",
+        },
+        {
+            title: "Consistent",
+            description: "Doesn't quit easily. Even when things feel stuck, keeps moving forward. 1,589 GitHub contributions in 2025.",
+        },
+        {
+            title: "Transparent",
+            description: "Building in public, sharing progress openly. Anti-hype, honest storytelling approach to work and projects.",
         },
         {
             title: "Curious",
-            description: "Always eager to learn new things, constantly exploring new technologies and concepts to expand my knowledge.",
-        },
-        {
-            title: "Anti-Social",
-            description: "Doesn't enjoy working with others, preferring to focus on individual tasks and projects.",
+            description: "Always eager to learn new things - from web dev to ML to electronics. Constantly exploring new technologies.",
         },
         {
             title: "Small-circle",
             description: "Prefers a small group of like-minded people, valuing quality over quantity in personal connections.",
         },
         {
-            title: "Open-minded",
-            description: "Enjoys hearing different opinions, open to diverse perspectives and ideas for personal and professional growth.",
-        },
-        {
-            title: "Detail-oriented",
-            description: "Pays attention to the little things, ensuring accuracy and thoroughness in all tasks and projects.",
+            title: "Growth-minded",
+            description: "Self-directed learner who masters skills by shipping projects. Completed CS50, FreeCodeCamp certifications independently.",
         }
     ],
     hobbiesInterests: [
         {
-            title: "Enthusiastic Reader",
-            description: "Reading non-fiction and self-help books to gain insights and improve knowledge.",
+            title: "Competitive Programming",
+            description: "Solved 400 LeetCode problems (265k rank). Practicing algorithmic thinking and problem-solving daily.",
         },
         {
             title: "Love Coding",
-            description: "Building stuff out of code, turning ideas into functional applications and tools.",
+            description: "Building stuff out of code, turning ideas into functional applications. Shipped 20+ projects across web, AI, and ML.",
         },
         {
-            title: "Consistent Writer",
-            description: "Writing general knowledge, practical tips, and development-related content to share insights and help others.",
+            title: "Technical Writing",
+            description: "Writing educational content on web development, AI, and programming. 34K followers on DEV.to with 400K+ views.",
         },
         {
-            title: "Music Lover and Aspiring Producer",
-            description: "Compiling and sharing underrated hip-hop songs. Just started out in music production, exploring beats and sound design.",
+            title: "Poetry & Creative Writing",
+            description: "Started writing free-verse poetry. Won 2nd place in a writing competition - entry published in an anthology.",
+        },
+        {
+            title: "Language Learning",
+            description: "434-day Duolingo streak learning Spanish. Consistent daily practice builds discipline.",
+        },
+        {
+            title: "Electronics & Arduino",
+            description: "Exploring hardware projects with Arduino. Built multiple small projects over 10 days in September 2025.",
         }
     ],
 } as const;
