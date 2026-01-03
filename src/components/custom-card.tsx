@@ -19,11 +19,11 @@ export function CustomCard({
                 )}
                 <h2 className="font-semibold leading-none">{title}</h2>
                 {description && (
-                    <Markdown 
+                    <Markdown
                         className="prose dark:prose-invert text-sm text-muted-foreground"
                         components={{
                             a: ({ href, children }) => (
-                                <a href={href} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+                                <a href={href} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
                                     {children}
                                 </a>
                             ),

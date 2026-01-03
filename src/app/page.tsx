@@ -46,7 +46,16 @@ export default function Page() {
                     <h2 className="text-xl font-bold">About</h2>
                 </BlurFade>
                 <BlurFade delay={BLUR_FADE_DELAY * 4}>
-                    <Markdown className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+                    <Markdown
+                        className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert"
+                        components={{
+                            a: ({ href, children }) => (
+                                <a href={href} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                                    {children}
+                                </a>
+                            ),
+                        }}
+                    >
                         {DATA.summary}
                     </Markdown>
                 </BlurFade>
@@ -294,7 +303,7 @@ export default function Page() {
                                 Have a project in mind or just want to say hi? Feel free to{" "}
                                 <Link
                                     href={DATA.contact.social.X.url}
-                                    className="text-blue-500 hover:underline"
+                                    className="text-blue-600 hover:underline"
                                 >
                                     reach out via Twitter
                                 </Link>.
