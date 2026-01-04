@@ -70,7 +70,7 @@ export default function RootLayout({
                     <TooltipProvider delayDuration={0}>
                         <SidebarProvider defaultOpen={false}>
                             <SidebarInset>
-                                <div className="max-w-2xl mx-auto pt-6 pb-20 sm:pt-16 sm:pb-24 px-2">
+                                <div className="max-w-2xl mx-auto pt-6 pb-20 sm:pt-10 sm:pb-24 px-4">
                                     {children}
                                     <Navbar />
                                     <Analytics />

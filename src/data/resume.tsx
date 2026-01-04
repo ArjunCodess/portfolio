@@ -514,7 +514,7 @@ export const DATA = {
         },
         {
             title: "Poetry & Creative Writing",
-            description: "Started writing free-verse poetry. Won 2nd place in a writing competition - entry published in an anthology.",
+            description: "Started writing free-verse poetry. Won 2nd place in a writing competition - entry published in an anthology. I write free-verse poetry and about things happening in my life on my [Medium blog](https://medium.com/@arjunwritess).",
         },
         {
             title: "Language Learning",
