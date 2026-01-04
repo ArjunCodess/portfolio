@@ -8,6 +8,7 @@ import { SectionHeader } from "@/components/section-header";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
+import Image from "next/image";
 import Link from "next/link";
 import Markdown from "react-markdown";
 
@@ -16,6 +17,18 @@ const BLUR_FADE_DELAY = 0.04;
 export default function Page() {
     return (
         <main className="flex flex-col min-h-[100dvh] z-10 space-y-10">
+            <BlurFade delay={BLUR_FADE_DELAY * 0.5}>
+                <div className="w-full overflow-hidden rounded-xl mb-4">
+                    <Image
+                        src="/banner.jpg"
+                        alt="Banner"
+                        width={1200}
+                        height={400}
+                        className="w-full h-auto object-cover"
+                        priority
+                    />
+                </div>
+            </BlurFade>
             <section id="hero">
                 <div className="mx-auto w-full max-w-2xl space-y-8">
                     <div className="gap-2 flex justify-between">
