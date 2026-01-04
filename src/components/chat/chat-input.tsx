@@ -42,7 +42,7 @@ export function ChatInput({
   };
 
   return (
-    <div className="flex items-end gap-2 bg-background border rounded-xl p-2 shadow-sm">
+    <div className="flex items-end gap-2 bg-background border rounded-full p-2 pl-4 shadow-sm">
       <textarea
         ref={textareaRef}
         value={value}
@@ -55,11 +55,10 @@ export function ChatInput({
         disabled={disabled || isLoading}
         rows={1}
         className={cn(
-          'flex-1 resize-none bg-transparent px-3 py-2 text-sm',
+          'flex-1 resize-none bg-transparent py-2 text-sm',
           'placeholder:text-muted-foreground',
           'focus:outline-none',
           'disabled:cursor-not-allowed disabled:opacity-50',
-          'min-h-[40px] max-h-[200px]'
         )}
       />
       <Button
@@ -67,7 +66,7 @@ export function ChatInput({
         size="icon"
         onClick={onSubmit}
         disabled={disabled || isLoading || !value?.trim()}
-        className="shrink-0"
+        className="shrink-0 rounded-full"
       >
         {isLoading ? (
           <Loader2 className="h-4 w-4 animate-spin" />
