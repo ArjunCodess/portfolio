@@ -63,7 +63,7 @@ export default function Page() {
                         className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert"
                         components={{
                             a: ({ href, children }) => (
-                                <a href={href} target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
+                                <a href={href} target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 underline">
                                     {children}
                                 </a>
                             ),
@@ -287,7 +287,7 @@ export default function Page() {
                             Feel free to{" "}
                             <Link
                                 href={DATA.contact.social.X.url}
-                                className="text-blue-600 dark:text-blue-400 hover:underline"
+                                className="font-semibold text-blue-600 dark:text-blue-400 underline"
                             >
                                 reach out via Twitter
                             </Link>.

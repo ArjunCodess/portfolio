@@ -78,7 +78,16 @@ export function ProjectCard({
           <div className="hidden font-sans text-xs underline print:visible">
             {link?.replace("https://", "").replace("www.", "").replace("/", "")}
           </div>
-          <Markdown className="prose max-w-full text-pretty font-sans text-xs text-muted-foreground dark:prose-invert">
+          <Markdown
+            className="prose max-w-full text-pretty font-sans text-xs text-muted-foreground dark:prose-invert"
+            components={{
+              a: ({ href, children }) => (
+                <a href={href} target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 underline">
+                  {children}
+                </a>
+              ),
+            }}
+          >
             {description}
           </Markdown>
         </div>

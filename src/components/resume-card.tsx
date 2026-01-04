@@ -71,7 +71,7 @@ export const ResumeCard = ({
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-500 dark:text-blue-400 hover:underline cursor-pointer"
+                    className="font-semibold text-blue-600 dark:text-blue-400 underline cursor-pointer"
                   >
                     {children}
                   </a>
