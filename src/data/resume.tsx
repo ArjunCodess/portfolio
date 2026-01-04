@@ -73,6 +73,27 @@ export const DATA = {
 
                 navbar: true,
             },
+            "dev.to": {
+                name: "DevTo",
+                url: "https://dev.to/arjuncodess",
+                icon: Icons.devto,
+
+                navbar: true,
+            },
+            Medium: {
+                name: "Medium",
+                url: "https://medium.com/@arjunwritess",
+                icon: Icons.medium,
+
+                navbar: true,
+            },
+            Leetcode: {
+                name: "Leetcode",
+                url: "https://leetcode.com/ArjunCodess",
+                icon: Icons.leetcode,
+
+                navbar: true,
+            },
             Linktree: {
                 name: "Linktree",
                 url: "https://linktr.ee/arjuncodess",
