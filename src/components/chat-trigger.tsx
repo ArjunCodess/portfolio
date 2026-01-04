@@ -16,7 +16,7 @@ export function ChatTrigger() {
       size="icon"
       className={cn(
         "size-14 rounded-full fixed z-50 shadow-xl",
-        "bottom-4 right-4 md:bottom-4 md:right-4",
+        "bottom-20 right-4 md:bottom-4 md:right-4",
       )}
       aria-label="Open chat"
     >
