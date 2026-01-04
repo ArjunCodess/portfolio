@@ -7,7 +7,9 @@ import { ResumeCard } from "@/components/resume-card";
 import { SectionHeader } from "@/components/section-header";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { DATA } from "@/data/resume";
+import { Download } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import Markdown from "react-markdown";
@@ -71,6 +73,19 @@ export default function Page() {
                     >
                         {DATA.summary}
                     </Markdown>
+                </BlurFade>
+            </section>
+            <section id="resume">
+                <BlurFade delay={BLUR_FADE_DELAY * 4.5}>
+                    <div className="flex items-center justify-between">
+                        <h2 className="text-xl font-bold">Resume</h2>
+                        <Button asChild size="sm" variant="outline">
+                            <a href="/resume.pdf" download>
+                                <Download className="mr-2 h-4 w-4" />
+                                Download
+                            </a>
+                        </Button>
+                    </div>
                 </BlurFade>
             </section>
             <section id="skills">
