@@ -149,9 +149,6 @@ export default function Page() {
                             );
                         })}
                     </div>
-                    <BlurFade delay={BLUR_FADE_DELAY * 9}>
-                        <p className="text-xs flex flex-row dark:text-neutral-300 text-neutral-700">try clicking on one of the above.<ArrowUp height={15} width={15} /></p>
-                    </BlurFade>
                 </div>
             </section>
             <section id="freecodecamp">
@@ -176,9 +173,6 @@ export default function Page() {
                             );
                         })}
                     </div>
-                    <BlurFade delay={BLUR_FADE_DELAY * 9}>
-                        <p className="text-xs flex flex-row dark:text-neutral-300 text-neutral-700">try clicking on one of the above.<ArrowUp height={15} width={15} /></p>
-                    </BlurFade>
                 </div>
             </section>
             <section id="projects">
