@@ -92,7 +92,6 @@ export const DATA = {
     work: [
         {
             company: "Pilot",
-            href: "https://github.com/pilot-ops-crm",
             badges: ["Open Source", "Building in Public", "Startup"],
             location: "Remote",
             title: "Chief Technology Officer (CTO)",
@@ -104,7 +103,6 @@ export const DATA = {
         },
         {
             company: "Technical Writer",
-            href: "https://dev.to/arjuncodess",
             badges: ["$1,375 Earned", "34K Followers", "400K+ Views"],
             location: "Remote",
             title: "Freelance Technical Writer",
