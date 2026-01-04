@@ -223,7 +223,7 @@ export const DATA = {
                 {
                     type: "HuggingFace Space",
                     href: "https://huggingface.co/spaces/arjuncodess/men2-predictor",
-                    icon: <Icons.globe className="size-3" />,
+                    icon: <Icons.huggingface className="size-3" />,
                 },
                 {
                     type: "Source Code",
