@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import Markdown from "react-markdown";
 
 interface ResumeCardProps {
   logoUrl: string;
@@ -102,7 +103,24 @@ export const ResumeCard = ({
               }}
               className="mt-2 text-xs sm:text-sm"
             >
-              {description}
+              <Markdown
+                components={{
+                  a: ({ href, children }) => (
+                    <span
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        window.open(href, '_blank', 'noopener,noreferrer');
+                      }}
+                      className="text-blue-500 hover:underline cursor-pointer"
+                    >
+                      {children}
+                    </span>
+                  ),
+                }}
+              >
+                {description}
+              </Markdown>
             </motion.div>
           )}
         </div>
