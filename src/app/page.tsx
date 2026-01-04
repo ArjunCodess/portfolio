@@ -50,7 +50,7 @@ export default function Page() {
                         className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert"
                         components={{
                             a: ({ href, children }) => (
-                                <a href={href} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                                <a href={href} target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
                                     {children}
                                 </a>
                             ),
@@ -90,7 +90,6 @@ export default function Page() {
                                 altText={work.company}
                                 title={work.company}
                                 subtitle={work.title}
-                                href={work.href}
                                 badges={work.badges}
                                 period={`${work.start} - ${work.end ?? "Present"}`}
                                 description={work.description}
@@ -111,7 +110,6 @@ export default function Page() {
                         >
                             <ResumeCard
                                 key={education.school}
-                                href={education.href}
                                 logoUrl={education.logoUrl}
                                 altText={education.school}
                                 title={education.school}

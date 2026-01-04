@@ -23,7 +23,7 @@ export function CustomCard({
                         className="prose dark:prose-invert text-sm text-muted-foreground"
                         components={{
                             a: ({ href, children }) => (
-                                <a href={href} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                                <a href={href} target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 hover:underline">
                                     {children}
                                 </a>
                             ),
