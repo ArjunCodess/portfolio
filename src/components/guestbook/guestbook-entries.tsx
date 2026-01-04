@@ -4,8 +4,6 @@ import dayjs from 'dayjs';
 export default async function GuestbookEntries() {
     const { rows } = await sql`SELECT * from "Guestbook" ORDER BY last_modified DESC;`;
 
-    console.log(rows);
-
     return rows.map((entry) => (
         <div key={entry.id} className="flex flex-col space-y-1 mb-8" suppressHydrationWarning>
             <div className="w-full text-base md:text-md break-words">
