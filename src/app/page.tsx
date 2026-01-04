@@ -2,6 +2,7 @@ import CertificateImage from "@/components/certificate-image";
 import { CustomCard } from "@/components/custom-card";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
+import Float from "@/components/fancy/blocks/float";
 import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
 import { SectionHeader } from "@/components/section-header";
@@ -48,10 +49,12 @@ export default function Page() {
                             />
                         </div>
                         <BlurFade delay={BLUR_FADE_DELAY}>
-                            <Avatar className="size-28 border">
-                                <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
-                                <AvatarFallback>{DATA.initials}</AvatarFallback>
-                            </Avatar>
+                            <Float>
+                                <Avatar className="size-28 border">
+                                    <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
+                                    <AvatarFallback>{DATA.initials}</AvatarFallback>
+                                </Avatar>
+                            </Float>
                         </BlurFade>
                     </div>
                 </div>
