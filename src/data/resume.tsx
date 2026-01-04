@@ -92,14 +92,14 @@ export const DATA = {
                 url: "https://leetcode.com/ArjunCodess",
                 icon: Icons.leetcode,
 
-                navbar: true,
+                navbar: false,
             },
             Linktree: {
                 name: "Linktree",
                 url: "https://linktr.ee/arjuncodess",
                 icon: Icons.linktree,
 
-                navbar: true,
+                navbar: false,
             },
             Email: {
                 name: "Send Email",
