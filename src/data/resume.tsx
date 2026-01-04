@@ -137,6 +137,7 @@ export const DATA = {
                 "Python",
                 "Flask",
                 "Selenium",
+                "Thordata",
                 "Gemini AI",
                 "BeautifulSoup",
                 "Tailwind CSS",
@@ -482,7 +483,7 @@ export const DATA = {
     hobbiesInterests: [
         {
             title: "Competitive Programming",
-            description: "Solved [400 LeetCode problems](https://leetcode.com/u/arjuncodess/) (265k rank). Practicing algorithmic thinking and problem-solving daily.",
+            description: "Solved [400+ LeetCode problems](https://leetcode.com/u/arjuncodess/) (265k rank). Practicing algorithmic thinking and problem-solving daily.",
         },
         {
             title: "Love Coding",
@@ -498,7 +499,7 @@ export const DATA = {
         },
         {
             title: "Language Learning",
-            description: "[434-day Duolingo streak](https://www.duolingo.com/profile/ArjunCodess) learning Spanish. Consistent daily practice builds discipline.",
+            description: "[440+ day Duolingo streak](https://www.duolingo.com/profile/ArjunCodess) learning Spanish. Consistent daily practice builds discipline.",
         },
         {
             title: "Electronics & Arduino",
