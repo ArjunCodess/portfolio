@@ -27,7 +27,7 @@ export default function Page() {
                         alt="Banner"
                         width={1200}
                         height={400}
-                        className="w-full h-auto object-cover"
+                        className="w-full h-auto min-h-[140px] object-cover"
                         priority
                     />
                 </div>
