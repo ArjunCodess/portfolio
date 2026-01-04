@@ -159,56 +159,73 @@ export default function Page() {
                     </div>
                 </div>
             </section>
-            <section id="cs50">
-                <div className="flex min-h-0 flex-col gap-y-3">
+            <section id="certifications">
+                <div className="space-y-12 w-full py-12">
                     <BlurFade delay={BLUR_FADE_DELAY * 9}>
-                        <h2 className="text-xl font-bold">Harvard CS50 Certifications</h2>
+                        <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                            <div className="space-y-2">
+                                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+                                    Certifications
+                                </div>
+                                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                                    Self-Directed Learning
+                                </h2>
+                                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                                    I believe in continuous learning. Here are certifications and challenge completions from Harvard CS50 (including Puzzle Day and Ready Player 50) and freeCodeCamp.
+                                </p>
+                            </div>
+                        </div>
                     </BlurFade>
-                    <div className="grid grid-cols-2 gap-4">
-                        {DATA.cs50_images.map((imageUrl, idx) => {
-                            const isLastElement = DATA.cs50_images.length % 2 === 1 && idx === DATA.cs50_images.length - 1;
+                    <div className="space-y-8">
+                        <div className="flex min-h-0 flex-col gap-y-3">
+                            <BlurFade delay={BLUR_FADE_DELAY * 10}>
+                                <h3 className="text-xl font-bold">Harvard CS50 Certifications</h3>
+                            </BlurFade>
+                            <div className="grid grid-cols-2 gap-4">
+                                {DATA.cs50_images.map((imageUrl, idx) => {
+                                    const isLastElement = DATA.cs50_images.length % 2 === 1 && idx === DATA.cs50_images.length - 1;
 
-                            return (
-                                <BlurFade
-                                    key={imageUrl}
-                                    delay={BLUR_FADE_DELAY * 10 + idx * 0.05}
-                                    inView
-                                    className={isLastElement ? 'col-span-2 flex justify-center' : ''}
-                                >
-                                    <div className={isLastElement ? 'w-1/2' : ''}>
-                                        <CertificateImage
-                                            className="size-full object-contain hover:cursor-pointer py-2"
-                                            src={imageUrl}
-                                            alt={`CS50 Certificate ${idx + 1}`}
-                                        />
-                                    </div>
-                                </BlurFade>
-                            );
-                        })}
-                    </div>
-                </div>
-            </section>
-            <section id="freecodecamp">
-                <div className="flex min-h-0 flex-col gap-y-3">
-                    <BlurFade delay={BLUR_FADE_DELAY * 9}>
-                        <h2 className="text-xl font-bold">freeCodeCamp Professional Certifications</h2>
-                    </BlurFade>
-                    <div className="gap-4 columns-2">
-                        {DATA.fcc_images.map((imageUrl, idx) => {
-                            const isLastElement = DATA.fcc_images.length % 2 === 1 && idx === DATA.fcc_images.length - 1;
+                                    return (
+                                        <BlurFade
+                                            key={imageUrl}
+                                            delay={BLUR_FADE_DELAY * 11 + idx * 0.05}
+                                            inView
+                                            className={isLastElement ? 'col-span-2 flex justify-center' : ''}
+                                        >
+                                            <div className={isLastElement ? 'w-1/2' : ''}>
+                                                <CertificateImage
+                                                    className="size-full object-contain hover:cursor-pointer py-2"
+                                                    src={imageUrl}
+                                                    alt={`CS50 Certificate ${idx + 1}`}
+                                                />
+                                            </div>
+                                        </BlurFade>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                        <div className="flex min-h-0 flex-col gap-y-3">
+                            <BlurFade delay={BLUR_FADE_DELAY * 10}>
+                                <h3 className="text-xl font-bold">freeCodeCamp Professional Certifications</h3>
+                            </BlurFade>
+                            <div className="gap-4 columns-2">
+                                {DATA.fcc_images.map((imageUrl, idx) => {
+                                    const isLastElement = DATA.fcc_images.length % 2 === 1 && idx === DATA.fcc_images.length - 1;
 
-                            return (
-                                <BlurFade key={imageUrl} delay={BLUR_FADE_DELAY * 10 + idx * 0.05} inView>
-                                    <div className={`${isLastElement ? 'transform -translate-x-1/2' : ''}`}>
-                                        <CertificateImage
-                                            className="size-full object-contain hover:cursor-pointer py-2"
-                                            src={imageUrl}
-                                            alt={`freeCodeCamp Professional Certificate ${idx + 1}`}
-                                        />
-                                    </div>
-                                </BlurFade>
-                            );
-                        })}
+                                    return (
+                                        <BlurFade key={imageUrl} delay={BLUR_FADE_DELAY * 11 + idx * 0.05} inView>
+                                            <div className={`${isLastElement ? 'transform -translate-x-1/2' : ''}`}>
+                                                <CertificateImage
+                                                    className="size-full object-contain hover:cursor-pointer py-2"
+                                                    src={imageUrl}
+                                                    alt={`freeCodeCamp Professional Certificate ${idx + 1}`}
+                                                />
+                                            </div>
+                                        </BlurFade>
+                                    );
+                                })}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
