@@ -45,9 +45,9 @@ export const DATA = {
     ],
     cs50_images: [
         "/CS50T.png",
+        "/CS50x.png",
         "/CS50xPuzzleDay2024.png",
         "/CS50xPuzzleDay2025.png",
-        "/CS50x.png",
         "/ReadyPlayer50.png",
     ],
     fcc_images: [
