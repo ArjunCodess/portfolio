@@ -16,11 +16,11 @@ import { Button } from "@/components/ui/button"
 
 
 const SUGGESTED_QUESTIONS = [
-  "What's your biggest project?",
-  "Tell me about Pilot",
-  "What did you earn in 2025?",
-  "What certifications do you have?",
-  "What's your tech stack?",
+  "Tell me about your MEN2 medical research.",
+  "What is Pilot Ops?",
+  "How did you build a community on DEV.to?",
+  "What are your top open source projects?",
+  "What were your key achievements in 2025?",
 ];
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
