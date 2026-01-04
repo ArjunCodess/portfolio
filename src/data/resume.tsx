@@ -125,92 +125,12 @@ export const DATA = {
     ],
     projects: [
         {
-            title: "WebCrawlAI",
-            href: "https://webcrawlai.onrender.com/",
-            dates: "2024",
-            active: true,
-            description:
-                "AI-powered web scraping platform that leverages Gemini AI to extract specific information from websites — handles dynamic content, CAPTCHAs, and provides clean JSON output for easy integration.",
-            technologies: [
-                "Python",
-                "Flask",
-                "Selenium",
-                "Thordata",
-                "Gemini AI",
-                "BeautifulSoup",
-                "Tailwind CSS",
-            ],
-            links: [
-                {
-                    type: "Live Website",
-                    href: "https://webcrawlai.onrender.com/",
-                    icon: <Icons.globe className="size-3" />,
-                },
-                {
-                    type: "Source Code",
-                    href: "https://github.com/ArjunCodess/WebCrawlAI",
-                    icon: <Icons.github className="size-3" />,
-                },
-            ],
-            image: "",
-        },
-        {
-            title: "Analyzr",
-            href: "https://getanalyzr.vercel.app",
-            dates: "2024",
-            active: true,
-            description:
-                "Free and open-source analytics tool that requires just one line of code to set up. Comes with built-in Discord notifications and works seamlessly with any website for real-time tracking and custom events.",
-            technologies: [
-                "Next.js",
-                "TypeScript",
-                "Supabase",
-                "Tailwind CSS",
-                "Shadcn/UI",
-            ],
-            links: [
-                {
-                    type: "Live Website",
-                    href: "https://getanalyzr.vercel.app",
-                    icon: <Icons.globe className="size-3" />,
-                },
-                {
-                    type: "Source Code",
-                    href: "https://github.com/ArjunCodess/analyzr",
-                    icon: <Icons.github className="size-3" />,
-                },
-            ],
-            image: "",
-        },
-        {
-            title: "Storyblok MCP",
-            href: "https://github.com/ArjunCodess/storyblok-mcp",
-            dates: "2025",
-            active: true,
-            description:
-                "Connect AI tools to Storyblok instantly - use natural language to manage your CMS like magic. Built for the Storyblok Headless CMS Challenge on DEV.to.",
-            technologies: [
-                "TypeScript",
-                "JavaScript",
-                "MCP Protocol",
-                "Storyblok API",
-            ],
-            links: [
-                {
-                    type: "Source Code",
-                    href: "https://github.com/ArjunCodess/storyblok-mcp",
-                    icon: <Icons.github className="size-3" />,
-                },
-            ],
-            image: "",
-        },
-        {
             title: "MEN2 Predictor",
             href: "https://huggingface.co/spaces/arjuncodess/men2-predictor",
             dates: "2025",
             active: true,
             description:
-                "A machine learning pipeline for predicting Multiple Endocrine Neoplasia type 2 (MEN2) syndrome. Achieves 96.73% accuracy with 100% sensitivity on real clinical data from 152 patients across 20 studies.",
+                "**INSEF Regional Fair Selected.** Medical ML pipeline for predicting MEN2 syndrome. Achieves 96.73% accuracy with 100% sensitivity on real clinical data from 152 patients across 20 studies.",
             technologies: [
                 "Python",
                 "Machine Learning",
@@ -234,109 +154,58 @@ export const DATA = {
             image: "",
         },
         {
-            title: "VendX",
-            href: "https://vendx-admin.vercel.app",
-            dates: "July 2024",
-            active: true,
-            description:
-                "E-commerce platform with an admin dashboard and storefront. Made with Next.js, Tailwind CSS, and Drizzle ORM. Lets users manage products, categories, colors, and sizes.",
-            technologies: [
-                "Next.js",
-                "TypeScript",
-                "Tailwind CSS",
-                "Drizzle ORM",
-                "Neon",
-                "Shadcn/UI",
-                "Clerk",
-            ],
-            links: [
-                {
-                    type: "Admin Dashboard",
-                    href: "https://vendx-admin.vercel.app",
-                    icon: <Icons.globe className="size-3" />,
-                },
-                {
-                    type: "Store",
-                    href: "https://vendx-store.vercel.app",
-                    icon: <Icons.globe className="size-3" />,
-                },
-            ],
-            image: "",
-        },
-        {
-            title: "TypeTheLyrics",
-            href: "https://typethelyrics.vercel.app",
+            title: "Analyzr",
+            href: "https://getanalyzr.vercel.app",
             dates: "2024",
             active: true,
             description:
-                "Practice typing skills while following along with synchronized lyrics from your favorite Spotify songs. Tracks WPM and accuracy with a leaderboard system.",
+                "**200+ Product Hunt upvotes, 31 GitHub stars.** Free, open-source analytics requiring just one line of code. Built-in Discord notifications and real-time tracking for any website.",
             technologies: [
                 "Next.js",
                 "TypeScript",
                 "Supabase",
                 "Tailwind CSS",
-                "Spotify API",
+                "Shadcn/UI",
             ],
             links: [
                 {
                     type: "Live Website",
-                    href: "https://typethelyrics.vercel.app",
-                    icon: <Icons.globe className="size-3" />,
-                },
-            ],
-            image: "",
-        },
-        {
-            title: "Starfall",
-            href: "https://starfall-kit.vercel.app",
-            dates: "2024",
-            active: true,
-            description:
-                "Neon-powered full-stack web application starter kit. Comes with Next.js, Tailwind CSS, Shadcn/UI, Drizzle ORM, Clerk auth, and TypeScript all pre-configured.",
-            technologies: [
-                "Next.js",
-                "TypeScript",
-                "Tailwind CSS",
-                "Drizzle ORM",
-                "Neon",
-                "Clerk",
-            ],
-            links: [
-                {
-                    type: "Live Demo",
-                    href: "https://starfall-kit.vercel.app",
-                    icon: <Icons.globe className="size-3" />,
-                },
-                {
-                    type: "Documentation",
-                    href: "https://starfall-docs.vercel.app/",
-                    icon: <Icons.globe className="size-3" />,
-                },
-            ],
-            image: "",
-        },
-        {
-            title: "AstroScope",
-            href: "https://astroscope.streamlit.app/",
-            dates: "2024",
-            active: true,
-            description:
-                "Interactive dashboard that visualizes near-Earth asteroid data from NASA's NeoWs API. Provides insights into asteroid sizes, velocities, miss distances, and potential hazards.",
-            technologies: [
-                "Python",
-                "Streamlit",
-                "NASA API",
-                "Data Visualization",
-            ],
-            links: [
-                {
-                    type: "Live Dashboard",
-                    href: "https://astroscope.streamlit.app/",
+                    href: "https://getanalyzr.vercel.app",
                     icon: <Icons.globe className="size-3" />,
                 },
                 {
                     type: "Source Code",
-                    href: "https://github.com/ArjunCodess/astroscope",
+                    href: "https://github.com/ArjunCodess/analyzr",
+                    icon: <Icons.github className="size-3" />,
+                },
+            ],
+            image: "",
+        },
+        {
+            title: "WebCrawlAI",
+            href: "https://webcrawlai.onrender.com/",
+            dates: "2024",
+            active: true,
+            description:
+                "**120+ GitHub stars.** AI-powered web scraping platform using Gemini AI. Handles dynamic content, CAPTCHAs, and provides clean JSON output.",
+            technologies: [
+                "Python",
+                "Flask",
+                "Selenium",
+                "Thordata",
+                "Gemini AI",
+                "BeautifulSoup",
+                "Tailwind CSS",
+            ],
+            links: [
+                {
+                    type: "Live Website",
+                    href: "https://webcrawlai.onrender.com/",
+                    icon: <Icons.globe className="size-3" />,
+                },
+                {
+                    type: "Source Code",
+                    href: "https://github.com/ArjunCodess/WebCrawlAI",
                     icon: <Icons.github className="size-3" />,
                 },
             ],
@@ -372,7 +241,7 @@ export const DATA = {
             dates: "2025",
             active: true,
             description:
-                "AI-powered video creation platform. Generate professional reels with just a topic - AI handles script, images, voiceover, and captions automatically using Remotion.",
+                "AI-powered video creation platform. Generate professional reels with just a topic — AI handles script, images, voiceover, and captions automatically using Remotion.",
             technologies: [
                 "Next.js",
                 "TypeScript",
@@ -392,12 +261,143 @@ export const DATA = {
             image: "",
         },
         {
+            title: "AstroScope",
+            href: "https://astroscope.streamlit.app/",
+            dates: "2024",
+            active: true,
+            description:
+                "Interactive dashboard visualizing near-Earth asteroid data from NASA's NeoWs API. Shows asteroid sizes, velocities, miss distances, and hazard levels.",
+            technologies: [
+                "Python",
+                "Streamlit",
+                "NASA API",
+                "Data Visualization",
+            ],
+            links: [
+                {
+                    type: "Live Dashboard",
+                    href: "https://astroscope.streamlit.app/",
+                    icon: <Icons.globe className="size-3" />,
+                },
+                {
+                    type: "Source Code",
+                    href: "https://github.com/ArjunCodess/astroscope",
+                    icon: <Icons.github className="size-3" />,
+                },
+            ],
+            image: "",
+        },
+        {
+            title: "Storyblok MCP",
+            href: "https://github.com/ArjunCodess/storyblok-mcp",
+            dates: "2025",
+            active: true,
+            description:
+                "DEV.to Challenge Entry. Connect AI tools to Storyblok instantly — use natural language to manage your CMS. Built for the Storyblok Headless CMS Challenge.",
+            technologies: [
+                "TypeScript",
+                "JavaScript",
+                "MCP Protocol",
+                "Storyblok API",
+            ],
+            links: [
+                {
+                    type: "Source Code",
+                    href: "https://github.com/ArjunCodess/storyblok-mcp",
+                    icon: <Icons.github className="size-3" />,
+                },
+            ],
+            image: "",
+        },
+        {
+            title: "VendX",
+            href: "https://vendx-admin.vercel.app",
+            dates: "2024",
+            active: true,
+            description:
+                "Full-stack e-commerce platform with admin dashboard and storefront. Manage products, categories, colors, sizes, and orders.",
+            technologies: [
+                "Next.js",
+                "TypeScript",
+                "Tailwind CSS",
+                "Drizzle ORM",
+                "Neon",
+                "Shadcn/UI",
+                "Clerk",
+            ],
+            links: [
+                {
+                    type: "Admin Dashboard",
+                    href: "https://vendx-admin.vercel.app",
+                    icon: <Icons.globe className="size-3" />,
+                },
+                {
+                    type: "Store",
+                    href: "https://vendx-store.vercel.app",
+                    icon: <Icons.globe className="size-3" />,
+                },
+            ],
+            image: "",
+        },
+        {
+            title: "Starfall",
+            href: "https://starfall-kit.vercel.app",
+            dates: "2024",
+            active: true,
+            description:
+                "Neon-powered full-stack web application starter kit with Next.js, Tailwind CSS, Shadcn/UI, Drizzle ORM, and Clerk auth pre-configured.",
+            technologies: [
+                "Next.js",
+                "TypeScript",
+                "Tailwind CSS",
+                "Drizzle ORM",
+                "Neon",
+                "Clerk",
+            ],
+            links: [
+                {
+                    type: "Live Demo",
+                    href: "https://starfall-kit.vercel.app",
+                    icon: <Icons.globe className="size-3" />,
+                },
+                {
+                    type: "Documentation",
+                    href: "https://starfall-docs.vercel.app/",
+                    icon: <Icons.globe className="size-3" />,
+                },
+            ],
+            image: "",
+        },
+        {
+            title: "TypeTheLyrics",
+            href: "https://typethelyrics.vercel.app",
+            dates: "2024",
+            active: true,
+            description:
+                "Practice typing skills with synchronized Spotify lyrics. Tracks WPM and accuracy with a leaderboard system.",
+            technologies: [
+                "Next.js",
+                "TypeScript",
+                "Supabase",
+                "Tailwind CSS",
+                "Spotify API",
+            ],
+            links: [
+                {
+                    type: "Live Website",
+                    href: "https://typethelyrics.vercel.app",
+                    icon: <Icons.globe className="size-3" />,
+                },
+            ],
+            image: "",
+        },
+        {
             title: "TBH",
             href: "https://mytbh.vercel.app/",
             dates: "2024",
             active: true,
             description:
-                "Anonymous Q&A app where friends can ask questions, you can reply publicly, make threads, and keep conversations going. Features AI-powered daily prompts.",
+                "Anonymous Q&A app with AI-powered daily prompts. Friends can ask questions, reply publicly, create threads, and keep conversations going.",
             technologies: [
                 "Next.js",
                 "TypeScript",
@@ -423,10 +423,10 @@ export const DATA = {
         {
             title: "SortingWiz",
             href: "https://www.youtube.com/watch?v=hjY9Ifs8L6U",
-            dates: "January 2024",
+            dates: "2024",
             active: true,
             description:
-                "Python and Pygame-based interactive sorting algorithm visualizer. Watch algorithms like Bubble Sort, Insertion Sort, Selection Sort, and Heap Sort in real-time.",
+                "Python and Pygame-based interactive sorting algorithm visualizer. Watch Bubble Sort, Insertion Sort, Selection Sort, and Heap Sort in real-time.",
             technologies: [
                 "Python",
                 "Pygame",
