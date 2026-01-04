@@ -14,31 +14,67 @@
 
 Hi, I'm **Arjun Vijay Prakash** — a 16-year-old full-stack developer, aspiring researcher, technical writer, and CTO at [Pilot](https://github.com/pilot-ops-crm) from Lucknow, India.
 
-- 🚀 **20+ Projects** shipped across web, AI, and ML
-- ✍️ **34,000+ followers** on [DEV.to](https://dev.to/arjuncodess) with 400,000+ views
-- 💰 **$1,375 earned** through technical writing
-- 🔬 **INSEF Regional Fair** selected for MEN2 Predictor ML research
-- 🏆 **Harvard CS50** certified (CS50x, CS50T, Puzzle Day Gold 2024 & 2025)
+- **20+ Projects** shipped across web, AI, and ML
+- **34,000+ followers** on [DEV.to](https://dev.to/arjuncodess) with 400,000+ views
+- **$1,375 earned** through technical writing
+- **INSEF Regional Fair** selected for MEN2 Predictor ML research
+- **Harvard CS50** certified (CS50x, CS50T, Puzzle Day Gold 2024 & 2025)
 
 ## ✨ Features
 
-- ⚡ **Next.js 15** with App Router and Turbopack
-- 🎨 **Beautiful Animations** using Framer Motion
-- 🌙 **Dark/Light Mode** with system preference detection
-- 📱 **Fully Responsive** design
-- 🖼️ **Certificate Gallery** with interactive modals
-- 📊 **Project Showcase** with live links and GitHub repos
-- ✍️ **Guestbook** for visitors to leave messages
-- 🔗 **RAG-powered AI** context for enhanced interactions
+- **Next.js 15** with App Router and Turbopack
+- **Beautiful Animations** using Framer Motion
+- **Dark/Light Mode** with system preference detection
+- **Fully Responsive** design
+- **Certificate Gallery** with interactive modals
+- **Project Showcase** with live links and GitHub repos
+- **Guestbook** for visitors to leave messages
+- **AI Chatbot** with RAG (Retrieval-Augmented Generation) for intelligent answers
+- **Smart Context** utilizing vector search to answer content-specific questions
+- **Optimized Performance** with local embedding generation using Transformers.js
+
+
+
+## 🧠 AI Chatbot & RAG Architecture
+
+This portfolio features a sophisticated **Retrieval-Augmented Generation (RAG)** chatbot that allows visitors to "chat" with the portfolio. Unlike standard chatbots, this one knows specific details about my work, skills, and background by querying a structured knowledge base.
+
+### How it Works
+
+1.  **Ingestion Pipeline** (`scripts/generate-embeddings.ts`):
+    -   Source content (Markdown files) is read from `src/data/rag`.
+    -   Text is chunked into semantic segments (~800 characters) with overlap.
+    -   **Local Embeddings**: We use `Xenova/all-MiniLM-L6-v2` via `transformers.js` to generate vector embeddings locally (no external API calls needed for embeddings!).
+    -   Vectors are stored in **Vercel Postgres** using the `pgvector` extension.
+
+2.  **Retrieval System**:
+    -   When a user asks a question, their query is converted to a vector embedding on the fly.
+    -   We perform a **cosine similarity search** in Postgres to find the most relevant content chunks.
+    -   The top 5 matching chunks are retrieved to form the "context".
+
+3.  **Generation Phase**:
+    -   The user's query and the retrieved context are fed into **Google's Gemini Flash** model (via Vercel AI SDK).
+    -   The model generates a response based *only* on the provided facts, minimizing hallucinations.
+    -   The response is streamed back to the UI in real-time.
 
 ## 🛠️ Tech Stack
 
-- **Framework:** Next.js 15, React 19
+### Core
+- **Framework:** Next.js 16 (App Router)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS, shadcn/ui
-- **Animations:** Framer Motion
-- **Database:** Vercel Postgres (for Guestbook)
-- **Deployment:** Vercel
+- **Animations:** Framer Motion, Magic UI
+
+### AI & Data
+- **LLM:** Google Gemini Flash
+- **SDK:** Vercel AI SDK
+- **Embeddings:** Transformers.js (`all-MiniLM-L6-v2`)
+- **Database:** Vercel Postgres (with `pgvector`)
+- **Vector Search:** SQL-based cosine similarity
+
+### Deployment
+- **Platform:** Vercel
+- **Analytics:** Vercel Analytics
 
 ## 🏁 Getting Started
 
@@ -48,6 +84,8 @@ Hi, I'm **Arjun Vijay Prakash** — a 16-year-old full-stack developer, aspiring
 - pnpm
 
 ### Installation
+
+Check out [.env.example](.env.example) to see the required environment variables.
 
 ```bash
 # Clone the repository
@@ -65,21 +103,65 @@ cp .env.example .env.local
 pnpm dev
 ```
 
+### Setting up the Knowledge Base (RAG)
+
+To make the chatbot work locally, you need to generate embeddings for the data:
+
+```bash
+# 1. Ensure your .env.local has the POSTGRES_URL connection string
+
+# 2. Run the embedding generation script
+pnpm db:generate-embeddings
+```
+This will read from `src/data/rag/*.md`, generate vectors, and populate your local/remote database.
+
 Visit `http://localhost:3000` to see the portfolio.
+
+## 🎨 Customization Guide
+
+This portfolio is designed to be easily customized. Here is how you can make it yours:
+
+### 1. Update Personal Information (`src/data/resume.tsx`)
+
+The entire portfolio is data-driven. You don't need to dig into React components to change the text. Open `src/data/resume.tsx` and update the `DATA` constant:
+
+-   **Name & Brand**: Update `name`, `initials`, and `personalBrand`.
+-   **Social Links**: modifying the `contact.social` object.
+-   **Work & Education**: Update the `work` and `education` arrays.
+-   **Projects**: content for the "Projects" section is in the `projects` array.
+
+### 2. Update the AI Knowledge Base (RAG)
+
+The AI Chatbot answers questions based on markdown files in `src/data/rag/`. To teach the AI about **you**:
+
+1.  **Delete existing files** in `src/data/rag/`.
+2.  **Add your own Markdown files**. You can organize them however you like (e.g., `bio.md`, `experience.md`, `hobbies.md`).
+3.  **Re-generate embeddings**:
+    ```bash
+    pnpm db:generate-embeddings
+    ```
+    This script will chunk your new text, create vectors, and store them in your database so the AI accepts them as truth.
+
+### 3. Tips for Best Results
+-   **Be Specific**: When writing your RAG files, be descriptive. Instead of "I like coding", say "I enjoy building scalable web apps with Next.js and Postgres".
+-   **Images**: Add your photos to the `public/` folder and reference them in `resume.tsx` (e.g., `avatarUrl: "/me.jpg"`).
 
 ## 📁 Project Structure
 
 ```
+scripts/           # Build & utility scripts (e.g. embeddings)
 src/
 ├── app/           # Next.js App Router pages
+│   ├── api/       # API Routes (Chat interface)
+│   └── ...
 ├── components/    # Reusable UI components
 │   ├── ui/        # shadcn/ui components
-│   ├── magicui/   # Custom animation components
 │   └── ...
 ├── data/          # Portfolio data and content
 │   ├── resume.tsx # Main resume data
-│   └── rag/       # RAG context files
+│   └── rag/       # RAG context files (Knowledge Base)
 └── lib/           # Utility functions
+    └── ai/        # AI & RAG helper logic
 ```
 
 ## 📄 Key Sections
