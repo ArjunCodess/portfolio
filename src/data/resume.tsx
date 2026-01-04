@@ -151,7 +151,7 @@ export const DATA = {
                     icon: <Icons.github className="size-3" />,
                 },
             ],
-            image: "",
+            image: "/projects/men2-predictor.png",
         },
         {
             title: "Analyzr",
@@ -179,7 +179,7 @@ export const DATA = {
                     icon: <Icons.github className="size-3" />,
                 },
             ],
-            image: "",
+            image: "/projects/analyzr.png",
         },
         {
             title: "WebCrawlAI",
@@ -209,7 +209,7 @@ export const DATA = {
                     icon: <Icons.github className="size-3" />,
                 },
             ],
-            image: "",
+            image: "/projects/webcrawlai.png",
         },
         {
             title: "ChemistryCheck",
@@ -233,7 +233,7 @@ export const DATA = {
                     icon: <Icons.globe className="size-3" />,
                 },
             ],
-            image: "",
+            image: "/projects/chemistrycheck.png",
         },
         {
             title: "FlashReels",
@@ -258,7 +258,7 @@ export const DATA = {
                     icon: <Icons.globe className="size-3" />,
                 },
             ],
-            image: "",
+            image: "/projects/flashreels.png",
         },
         {
             title: "AstroScope",
@@ -285,7 +285,7 @@ export const DATA = {
                     icon: <Icons.github className="size-3" />,
                 },
             ],
-            image: "",
+            image: "/projects/astroscope.png",
         },
         {
             title: "Storyblok MCP",
@@ -307,7 +307,7 @@ export const DATA = {
                     icon: <Icons.github className="size-3" />,
                 },
             ],
-            image: "",
+            image: "/projects/storyblok-mcp.png",
         },
         {
             title: "VendX",
@@ -337,7 +337,7 @@ export const DATA = {
                     icon: <Icons.globe className="size-3" />,
                 },
             ],
-            image: "",
+            image: "/projects/vendx.png",
         },
         {
             title: "Starfall",
@@ -366,7 +366,7 @@ export const DATA = {
                     icon: <Icons.globe className="size-3" />,
                 },
             ],
-            image: "",
+            image: "/projects/starfall.png",
         },
         {
             title: "TypeTheLyrics",
@@ -389,7 +389,7 @@ export const DATA = {
                     icon: <Icons.globe className="size-3" />,
                 },
             ],
-            image: "",
+            image: "/projects/typethelyrics.png",
         },
         {
             title: "TBH",
@@ -418,7 +418,7 @@ export const DATA = {
                     icon: <Icons.github className="size-3" />,
                 },
             ],
-            image: "",
+            image: "/projects/tbh.png",
         },
         {
             title: "SortingWiz",
@@ -443,7 +443,7 @@ export const DATA = {
                     icon: <Icons.github className="size-3" />,
                 },
             ],
-            image: "",
+            image: "/projects/sortingwiz.png",
         },
     ],
     personalAchievements: [
