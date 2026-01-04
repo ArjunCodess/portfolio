@@ -9,9 +9,9 @@ export const DATA = {
     location: "Lucknow, Uttar Pradesh, India",
     locationLink: "https://www.google.com/maps/place/lucknow",
     description:
-        "I'm a 16-year-old full-stack developer, AI/ML researcher, technical writer, and CTO at Pilot.",
+        "I'm a 16-year-old full-stack developer, aspiring researcher, technical writer, and CTO at Pilot.",
     summary:
-        "I'm Arjun Vijay Prakash, a 16-year-old [full-stack developer](https://github.com/ArjunCodess), [technical writer](https://dev.to/arjuncodess), AI/ML researcher, and CTO at [Pilot](https://github.com/pilot-ops-crm) from India. I've been building websites and apps since I was young. I love turning ideas into reality through code. I've shipped over 20 projects and earned $1,375 through technical writing. I share my coding journey on my blog, where I've built a community of over 34,000 followers with 400,000+ views. Selected for INSEF Regional Fair (Online) for my MEN2 Predictor ML research project.",
+        "I'm Arjun Vijay Prakash, a 16-year-old [full-stack developer](https://github.com/ArjunCodess), [technical writer](https://dev.to/arjuncodess), aspiring researcher, and CTO at [Pilot](https://github.com/pilot-ops-crm) from India. I've been building websites and apps since I was young. I love turning ideas into reality through code. I've shipped over 20 projects and earned $1,375 through technical writing. I share my coding journey on my blog, where I've built a community of over 34,000 followers with 400,000+ views. Selected for INSEF Regional Fair (Online) for my MEN2 Predictor ML research project.",
     avatarUrl: "/me.jpeg",
     skills: [
         "Next.js",

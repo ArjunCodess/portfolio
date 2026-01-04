@@ -14,7 +14,7 @@
 **Mobile:** +91 8601404303
 **Email:** arjunv.prakash12345@gmail.com
 **Education:** ICSE Class 10 (2025-26 session) at City Montessori School
-**Current Status:** Full-stack developer, AI/ML researcher, Startup CTO
+**Current Status:** Full-stack developer, aspiring researcher, technical writer, Startup CTO
 
 **Key Links:**
 - GitHub: https://github.com/ArjunCodess
