@@ -38,25 +38,27 @@ export const ResumeCard = ({
       </div>
       <div className="flex-grow ml-4 items-center flex-col group">
         <CardHeader>
-          <div className="flex items-center justify-between gap-x-2 text-base">
-            <h3 className="inline-flex items-center justify-center font-semibold leading-none text-xs sm:text-sm">
-              {title}
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-y-1 gap-x-2 text-base">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-y-1 gap-x-2 min-w-0">
+              <h3 className="font-semibold leading-none text-xs sm:text-sm">
+                {title}
+              </h3>
               {badges && (
-                <span className="inline-flex gap-x-1 ml-2">
+                <div className="flex flex-wrap gap-1">
                   {badges.map((badge, index) => (
                     <Badge
                       variant="secondary"
                       size="sm"
-                      className="align-middle text-xs"
+                      className="text-xs"
                       key={index}
                     >
                       {badge}
                     </Badge>
                   ))}
-                </span>
+                </div>
               )}
-            </h3>
-            <div className="text-xs sm:text-sm tabular-nums text-muted-foreground text-right">
+            </div>
+            <div className="text-xs sm:text-sm tabular-nums text-muted-foreground sm:text-right shrink-0">
               {period}
             </div>
           </div>
