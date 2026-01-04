@@ -95,7 +95,7 @@ export const DATA = {
             badges: ["Open Source", "Building in Public", "Startup"],
             location: "Remote",
             title: "Chief Technology Officer (CTO)",
-            logoUrl: "/logo.png",
+            logoUrl: "/pilot.png",
             start: "2025",
             end: "Present",
             description:
@@ -106,7 +106,7 @@ export const DATA = {
             badges: ["$1,375 Earned", "34K Followers", "400K+ Views"],
             location: "Remote",
             title: "Freelance Technical Writer",
-            logoUrl: "/logo.png",
+            logoUrl: "/devto.svg",
             start: "2025",
             end: "Present",
             description:
