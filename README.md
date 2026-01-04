@@ -22,7 +22,7 @@ Hi, I'm **Arjun Vijay Prakash** — a 16-year-old full-stack developer, aspiring
 
 ## ✨ Features
 
-- **Next.js 15** with App Router and Turbopack
+- **Next.js 16** with App Router and Turbopack
 - **Beautiful Animations** using Framer Motion
 - **Dark/Light Mode** with system preference detection
 - **Fully Responsive** design
