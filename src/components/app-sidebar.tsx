@@ -18,9 +18,9 @@ import { Button } from "@/components/ui/button"
 const SUGGESTED_QUESTIONS = [
   "Tell me about your MEN2 medical research.",
   "What is Pilot Ops?",
-  "How did you build a community on DEV.to?",
-  "What are your top open source projects?",
-  "What were your key achievements in 2025?",
+  "What did you earn in 2025?",
+  "What certifications do you have?",
+  "What's your tech stack?",
 ];
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -76,14 +76,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <div className="flex flex-col h-full overflow-y-auto p-6">
               <div className="flex-1 flex flex-col items-center justify-center space-y-6">
                 <div className="text-center space-y-2">
-                  <h2 className="text-2xl text-foreground font-semibold">Hi, I&apos;m ArjunCodess AI 👋</h2>
-                  <p className="text-sm text-muted-foreground max-w-[250px] mx-auto">
-                    I can answer questions about Arjun&apos;s projects, skills, and experience.
+                  <h2 className="text-2xl text-foreground font-semibold">Ask me anything</h2>
+                  <p className="text-sm text-muted-foreground max-w-[350px] mx-auto">
+                    I&apos;m Arjun&apos;s second brain. Ask me anything about his projects, skills, and experience.
                   </p>
                 </div>
 
                 <div className="w-full space-y-8 pt-4">
-                  <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center mb-3">Ask me about...</h3>
+                  <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center mb-3">Suggested Questions</h3>
                   <div className="flex flex-col gap-2">
                     {SUGGESTED_QUESTIONS.map((question, index) => (
                       <button
