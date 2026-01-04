@@ -8,6 +8,9 @@ import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { AppSidebar } from "@/components/app-sidebar";
+import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
+import { ChatTrigger } from "@/components/chat-trigger";
 
 const fontSans = FontSans({
     subsets: ["latin"],
@@ -59,16 +62,24 @@ export default function RootLayout({
         <html lang="en" suppressHydrationWarning>
             <body
                 className={cn(
-                    "min-h-screen bg-background font-sans antialiased max-w-2xl mx-auto py-16 sm:pb-24 px-4",
+                    "min-h-screen bg-background font-sans antialiased",
                     fontSans.variable
                 )}
             >
                 <ThemeProvider attribute="class" defaultTheme="light">
                     <TooltipProvider delayDuration={0}>
-                        {children}
-                        <Navbar />
-                        <Analytics />
-                        <SpeedInsights />
+                        <SidebarProvider defaultOpen={false}>
+                            <SidebarInset>
+                                <div className="max-w-2xl mx-auto py-16 sm:pb-24 px-4">
+                                    {children}
+                                    <Navbar />
+                                    <Analytics />
+                                    <SpeedInsights />
+                                </div>
+                            </SidebarInset>
+                            <ChatTrigger />
+                            <AppSidebar side="right" />
+                        </SidebarProvider>
                     </TooltipProvider>
                 </ThemeProvider>
             </body>
