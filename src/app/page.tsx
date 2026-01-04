@@ -4,10 +4,10 @@ import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
+import { SectionHeader } from "@/components/section-header";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
-import { ArrowUp } from "lucide-react";
 import Link from "next/link";
 import Markdown from "react-markdown";
 
@@ -121,23 +121,13 @@ export default function Page() {
                 </div>
             </section>
             <section id="projects">
-                <div className="space-y-12 w-full py-12">
-                    <BlurFade delay={BLUR_FADE_DELAY * 11}>
-                        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                            <div className="space-y-2">
-                                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                                    My Projects
-                                </div>
-                                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                                    Check out my latest work
-                                </h2>
-                                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                                    I&apos;ve worked on a variety of projects, from simple
-                                    websites to complex web applications. Here are a few of my favorites.
-                                </p>
-                            </div>
-                        </div>
-                    </BlurFade>
+                <div className="space-y-8 w-full py-8">
+                    <SectionHeader
+                        badge="My Projects"
+                        title="Check out my latest work"
+                        description="I've worked on a variety of projects, from simple websites to complex web applications. Here are a few of my favorites."
+                        delay={BLUR_FADE_DELAY * 11}
+                    />
                     <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
                         {DATA.projects.map((project, id) => (
                             <BlurFade
@@ -160,22 +150,13 @@ export default function Page() {
                 </div>
             </section>
             <section id="certifications">
-                <div className="space-y-12 w-full py-12">
-                    <BlurFade delay={BLUR_FADE_DELAY * 9}>
-                        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                            <div className="space-y-2">
-                                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                                    Certifications
-                                </div>
-                                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                                    Self-Directed Learning
-                                </h2>
-                                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                                    I believe in continuous learning. Here are certifications and challenge completions from Harvard CS50 (including Puzzle Day and Ready Player 50) and freeCodeCamp.
-                                </p>
-                            </div>
-                        </div>
-                    </BlurFade>
+                <div className="space-y-8 w-full py-8">
+                    <SectionHeader
+                        badge="Certifications"
+                        title="Self-Directed Learning"
+                        description="I believe in continuous learning. Here are certifications and challenge completions from Harvard CS50 (including Puzzle Day and Ready Player 50) and freeCodeCamp."
+                        delay={BLUR_FADE_DELAY * 9}
+                    />
                     <div className="space-y-8">
                         <div className="flex min-h-0 flex-col gap-y-3">
                             <BlurFade delay={BLUR_FADE_DELAY * 10}>
@@ -230,22 +211,13 @@ export default function Page() {
                 </div>
             </section>
             <section id="personalAchievements">
-                <div className="space-y-12 w-full py-12">
-                    <BlurFade delay={BLUR_FADE_DELAY * 13}>
-                        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                            <div className="space-y-2">
-                                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                                    Personal Achievements
-                                </div>
-                                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                                    My Biggest Achievements
-                                </h2>
-                                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                                    Throughout my journey, I&apos;ve completed many personal feats. These achievements, in general taught me the importance of dedication and creativity. Few of the <i>feats</i> are listed below.
-                                </p>
-                            </div>
-                        </div>
-                    </BlurFade>
+                <div className="space-y-8 w-full py-8">
+                    <SectionHeader
+                        badge="Personal Achievements"
+                        title="My Biggest Achievements"
+                        description="Throughout my journey, I've completed many personal feats. These achievements taught me the importance of dedication and creativity."
+                        delay={BLUR_FADE_DELAY * 13}
+                    />
                     <BlurFade delay={BLUR_FADE_DELAY * 14}>
                         <ul className="mb-4 ml-4 divide-y divide-dashed border-l pr-2">
                             {DATA.personalAchievements.map((project, id) => (
@@ -265,22 +237,13 @@ export default function Page() {
                 </div>
             </section>
             <section id="hobbiesInterests">
-                <div className="space-y-12 w-full py-12">
-                    <BlurFade delay={BLUR_FADE_DELAY * 13}>
-                        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-                            <div className="space-y-2">
-                                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                                    Hobbies & Interests
-                                </div>
-                                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                                    What I Enjoy
-                                </h2>
-                                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                                    I enjoy reading, coding, writing, exploring music and creating it. These activities help me learn, create, and grow. Some of my hobbies are listed below.
-                                </p>
-                            </div>
-                        </div>
-                    </BlurFade>
+                <div className="space-y-8 w-full py-8">
+                    <SectionHeader
+                        badge="Hobbies & Interests"
+                        title="What I Enjoy"
+                        description="I enjoy reading, coding, writing, exploring music and creating it. These activities help me learn, create, and grow."
+                        delay={BLUR_FADE_DELAY * 13}
+                    />
                     <BlurFade delay={BLUR_FADE_DELAY * 14}>
                         <ul className="mb-4 ml-4 divide-y divide-dashed border-l pr-2">
                             {DATA.hobbiesInterests.map((project, id) => (
@@ -299,26 +262,23 @@ export default function Page() {
                 </div>
             </section>
             <section id="contact">
-                <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
-                    <BlurFade delay={BLUR_FADE_DELAY * 16}>
-                        <div className="space-y-3">
-                            <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                                Contact
-                            </div>
-                            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                                Get in Touch
-                            </h2>
-                            <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                                Have a project in mind or just want to say hi? Feel free to{" "}
-                                <Link
-                                    href={DATA.contact.social.X.url}
-                                    className="text-blue-600 hover:underline"
-                                >
-                                    reach out via Twitter
-                                </Link>.
-                                I&apos;m always open to discussing new opportunities and connecting with like-minded individuals.
-                            </p>
-                        </div>
+                <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-8">
+                    <SectionHeader
+                        badge="Contact"
+                        title="Get in Touch"
+                        description="Have a project in mind or just want to say hi? I'm always open to discussing new opportunities."
+                        delay={BLUR_FADE_DELAY * 16}
+                    />
+                    <BlurFade delay={BLUR_FADE_DELAY * 17}>
+                        <p className="text-muted-foreground text-sm md:text-base">
+                            Feel free to{" "}
+                            <Link
+                                href={DATA.contact.social.X.url}
+                                className="text-blue-600 dark:text-blue-400 hover:underline"
+                            >
+                                reach out via Twitter
+                            </Link>.
+                        </p>
                     </BlurFade>
                 </div>
             </section>
