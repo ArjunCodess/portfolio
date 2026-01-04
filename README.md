@@ -136,7 +136,14 @@ The AI Chatbot answers questions based on markdown files in `src/data/rag/`. To 
 
 1.  **Delete existing files** in `src/data/rag/`.
 2.  **Add your own Markdown files**. You can organize them however you like (e.g., `bio.md`, `experience.md`, `hobbies.md`).
-3.  **Re-generate embeddings**:
+3.  **Automate Project Data** (`scripts/fetch-projects.ts`):
+    -   This script automatically fetches your project details (stars, descriptions, READMEs) from GitHub and saves them to `src/data/rag/projects.md`.
+    -   **How to use**: Update the `USERNAME` and `REPOS_TO_FETCH` arrays in `scripts/fetch-projects.ts`, then run:
+        ```bash
+        npx tsx scripts/fetch-projects.ts
+        ```
+    -   *Note: This is why `scripts/fetch-projects.ts` exists—to keep your AI knowledge base in sync with your actual GitHub data!*
+4.  **Re-generate embeddings**:
     ```bash
     pnpm db:generate-embeddings
     ```
@@ -149,7 +156,9 @@ The AI Chatbot answers questions based on markdown files in `src/data/rag/`. To 
 ## 📁 Project Structure
 
 ```
-scripts/           # Build & utility scripts (e.g. embeddings)
+scripts/
+├── generate-embeddings.ts      # Generates vector embeddings for RAG
+└── fetch-projects.ts           # Fetches project data from GitHub for RAG
 src/
 ├── app/           # Next.js App Router pages
 │   ├── api/       # API Routes (Chat interface)
