@@ -117,6 +117,15 @@ This will read from `src/data/rag/*.md`, generate vectors, and populate your loc
 
 Visit `http://localhost:3000` to see the portfolio.
 
+### Code Formatting
+
+To ensure the code follows the project's style guidelines, you can run the prettier script:
+
+```bash
+pnpm pretty
+```
+This will automatically format all supported files in the project.
+
 ## 🎨 Customization Guide
 
 This portfolio is designed to be easily customized. Here is how you can make it yours:
