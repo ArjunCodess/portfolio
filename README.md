@@ -31,7 +31,7 @@ Hi, I'm **Arjun Vijay Prakash** — a 16-year-old full-stack developer, aspiring
 - **Guestbook** for visitors to leave messages
 - **AI Chatbot** with RAG (Retrieval-Augmented Generation) for intelligent answers
 - **Smart Context** utilizing vector search to answer content-specific questions
-- **Optimized Performance** with local embedding generation using Transformers.js
+- **Cloud Embeddings** using Google Gemini via Vercel AI SDK
 
 
 
@@ -44,11 +44,11 @@ This portfolio features a sophisticated **Retrieval-Augmented Generation (RAG)**
 1.  **Ingestion Pipeline** (`scripts/generate-embeddings.ts`):
     -   Source content (Markdown files) is read from `src/data/rag`.
     -   Text is chunked into semantic segments (~800 characters) with overlap.
-    -   **Local Embeddings**: We use `Xenova/all-MiniLM-L6-v2` via `transformers.js` to generate vector embeddings locally (no external API calls needed for embeddings!).
+    -   **Cloud Embeddings**: We use Google Gemini's `text-embedding-004` model via the Vercel AI SDK for high-quality 768-dimensional embeddings.
     -   Vectors are stored in **Vercel Postgres** using the `pgvector` extension.
 
 2.  **Retrieval System**:
-    -   When a user asks a question, their query is converted to a vector embedding on the fly.
+    -   When a user asks a question, their query is converted to a vector embedding using the same Gemini model.
     -   We perform a **cosine similarity search** in Postgres to find the most relevant content chunks.
     -   The top 5 matching chunks are retrieved to form the "context".
 
@@ -68,7 +68,7 @@ This portfolio features a sophisticated **Retrieval-Augmented Generation (RAG)**
 ### AI & Data
 - **LLM:** Google Gemini Flash
 - **SDK:** Vercel AI SDK
-- **Embeddings:** Transformers.js (`all-MiniLM-L6-v2`)
+- **Embeddings:** Google Gemini (`text-embedding-004`, 768 dimensions)
 - **Database:** Vercel Postgres (with `pgvector`)
 - **Vector Search:** SQL-based cosine similarity
 
@@ -108,12 +108,14 @@ pnpm dev
 To make the chatbot work locally, you need to generate embeddings for the data:
 
 ```bash
-# 1. Ensure your .env.local has the POSTGRES_URL connection string
+# 1. Ensure your .env.local has:
+#    - POSTGRES_URL connection string
+#    - GOOGLE_GENERATIVE_AI_API_KEY for embeddings
 
 # 2. Run the embedding generation script
 pnpm db:generate-embeddings
 ```
-This will read from `src/data/rag/*.md`, generate vectors, and populate your local/remote database.
+This will read from `src/data/rag/*.md`, generate vectors using Gemini, and populate your database.
 
 Visit `http://localhost:3000` to see the portfolio.
 
