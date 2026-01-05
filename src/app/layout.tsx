@@ -13,76 +13,76 @@ import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { ChatTrigger } from "@/components/chat-trigger";
 
 const fontSans = FontSans({
-    subsets: ["latin"],
-    variable: "--font-sans",
+  subsets: ["latin"],
+  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
-    metadataBase: new URL(DATA.url),
-    title: {
-        default: DATA.name + ' (' + DATA.personalBrand + ') - Portfolio',
-        template: `%s | ${DATA.name}`,
-    },
+  metadataBase: new URL(DATA.url),
+  title: {
+    default: DATA.name + " (" + DATA.personalBrand + ") - Portfolio",
+    template: `%s | ${DATA.name}`,
+  },
+  description: DATA.description,
+  openGraph: {
+    title: `${DATA.name} (${DATA.personalBrand}) - Portfolio`,
     description: DATA.description,
-    openGraph: {
-        title: `${DATA.name} (${DATA.personalBrand}) - Portfolio`,
-        description: DATA.description,
-        url: DATA.url,
-        siteName: `${DATA.name} (${DATA.personalBrand}) - Portfolio`,
-        locale: "en_US",
-        type: "website",
+    url: DATA.url,
+    siteName: `${DATA.name} (${DATA.personalBrand}) - Portfolio`,
+    locale: "en_US",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
-    robots: {
-        index: true,
-        follow: true,
-        googleBot: {
-            index: true,
-            follow: true,
-            "max-video-preview": -1,
-            "max-image-preview": "large",
-            "max-snippet": -1,
-        },
-    },
-    twitter: {
-        title: `${DATA.name} (${DATA.personalBrand}) - Portfolio`,
-        card: "summary_large_image",
-    },
-    verification: {
-        google: "",
-        yandex: "",
-    },
+  },
+  twitter: {
+    title: `${DATA.name} (${DATA.personalBrand}) - Portfolio`,
+    card: "summary_large_image",
+  },
+  verification: {
+    google: "",
+    yandex: "",
+  },
 };
 
 export default function RootLayout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-    return (
-        <html lang="en" suppressHydrationWarning>
-            <body
-                className={cn(
-                    "min-h-screen bg-background font-sans antialiased",
-                    fontSans.variable
-                )}
-            >
-                <ThemeProvider attribute="class" defaultTheme="light">
-                    <TooltipProvider delayDuration={0}>
-                        <SidebarProvider defaultOpen={false}>
-                            <SidebarInset>
-                                <div className="max-w-2xl mx-auto pt-6 pb-20 sm:pt-10 sm:pb-24 px-4">
-                                    {children}
-                                    <Navbar />
-                                    <Analytics />
-                                    <SpeedInsights />
-                                </div>
-                            </SidebarInset>
-                            <ChatTrigger />
-                            <AppSidebar side="right" />
-                        </SidebarProvider>
-                    </TooltipProvider>
-                </ThemeProvider>
-            </body>
-        </html>
-    );
-};
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={cn(
+          "min-h-screen bg-background font-sans antialiased",
+          fontSans.variable,
+        )}
+      >
+        <ThemeProvider attribute="class" defaultTheme="light">
+          <TooltipProvider delayDuration={0}>
+            <SidebarProvider defaultOpen={false}>
+              <SidebarInset>
+                <div className="max-w-2xl mx-auto pt-6 pb-20 sm:pt-10 sm:pb-24 px-4">
+                  {children}
+                  <Navbar />
+                  <Analytics />
+                  <SpeedInsights />
+                </div>
+              </SidebarInset>
+              <ChatTrigger />
+              <AppSidebar side="right" />
+            </SidebarProvider>
+          </TooltipProvider>
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}

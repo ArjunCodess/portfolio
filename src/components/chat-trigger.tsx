@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { MessageCircle } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { useSidebar } from '@/components/ui/sidebar';
+import { MessageCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useSidebar } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
 
 export function ChatTrigger() {

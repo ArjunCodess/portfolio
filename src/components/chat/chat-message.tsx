@@ -1,30 +1,27 @@
-'use client';
+"use client";
 
-import { cn } from '@/lib/utils';
-import Markdown from 'react-markdown';
+import { cn } from "@/lib/utils";
+import Markdown from "react-markdown";
 
 interface ChatMessageProps {
-  role: 'user' | 'assistant';
+  role: "user" | "assistant";
   content: string;
   isStreaming?: boolean;
 }
 
 export function ChatMessage({ role, content, isStreaming }: ChatMessageProps) {
-  const isUser = role === 'user';
+  const isUser = role === "user";
 
   return (
     <div
-      className={cn(
-        'flex w-full',
-        isUser ? 'justify-end' : 'justify-start'
-      )}
+      className={cn("flex w-full", isUser ? "justify-end" : "justify-start")}
     >
       <div
         className={cn(
-          'max-w-[85%] rounded-2xl px-4 py-3 text-sm',
+          "max-w-[85%] rounded-2xl px-4 py-3 text-sm",
           isUser
-            ? 'bg-primary text-primary-foreground'
-            : 'bg-muted text-foreground'
+            ? "bg-primary text-primary-foreground"
+            : "bg-muted text-foreground",
         )}
       >
         {isUser ? (
@@ -33,9 +30,15 @@ export function ChatMessage({ role, content, isStreaming }: ChatMessageProps) {
           <div className="prose prose-sm dark:prose-invert max-w-none">
             <Markdown
               components={{
-                p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
-                ul: ({ children }) => <ul className="mb-2 ml-4 list-disc">{children}</ul>,
-                ol: ({ children }) => <ol className="mb-2 ml-4 list-decimal">{children}</ol>,
+                p: ({ children }) => (
+                  <p className="mb-2 last:mb-0">{children}</p>
+                ),
+                ul: ({ children }) => (
+                  <ul className="mb-2 ml-4 list-disc">{children}</ul>
+                ),
+                ol: ({ children }) => (
+                  <ol className="mb-2 ml-4 list-decimal">{children}</ol>
+                ),
                 li: ({ children }) => <li className="mb-1">{children}</li>,
                 a: ({ href, children }) => (
                   <a
@@ -47,9 +50,13 @@ export function ChatMessage({ role, content, isStreaming }: ChatMessageProps) {
                     {children}
                   </a>
                 ),
-                strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+                strong: ({ children }) => (
+                  <strong className="font-semibold">{children}</strong>
+                ),
                 code: ({ children }) => (
-                  <code className="bg-background/50 px-1 py-0.5 rounded text-xs">{children}</code>
+                  <code className="bg-background/50 px-1 py-0.5 rounded text-xs">
+                    {children}
+                  </code>
                 ),
               }}
             >

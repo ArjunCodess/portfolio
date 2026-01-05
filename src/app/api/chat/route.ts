@@ -1,6 +1,6 @@
-import { streamText, UIMessage, convertToModelMessages } from 'ai';
-import { google } from '@ai-sdk/google';
-import { findRelevantContent, buildContext } from '@/lib/ai/embedding';
+import { streamText, UIMessage, convertToModelMessages } from "ai";
+import { google } from "@ai-sdk/google";
+import { findRelevantContent, buildContext } from "@/lib/ai/embedding";
 
 export const maxDuration = 30;
 
@@ -28,36 +28,42 @@ rules:
 export async function POST(req: Request) {
   try {
     const { messages }: { messages: UIMessage[] } = await req.json();
-    
+
     // Get the latest user message for RAG context retrieval
     const lastMessage = messages[messages.length - 1];
-    const userQuery = lastMessage?.parts
-      ?.find((part): part is { type: 'text'; text: string } => part.type === 'text')
-      ?.text ?? '';
-    
-    let context = '';
+    const userQuery =
+      lastMessage?.parts?.find(
+        (part): part is { type: "text"; text: string } => part.type === "text",
+      )?.text ?? "";
+
+    let context = "";
     try {
       const relevantChunks = await findRelevantContent(userQuery, 5);
       context = buildContext(relevantChunks);
     } catch (error) {
-      console.error('Error retrieving context:', error);
-      context = 'Unable to retrieve context from knowledge base.';
+      console.error("Error retrieving context:", error);
+      context = "Unable to retrieve context from knowledge base.";
     }
-    
-    const systemPrompt = SYSTEM_PROMPT.replace('{context}', context || 'No specific context available.');
-    
+
+    const systemPrompt = SYSTEM_PROMPT.replace(
+      "{context}",
+      context || "No specific context available.",
+    );
+
     const result = streamText({
-      model: google('gemini-3-flash-preview'),
+      model: google("gemini-3-flash-preview"),
       system: systemPrompt,
       messages: await convertToModelMessages(messages),
     });
-    
+
     return result.toUIMessageStreamResponse();
   } catch (error) {
-    console.error('Chat API error:', error);
+    console.error("Chat API error:", error);
     return new Response(
-      JSON.stringify({ error: 'An error occurred while processing your request.' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
+      JSON.stringify({
+        error: "An error occurred while processing your request.",
+      }),
+      { status: 500, headers: { "Content-Type": "application/json" } },
     );
   }
 }

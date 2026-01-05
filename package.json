@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint .",
     "db:generate-embeddings": "tsx scripts/generate-embeddings.ts",
-    "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\"" 
+    "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\""
   },
   "dependencies": {
     "@ai-sdk/google": "^3.0.2",

@@ -1,12 +1,12 @@
 /**
  * Embedding utilities for RAG
- * 
+ *
  * Uses Xenova/all-MiniLM-L6-v2 for query embedding generation
  * and performs vector similarity search in PostgreSQL.
  */
 
-import { sql } from '@vercel/postgres';
-import { formatEmbedding } from '../utils';
+import { sql } from "@vercel/postgres";
+import { formatEmbedding } from "../utils";
 
 // Cache for the embedding pipeline
 let embeddingPipeline: any = null;
@@ -18,18 +18,22 @@ async function getEmbeddingPipeline() {
   if (embeddingPipeline) {
     return embeddingPipeline;
   }
-  
+
   // Dynamic import to avoid issues with SSR
-  const { pipeline, env } = await import('@xenova/transformers');
-  
+  const { pipeline, env } = await import("@xenova/transformers");
+
   // Configure transformers.js
-  env.cacheDir = './.cache/transformers';
+  env.cacheDir = "./.cache/transformers";
   env.allowLocalModels = true;
-  
-  embeddingPipeline = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2', {
-    quantized: true,
-  });
-  
+
+  embeddingPipeline = await pipeline(
+    "feature-extraction",
+    "Xenova/all-MiniLM-L6-v2",
+    {
+      quantized: true,
+    },
+  );
+
   return embeddingPipeline;
 }
 
@@ -38,12 +42,12 @@ async function getEmbeddingPipeline() {
  */
 export async function generateEmbedding(text: string): Promise<number[]> {
   const extractor = await getEmbeddingPipeline();
-  
+
   const output = await extractor(text, {
-    pooling: 'mean',
+    pooling: "mean",
     normalize: true,
   });
-  
+
   return Array.from(output.data as Float32Array);
 }
 
@@ -52,17 +56,19 @@ export async function generateEmbedding(text: string): Promise<number[]> {
  */
 export async function findRelevantContent(
   query: string,
-  limit: number = 5
-): Promise<{
-  id: string;
-  content: string;
-  source: string;
-  similarity: number;
-}[]> {
+  limit: number = 5,
+): Promise<
+  {
+    id: string;
+    content: string;
+    source: string;
+    similarity: number;
+  }[]
+> {
   // Generate embedding for the query
   const queryEmbedding = await generateEmbedding(query);
   const embeddingStr = formatEmbedding(queryEmbedding);
-  
+
   // Perform similarity search using cosine distance
   const result = await sql`
     SELECT 
@@ -74,8 +80,8 @@ export async function findRelevantContent(
     ORDER BY embedding <=> ${embeddingStr}::vector
     LIMIT ${limit}
   `;
-  
-  return result.rows.map(row => ({
+
+  return result.rows.map((row) => ({
     id: String(row.id),
     content: row.content as string,
     source: row.source as string,
@@ -87,16 +93,18 @@ export async function findRelevantContent(
  * Build context string from retrieved chunks
  */
 export function buildContext(
-  chunks: { content: string; source: string; similarity: number }[]
+  chunks: { content: string; source: string; similarity: number }[],
 ): string {
   if (chunks.length === 0) {
-    return '';
+    return "";
   }
-  
+
   return chunks
     .map((chunk, i) => {
-      const sourceLabel = chunk.source.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+      const sourceLabel = chunk.source
+        .replace(/-/g, " ")
+        .replace(/\b\w/g, (l) => l.toUpperCase());
       return `[Context ${i + 1} - From ${sourceLabel}]\n${chunk.content}`;
     })
-    .join('\n\n');
+    .join("\n\n");
 }

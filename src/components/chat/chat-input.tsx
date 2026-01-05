@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { useRef, KeyboardEvent } from 'react';
-import { Button } from '@/components/ui/button';
-import { Send, Loader2 } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { useRef, KeyboardEvent } from "react";
+import { Button } from "@/components/ui/button";
+import { Send, Loader2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface ChatInputProps {
   value: string;
@@ -20,12 +20,12 @@ export function ChatInput({
   onSubmit,
   isLoading = false,
   disabled = false,
-  placeholder = 'Ask me anything about Arjun...',
+  placeholder = "Ask me anything about Arjun...",
 }: ChatInputProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
+    if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       if (!disabled && value?.trim()) {
         onSubmit();
@@ -36,7 +36,7 @@ export function ChatInput({
   const handleInput = () => {
     const textarea = textareaRef.current;
     if (textarea) {
-      textarea.style.height = 'auto';
+      textarea.style.height = "auto";
       textarea.style.height = `${Math.min(textarea.scrollHeight, 200)}px`;
     }
   };
@@ -55,10 +55,10 @@ export function ChatInput({
         disabled={disabled || isLoading}
         rows={1}
         className={cn(
-          'flex-1 resize-none bg-transparent py-2 text-sm',
-          'placeholder:text-muted-foreground',
-          'focus:outline-none',
-          'disabled:cursor-not-allowed disabled:opacity-50',
+          "flex-1 resize-none bg-transparent py-2 text-sm",
+          "placeholder:text-muted-foreground",
+          "focus:outline-none",
+          "disabled:cursor-not-allowed disabled:opacity-50",
         )}
       />
       <Button

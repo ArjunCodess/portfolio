@@ -9,7 +9,12 @@ interface SectionHeaderProps {
 
 const BLUR_FADE_DELAY = 0.04;
 
-export function SectionHeader({ badge, title, description, delay = BLUR_FADE_DELAY * 11 }: SectionHeaderProps) {
+export function SectionHeader({
+  badge,
+  title,
+  description,
+  delay = BLUR_FADE_DELAY * 11,
+}: SectionHeaderProps) {
   return (
     <BlurFade delay={delay}>
       <div className="flex flex-col items-center justify-center space-y-3 text-center">

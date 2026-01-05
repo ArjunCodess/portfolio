@@ -29,7 +29,7 @@ interface Props {
 
 function getLinkColors(type: string): string {
   const lowerType = type.toLowerCase();
-  
+
   if (lowerType.includes("youtube") || lowerType.includes("video")) {
     return "bg-red-100 text-red-600 hover:bg-red-200 dark:bg-red-900/30 dark:text-red-400";
   }
@@ -82,7 +82,12 @@ export function ProjectCard({
             className="prose max-w-full text-pretty font-sans text-xs text-muted-foreground dark:prose-invert"
             components={{
               a: ({ href, children }) => (
-                <a href={href} target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 underline">
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-blue-600 dark:text-blue-400 underline"
+                >
                   {children}
                 </a>
               ),
@@ -116,7 +121,7 @@ export function ProjectCard({
                   key={idx}
                   className={cn(
                     "flex gap-2 px-2 py-1 text-[10px] transition-colors",
-                    getLinkColors(link.type)
+                    getLinkColors(link.type),
                   )}
                 >
                   {link.icon}
