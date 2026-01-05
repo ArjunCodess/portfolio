@@ -3,6 +3,7 @@ import { CustomCard } from "@/components/custom-card";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import Float from "@/components/fancy/blocks/float";
+import GitHubContributionGraph from "@/components/github-contribution-graph";
 import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
 import { SectionHeader } from "@/components/section-header";
@@ -108,6 +109,14 @@ export default function Page() {
               </BlurFade>
             ))}
           </div>
+        </div>
+      </section>
+      <section id="github">
+        <div className="flex min-h-0 flex-col gap-y-3">
+          <BlurFade delay={BLUR_FADE_DELAY * 4.5}>
+            <h2 className="text-xl font-bold">GitHub Contributions</h2>
+          </BlurFade>
+          <GitHubContributionGraph username="ArjunCodess" />
         </div>
       </section>
       <section id="work">
