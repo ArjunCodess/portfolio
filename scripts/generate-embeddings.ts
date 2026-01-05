@@ -2,7 +2,7 @@
  * Generate Embeddings Script
  *
  * Reads KB files from src/data/rag/, chunks them, generates embeddings
- * using Xenova/all-MiniLM-L6-v2, and stores them in the database.
+ * using Vercel AI SDK with Google Gemini, and stores them in the database.
  *
  * Run with: pnpm tsx scripts/generate-embeddings.ts
  */
@@ -13,15 +13,12 @@ dotenv.config({ path: ".env.local" });
 import fs from "fs";
 import path from "path";
 import { sql } from "@vercel/postgres";
-import { pipeline, env } from "@xenova/transformers";
+import { embedMany } from "ai";
+import { google } from "@ai-sdk/google";
 import { formatEmbedding } from "@/lib/utils";
 
-// Configure transformers.js to use local cache
-env.cacheDir = "./.cache/transformers";
-env.allowLocalModels = true;
-
-// Embedding model - MUST match the model used at query time
-const EMBEDDING_MODEL = "Xenova/all-MiniLM-L6-v2";
+// Embedding model - Gemini text-embedding-004 (768 dimensions)
+const EMBEDDING_MODEL = "text-embedding-004";
 
 interface Chunk {
   content: string;
@@ -108,49 +105,26 @@ function chunkText(text: string, source: string): Chunk[] {
 }
 
 /**
- * Generate embeddings for all chunks using Xenova transformers
+ * Generate embeddings for all chunks using Vercel AI SDK
  */
 async function generateEmbeddings(chunks: Chunk[]): Promise<EmbeddingResult[]> {
-  console.log(`⏳ Loading embedding model: ${EMBEDDING_MODEL}...`);
+  console.log(`⏳ Generating embeddings using Gemini ${EMBEDDING_MODEL}...`);
 
-  const extractor = await pipeline("feature-extraction", EMBEDDING_MODEL, {
-    quantized: true,
+  const texts = chunks.map((c) => c.content);
+
+  // Use embedMany for batch embedding
+  const { embeddings } = await embedMany({
+    model: google.embedding(EMBEDDING_MODEL),
+    values: texts,
   });
 
-  console.log(
-    `✅ Model loaded. Generating embeddings for ${chunks.length} chunks...`,
-  );
+  console.log(`Generated ${embeddings.length} embeddings`);
 
-  const results: EmbeddingResult[] = [];
-  const batchSize = 32;
-
-  for (let i = 0; i < chunks.length; i += batchSize) {
-    const batch = chunks.slice(i, i + batchSize);
-    const texts = batch.map((c) => c.content);
-
-    // Generate embeddings for batch
-    const outputs = await extractor(texts, {
-      pooling: "mean",
-      normalize: true,
-    });
-
-    // Extract embeddings from output tensor
-    // outputs is a 2D tensor of shape [batch_size, embedding_dim]
-    const embeddingsList = outputs.tolist() as number[][];
-    for (let j = 0; j < batch.length; j++) {
-      const embedding = embeddingsList[j];
-      results.push({
-        chunk: batch[j],
-        embedding,
-      });
-    }
-
-    console.log(
-      `  Processed ${Math.min(i + batchSize, chunks.length)}/${chunks.length} chunks`,
-    );
-  }
-
-  return results;
+  // Map embeddings back to chunks
+  return chunks.map((chunk, i) => ({
+    chunk,
+    embedding: embeddings[i],
+  }));
 }
 
 /**
@@ -195,14 +169,14 @@ async function storeEmbeddings(results: EmbeddingResult[]): Promise<void> {
  * Main execution
  */
 async function main() {
-  console.log("🚀 Starting embedding generation...\n");
+  console.log("🚀 Starting embedding generation with Vercel AI SDK...\n");
 
   try {
     // 1. Read KB files
     console.log("📖 Reading KB files...");
     const files = readKBFiles();
     console.log(
-      `  Found ${files.length} files: ${files.map((f) => f.source).join(", ")}\n`,
+      `  Found ${files.length} files: ${files.map((f) => f.source).join(", ")}\n`
     );
 
     // 2. Chunk documents

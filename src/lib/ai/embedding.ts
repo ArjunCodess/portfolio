@@ -1,61 +1,25 @@
 /**
  * Embedding utilities for RAG
  *
- * Uses Xenova/all-MiniLM-L6-v2 for query embedding generation
+ * Uses Vercel AI SDK with Google Gemini for query embedding generation
  * and performs vector similarity search in PostgreSQL.
  */
 
+import { embed } from "ai";
+import { google } from "@ai-sdk/google";
 import { sql } from "@vercel/postgres";
 import { formatEmbedding } from "../utils";
 
-// Cache for the embedding pipeline
-let embeddingPipeline: any = null;
-
 /**
- * Get or initialize the embedding pipeline
- */
-async function getEmbeddingPipeline() {
-  if (embeddingPipeline) {
-    return embeddingPipeline;
-  }
-
-  // Dynamic import to avoid issues with SSR
-  const { pipeline, env } = await import("@xenova/transformers");
-
-  // Configure transformers.js
-  env.cacheDir = "./.cache/transformers";
-  env.allowLocalModels = false;
-  env.useBrowserCache = false;
-
-  if (process.env.NODE_ENV === "production") {
-    // Determine the path to the cache folder
-    // For Vercel, we can't write to the project directory, so we use /tmp
-    env.cacheDir = "/tmp/transformers_cache";
-  }
-
-  embeddingPipeline = await pipeline(
-    "feature-extraction",
-    "Xenova/all-MiniLM-L6-v2",
-    {
-      quantized: true,
-    }
-  );
-
-  return embeddingPipeline;
-}
-
-/**
- * Generate embedding for a single text query
+ * Generate embedding for a single text query using Vercel AI SDK
  */
 export async function generateEmbedding(text: string): Promise<number[]> {
-  const extractor = await getEmbeddingPipeline();
-
-  const output = await extractor(text, {
-    pooling: "mean",
-    normalize: true,
+  const { embedding } = await embed({
+    model: google.embedding("text-embedding-004"),
+    value: text,
   });
 
-  return Array.from(output.data as Float32Array);
+  return embedding;
 }
 
 /**
