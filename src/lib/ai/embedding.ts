@@ -24,14 +24,21 @@ async function getEmbeddingPipeline() {
 
   // Configure transformers.js
   env.cacheDir = "./.cache/transformers";
-  env.allowLocalModels = true;
+  env.allowLocalModels = false;
+  env.useBrowserCache = false;
+
+  if (process.env.NODE_ENV === "production") {
+    // Determine the path to the cache folder
+    // For Vercel, we can't write to the project directory, so we use /tmp
+    env.cacheDir = "/tmp/transformers_cache";
+  }
 
   embeddingPipeline = await pipeline(
     "feature-extraction",
     "Xenova/all-MiniLM-L6-v2",
     {
       quantized: true,
-    },
+    }
   );
 
   return embeddingPipeline;
@@ -56,7 +63,7 @@ export async function generateEmbedding(text: string): Promise<number[]> {
  */
 export async function findRelevantContent(
   query: string,
-  limit: number = 5,
+  limit: number = 5
 ): Promise<
   {
     id: string;
@@ -93,7 +100,7 @@ export async function findRelevantContent(
  * Build context string from retrieved chunks
  */
 export function buildContext(
-  chunks: { content: string; source: string; similarity: number }[],
+  chunks: { content: string; source: string; similarity: number }[]
 ): string {
   if (chunks.length === 0) {
     return "";
