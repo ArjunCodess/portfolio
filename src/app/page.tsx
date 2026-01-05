@@ -89,7 +89,7 @@ export default function Page() {
             <h2 className="text-xl font-bold">Resume</h2>
             <Button asChild size="sm" variant="outline">
               <a href="/resume.pdf" download>
-                <Download className="mr-2 h-4 w-4" />
+                <Download className="size-4" />
                 Download
               </a>
             </Button>
