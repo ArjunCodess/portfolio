@@ -27,6 +27,19 @@ interface Props {
   className?: string;
 }
 
+function getLinkColors(type: string): string {
+  const lowerType = type.toLowerCase();
+  
+  if (lowerType.includes("youtube") || lowerType.includes("video")) {
+    return "bg-red-100 text-red-600 hover:bg-red-200 dark:bg-red-900/30 dark:text-red-400";
+  }
+  if (lowerType.includes("hugging") || lowerType.includes("hf")) {
+    return "bg-yellow-100 text-yellow-800 hover:bg-yellow-200 dark:bg-yellow-900/30 dark:text-yellow-400";
+  }
+
+  return "bg-[#24292e] hover:bg-[#2f363d] text-white dark:bg-[#333] dark:hover:bg-[#444]";
+}
+
 export function ProjectCard({
   title,
   href,
@@ -65,7 +78,16 @@ export function ProjectCard({
           <div className="hidden font-sans text-xs underline print:visible">
             {link?.replace("https://", "").replace("www.", "").replace("/", "")}
           </div>
-          <Markdown className="prose max-w-full text-pretty font-sans text-xs text-muted-foreground dark:prose-invert">
+          <Markdown
+            className="prose max-w-full text-pretty font-sans text-xs text-muted-foreground dark:prose-invert"
+            components={{
+              a: ({ href, children }) => (
+                <a href={href} target="_blank" rel="noopener noreferrer" className="font-semibold text-blue-600 dark:text-blue-400 underline">
+                  {children}
+                </a>
+              ),
+            }}
+          >
             {description}
           </Markdown>
         </div>
@@ -73,11 +95,11 @@ export function ProjectCard({
       <CardContent className="mt-auto flex flex-col px-2">
         {tags && tags.length > 0 && (
           <div className="mt-2 flex flex-wrap gap-1">
-            {tags?.map((tag) => (
+            {tags?.map((tag, index) => (
               <Badge
                 className="px-1 py-0 text-[10px]"
                 variant="secondary"
-                key={tag}
+                key={`${tag}-${index}`}
               >
                 {tag}
               </Badge>
@@ -90,7 +112,13 @@ export function ProjectCard({
           <div className="flex flex-row flex-wrap items-start gap-1">
             {links?.map((link, idx) => (
               <Link href={link?.href} key={idx} target="_blank">
-                <Badge key={idx} className="flex gap-2 px-2 py-1 text-[10px]">
+                <Badge
+                  key={idx}
+                  className={cn(
+                    "flex gap-2 px-2 py-1 text-[10px] transition-colors",
+                    getLinkColors(link.type)
+                  )}
+                >
                   {link.icon}
                   {link.type}
                 </Badge>
