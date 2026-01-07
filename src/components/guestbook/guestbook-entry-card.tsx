@@ -83,10 +83,9 @@ export default function GuestbookEntryCard({
                   </AlertDialogTrigger>
                   <AlertDialogContent>
                     <AlertDialogHeader>
-                      <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                      <AlertDialogTitle>Delete message?</AlertDialogTitle>
                       <AlertDialogDescription>
-                        This action cannot be undone. This will permanently
-                        delete your guestbook entry.
+                        This action cannot be undone. Your message will be permanently removed from the guestbook.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
@@ -96,14 +95,7 @@ export default function GuestbookEntryCard({
                         disabled={isPending}
                         className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
                       >
-                        {isPending ? (
-                          <>
-                            <span className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent mr-2" />
-                            Deleting...
-                          </>
-                        ) : (
-                          "Delete"
-                        )}
+                        {isPending ? "Removing..." : "Delete"}
                       </AlertDialogAction>
                     </AlertDialogFooter>
                   </AlertDialogContent>

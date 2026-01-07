@@ -31,7 +31,7 @@ export default async function GuestbookEntries({ session }: GuestbookEntriesProp
           <div className="text-center space-y-1">
             <p className="text-sm font-medium">No messages yet</p>
             <p className="text-xs text-muted-foreground">
-              Be the first to leave a message!
+              Be the first to share your thoughts!
             </p>
           </div>
         </CardContent>
@@ -42,7 +42,7 @@ export default async function GuestbookEntries({ session }: GuestbookEntriesProp
   return (
     <div className="space-y-4">
       <h3 className="text-sm font-medium text-muted-foreground">
-        {rows.length} {rows.length === 1 ? "message" : "messages"}
+        {rows.length} {rows.length === 1 ? "entry" : "entries"}
       </h3>
 
       <div className="space-y-3">

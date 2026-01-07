@@ -29,7 +29,7 @@ export default function GuestbookForm() {
       <div className="relative">
         <textarea
           name="entry"
-          placeholder="Share your thoughts, say hello, or leave a fun message..."
+          placeholder="Write your message here..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           disabled={isPending}
@@ -56,17 +56,8 @@ export default function GuestbookForm() {
           disabled={isPending || isOverLimit || isEmpty}
           size="sm"
         >
-          {isPending ? (
-            <>
-              <span className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-              Sending...
-            </>
-          ) : (
-            <>
-              <Send className="size-4" />
-              Send Message
-            </>
-          )}
+          <Send className="size-4" />
+          {isPending ? "Posting..." : "Post Message"}
         </Button>
       </div>
     </form>
