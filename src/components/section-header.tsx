@@ -25,7 +25,7 @@ export function SectionHeader({
           <h2 className="text-2xl font-bold tracking-tighter sm:text-4xl">
             {title}
           </h2>
-          <p className="text-muted-foreground text-sm md:text-base">
+          <p className="text-muted-foreground text-sm md:text-base text-balance">
             {description}
           </p>
         </div>
