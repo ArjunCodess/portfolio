@@ -1,11 +1,6 @@
-"use client";
-
-import { signIn, signOut } from "next-auth/react";
 import GuestbookForm from "./guestbook-form";
+import { SignInButton, SignOutButton } from "./auth-buttons";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Icons } from "@/components/icons";
-import { LogOut } from "lucide-react";
 
 interface GuestbookProps {
   session: {
@@ -25,10 +20,7 @@ export default function Guestbook({ session }: GuestbookProps) {
           <p className="text-neutral-500 dark:text-neutral-400 text-sm text-center">
             Sign in to leave your mark in the guestbook
           </p>
-          <Button onClick={() => signIn("github")} className="gap-2">
-            <Icons.github className="size-4" />
-            Sign in with GitHub
-          </Button>
+          <SignInButton />
         </CardContent>
       </Card>
     );
@@ -46,15 +38,7 @@ export default function Guestbook({ session }: GuestbookProps) {
               Signed in with GitHub
             </span>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => signOut()}
-            className="text-muted-foreground hover:text-foreground"
-          >
-            <LogOut className="size-4" />
-            Sign out
-          </Button>
+          <SignOutButton />
         </div>
       </CardHeader>
       <CardContent>
