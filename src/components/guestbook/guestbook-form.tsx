@@ -41,12 +41,13 @@ export default function GuestbookForm() {
 
       <div className="flex items-center justify-between">
         <span
-          className={`text-xs ${isOverLimit
+          className={`text-xs ${
+            isOverLimit
               ? "text-red-500"
               : charCount > MAX_CHARS * 0.8
                 ? "text-yellow-500"
                 : "text-muted-foreground"
-            }`}
+          }`}
         >
           {charCount}/{MAX_CHARS}
         </span>

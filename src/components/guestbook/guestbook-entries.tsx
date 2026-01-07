@@ -18,7 +18,9 @@ interface GuestbookEntriesProps {
   } | null;
 }
 
-export default async function GuestbookEntries({ session }: GuestbookEntriesProps) {
+export default async function GuestbookEntries({
+  session,
+}: GuestbookEntriesProps) {
   const rows = await getGuestbookEntries();
 
   const userEmail = session?.user?.email;
@@ -48,7 +50,7 @@ export default async function GuestbookEntries({ session }: GuestbookEntriesProp
       <div className="space-y-3">
         {rows.map((entry, index) => {
           const canDelete = Boolean(userEmail && entry.email === userEmail);
-          
+
           return (
             <BlurFade
               key={entry.id}

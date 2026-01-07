@@ -85,7 +85,8 @@ export default function GuestbookEntryCard({
                     <AlertDialogHeader>
                       <AlertDialogTitle>Delete message?</AlertDialogTitle>
                       <AlertDialogDescription>
-                        This action cannot be undone. Your message will be permanently removed from the guestbook.
+                        This action cannot be undone. Your message will be
+                        permanently removed from the guestbook.
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>

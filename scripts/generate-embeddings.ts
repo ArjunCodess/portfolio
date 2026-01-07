@@ -176,7 +176,7 @@ async function main() {
     console.log("📖 Reading KB files...");
     const files = readKBFiles();
     console.log(
-      `  Found ${files.length} files: ${files.map((f) => f.source).join(", ")}\n`
+      `  Found ${files.length} files: ${files.map((f) => f.source).join(", ")}\n`,
     );
 
     // 2. Chunk documents

@@ -33,7 +33,7 @@ export async function deleteGuestbookEntry(id: number) {
   if (!userEmail) throw new Error("Unauthorised");
 
   const { rows } = await sql`SELECT email FROM "Guestbook" WHERE id = ${id};`;
-  
+
   if (rows.length === 0) {
     throw new Error("Entry not found");
   }
