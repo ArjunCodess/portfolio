@@ -4,14 +4,25 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import BlurFade from "@/components/magicui/blur-fade";
 import { Card, CardContent } from "@/components/ui/card";
 import { MessageSquare } from "lucide-react";
+import GuestbookEntryCard from "./guestbook-entry-card";
 
 dayjs.extend(relativeTime);
 
 const BLUR_FADE_DELAY = 0.04;
 
-export default async function GuestbookEntries() {
+interface GuestbookEntriesProps {
+  session: {
+    user?: {
+      email?: string | null;
+    };
+  } | null;
+}
+
+export default async function GuestbookEntries({ session }: GuestbookEntriesProps) {
   const { rows } =
     await sql`SELECT * from "Guestbook" ORDER BY last_modified DESC;`;
+
+  const userEmail = session?.user?.email;
 
   if (rows.length === 0) {
     return (
@@ -36,32 +47,27 @@ export default async function GuestbookEntries() {
       </h3>
 
       <div className="space-y-3">
-        {rows.map((entry, index) => (
-          <BlurFade
-            key={entry.id}
-            delay={BLUR_FADE_DELAY * 5 + index * 0.05}
-            inView
-          >
-            <Card>
-              <CardContent className="py-4">
-                <div className="space-y-1">
-                  <div className="text-sm flex items-center gap-2 flex-wrap">
-                    <span className="font-medium text-neutral-800 dark:text-neutral-100">
-                      {entry.created_by || "Anonymous"}
-                    </span>
-                    <span className="text-neutral-500 dark:text-neutral-400">
-                      {dayjs(entry.created_at?.toString()).fromNow()}
-                    </span>
-                  </div>
-
-                  <p className="text-sm text-neutral-700 dark:text-neutral-300 break-words">
-                    {entry.body}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </BlurFade>
-        ))}
+        {rows.map((entry, index) => {
+          const canDelete = Boolean(userEmail && entry.email === userEmail);
+          
+          return (
+            <BlurFade
+              key={entry.id}
+              delay={BLUR_FADE_DELAY * 5 + index * 0.05}
+              inView
+            >
+              <GuestbookEntryCard
+                entry={{
+                  id: entry.id as number,
+                  created_by: entry.created_by as string | null,
+                  created_at: entry.created_at as string | Date | null,
+                  body: entry.body as string,
+                }}
+                canDelete={canDelete}
+              />
+            </BlurFade>
+          );
+        })}
       </div>
     </div>
   );
