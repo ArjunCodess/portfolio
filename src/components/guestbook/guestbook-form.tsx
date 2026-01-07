@@ -1,37 +1,74 @@
 "use client";
 
-import { useRef } from "react";
-import { useFormStatus } from "react-dom";
-import BlurFade from "../magicui/blur-fade";
+import { useState, useRef, useTransition } from "react";
 import { saveGuestbookEntry } from "@/actions/guestbook";
 import { Button } from "../ui/button";
-import { Input } from "../ui/input";
+import { Send } from "lucide-react";
 
-const BLUR_FADE_DELAY = 0.04;
+const MAX_CHARS = 500;
 
 export default function GuestbookForm() {
-  const formRef = useRef(null);
-  const { pending } = useFormStatus();
+  const [message, setMessage] = useState("");
+  const [isPending, startTransition] = useTransition();
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const charCount = message.length;
+  const isOverLimit = charCount > MAX_CHARS;
+  const isEmpty = charCount === 0;
+
+  const handleSubmit = async (formData: FormData) => {
+    startTransition(async () => {
+      await saveGuestbookEntry(formData);
+      setMessage("");
+      formRef.current?.reset();
+    });
+  };
 
   return (
-    <BlurFade delay={BLUR_FADE_DELAY * 5}>
-      <form
-        action={async (formData) => await saveGuestbookEntry(formData)}
-        className="flex w-full items-center space-x-2"
-      >
-        <Input
-          type="text"
-          placeholder="Your message"
-          aria-label="Your message"
-          required
-          disabled={pending}
+    <form ref={formRef} action={handleSubmit} className="space-y-3">
+      <div className="relative">
+        <textarea
           name="entry"
-          className="w-3/4"
+          placeholder="Share your thoughts, say hello, or leave a fun message..."
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          disabled={isPending}
+          required
+          rows={3}
+          className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-none"
         />
-        <Button type="submit" disabled={pending} className="w-1/4">
-          Submit
+      </div>
+
+      <div className="flex items-center justify-between">
+        <span
+          className={`text-xs ${isOverLimit
+              ? "text-red-500"
+              : charCount > MAX_CHARS * 0.8
+                ? "text-yellow-500"
+                : "text-muted-foreground"
+            }`}
+        >
+          {charCount}/{MAX_CHARS}
+        </span>
+
+        <Button
+          type="submit"
+          disabled={isPending || isOverLimit || isEmpty}
+          size="sm"
+        >
+          {isPending ? (
+            <>
+              <span className="size-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+              Sending...
+            </>
+          ) : (
+            <>
+              <Send className="size-4" />
+              Send Message
+            </>
+          )}
         </Button>
-      </form>
-    </BlurFade>
+      </div>
+    </form>
   );
 }
