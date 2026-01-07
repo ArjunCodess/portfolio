@@ -18,3 +18,25 @@ export async function saveGuestbookEntry(formData: FormData) {
 
   revalidatePath("/");
 }
+
+export async function deleteGuestbookEntry(id: number) {
+  const session = await auth();
+  if (!session) throw new Error("Unauthorised");
+
+  const userEmail = session.user?.email as string;
+  if (!userEmail) throw new Error("Unauthorised");
+
+  const { rows } = await sql`SELECT email FROM "Guestbook" WHERE id = ${id};`;
+  
+  if (rows.length === 0) {
+    throw new Error("Entry not found");
+  }
+
+  if (rows[0].email !== userEmail) {
+    throw new Error("Unauthorised: You can only delete your own entries");
+  }
+
+  await sql`DELETE FROM "Guestbook" WHERE id = ${id};`;
+
+  revalidatePath("/guestbook");
+}

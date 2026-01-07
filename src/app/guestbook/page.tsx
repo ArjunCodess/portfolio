@@ -25,7 +25,7 @@ export default async function GuestbookPage() {
           <Suspense fallback={<Loader />}>
             <div className="space-y-8">
               <Guestbook session={session} />
-              <GuestbookEntries />
+              <GuestbookEntries session={session} />
             </div>
           </Suspense>
         </BlurFade>
