@@ -1,10 +1,10 @@
-import { sql } from "@vercel/postgres";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import BlurFade from "@/components/magicui/blur-fade";
 import { Card, CardContent } from "@/components/ui/card";
 import { MessageSquare } from "lucide-react";
 import GuestbookEntryCard from "./guestbook-entry-card";
+import { getGuestbookEntries } from "@/actions/guestbook";
 
 dayjs.extend(relativeTime);
 
@@ -19,8 +19,7 @@ interface GuestbookEntriesProps {
 }
 
 export default async function GuestbookEntries({ session }: GuestbookEntriesProps) {
-  const { rows } =
-    await sql`SELECT * from "Guestbook" ORDER BY last_modified DESC;`;
+  const rows = await getGuestbookEntries();
 
   const userEmail = session?.user?.email;
 

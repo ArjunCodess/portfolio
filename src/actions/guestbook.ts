@@ -4,6 +4,12 @@ import { auth } from "@/lib/auth";
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 
+export async function getGuestbookEntries() {
+  const { rows } =
+    await sql`SELECT * from "Guestbook" ORDER BY last_modified DESC;`;
+  return rows;
+}
+
 export async function saveGuestbookEntry(formData: FormData) {
   const session = await auth();
   if (!session) throw new Error("Unauthorised");
