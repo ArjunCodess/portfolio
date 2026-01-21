@@ -1,0 +1,54 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Build outputs
+.next
+out
+build
+
+# Version control
+.git
+.gitignore
+
+# IDE and editor files
+.idea
+.vscode
+*.swp
+*.swo
+
+# Environment files (use runtime env vars in Cloud Run)
+.env
+.env.*
+.env.local
+.env.development
+.env.production
+
+# Testing
+coverage
+
+# Misc
+.DS_Store
+*.pem
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript
+*.tsbuildinfo
+
+# Vercel
+.vercel
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Documentation
+README.md
+docs
+
+# Cache
+.cache
