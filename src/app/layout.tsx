@@ -29,8 +29,16 @@ export const metadata: Metadata = {
     description: DATA.description,
     url: DATA.url,
     siteName: `${DATA.name} (${DATA.personalBrand}) - Portfolio`,
-    locale: "en_US",
+    locale: "en_IN",
     type: "website",
+    images: [
+      {
+        url: "/banner.jpg",
+        width: 1200,
+        height: 630,
+        alt: `${DATA.name} - Portfolio Banner`,
+      },
+    ],
   },
   robots: {
     index: true,
@@ -46,6 +54,7 @@ export const metadata: Metadata = {
   twitter: {
     title: `${DATA.name} (${DATA.personalBrand}) - Portfolio`,
     card: "summary_large_image",
+    images: ["/banner.jpg"],
   },
   verification: {
     google: "",
