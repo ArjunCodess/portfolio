@@ -106,25 +106,39 @@ function chunkText(text: string, source: string): Chunk[] {
 
 /**
  * Generate embeddings for all chunks using Vercel AI SDK
+ * Batches requests in groups of 100 to comply with Gemini API limits
  */
 async function generateEmbeddings(chunks: Chunk[]): Promise<EmbeddingResult[]> {
   console.log(`⏳ Generating embeddings using Gemini ${EMBEDDING_MODEL}...`);
 
-  const texts = chunks.map((c) => c.content);
+  const results: EmbeddingResult[] = [];
+  const batchSize = 100; // Gemini API limit
 
-  // Use embedMany for batch embedding
-  const { embeddings } = await embedMany({
-    model: google.embedding(EMBEDDING_MODEL),
-    values: texts,
-  });
+  for (let i = 0; i < chunks.length; i += batchSize) {
+    const batchChunks = chunks.slice(i, i + batchSize);
+    const texts = batchChunks.map((c) => c.content);
 
-  console.log(`Generated ${embeddings.length} embeddings`);
+    console.log(
+      `  Processing batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(chunks.length / batchSize)} (${batchChunks.length} chunks)...`,
+    );
 
-  // Map embeddings back to chunks
-  return chunks.map((chunk, i) => ({
-    chunk,
-    embedding: embeddings[i],
-  }));
+    // Use embedMany for batch embedding
+    const { embeddings } = await embedMany({
+      model: google.embedding(EMBEDDING_MODEL),
+      values: texts,
+    });
+
+    // Map embeddings back to chunks
+    for (let j = 0; j < batchChunks.length; j++) {
+      results.push({
+        chunk: batchChunks[j],
+        embedding: embeddings[j],
+      });
+    }
+  }
+
+  console.log(`Generated ${results.length} embeddings`);
+  return results;
 }
 
 /**
