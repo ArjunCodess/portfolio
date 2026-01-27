@@ -18,7 +18,7 @@
 
 **Key Links:**
 - GitHub: https://github.com/ArjunCodess
-- DEV.to: https://dev.to/arjuncodess (34,000+ followers, 400,000+ views, Top Writer)
+- DEV.to: https://dev.to/arjuncodess (35,000+ followers, 400,000+ views, Top Writer)
 - Portfolio: https://arjuncodess.is-a.dev/
 - X/Twitter: @arjuncodess
 - Medium: https://arjunwritess.medium.com/
@@ -28,7 +28,7 @@
 ## 2025 Wrapped - Achievements & Timeline
 
 ### Financial
-**Total Earnings (2025):** $1,375 USD (First $1k earned as a 16-year-old)
+**Total Earnings (2025):** $1,550 USD (First $1k earned as a 16-year-old)
 
 **Breakdown:**
 - Technical writing (primary and only income source)
@@ -36,7 +36,7 @@
 
 ### Community Recognition
 **DEV.to:**
-- 34,000+ followers
+- 35,000+ followers
 - 400,000+ views
 - Top Writer status
 - Regular technical content creator
@@ -45,7 +45,7 @@
 **GitHub:**
 - 1,589 contributions in 2025
 - 15+ repositories
-- Most starred: WebCrawlAI (121+ stars)
+- Most starred: WebCrawlAI (119 stars)
 
 **Product Hunt:**
 - Analyzr: 200+ upvotes (https://www.producthunt.com/products/analyzr-2/launches/getanalyzr)
@@ -56,9 +56,9 @@
 
 1. **INSEF Regional Fair (Online)**
    - Project: MEN2 Predictor (medical ML research)
-   - Status: Selected for presentation
+   - Status: Bronze Prize Winner
    - Achievement: Medical research recognition at science fair level
-   - Selection List: https://sciencesociety.in/insef/Online_INSEF_Selection_2025.htm
+   - Results: https://insef.org/insef/INSEF_Regional_Fair_Online_2025_26_Results.htm
 
 2. **Invisible Wars - Xavier University**
    - Achievement: Top 25 ranking
@@ -212,7 +212,7 @@ AI-powered Instagram automation platform for creators. Helps creators manage DMs
 - NASA NeoWs API (data)
 
 **Specializations:**
-- Medical ML (MEN2 biomarker prediction - 96.73% accuracy, 100% recall)
+- Medical ML (MEN2 biomarker prediction - 97.20% accuracy, 100% recall)
 - RAG systems (Retrieval-Augmented Generation)
 - AI integration in web apps
 - Data analysis
@@ -250,7 +250,7 @@ AI-powered Instagram automation platform for creators. Helps creators manage DMs
 - Environment management
 
 ### Other Skills
-- Technical writing (34K followers, strong communicator)
+- Technical writing (35K followers, strong communicator)
 - Open source contribution
 - Competitive programming (concepts)
 - UI/UX design thinking

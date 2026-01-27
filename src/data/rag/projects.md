@@ -1,12 +1,12 @@
 # ArjunCodess Projects Knowledge Base
 
-> Auto-generated from GitHub API on Fri Jan 02 2026. Use this file to train the RAG model.
+> Auto-generated from GitHub API on Tue Jan 27 2026. Use this file to train the RAG model.
 
 ## Project: WebCrawlAI
 
 **Description:** No description provided.
 
-**Key Stats:** ⭐ 121 Stars | 🍴 23 Forks
+**Key Stats:** ⭐ 119 Stars | 🍴 23 Forks
 **Tech Stack:** Python, HTML, JavaScript
 **Live Demo:** https://webcrawlai.onrender.com/
 **Repository:** https://github.com/ArjunCodess/WebCrawlAI
@@ -722,7 +722,7 @@ P.S. If you like it, maybe give us a star on GitHub and an upvote on Product Hun
 
 **Description:** Connect AI tools to Storyblok instantly - use natural language to manage your CMS like magic.
 
-**Key Stats:** ⭐ 8 Stars | 🍴 6 Forks
+**Key Stats:** ⭐ 8 Stars | 🍴 7 Forks
 **Tech Stack:** JavaScript, TypeScript
 **Repository:** https://github.com/ArjunCodess/storyblok-mcp
 
@@ -1363,9 +1363,9 @@ MIT
 ```markdown
 # MEN2 Predictor: Rare Disease Machine Learning Pipeline
 
-![Accuracy](https://img.shields.io/badge/Accuracy-96.73%25-brightgreen)
+![Accuracy](https://img.shields.io/badge/Accuracy-97.20%25-brightgreen)
 ![Recall](https://img.shields.io/badge/Recall%20(Original)-100%25-success)
-![Recall (Expanded)](https://img.shields.io/badge/Recall%20(Expanded)-96--100%25-informational)
+![Recall (Expanded)](https://img.shields.io/badge/Recall%20(Expanded)-96--98%25-informational)
 ![Models](https://img.shields.io/badge/Models-5-blue)
 ![Variants](https://img.shields.io/badge/RET%20Variants-24-blue)
 
@@ -1373,9 +1373,10 @@ MIT
 
 In India, genetic testing for MEN2 costs INR 20,000 (~$225 USD), putting life-saving diagnosis out of reach for most families. This research asks: *can machine learning on routine blood biomarkers (calcitonin, CEA) and clinical features predict MTC risk without expensive genetic sequencing?*
 
-MEN2 Predictor aggregates **152 confirmed RET carriers from 20 peer-reviewed studies (24 variants)** into a reproducible pipeline. On the real clinical data alone, we achieve **100% sensitivity** (70.97% accuracy) - catching every documented cancer case. The expanded synthetic-augmented models push accuracy to 96.73% while maintaining 96-100% recall, potentially offering a cost-effective screening alternative for resource-limited settings.
+MEN2 Predictor aggregates **152 confirmed RET carriers from 20 peer-reviewed studies (24 variants)** into a reproducible pipeline. On the real clinical data alone, we achieve **100% sensitivity** (74.19% accuracy with XGBoost) - catching every documented cancer case. The expanded synthetic-augmented models push accuracy to 97.20% while maintaining 96-98% recall, potentially offering a cost-effective screening alternative for resource-limited settings.
 
 ## Table of Contents
+- [Awards & Recognition](#awards--recognition)
 - [Key Findings](#key-findings)
 - [About The Project](#about-the-project)
 - [Clinical Performance](#clinical-performance)
@@ -1389,35 +1390,51 @@ MEN2 Predictor aggregates **152 confirmed RET carriers from 20 peer-reviewed stu
 - [Authors](#authors)
 - [Acknowledgements](#acknowledgements)
 
+## Awards & Recognition
+
+🏆 **INSEF Regional Fair (Online) 2025-26 — Bronze Prize**
+
+This project was selected for the [INSEF Regional Fair (Online) 2025](https://sciencesociety.in/insef/Online_INSEF_Selection_2025.htm) and was awarded the **Bronze Prize** at the competition held from January 3-11, 2026.
+
+📜 [View Results](https://insef.org/insef/INSEF_Regional_Fair_Online_2025_26_Results.htm)
+
+### Team Certificates
+
+| Arjun Vijay Prakash | Harnoor Kaur |
+|:-------------------:|:------------:|
+| ![Arjun's Certificate](assets/ArjunVijayPrakash_38.jpg) | ![Harnoor's Certificate](assets/HarnoorKaur_39.jpg) |
+| 📄 [Certificate (PDF)](assets/ArjunVijayPrakash_38.pdf) | 📄 [Certificate (PDF)](assets/HarnoorKaur_39.pdf) |
+
+---
+
 ## Key Findings
 
 ### Real-Patient Cohort (152 carriers across 20 studies)
 
-The paper-only dataset now contains **152 confirmed carriers** across 24 variants (including non-hotspot deletions and the new C634G kindred). Logistic Regression on this purely clinical cohort still achieves **100% recall with 70.97% accuracy** (62.5% precision, 0 missed cancers). Ensembles trained on real patients reach **93-100% recall** (Random Forest/LightGBM sit at 93.3%; XGBoost and SVM still hit 100% but with lower accuracy), underscoring why the zero-miss baseline remains the clinical default.
+The paper-only dataset now contains **152 confirmed carriers** across 24 variants (including non-hotspot deletions and the new C634G kindred). On this purely clinical cohort, **XGBoost and SVM achieve 100% recall** (74.19% and 64.52% accuracy respectively), making them the recommended screening-safe models. For triage, **LightGBM on expanded data achieves 97.20% accuracy** with 96.08% recall.
 
 ### Synthetic Augmentation Impact
 
-Synthetic controls + SMOTE expand the training pool to 1,069 records (case-control dataset). The ctDNA cohort contributes 16 paired calcitonin/CEA observations. Expanded models improve accuracy for triage use; the original logistic model remains the zero-miss option for screening.
+Synthetic controls + SMOTE expand the training pool to 1,069 records (case-control dataset). The ctDNA cohort contributes 16 paired calcitonin/CEA observations. Expanded models improve accuracy for triage use; XGBoost and SVM on the original dataset remain the zero-miss options for screening (100% recall).
 
 | Model                | Dataset      | Accuracy   | Precision  | Avg Precision   | Recall     | F1 Score  | ROC AUC  |
 | ---------------------- | ------------ | ---------- | ---------- | --------------- | ---------- | ---------- | -------- |
-| **Logistic Regression**| Original     | 70.97%     | 62.50%     | 93.09%          | **100%**   | 76.92%     | 0.9375   |
-| **Logistic Regression**| Expanded     | 79.44%     | 53.76%     | 95.53%          | **98.0%**  | 69.44%     | 0.9833   |
-| **Random Forest**      | Original     | 83.87%     | 77.78%     | 86.31%          | **93.3%**  | 84.85%     | 0.8708   |
-| **Random Forest**      | Expanded     | 93.93%     | 81.67%     | 97.26%          | **96.1%**  | 88.29%     | 0.9854   |
-| **LightGBM**           | Original     | 83.87%     | 77.78%     | 85.58%          | **93.3%**  | 84.85%     | 0.8729   |
-| **LightGBM**           | Expanded     | **96.73%** | **90.74%** | **98.21%**      | **96.1%**  | **93.33%** | **0.9924** |
-| **XGBoost**            | Original     | 74.19%     | 65.22%     | 86.08%          | **100%**   | 78.95%     | 0.8667   |
-| **XGBoost**            | Expanded     | 88.32%     | 67.57%     | 97.19%          | **98.0%**  | 80.00%     | 0.9881   |
-| **SVM (Linear)**       | Original     | 54.84%     | 51.72%     | 89.91%          | **100%**   | 68.18%     | 0.9042   |
-| **SVM (Linear)**       | Expanded     | 43.93%     | 29.82%     | 81.74%          | **100%**   | 45.95%     | 0.9284   |
+| **Logistic Regression**| Original     | 70.97%     | 65.00%     | 88.18%          | 86.67%     | 74.29%     | 0.8667   |
+| **Logistic Regression**| Expanded     | 79.44%     | 53.76%     | 95.42%          | 98.04%     | 69.44%     | 0.9824   |
+| **Random Forest**      | Original     | 80.65%     | 73.68%     | 85.38%          | 93.33%     | 82.35%     | 0.8750   |
+| **Random Forest**      | Expanded     | 93.46%     | 80.33%     | 97.42%          | 96.08%     | 87.50%     | 0.9871   |
+| **LightGBM**           | Original     | 80.65%     | 76.47%     | 82.66%          | 86.67%     | 81.25%     | 0.8583   |
+| **LightGBM**           | Expanded     | **97.20%** | **92.45%** | **98.21%**      | **96.08%** | **94.23%** | **0.9922** |
+| **XGBoost**            | Original     | 74.19%     | 65.22%     | 81.63%          | **100%**   | 78.95%     | 0.8125   |
+| **XGBoost**            | Expanded     | 87.38%     | 65.79%     | 97.58%          | 98.04%     | 78.74%     | 0.9894   |
+| **SVM (Linear)**       | Original     | 64.52%     | 57.69%     | 89.78%          | **100%**   | 73.17%     | 0.9083   |
+| **SVM (Linear)**       | Expanded     | 46.26%     | 30.49%     | 68.95%          | 98.04%     | 46.51%     | 0.8684   |
 
 ### Clinical Interpretation
 
-- **Zero-miss option:** Logistic Regression, XGBoost, and SVM on the paper-only cohort maintain **100% sensitivity** (0/15 cancers missed in hold-out testing across all 20 studies).
-- **Precision metrics:** Standard precision shows model reliability when predicting positive cases (62.5% for original logistic regression); average precision provides threshold-independent quality measure (93.1% for original logistic regression).
-- **Ensemble shifts:** Expanded ensembles raise accuracy into the mid- to high-90% range while maintaining high sensitivity.
-- **Model selection:** Deploy the original logistic model for screening workflows; treat expanded gradient boosters as high-accuracy triage models for ctDNA-positive or metastatic follow-up cases once validated prospectively.
+- **Zero-miss option:** XGBoost and SVM on the paper-only cohort maintain **100% sensitivity** (0/15 cancers missed in hold-out testing across all 20 studies).
+- **Highest accuracy:** LightGBM on expanded data achieves **97.20% accuracy** with 96.08% recall, ideal for triage workflows.
+- **Model selection:** Deploy XGBoost or SVM on original data for screening (100% recall); use LightGBM on expanded data for high-accuracy triage.
 
 ### Statistical Tests on Recall Drops
 
@@ -1427,7 +1444,7 @@ Synthetic controls + SMOTE expand the training pool to 1,069 records (case-contr
 
 ### Why This Matters
 
-**Saving the 20k Rs People:** Every documented carrier in these studies represents a family that faced the 20k Rs barrier to genetic testing. Each percentage point of recall lost means another family denied access to early intervention. Our 100% sensitivity on real data shows it's possible to catch every cancer case using just blood tests and clinical features - potentially democratizing MEN2 screening for resource-limited settings.
+**Saving the 20k Rs People:** Every documented carrier in these studies represents a family that faced the 20k Rs barrier to genetic testing. Each percentage point of recall lost means another family denied access to early intervention. Our highest sensitivity models (XGBoost/SVM with 100% recall on real data) show it's possible to catch every cancer case using just blood tests and clinical features - potentially democratizing MEN2 screening for resource-limited settings.
 
 Even as the real dataset grows to **152 patients with 34 calcitonin/CEA pairs**, synthetic augmentation remains volatile. Accuracy climbs into the 96% band, but every percentage point of recall lost now maps directly to a real carrier in these studies. Preserving perfect sensitivity is still the only safe deployment strategy until we gather real-world validation labels.
 
@@ -1455,6 +1472,31 @@ This comprehensive coverage ensures findings generalize across fundamentally dif
 - `create_datasets.py` now tags every patient with `cea_level_numeric`, `cea_elevated`, and `cea_imputed_flag`. Thirty-four observations seed the **MICE + Predictive Mean Matching** pipeline that fills the remaining **118 gaps** while re-using observed donor values.
 - Full provenance is saved in `results/biomarker_ceaimputation_summary.txt`, and the updated multi-study scatter lives at `charts/calcitonin_cea_relationship.png`.
 
+### CEA Imputation Validation Study
+
+**Concern addressed:** Weak calcitonin-CEA correlation (r=0.24) may undermine imputation reliability.
+
+**Key findings from `src/cea_validation_study.py`:**
+
+| Analysis | Result |
+|----------|--------|
+| With vs Without CEA | LightGBM achieves **97.20% with CEA, 96.73% without** (-0.47% impact) |
+| Imputation method robustness | Accuracy varies **<1%** across MICE, mean, median, zero imputation |
+| Conclusion | CEA provides minimal predictive benefit; imputation quality has negligible impact |
+
+**Imputation Method Comparison (LightGBM, Expanded Dataset):**
+
+| Method | Accuracy | Recall | Δ vs MICE |
+|--------|----------|--------|-----------|
+| MICE+PMM (current) | **97.20%** | 96.08% | --- |
+| Mean imputation | 96.73% | 96.08% | -0.47% |
+| Median imputation | **97.20%** | 96.08% | 0.00% |
+| Zero imputation | 96.26% | 96.08% | -0.93% |
+
+**Why include CEA if it has minimal impact?** Calcitonin alone can be elevated in many non-MTC conditions (hypergastrinemia, kidney insufficiency, certain medications). Clinical guidelines recommend combined calcitonin-CEA assessment because CEA adds prognostic value for monitoring disease aggressiveness. See [detailed rationale](reports/cea_imputation_validation.md#clinical-rationale-for-including-cea-despite-minimal-predictive-impact).
+
+Run the study: `python src/cea_validation_study.py --m=all --d=both`
+
 ## About The Project
 
 **The 20k Rs Question:** In India, MEN2 genetic testing costs INR 19,000-20,000 (~$225 USD) - a prohibitive barrier that prevents families from accessing life-saving diagnosis. This research explores whether we can save those "20k Rs people" with just routine blood tests and clinical features, using machine learning to predict MTC risk without expensive genetic sequencing.
@@ -1465,34 +1507,38 @@ MEN2 (Multiple Endocrine Neoplasia type 2) is a rare hereditary cancer syndrome 
 
 ## Clinical Performance
 
-### Recommended Model for Deployment
+### Recommended Model for Screening
 
-**Logistic Regression on the paper-only dataset**
+**XGBoost on the paper-only dataset** — Zero-miss option for safety-critical workflows.
 
 | Metric                   | Value     |
 | ------------------------ | --------- |
-| **Accuracy**             | 70.97%    |
+| **Accuracy**             | 74.19%    |
 | **Recall (Sensitivity)** | **100%**  |
-| **Precision**            | 62.50%    |
-| **F1 Score**             | 76.92%    |
-| **ROC AUC**              | 0.94      |
+| **Precision**            | 65.22%    |
+| **F1 Score**             | 78.95%    |
+| **ROC AUC**              | 0.8125    |
 
-**Clinical Interpretation:**
+### Recommended Model for Triage
 
-- Catches all known MTC cases (zero false negatives) across all 20 studies (15 positives in hold-out testing).
-- Accepts moderate false positives (precision 62.5%) to keep sensitivity at 100%.
-- Remains the safest decision support option until new real-world labels validate SMOTE-based variants.
+**LightGBM on the expanded dataset** — Highest accuracy with strong recall.
 
-> **?? CRITICAL:** Synthetic augmentation raises logistic accuracy to 79.44% but drops recall by **2.0 percentage points**. Keep clinical deployments on the paper-only cohort until a prospective study confirms the expanded models.
+| Metric                   | Value     |
+| ------------------------ | --------- |
+| **Accuracy**             | **97.20%**|
+| **Recall (Sensitivity)** | 96.08%    |
+| **Precision**            | 92.45%    |
+| **F1 Score**             | 94.23%    |
+| **ROC AUC**              | 0.9922    |
 
 ### Performance Comparison
 
-| Dataset                          | Accuracy | Recall   | Clinical Risk                                  |
-| -------------------------------- | -------- | -------- | ---------------------------------------------- |
-| **Original (152 patients)**      | 70.97%   | **100%** | Safe - catches every documented cancer case    |
-| **Expanded (synthetic + SMOTE)** | 79.44%   | **98.0%**| Caution - misses appear after augmentation     |
+| Model              | Dataset   | Accuracy   | Recall     | Use Case                        |
+| ------------------ | --------- | ---------- | ---------- | ------------------------------- |
+| **XGBoost**        | Original  | 74.19%     | **100%**   | Screening (zero missed cancers) |
+| **LightGBM**       | Expanded  | **97.20%** | 96.08%     | Triage (highest accuracy)       |
 
-**Recommendation:** Use original dataset models for clinical deployment. Accuracy bumps of ~8-9% are not worth losing the zero-miss safety net when each additional miss now corresponds to a documented carrier.
+> **⚠️ CRITICAL:** For screening workflows where missing a cancer is unacceptable, use XGBoost on original data (100% recall). For high-accuracy triage after initial screening, use LightGBM on expanded data (97.20% accuracy).
 
 ## Scientific Contribution
 
@@ -1791,7 +1837,7 @@ The [create_datasets.py](src/create_datasets.py) script:
 - **Automated Model Comparison:** Every test run generates comprehensive comparison of all 5 models with complete patient data, enabling pattern identification and clinical validation
 - **Data Leakage Prevention:** SMOTE applied after train/test split to ensure realistic evaluation
 - **Feature Engineering:** Polynomial features (age²) and interactions (calcitonin×age, risk×age, nodule_severity)
-- **Variant-Aware Modeling:** One-hot encoding of 22 RET variants + risk level stratification
+- **Variant-Aware Modeling:** One-hot encoding of 24 RET variants + risk level stratification
 - **Constant Feature Removal:** Automatic detection and removal of non-informative features
 - **Risk Stratification:** 4-tier system for clinical decision support instead of binary classification
 - **Comprehensive Metrics:** ROC-AUC, F1-Score, Average Precision Score, ROC curves, confusion matrices, and automatic 95% bootstrap confidence intervals
@@ -1871,7 +1917,7 @@ This executes all stages: data preparation, analysis, expansion, training, and t
 
 Choose which model to train:
 
-- `l` or `logistic`: Logistic Regression (default, zero-miss option)
+- `l` or `logistic`: Logistic Regression (baseline)
 - `r` or `random_forest`: Random Forest (research comparison)
 - `x` or `xgboost`: XGBoost
 - `g` or `lightgbm`: LightGBM (research comparison)
@@ -1931,6 +1977,48 @@ When using `--d=both`, the pipeline:
 This mode clearly demonstrates the recall degradation from synthetic augmentation.
 
 Statistical significance tests are triggered automatically only when running both datasets together (e.g., `python main.py --m=all --d=both`).
+
+### Ablation Study (`--ablation`)
+
+The ablation study systematically removes feature groups to test the model's reliance on genetic vs biomarker features. This directly addresses the concern that "ATA Risk Level encodes cancer a priori."
+
+**Run via main pipeline:**
+
+```sh
+# Ablation study with LightGBM on expanded dataset
+python main.py --ablation --m=lightgbm --d=expanded
+```
+
+**Or run the standalone script directly:**
+
+```sh
+# Full ablation study (all models, both datasets) - 80 experiments
+python src/ablation_study.py --m=all --d=both
+
+# Specific model/dataset combinations
+python src/ablation_study.py --m=lightgbm --d=expanded
+python src/ablation_study.py --m=xgboost --d=original
+python src/ablation_study.py --m=random_forest --d=both
+```
+
+**Ablation Configurations:**
+
+| Configuration | Features Removed | Purpose |
+|---------------|------------------|---------|
+| `baseline` | None | Full model performance |
+| `no_risk_level` | `ret_risk_level`, interactions | Test ATA risk contribution |
+| `no_variants` | All `variant_*` dummies | Test variant encoding contribution |
+| `no_genetics` | All genetic features | Pure biomarker prediction |
+| `no_calcitonin` | `calcitonin_*` features | Test if genetics alone suffice |
+| `no_cea` | `cea_level_numeric` | Address CEA imputation concerns |
+| `genetics_only` | All biomarkers, nodules | Test if model is "just consensus" |
+| `biomarkers_only` | All genetic features | Clinical utility without genetics |
+
+**Results saved to:** `results/ablation/`
+- `{model}_{dataset}_ablation_results.txt` - Detailed findings
+- `{model}_{dataset}_ablation_results.csv` - For analysis
+
+**Key Finding:** With all genetic features removed, the model still achieves 94.9% accuracy using only biomarkers - proving it learns beyond "restating consensus knowledge."
 
 ### Explainability (SHAP + LIME)
 
@@ -2086,7 +2174,7 @@ Patients with source_id (e.g., "33_control", "mtc_s0_control") are synthetic con
 
 **Supported Models:**
 
-- Logistic Regression (baseline, linear, zero-miss option)
+- Logistic Regression (baseline, linear)
 - Random Forest (ensemble)
 - XGBoost (gradient boosting)
 - LightGBM (gradient boosting)
@@ -2115,7 +2203,7 @@ Patients with source_id (e.g., "33_control", "mtc_s0_control") are synthetic con
 **Original Dataset:**
 
 - 152 confirmed RET germline mutation carriers from 20 peer-reviewed studies
-- 22 RET variants (K666N, L790F, Y791F, V804M, S891A, R525W, M918T, E505_G506del, A883F, C618S, C620Y, C620W, C630R, C630G, C634R/Y/W/S, E632_C634del, E632_L633del, D898_E901del, V899_E902del)
+- 24 RET variants (K666N, L790F, Y791F, V804M, S891A, R525W, M918T, E505_G506del, A883F, C618S, C620Y, C620W, C630R, C630G, C634R, C634Y, C634W, C634S, C634G, E632_C634del, E632_L633del, D898_E901del, V899_E902del, D631_L633delinsE)
 - Age range: 1-90 years
 - Gender distribution (F/M): 107/45
 - ATA risk levels: Level 1 (Moderate), Level 2 (High), Level 3 (Highest)
@@ -2154,9 +2242,35 @@ This study has several limitations that should be considered:
 
 This project is licensed under the MIT License.
 
-## Authors
+## Authors & Contributions
 
-**Arjun Vijay Prakash**
+### Harnoor Kaur
+*City Montessori School, Kanpur Road, Lucknow, India*  
+*E-mail: har.nooor16@gmail.com*
+
+**Contributions:** Literature search, study identification, data curation, and biological interpretation.
+
+### Arjun Vijay Prakash
+*City Montessori School, Kanpur Road, Lucknow, India*  
+*E-mail: arjunv.prakash12345@gmail.com*
+
+**Contributions:** Designed and implemented the machine learning pipeline, trained models, performed computational analysis, developed the Hugging Face Space deployment, and maintained the reproducible codebase.
+
+### Shashwat Mishra (Corresponding Author)
+*City Montessori School, Kanpur Road, Lucknow, India*  
+*E-mail: mishra.shashwat4002@gmail.com*
+
+**Contributions:** Mentorship, advised on methodological decisions including the MICE+PMM imputation strategy, and oversaw project direction.
+
+---
+
+**Conflict of Interest:** The authors declare no conflicts of interest.
+
+**Funding:** This research received no specific funding from any funding agency in the public, commercial, or not-for-profit sectors.
+
+## Data Availability
+
+All data and source code are publicly available in this repository. While pre-trained models are not included, the repository contains a fully reproducible pipeline to train and evaluate the models locally.
 
 ## Acknowledgements
 
@@ -2177,7 +2291,7 @@ Special thanks to the authors of the research studies that provided clinical dat
 
 **Description:** No description provided.
 
-**Key Stats:** ⭐ 2 Stars | 🍴 0 Forks
+**Key Stats:** ⭐ 2 Stars | 🍴 1 Forks
 **Tech Stack:** TypeScript, CSS, JavaScript
 **Live Demo:** https://pilot-ops-app.vercel.app
 **Repository:** https://github.com/pilot-ops-crm/app
@@ -2527,7 +2641,7 @@ _Built with ❤️ for creators and entrepreneurs_
 
 **Key Stats:** ⭐ 1 Stars | 🍴 0 Forks
 **Tech Stack:** TypeScript, CSS, JavaScript
-**Live Demo:** https://pilot-website.vercel.app
+**Live Demo:** https://pilot-ops.vercel.app
 **Repository:** https://github.com/pilot-ops-crm/website
 
 ### README Content
@@ -3402,7 +3516,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 <h2 align="center">ChemistryCheck - AI-Powered Chat Analysis & Relationship Insights</h2>
 
 <p align="center">
-  Decode your chats. Understand your relationships. Get brutally honest insights about what's really happening between the lines. Upload WhatsApp, Telegram, or Instagram chat exports and let AI analyze communication patterns, spot red flags, and reveal relationship dynamics.
+  Decode your chats. Understand your relationships. Get brutally honest insights about what's really happening between the lines. Upload WhatsApp, Telegram, or Instagram chat exports and let AI analyze communication patterns, spot red flags, and reveal relationship dynamics. Plus, chat with an AI that has full context of your conversation history.
 </p>
 
 ## 📝 Table of Contents
@@ -3456,18 +3570,14 @@ Want to run ChemistryCheck locally? Here's what you need to do.
    Create a `.env` file in the root directory with the following variables:
 
    ```env
-   # Database
-   DATABASE_URL=your_postgresql_connection_string
-
-   # Application
+   GOOGLE_GENERATIVE_AI_API_KEY=
+   BLOB_READ_WRITE_TOKEN=
    APP_URL=http://localhost:3000
-
-   # AI (Google Gemini)
-   GEMINI_API_KEY=your_gemini_api_key
-
-   # Authentication (Google OAuth)
-   GOOGLE_CLIENT_ID=your_google_client_id
-   GOOGLE_CLIENT_SECRET=your_google_client_secret
+   BETTER_AUTH_URL=http://localhost:3000
+   BETTER_AUTH_SECRET=
+   DATABASE_URL=
+   GOOGLE_CLIENT_ID=
+   GOOGLE_CLIENT_SECRET=
    ```
 
 4. **Set up the database**
@@ -3496,6 +3606,9 @@ The application should be running at `http://localhost:3000`.
    - Support for WhatsApp (.txt), Telegram (.json), and Instagram (.json) chat exports
    - Secure file upload using Vercel Blob storage
    - Automatic platform detection and parsing
+   - Changed your mind? Delete your uploaded file instantly before analysis starts
+   - Clear transparency about how your data is handled—shown right after upload
+   - Chat files are deleted from storage immediately after analysis is complete. The project is fully open source for transparency.
 
 2. **AI-Powered Analysis**
    - Analyzes message patterns, response times, word frequency, and emoji usage
@@ -3505,6 +3618,7 @@ The application should be running at `http://localhost:3000`.
 
 3. **Comprehensive Dashboard**
    - View all your analyses in one place
+   - Visual identification of WhatsApp, Telegram, and Instagram analyses with colored platform icons
    - Detailed statistics and visualizations
    - Activity patterns (messages by hour, day, month)
    - Response time analysis
@@ -3512,7 +3626,13 @@ The application should be running at `http://localhost:3000`.
    - Emoji analysis
    - AI-generated insights and summaries
 
-4. **Shareable Analysis**
+4. **RAG Chatbot** 🆕
+   - Chat with an AI that has full context of your conversation
+   - Ask questions like "When did we first say I love you?" or "Find messages about our trip"
+   - Semantic search powered by pgvector embeddings
+   - Owner-only access (hidden on public/shared links)
+
+5. **Shareable Analysis**
    - Make analyses public and shareable
    - View detailed breakdowns of communication patterns
 
@@ -3521,8 +3641,8 @@ The application should be running at `http://localhost:3000`.
 1. Sign up or sign in to your account
 2. Navigate to "New Analysis" and select your platform (WhatsApp, Telegram, or Instagram)
 3. Upload your chat export file
-4. Wait for the AI to process and analyze your chat
-5. View comprehensive insights in the analysis dashboard
+4. Get redirected to the analysis page instantly while processing happens in the background
+5. View comprehensive insights once the AI finishes analyzing
 6. Access your analysis history from the main dashboard
 
 The analysis includes everything from basic message counts to advanced AI insights about relationship dynamics, helping you understand what's really happening in your conversations.
@@ -3544,7 +3664,11 @@ The analysis includes everything from basic message counts to advanced AI insigh
 
 ### AI & Processing
 
-- **Google Gemini AI** (gemini-2.0-flash-lite) for generating relationship insights and analysis
+- **Vercel AI SDK** for unified AI interactions and streaming
+- **Google Gemini AI** (gemini-3-flash-preview) for generating relationship insights and analysis
+- **Gemini text-embedding-004** for semantic embeddings (RAG chatbot)
+- **pgvector** for vector similarity search
+- **Inngest** for background job processing (parsing & embedding)
 - Custom chat parsers for WhatsApp, Telegram, and Instagram exports
 
 ### UI and Design
@@ -3581,11 +3705,14 @@ This application is set up to deploy on Vercel.
 
 2. **Environment Variables You Need**
    ```env
-   DATABASE_URL=your_postgresql_connection_string
+   GOOGLE_GENERATIVE_AI_API_KEY=
+   BLOB_READ_WRITE_TOKEN=
    APP_URL=https://your-domain.vercel.app
-   GEMINI_API_KEY=your_gemini_api_key
-   GOOGLE_CLIENT_ID=your_google_client_id
-   GOOGLE_CLIENT_SECRET=your_google_client_secret
+   BETTER_AUTH_URL=https://your-domain.vercel.app
+   BETTER_AUTH_SECRET=
+   DATABASE_URL=
+   GOOGLE_CLIENT_ID=
+   GOOGLE_CLIENT_SECRET=
    ```
 
 3. **Database Setup**
@@ -3769,7 +3896,7 @@ Want to run Flash Reels locally? Here's what you need to do.
 ### What You Need First
 
 - Node.js version 18 or newer
-- npm, yarn, pnpm, or bun
+- pnpm (recommended), npm, yarn, or bun
 - A PostgreSQL database (I use Neon)
 - API keys for the following services:
   - Clerk (authentication)
@@ -3791,11 +3918,11 @@ Want to run Flash Reels locally? Here's what you need to do.
 2. **Install everything**
 
    ```bash
+   pnpm install
+   # or
    npm install
    # or
    yarn install
-   # or
-   pnpm install
    ```
 
 3. **Set up your environment**
@@ -3805,7 +3932,7 @@ Want to run Flash Reels locally? Here's what you need to do.
 4. **Set up the database**
 
    ```bash
-   npm run db:push
+   pnpm db:push
    ```
 
    This will create the necessary tables in your PostgreSQL database using Drizzle ORM.
@@ -3813,7 +3940,7 @@ Want to run Flash Reels locally? Here's what you need to do.
 5. **Start the development server**
 
    ```bash
-   npm run dev
+   pnpm dev
    ```
 
 The site should be running at `http://localhost:3000`.
@@ -3924,7 +4051,7 @@ This project is set up to deploy on Vercel, which works seamlessly with Next.js.
 
 3. **Database Setup**
    - Ensure your Neon database is accessible from Vercel
-   - Run `npm run db:push` after deployment to set up the database schema
+   - Run `pnpm db:push` after deployment to set up the database schema
 
 4. **GitHub Actions**
    - Ensure your GitHub repository has the workflow file for video rendering

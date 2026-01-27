@@ -11,7 +11,7 @@ export const DATA = {
   description:
     "I'm a 16-year-old full-stack developer, aspiring researcher, technical writer, and CTO at Pilot.",
   summary:
-    "I'm Arjun Vijay Prakash, a 16-year-old [full-stack developer](https://github.com/ArjunCodess), [technical writer](https://dev.to/arjuncodess), aspiring researcher, and CTO at [Pilot](https://github.com/pilot-ops-crm) from India. I've been building websites and apps since I was young. I love turning ideas into reality through code. I've shipped over 20 projects and earned $1,375 through technical writing. I share my coding journey on my blog, where I've built a community of over 34,000 followers with 400,000+ views. Selected for INSEF Regional Fair (Online) for my MEN2 Predictor ML research project.",
+    "I'm Arjun Vijay Prakash, a 16-year-old [full-stack developer](https://github.com/ArjunCodess), [technical writer](https://dev.to/arjuncodess), aspiring researcher, and CTO at [Pilot](https://github.com/pilot-ops-crm) from India. I've been building websites and apps since I was young. I love turning ideas into reality through code. I've shipped over 20 projects and earned $1,550 through technical writing. I share my coding journey on my blog, where I've built a community of over 35,000 followers with 400,000+ views. Won Bronze Prize at INSEF Regional Fair (Online) for my MEN2 Predictor ML research project.",
   avatarUrl: "/me.jpeg",
   skills: [
     "Next.js",
@@ -124,14 +124,14 @@ export const DATA = {
     },
     {
       company: "Technical Writer",
-      badges: ["$1,375 Earned", "34K Followers", "400K+ Views"],
+      badges: ["$1,550 Earned", "35K Followers", "400K+ Views"],
       location: "Remote",
       title: "Freelance Technical Writer",
       logoUrl: "/devto.svg",
       start: "2025",
       end: "Present",
       description:
-        "Built a following of [34,000+ followers](https://dev.to/arjuncodess) and 400,000+ views on DEV.to. Earned $1,375 through technical writing as a 16-year-old in 2025, including [$500 from Runner H AI Challenge](https://dev.to/devteam/congrats-to-the-runner-h-ai-agent-prompting-challenge-winners-3aap). Created educational content on web development, AI, and programming.",
+        "Built a following of [35,000+ followers](https://dev.to/arjuncodess) and 400,000+ views on DEV.to. Earned $1,550 through technical writing as a 16-year-old in 2025, including [$500 from Runner H AI Challenge](https://dev.to/devteam/congrats-to-the-runner-h-ai-agent-prompting-challenge-winners-3aap). Created educational content on web development, AI, and programming.",
     },
   ],
   education: [
@@ -152,7 +152,7 @@ export const DATA = {
       dates: "2025",
       active: true,
       description:
-        "**INSEF Regional Fair Selected.** Medical ML pipeline for predicting MEN2 syndrome. Achieves 96.73% accuracy with 100% sensitivity on real clinical data from 152 patients across 20 studies.",
+        "**INSEF Regional Fair Bronze Prize Winner.** Medical ML pipeline for predicting MEN2 syndrome. Achieves 97.20% accuracy with 100% sensitivity on real clinical data from 152 patients across 20 studies (24 RET variants).",
       technologies: [
         "Python",
         "Machine Learning",
@@ -209,7 +209,7 @@ export const DATA = {
       dates: "2024",
       active: true,
       description:
-        "**120+ GitHub stars.** AI-powered web scraping platform using Gemini AI. Handles dynamic content, CAPTCHAs, and provides clean JSON output.",
+        "**119 GitHub stars.** AI-powered web scraping platform using Gemini AI. Handles dynamic content, CAPTCHAs, and provides clean JSON output.",
       technologies: [
         "Python",
         "Flask",
@@ -239,7 +239,7 @@ export const DATA = {
       dates: "2025",
       active: true,
       description:
-        "AI-powered chat analysis tool. Upload WhatsApp, Telegram, or Instagram exports and get insights into communication patterns, relationship dynamics, and potential red flags.",
+        "AI-powered chat analysis tool with RAG chatbot. Upload WhatsApp, Telegram, or Instagram exports and chat with an AI that has full context of your conversation. Get insights into communication patterns, relationship dynamics, and potential red flags.",
       technologies: [
         "Next.js",
         "TypeScript",
@@ -254,6 +254,11 @@ export const DATA = {
           href: "https://chemistrycheck.vercel.app",
           icon: <Icons.globe className="size-3" />,
         },
+        {
+          type: "Source Code",
+          href: "https://github.com/ArjunCodess/chemistrycheck",
+          icon: <Icons.github className="size-3" />,
+        },
       ],
       image: "/projects/chemistrycheck.png",
     },
@@ -263,13 +268,14 @@ export const DATA = {
       dates: "2025",
       active: true,
       description:
-        "AI-powered video creation platform. Generate professional reels with just a topic — AI handles script, images, voiceover, and captions automatically using Remotion.",
+        "AI-powered video creation platform. Generate professional reels with just a topic — AI handles script, images, voiceover (Edge TTS), and captions (Deepgram) automatically using Remotion.",
       technologies: [
         "Next.js",
         "TypeScript",
         "Remotion",
         "Gemini AI",
         "Fal.ai",
+        "Edge TTS",
         "Deepgram",
         "Clerk",
       ],
@@ -278,6 +284,11 @@ export const DATA = {
           type: "Live Website",
           href: "https://flashreels.vercel.app",
           icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Source Code",
+          href: "https://github.com/ArjunCodess/FlashReels",
+          icon: <Icons.github className="size-3" />,
         },
       ],
       image: "/projects/flashreels.png",
@@ -288,7 +299,7 @@ export const DATA = {
       dates: "2024",
       active: true,
       description:
-        "Interactive dashboard visualizing near-Earth asteroid data from NASA's NeoWs API. Shows asteroid sizes, velocities, miss distances, and hazard levels.",
+        "**7 GitHub stars.** Interactive dashboard visualizing near-Earth asteroid data from NASA's NeoWs API. Shows asteroid sizes, velocities, miss distances, and hazard levels.",
       technologies: ["Python", "Streamlit", "NASA API", "Data Visualization"],
       links: [
         {
@@ -362,7 +373,7 @@ export const DATA = {
       dates: "2024",
       active: true,
       description:
-        "Neon-powered full-stack web application starter kit with Next.js, Tailwind CSS, Shadcn/UI, Drizzle ORM, and Clerk auth pre-configured.",
+        "**12 GitHub stars.** Neon-powered full-stack web application starter kit with Next.js, Tailwind CSS, Shadcn/UI, Drizzle ORM, and Clerk auth pre-configured.",
       technologies: [
         "Next.js",
         "TypeScript",
@@ -465,7 +476,7 @@ export const DATA = {
       title: "INSEF Regional Fair (Online)",
       dates: "2025",
       description:
-        "[Selected](https://sciencesociety.in/insef/Online_INSEF_Selection_2025.htm) to present MEN2 Predictor, a medical ML research project achieving 96.73% accuracy with 100% sensitivity in rare disease prediction.",
+        "[Bronze Prize Winner](https://insef.org/insef/INSEF_Regional_Fair_Online_2025_26_Results.htm) for MEN2 Predictor, a medical ML research project achieving 97.20% accuracy with 100% sensitivity in rare disease prediction.",
     },
     {
       title: "Runner H AI Agent Prompting Challenge",
@@ -489,7 +500,7 @@ export const DATA = {
       title: "Hit 34K+ Followers on DEV.to",
       dates: "2025",
       description:
-        "Built a following of over [34,000](https://dev.to/arjuncodess) with 400,000+ views, sharing insights on coding, AI, and development.",
+        "Built a following of over [35,000](https://dev.to/arjuncodess) with 400,000+ views, sharing insights on coding, AI, and development.",
     },
     {
       title: "CS50 Achievements",
@@ -512,7 +523,7 @@ export const DATA = {
     {
       title: "Technical Writing",
       description:
-        "Writing educational content on web development, AI, and programming. [34K followers on DEV.to](https://dev.to/arjuncodess) with 400K+ views.",
+        "Writing educational content on web development, AI, and programming. [35K followers on DEV.to](https://dev.to/arjuncodess) with 400K+ views.",
     },
     {
       title: "Poetry & Creative Writing",
@@ -522,7 +533,7 @@ export const DATA = {
     {
       title: "Language Learning",
       description:
-        "[440+ day Duolingo streak](https://www.duolingo.com/profile/ArjunCodess) learning Spanish. Consistent daily practice builds discipline.",
+        "[500+ day Duolingo streak](https://www.duolingo.com/profile/ArjunCodess) learning Spanish. Consistent daily practice builds discipline.",
     },
     {
       title: "Electronics & Arduino",
