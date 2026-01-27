@@ -131,7 +131,7 @@ export const DATA = {
       start: "2025",
       end: "Present",
       description:
-        "Built a following of [35,000+ followers](https://dev.to/arjuncodess) and 400,000+ views on DEV.to. Earned $1,550 through technical writing as a 16-year-old in 2025, including [$500 from Runner H AI Challenge](https://dev.to/devteam/congrats-to-the-runner-h-ai-agent-prompting-challenge-winners-3aap). Created educational content on web development, AI, and programming.",
+        "Built a following of [35,000+ followers](https://dev.to/arjuncodess) and 400,000+ views on DEV.to. Earned $1,550 in total through technical writing, including $1,375 in 2025 alone—my first $1K earned as a 16-year-old. Won [$500 from Runner H AI Challenge](https://dev.to/devteam/congrats-to-the-runner-h-ai-agent-prompting-challenge-winners-3aap). Created educational content on web development, AI, and programming.",
     },
   ],
   education: [
@@ -497,7 +497,7 @@ export const DATA = {
         "Certified [Top 100](https://devfolio.co/projects/nirvanaai-4093) for Nirvana AI project on Devfolio.",
     },
     {
-      title: "Hit 34K+ Followers on DEV.to",
+      title: "Hit 35K+ Followers on DEV.to",
       dates: "2025",
       description:
         "Built a following of over [35,000](https://dev.to/arjuncodess) with 400,000+ views, sharing insights on coding, AI, and development.",
