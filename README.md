@@ -44,7 +44,7 @@ This portfolio features a sophisticated **Retrieval-Augmented Generation (RAG)**
 1.  **Ingestion Pipeline** (`scripts/generate-embeddings.ts`):
     -   Source content (Markdown files) is read from `src/data/rag`.
     -   Text is chunked into semantic segments (~800 characters) with overlap.
-    -   **Cloud Embeddings**: We use Google Gemini's `text-embedding-004` model via the Vercel AI SDK for high-quality 768-dimensional embeddings.
+    -   **Cloud Embeddings**: We use Google Gemini's `gemini-embedding-001` model via the Vercel AI SDK for high-quality 768-dimensional embeddings.
     -   Vectors are stored in **Vercel Postgres** using the `pgvector` extension.
 
 2.  **Retrieval System**:
@@ -68,7 +68,7 @@ This portfolio features a sophisticated **Retrieval-Augmented Generation (RAG)**
 ### AI & Data
 - **LLM:** Google Gemini Flash
 - **SDK:** Vercel AI SDK
-- **Embeddings:** Google Gemini (`text-embedding-004`, 768 dimensions)
+- **Embeddings:** Google Gemini (`gemini-embedding-001`, 768 dimensions)
 - **Database:** Vercel Postgres (with `pgvector`)
 - **Vector Search:** SQL-based cosine similarity
 

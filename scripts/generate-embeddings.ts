@@ -17,8 +17,8 @@ import { embedMany } from "ai";
 import { google } from "@ai-sdk/google";
 import { formatEmbedding } from "@/lib/utils";
 
-// Embedding model - Gemini text-embedding-004 (768 dimensions)
-const EMBEDDING_MODEL = "text-embedding-004";
+// Embedding model - Gemini gemini-embedding-001 (768 dimensions)
+const EMBEDDING_MODEL = "gemini-embedding-001";
 
 interface Chunk {
   content: string;
@@ -126,6 +126,12 @@ async function generateEmbeddings(chunks: Chunk[]): Promise<EmbeddingResult[]> {
     const { embeddings } = await embedMany({
       model: google.embedding(EMBEDDING_MODEL),
       values: texts,
+      providerOptions: {
+        google: {
+          outputDimensionality: 768,
+          taskType: "RETRIEVAL_DOCUMENT",
+        },
+      },
     });
 
     // Map embeddings back to chunks
