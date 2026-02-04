@@ -95,35 +95,6 @@ function formatDate(dateStr: string | null): string {
   return date.toLocaleDateString("en-US", { month: "short", year: "numeric" });
 }
 
-function extractTechnologies(pr: PRDetails): string[] {
-  const techs: string[] = [];
-
-  // Extract from labels
-  pr.labels.forEach((label) => {
-    const name = label.name.toLowerCase();
-    if (name.includes("typescript") || name.includes("ts"))
-      techs.push("TypeScript");
-    if (name.includes("python")) techs.push("Python");
-    if (name.includes("react")) techs.push("React");
-    if (name.includes("next")) techs.push("Next.js");
-  });
-
-  // Infer from repo name/description
-  const repoName = pr.base.repo.full_name.toLowerCase();
-  const desc = (pr.base.repo.description || "").toLowerCase();
-
-  if (repoName.includes("next") || desc.includes("next.js"))
-    techs.push("Next.js");
-  if (repoName.includes("cloudinary")) techs.push("Cloudinary");
-  if (repoName.includes("python") || desc.includes("python"))
-    techs.push("Python");
-  if (desc.includes("typescript") || desc.includes("react"))
-    techs.push("TypeScript");
-
-  // Dedupe
-  return [...new Set(techs)];
-}
-
 function generateMarkdown(
   majorPRs: PRDetails[],
   minorPRs: PRDetails[],
@@ -172,12 +143,9 @@ function generateMarkdown(
     md += `- **Changes**: +${pr.additions} -${pr.deletions} across ${pr.changed_files} files\n`;
 
     if (pr.body) {
-      // Extract first paragraph from PR body as description
-      const firstParagraph = pr.body
-        .split("\n\n")[0]
-        .replace(/[#*`]/g, "")
-        .slice(0, 300);
-      md += `- **Description**: ${firstParagraph}${pr.body.length > 300 ? "..." : ""}\n`;
+      // Clean up markdown formatting from PR body
+      const cleanedBody = pr.body.replace(/[#*`]/g, "").trim();
+      md += `- **Description**:\n\n${cleanedBody}\n`;
     }
     md += `\n`;
   });
@@ -194,11 +162,8 @@ function generateMarkdown(
     md += `- **Changes**: +${pr.additions} -${pr.deletions} across ${pr.changed_files} files\n`;
 
     if (pr.body) {
-      const firstParagraph = pr.body
-        .split("\n\n")[0]
-        .replace(/[#*`]/g, "")
-        .slice(0, 200);
-      md += `- **Description**: ${firstParagraph}${pr.body.length > 200 ? "..." : ""}\n`;
+      const cleanedBody = pr.body.replace(/[#*`]/g, "").trim();
+      md += `- **Description**:\n\n${cleanedBody}\n`;
     }
     md += `\n`;
   });
