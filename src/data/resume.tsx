@@ -11,7 +11,7 @@ export const DATA = {
   description:
     "I'm a 16-year-old full-stack developer, aspiring researcher, technical writer, and CTO at Pilot.",
   summary:
-    "I'm Arjun, a 16-year-old [full-stack developer](https://github.com/ArjunCodess) from India. I taught myself to code because I wanted to build stuff, and now I can't stop. I mostly work with Next.js and TypeScript, but I've also been getting into machine learning lately (built a [medical prediction model](https://huggingface.co/spaces/arjuncodess/men2-predictor) that won a research competition). I write about what I'm learning on [DEV.to](https://dev.to/arjuncodess), which has been a great way to think through problems and help others along the way. Outside of coding, I'm [learning Spanish](https://www.duolingo.com/profile/ArjunCodess), solving [LeetCode problems](https://leetcode.com/ArjunCodess), and I [write about life](https://medium.com/@arjunwritess) on Medium.",
+    "I'm Arjun, a 16-year-old [full-stack developer](https://github.com/ArjunCodess) from India. I taught myself to code because I wanted to build stuff, and now I can't stop. I mostly work with Next.js and TypeScript, but I've also been getting into machine learning lately (built a [medical prediction model](https://huggingface.co/spaces/arjuncodess/men2-predictor) that won a national science fair). I write about what I'm learning on [DEV.to](https://dev.to/arjuncodess), which has been a great way to think through problems and help others along the way. Outside of coding, I'm [learning Spanish](https://www.duolingo.com/profile/ArjunCodess), solving [LeetCode problems](https://leetcode.com/ArjunCodess), and I [write about life](https://medium.com/@arjunwritess) on Medium.",
   avatarUrl: "/me.jpeg",
   skills: [
     "Next.js",
