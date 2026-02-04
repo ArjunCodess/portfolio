@@ -59,7 +59,7 @@ Key Changes:
 - Added state management for script loading and player initialisation tracking
 - Implemented ro...
 
-### Mail0 (10.4k+ stars)
+### Zero (10.4k+ stars)
 
 - **PR**: [#2013 - Redesign mail header layout with square buttons and enhanced spacing](https://github.com/Mail-0/Zero/pull/2013)
 - **Date**: Aug 2025
