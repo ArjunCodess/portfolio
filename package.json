@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "db:generate-embeddings": "tsx scripts/generate-embeddings.ts",
-    "db:fetch-open-source": "tsx scripts/fetch-open-source.ts",
+    "fetch-projects": "tsx scripts/fetch-projects.ts",
+    "fetch-open-source": "tsx scripts/fetch-open-source.ts",
     "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\""
   },
   "dependencies": {
