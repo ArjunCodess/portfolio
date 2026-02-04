@@ -369,14 +369,21 @@ export default function Page() {
           />
           <BlurFade delay={BLUR_FADE_DELAY * 17}>
             <p className="text-muted-foreground text-sm md:text-base">
-              Feel free to{" "}
+              Feel free to reach out via{" "}
               <Link
                 href={DATA.contact.social.X.url}
                 className="font-semibold text-blue-600 dark:text-blue-400 underline"
               >
-                reach out via Twitter
+                Twitter
               </Link>
-              .
+              {" "}or{" "}
+              <Link
+                href={`mailto:${DATA.contact.email}`}
+                className="font-semibold text-blue-600 dark:text-blue-400 underline"
+              >
+                email
+              </Link>
+              , either works!
             </p>
           </BlurFade>
         </div>
