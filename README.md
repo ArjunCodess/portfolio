@@ -15,6 +15,7 @@
 Hi, I'm **Arjun Vijay Prakash** — a 16-year-old full-stack developer, aspiring researcher, technical writer, and CTO at [Pilot](https://github.com/pilot-ops-crm) from Lucknow, India.
 
 - **20+ Projects** shipped across web, AI, and ML
+- **8 Open Source PRs** merged to notable projects (Notesnook, next-cloudinary, Zero Mail)
 - **34,000+ followers** on [DEV.to](https://dev.to/arjuncodess) with 400,000+ views
 - **$1,375 earned** through technical writing
 - **INSEF Regional Fair** selected for MEN2 Predictor ML research
@@ -190,8 +191,9 @@ src/
 - **Skills** - Technical skills and technologies
 - **Work Experience** - Professional experience as CTO and Technical Writer
 - **Education** - Academic background
-- **Certifications** - CS50 and FreeCodeCamp certificates
 - **Projects** - Featured projects with live demos
+- **Open Source** - Contributions to notable open source projects
+- **Certifications** - CS50 and FreeCodeCamp certificates
 - **Achievements** - Awards and recognitions
 - **Hobbies** - Personal interests and activities
 

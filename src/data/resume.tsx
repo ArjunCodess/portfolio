@@ -541,4 +541,85 @@ export const DATA = {
         "Exploring hardware projects with Arduino. Built multiple small projects over 10 days in September 2025.",
     },
   ],
+  openSourceContributions: [
+    {
+      title: "Notesnook #8624",
+      description:
+        "Fixed toolbar item indentation when moving between groups + added comprehensive tests for the customize-toolbar component.",
+      href: "https://github.com/streetwriters/notesnook/pull/8624",
+      type: "major",
+      date: "Feb 2026",
+      tech: ["TypeScript", "React", "Testing"],
+      repoInfo: "13k+ stars",
+    },
+    {
+      title: "next-cloudinary #601",
+      description:
+        "Fixed CldVideoPlayer fullscreen object-cover issue where videos wouldn't properly fill the screen.",
+      href: "https://github.com/cloudinary-community/next-cloudinary/pull/601",
+      type: "major",
+      date: "Oct 2025",
+      tech: ["TypeScript", "Next.js", "Video"],
+      repoInfo: "Cloudinary Official",
+    },
+    {
+      title: "next-cloudinary #602",
+      description:
+        "Fixed CldVideoPlayer route change issue in Next.js 15 App Router with proper lifecycle management.",
+      href: "https://github.com/cloudinary-community/next-cloudinary/pull/602",
+      type: "major",
+      date: "Oct 2025",
+      tech: ["TypeScript", "Next.js", "React"],
+      repoInfo: "Cloudinary Official",
+    },
+    {
+      title: "Zero #2013",
+      description:
+        "Redesigned mail header layout with square buttons and enhanced spacing for better visual hierarchy.",
+      href: "https://github.com/Mail-0/Zero/pull/2013",
+      type: "major",
+      date: "Aug 2025",
+      tech: ["TypeScript", "UI/UX", "React"],
+      repoInfo: "10k+ stars",
+    },
+    {
+      title: "terminal-catacomb-crawler #37",
+      description:
+        "Fixed level up UI input freeze and terminal mode handling issues.",
+      href: "https://github.com/CatacombCrawler/terminal-catacomb-crawler/pull/37",
+      type: "minor",
+      date: "Oct 2025",
+      tech: ["Python"],
+      repoInfo: undefined,
+    },
+    {
+      title: "tix-cli #56",
+      description:
+        "Added Textual-based TUI for interactive task management with keyboard navigation.",
+      href: "https://github.com/TheDevOpsBlueprint/tix-cli/pull/56",
+      type: "minor",
+      date: "Oct 2025",
+      tech: ["Python", "Textual", "TUI"],
+      repoInfo: undefined,
+    },
+    {
+      title: "cvimprover-api #31",
+      description:
+        "Added comprehensive input sanitization for user data security (XSS, injection prevention).",
+      href: "https://github.com/CVImprover/cvimprover-api/pull/31",
+      type: "minor",
+      date: "Oct 2025",
+      tech: ["Python", "Django", "Security"],
+      repoInfo: undefined,
+    },
+    {
+      title: "tix-cli #60",
+      description: "Updated README with interactive TUI documentation and requirements.",
+      href: "https://github.com/TheDevOpsBlueprint/tix-cli/pull/60",
+      type: "minor",
+      date: "Oct 2025",
+      tech: ["Documentation"],
+      repoInfo: undefined,
+    },
+  ],
 } as const;

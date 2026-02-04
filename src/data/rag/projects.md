@@ -1,12 +1,12 @@
 # ArjunCodess Projects Knowledge Base
 
-> Auto-generated from GitHub API on Tue Jan 27 2026. Use this file to train the RAG model.
+> Auto-generated from GitHub API on Wed Feb 04 2026. Use this file to train the RAG model.
 
 ## Project: WebCrawlAI
 
-**Description:** No description provided.
+**Description:** AI-powered web scraping platform that leverages Gemini AI to extract specific information from websites — handles dynamic content, CAPTCHAs, and provides clean JSON output for easy integration.
 
-**Key Stats:** ⭐ 119 Stars | 🍴 23 Forks
+**Key Stats:** ⭐ 120 Stars | 🍴 23 Forks
 **Tech Stack:** Python, HTML, JavaScript
 **Live Demo:** https://webcrawlai.onrender.com/
 **Repository:** https://github.com/ArjunCodess/WebCrawlAI
@@ -722,7 +722,7 @@ P.S. If you like it, maybe give us a star on GitHub and an upvote on Product Hun
 
 **Description:** Connect AI tools to Storyblok instantly - use natural language to manage your CMS like magic.
 
-**Key Stats:** ⭐ 8 Stars | 🍴 7 Forks
+**Key Stats:** ⭐ 9 Stars | 🍴 7 Forks
 **Tech Stack:** JavaScript, TypeScript
 **Repository:** https://github.com/ArjunCodess/storyblok-mcp
 
@@ -3499,7 +3499,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Project: chemistrycheck
 
-**Description:** No description provided.
+**Description:** Decode your chats. Understand your relationships. Get brutally honest insights about what's really happening between the lines. Spot warning signs early. No more “Wish I would've seen this coming.“
 
 **Key Stats:** ⭐ 3 Stars | 🍴 0 Forks
 **Tech Stack:** TypeScript, CSS, JavaScript
@@ -3553,7 +3553,7 @@ Want to run ChemistryCheck locally? Here's what you need to do.
 1. **Grab the code**
 
    ```bash
-   git clone https://github.com/your-username/chemistrycheck.git
+   git clone https://github.com/ArjunCodess/chemistrycheck.git
    cd chemistrycheck
    ```
 
@@ -3626,13 +3626,21 @@ The application should be running at `http://localhost:3000`.
    - Emoji analysis
    - AI-generated insights and summaries
 
-4. **RAG Chatbot** 🆕
+4. **RAG Chatbot**
    - Chat with an AI that has full context of your conversation
    - Ask questions like "When did we first say I love you?" or "Find messages about our trip"
    - Semantic search powered by pgvector embeddings
    - Owner-only access (hidden on public/shared links)
 
-5. **Shareable Analysis**
+5. **Scorecard Generator**
+   - Create beautiful, shareable scorecards summarizing your chat analysis
+   - Multiple themes: Light, Dark, Rose Gradient, Ocean, Sunset, Purple
+   - Customizable metrics: Chemistry Score, Messages, Reply Time, Balance, Interest Levels, Top Emojis, Attachment Styles, Health Score, Red Flags
+   - Privacy options: Blur names, use initials, custom nicknames, or hide names entirely
+   - Export as PNG, JPEG, or copy to clipboard
+   - Perfect for sharing on social media
+
+6. **Shareable Analysis**
    - Make analyses public and shareable
    - View detailed breakdowns of communication patterns
 
@@ -3679,6 +3687,7 @@ The analysis includes everything from basic message counts to advanced AI insigh
 - **Next Themes** for dark/light mode support
 - **Recharts** for data visualization
 - **React D3 Cloud** for word cloud visualizations
+- **html-to-image** for scorecard export functionality
 
 ### Storage & Deployment
 
