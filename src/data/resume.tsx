@@ -573,7 +573,7 @@ export const DATA = {
       repoInfo: "Cloudinary Official",
     },
     {
-      title: "Mail0 #2013",
+      title: "Zero #2013",
       description:
         "Redesigned mail header layout with square buttons and enhanced spacing for better visual hierarchy.",
       href: "https://github.com/Mail-0/Zero/pull/2013",
