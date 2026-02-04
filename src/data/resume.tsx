@@ -11,7 +11,7 @@ export const DATA = {
   description:
     "I'm a 16-year-old full-stack developer, aspiring researcher, technical writer, and CTO at Pilot.",
   summary:
-    "I'm Arjun Vijay Prakash, a 16-year-old [full-stack developer](https://github.com/ArjunCodess), [technical writer](https://dev.to/arjuncodess), aspiring researcher, and CTO at [Pilot](https://github.com/pilot-ops-crm) from India. I've been building websites and apps since I was young. I love turning ideas into reality through code. I've shipped over 20 projects and earned $1,550 through technical writing. I share my coding journey on my blog, where I've built a community of over 35,000 followers with 400,000+ views. Won Bronze Prize at INSEF Regional Fair (Online) for my MEN2 Predictor ML research project.",
+    "I'm Arjun, a 16-year-old [full-stack developer](https://github.com/ArjunCodess) from India. I taught myself to code because I wanted to build stuff, and now I can't stop. I mostly work with Next.js and TypeScript, but I've also been getting into machine learning lately (built a [medical prediction model](https://huggingface.co/spaces/arjuncodess/men2-predictor) that won a research competition). I write about what I'm learning on [DEV.to](https://dev.to/arjuncodess), which has been a great way to think through problems and help others along the way. Outside of coding, I'm [learning Spanish](https://www.duolingo.com/profile/ArjunCodess), solving [LeetCode problems](https://leetcode.com/ArjunCodess), and I [write about life](https://medium.com/@arjunwritess) on Medium.",
   avatarUrl: "/me.jpeg",
   skills: [
     "Next.js",
@@ -526,9 +526,9 @@ export const DATA = {
         "Writing educational content on web development, AI, and programming. [35K followers on DEV.to](https://dev.to/arjuncodess) with 400K+ views.",
     },
     {
-      title: "Poetry & Creative Writing",
+      title: "Writing & Personal Essays",
       description:
-        "Started writing free-verse poetry. Won 2nd place in a writing competition - entry published in an anthology. I write free-verse poetry and about things happening in my life on my [Medium blog](https://medium.com/@arjunwritess).",
+        "I write about life, feelings, and the questions I can't answer on my [Medium blog](https://medium.com/@arjunwritess). It's a mix of personal essays, reflections, free-verse poetry, and philosophical pieces. Won 2nd place in a writing competition with an entry published in an anthology.",
     },
     {
       title: "Language Learning",
