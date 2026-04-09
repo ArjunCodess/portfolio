@@ -15,9 +15,10 @@
 **Email:** arjunv.prakash12345@gmail.com
 **Education:** ICSE Class 10 (2025-26 session) at City Montessori School
 **Current Status:** Full-stack developer, aspiring researcher, technical writer, Startup CTO
-**Total Lifetime Earnings:** $1,550 USD ($1,375 earned in 2025—first $1K earned as a 16-year-old)
+**Total Lifetime Earnings:** $2,450 USD ($1,375 earned in 2025—first $1K earned as a 16-year-old)
 
 **Key Links:**
+
 - GitHub: https://github.com/ArjunCodess
 - DEV.to: https://dev.to/arjuncodess (35,000+ followers, 400,000+ views, Top Writer)
 - Portfolio: https://arjuncodess.is-a.dev/
@@ -29,14 +30,24 @@
 ## 2025 Wrapped - Achievements & Timeline
 
 ### Financial
+
 **2025 Earnings:** $1,375 USD
 
 **Breakdown:**
+
 - Technical writing (primary and only income source)
 - DEV.to content creation
 
+### 2026 Milestones
+
+- Total lifetime technical writing earnings reached $2,450 USD
+- Confirmed attendee for YC Startup School India in Bangalore
+- Selected for the Lodha Genius-Ashoka University Programme (LG-AUP) 2026 cohort
+
 ### Community Recognition
+
 **DEV.to:**
+
 - 35,000+ followers
 - 400,000+ views
 - Top Writer status
@@ -44,11 +55,13 @@
 - High engagement on posts
 
 **GitHub:**
+
 - 1,589 contributions in 2025
 - 15+ repositories
 - Most starred: WebCrawlAI (119 stars)
 
 **Product Hunt:**
+
 - Analyzr: 200+ upvotes (https://www.producthunt.com/products/analyzr-2/launches/getanalyzr)
 - Featured product launches
 - Regular contributor
@@ -84,20 +97,23 @@
 **Organization:** Pilot (pilot-ops-crm on GitHub)
 **Your Position:** CTO (Chief Technology Officer)
 **Co-founders:** 3 people, all age 15-16
-  - You: CTO (technical leadership)
-  - @realvshkh: CEO
-  - Sai: CMO
+
+- You: CTO (technical leadership)
+- @realvshkh: CEO
+- Sai: CMO
 
 **What is Pilot:**
 AI-powered Instagram automation platform for creators. Helps creators manage DMs, automate lead responses, and track deals.
 
 **Core Philosophy:**
+
 - Built in public (transparent development)
 - Open source codebase
 - Anti-VC, anti-exploitation approach
 - Honest storytelling, no hype
 
 **Tech Stack (Pilot):**
+
 - Frontend: Next.js, React
 - Backend: Node.js API
 - AI: Gemini API integration
@@ -106,11 +122,13 @@ AI-powered Instagram automation platform for creators. Helps creators manage DMs
 - Infrastructure: Modern cloud deployment
 
 **Key Repositories:**
+
 - Main app: https://github.com/pilot-ops-crm/app
 - Marketing website: https://github.com/pilot-ops-crm/website
 - Organization: https://github.com/pilot-ops-crm
 
 **Status (Jan 2026):**
+
 - Active development
 - Building in public
 - Community building phase
@@ -120,29 +138,51 @@ AI-powered Instagram automation platform for creators. Helps creators manage DMs
 
 ## Certifications & Learning
 
+### Selective Programs (2026)
+
+**Lodha Genius-Ashoka University Programme (LG-AUP)**
+
+- Status: Selected for the 2026 cohort
+- Track: Science Track
+- Institution: Ashoka University
+- Significance: Highly selective academic enrichment programme
+
+**YC Startup School India**
+
+- Status: Confirmed attendee
+- Organizer: Y Combinator
+- Event Date: April 18, 2026
+- Location: Electronic City, Bangalore
+- Significance: Selected to attend YC's first Startup School event in India
+
 ### Harvard CS50 Series (2023-2025)
 
 **Ready Player 50 (Prompt Injection Challenge)**
+
 - Date: October 6, 2023
 - Certificate: https://cs50.harvard.edu/certificates/784280e3-a410-4c61-af9a-20368a95e56f
 - Achievement: Completed all levels
 
 **CS50T (Introduction to Technology)**
+
 - Date: November 28, 2023
 - Certificate: https://cs50.harvard.edu/certificates/ce13e906-e90f-4469-b1aa-ff24e88fa4be
 - Focus: Harvard's classic intro to technology
 
 **CS50x (Introduction to Computer Science) - FULL COURSE**
+
 - Date: December 30, 2023
 - Certificate: https://cs50.harvard.edu/certificates/0b5006d6-7765-4383-b72d-adc7067786c0
 - Significance: Harvard's classic intro to computer science
 
 **CS50x Puzzle Day 2024 (Gold Certificate)**
+
 - Date: April 11, 2024
 - Certificate: https://cs50.harvard.edu/certificates/83f288c3-144d-45ae-9cfa-a20fadcaf82f
 - Achievement: Solved all problems (First Place)
 
 **CS50x Puzzle Day 2025 (Gold Certificate)**
+
 - Date: April 13, 2025
 - Certificate: https://cs50.harvard.edu/certificates/2f63e5e4-7c6d-48d5-9dbf-6af88fef95f6
 - Achievement: Solved all problems (First Place)
@@ -167,34 +207,42 @@ AI-powered Instagram automation platform for creators. Helps creators manage DMs
 ## Technical Skills & Expertise
 
 ### Full-Stack Development
+
 **Frontend:**
+
 - React, Next.js (primary)
 - TypeScript (strong preference)
 - Tailwind CSS (UI styling)
 - Shadcn/ui, Lucide React (component libraries)
 
 **Backend:**
+
 - Node.js, API design
 - Next.js API routes
 - Express (implied)
 
 **Databases:**
+
 - PostgreSQL (primary)
 - Supabase (managed PostgreSQL)
 - Neon (serverless PostgreSQL)
 
 **Deployment & Infrastructure:**
+
 - Vercel (preferred for Next.js)
 - Google Cloud Run
 - Render
 - Neon serverless
 
 **ORMs & Tools:**
+
 - Drizzle ORM (learning focus)
 - Prisma (previous experience)
 
 ### Machine Learning & AI
+
 **Libraries & Frameworks (used in MEN2 Predictor):**
+
 - NumPy (numerical computing)
 - pandas (data processing)
 - scikit-learn (ML models)
@@ -207,50 +255,61 @@ AI-powered Instagram automation platform for creators. Helps creators manage DMs
 - DiCE-ML (counterfactual explanations)
 
 **APIs & Integrations:**
+
 - Gemini API (primary AI integration)
 - Claude API (LLMs)
 - Spotify API (music/lyrics)
 - NASA NeoWs API (data)
 
 **Specializations:**
+
 - Medical ML (MEN2 biomarker prediction - 97.20% accuracy, 100% recall)
 - RAG systems (Retrieval-Augmented Generation)
 - AI integration in web apps
 - Data analysis
 
 **Emerging Tech:**
+
 - MCP Servers (Model Context Protocol)
 - Streaming responses
 - LLM fine-tuning concepts
 
 ### Data Science
+
 **Analysis:**
+
 - Statistical biomarker analysis
 - Clustering algorithms
 - Dimensionality reduction
 
 **Visualization:**
+
 - Streamlit (interactive dashboards)
 - Data presentation
 - Scientific visualization
 
 **Domains:**
+
 - Medical/healthcare data
 - Astronomical data (NASA APIs)
 - User behavior analytics
 
 ### DevOps & Cloud
+
 **Platforms:**
+
 - Google Cloud (Cloud Run, Antigravity IDE)
 - Vercel deployment
 - GitHub Actions (CI/CD)
 
 **Tools:**
+
 - Git, GitHub (version control)
 - Docker (containerization, likely)
 - Environment management
 
 ### Other Skills
+
 - Technical writing (35K followers, strong communicator)
 - Open source contribution
 - Competitive programming (concepts)

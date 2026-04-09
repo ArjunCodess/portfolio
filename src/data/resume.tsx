@@ -124,14 +124,14 @@ export const DATA = {
     },
     {
       company: "Technical Writer",
-      badges: ["$1,550 Earned", "35K Followers", "400K+ Views"],
+      badges: ["$2,450 Earned", "35K Followers", "410K+ Views"],
       location: "Remote",
       title: "Freelance Technical Writer",
       logoUrl: "/devto.svg",
       start: "2025",
       end: "Present",
       description:
-        "Built a following of [35,000+ followers](https://dev.to/arjuncodess) and 400,000+ views on DEV.to. Earned $1,550 in total through technical writing, including $1,375 in 2025 alone—my first $1K earned as a 16-year-old. Won [$500 from Runner H AI Challenge](https://dev.to/devteam/congrats-to-the-runner-h-ai-agent-prompting-challenge-winners-3aap). Created educational content on web development, AI, and programming.",
+        "Built a following of [35,000+ followers](https://dev.to/arjuncodess) and 410,000+ views on DEV.to. Earned $2,450 in total through technical writing, including $1,375 in 2025 alone—my first $1K earned as a 16-year-old. Won [$500 from Runner H AI Challenge](https://dev.to/devteam/congrats-to-the-runner-h-ai-agent-prompting-challenge-winners-3aap). Created educational content on web development, AI, and programming.",
     },
   ],
   education: [
@@ -143,6 +143,16 @@ export const DATA = {
       logoUrl: "/cms.jfif",
       start: "2025",
       end: "2026",
+    },
+    {
+      school: "Lodha Genius - Ashoka University Programme",
+      href: "https://www.lodhageniusprogramme.com/",
+      degree: "Selected for the LG-AUP 2026 cohort (Science Track)",
+      logoUrl: "/lodha-genius.png",
+      start: "2026",
+      end: "2026",
+      description:
+        "Fully funded residential programme at Ashoka University run with the Lodha Foundation. On campus from May 16 to June 15, 2026, studying advanced science, math, and research with world-class faculty while collaborating with a highly selective cohort from across India. [Programme website](https://www.lodhageniusprogramme.com/).",
     },
   ],
   projects: [
@@ -503,6 +513,18 @@ export const DATA = {
         "Built a following of over [35,000](https://dev.to/arjuncodess) with 400,000+ views, sharing insights on coding, AI, and development.",
     },
     {
+      title: "YC Startup School India",
+      dates: "2026",
+      description:
+        "Confirmed attendee for YC Startup School India in Bangalore, selected to attend Y Combinator's India startup event.",
+    },
+    {
+      title: "Lodha Genius - Ashoka University Programme",
+      dates: "2026",
+      description:
+        "Selected for the highly selective LG-AUP 2026 cohort at Ashoka University.",
+    },
+    {
       title: "CS50 Achievements",
       dates: "2023 - 2025",
       description:
@@ -614,7 +636,8 @@ export const DATA = {
     },
     {
       title: "tix-cli #60",
-      description: "Updated README with interactive TUI documentation and requirements.",
+      description:
+        "Updated README with interactive TUI documentation and requirements.",
       href: "https://github.com/TheDevOpsBlueprint/tix-cli/pull/60",
       type: "minor",
       date: "Oct 2025",
