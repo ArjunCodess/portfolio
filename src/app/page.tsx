@@ -17,6 +17,14 @@ import Markdown from "react-markdown";
 
 const BLUR_FADE_DELAY = 0.04;
 
+function formatPeriod(start: string, end?: string) {
+  if (!end || end === start) {
+    return start;
+  }
+
+  return `${start} - ${end}`;
+}
+
 export default function Page() {
   return (
     <main className="flex flex-col min-h-[100dvh] z-10 space-y-10">
@@ -115,7 +123,7 @@ export default function Page() {
                 title={work.company}
                 subtitle={work.title}
                 badges={work.badges}
-                period={`${work.start} - ${work.end ?? "Present"}`}
+                period={formatPeriod(work.start, work.end ?? "Present")}
                 description={work.description}
               />
             </BlurFade>
@@ -138,7 +146,8 @@ export default function Page() {
                 altText={education.school}
                 title={education.school}
                 subtitle={education.degree}
-                period={`${education.start} - ${education.end}`}
+                period={formatPeriod(education.start, education.end)}
+                description={education.description}
               />
             </BlurFade>
           ))}
@@ -375,8 +384,8 @@ export default function Page() {
                 className="font-semibold text-blue-600 dark:text-blue-400 underline"
               >
                 Twitter
-              </Link>
-              {" "}or{" "}
+              </Link>{" "}
+              or{" "}
               <Link
                 href={`mailto:${DATA.contact.email}`}
                 className="font-semibold text-blue-600 dark:text-blue-400 underline"
