@@ -15,7 +15,7 @@ import { formatEmbedding } from "../utils";
  */
 export async function generateEmbedding(text: string): Promise<number[]> {
   const { embedding } = await embed({
-    model: google.embedding("gemini-embedding-001"),
+    model: google.embedding("gemini-embedding-2-preview"),
     value: text,
     providerOptions: {
       google: {

@@ -17,8 +17,8 @@ import { embedMany } from "ai";
 import { google } from "@ai-sdk/google";
 import { formatEmbedding } from "@/lib/utils";
 
-// Embedding model - Gemini gemini-embedding-001 (768 dimensions)
-const EMBEDDING_MODEL = "gemini-embedding-001";
+// Embedding model - Gemini gemini-embedding-2-preview (768 dimensions)
+const EMBEDDING_MODEL = "gemini-embedding-2-preview";
 
 interface Chunk {
   content: string;

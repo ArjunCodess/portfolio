@@ -3674,7 +3674,7 @@ The analysis includes everything from basic message counts to advanced AI insigh
 
 - **Vercel AI SDK** for unified AI interactions and streaming
 - **Google Gemini AI** (gemini-3-flash-preview) for generating relationship insights and analysis
-- **Gemini gemini-embedding-001** for semantic embeddings (RAG chatbot)
+- **Gemini gemini-embedding-2-preview** for semantic embeddings (RAG chatbot)
 - **pgvector** for vector similarity search
 - **Inngest** for background job processing (parsing & embedding)
 - Custom chat parsers for WhatsApp, Telegram, and Instagram exports
