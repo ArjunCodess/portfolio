@@ -13,7 +13,7 @@
 **Location:** Lucknow, India
 **Mobile:** +91 8601404303
 **Email:** arjunv.prakash12345@gmail.com
-**Education:** Completed ICSE Class 10 at City Montessori School; predicted board score: 92%
+**Education:** Completed ICSE Class 10 at City Montessori School; board score: 95.4%
 **Current Status:** Full-stack developer, aspiring researcher, technical writer, Startup CTO
 **Total Lifetime Earnings:** $2,450 USD ($1,375 earned in 2025—first $1K earned as a 16-year-old)
 

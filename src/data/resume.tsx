@@ -138,13 +138,12 @@ export const DATA = {
     {
       school: "City Montessori School",
       href: "https://cmseducation.org/",
-      degree:
-        "High School (10th Grade) - Boards Completed, Predicted Score: 92%",
+      degree: "High School (10th Grade) - ICSE Board Score: 95.4%",
       logoUrl: "/cms.jfif",
       start: "2025",
       end: "2026",
       description:
-        "Completed ICSE Class 10 board exams at City Montessori School with a predicted score of 92%.",
+        "Completed ICSE Class 10 board exams at City Montessori School with a score of 95.4%.",
     },
     {
       school: "Lodha Genius - Ashoka University Programme",
