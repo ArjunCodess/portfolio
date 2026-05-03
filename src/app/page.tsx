@@ -84,7 +84,7 @@ export default function Page() {
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-bold">Resume</h2>
             <Button asChild size="sm" variant="outline">
-              <a href="/resume.pdf" download>
+              <a href="/resume/resume.pdf" download>
                 <Download className="size-4" />
                 Download
               </a>
@@ -97,10 +97,20 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 9}>
             <h2 className="text-xl font-bold">Skills</h2>
           </BlurFade>
-          <div className="flex flex-wrap gap-1">
-            {DATA.skills.map((skill, id) => (
-              <BlurFade key={skill} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
-                <Badge key={skill}>{skill}</Badge>
+          <div className="space-y-3">
+            {DATA.skillGroups.map((group, groupId) => (
+              <BlurFade
+                key={group.title}
+                delay={BLUR_FADE_DELAY * 10 + groupId * 0.05}
+              >
+                <div className="space-y-1.5">
+                  <h3 className="text-sm font-semibold">{group.title}</h3>
+                  <div className="flex flex-wrap gap-1.5">
+                    {group.skills.map((skill) => (
+                      <Badge key={skill}>{skill}</Badge>
+                    ))}
+                  </div>
+                </div>
               </BlurFade>
             ))}
           </div>

@@ -13,8 +13,8 @@
 **Location:** Lucknow, India
 **Mobile:** +91 8601404303
 **Email:** arjunv.prakash12345@gmail.com
-**Education:** Completed ICSE Class 10 at City Montessori School; board score: 95.4%
-**Current Status:** Full-stack developer, aspiring researcher, technical writer, Startup CTO
+**Education:** City Montessori School, High School (11th & 12th Grade), ISC Board, Apr 2026-Apr 2028. Pursuing Artificial Intelligence, Mathematics, Physics, and Chemistry. Completed ICSE Class 10 with a board score of 95.4%.
+**Current Status:** Full-stack developer, aspiring researcher, technical writer, Startup CTO, Associate Editor for Synthica Journal, Vice President of HackSpace at City Montessori School
 **Total Lifetime Earnings:** $2,450 USD ($1,375 earned in 2025—first $1K earned as a 16-year-old)
 
 **Key Links:**
@@ -43,6 +43,8 @@
 - Total lifetime technical writing earnings reached $2,450 USD
 - Confirmed attendee for YC Startup School India in Bangalore
 - Selected for the Lodha Genius-Ashoka University Programme (LG-AUP) 2026 cohort
+- Selected as Associate Editor, Computer Science for Synthica Journal after a competitive review process of 400+ applications, with 47 associate editors chosen across 8 categories
+- Became Vice President of HackSpace, the student-run technology club at City Montessori School
 
 ### Community Recognition
 
@@ -133,6 +135,34 @@ AI-powered Instagram automation platform for creators. Helps creators manage DMs
 - Building in public
 - Community building phase
 - Solving real creator problems
+
+---
+
+## Editorial & Leadership Roles
+
+### Associate Editor, Computer Science - Synthica Journal
+
+**Organization:** Synthica
+**Position:** Associate Editor, Computer Science
+**Type:** Volunteer editorial role
+**Location:** Remote
+**Start:** May 2026
+
+Selected as Associate Editor for Synthica Journal after a competitive review process of over 400 applications, with only 47 associate editors chosen across 8 categories. Responsible for reviewing and evaluating computer science research submissions, maintaining editorial standards, and contributing to the peer review process in the computer science category. This volunteer editorial position involves collaborating with the Synthica Editorial Team to advance open-access academic publishing in computer science research.
+
+**Relevant skills:** Research skills, research writing, peer review, editorial standards, computer science research evaluation
+
+### Vice President - HackSpace, City Montessori School
+
+**Organization:** City Montessori School
+**Position:** Vice President
+**Type:** Student leadership role
+**Location:** On-site
+**Start:** May 2026
+
+Leading HackSpace, a student-run technology club at City Montessori School, focused on hands-on learning in software development and hardware innovation. Organises workshops, projects, and collaborative sessions covering diverse tech domains, including app development, web programming, game development, Arduino, robotics, and 3D modelling.
+
+**Relevant skills:** Leadership, team management, workshop organization, software development, hardware innovation
 
 ---
 
