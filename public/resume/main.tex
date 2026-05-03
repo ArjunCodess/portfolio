@@ -1,0 +1,187 @@
+%-------------------------
+% Resume in Latex
+% Author: Arjun Vijay Prakash
+% Based on template by Sourabh Bajaj
+%------------------------
+
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[pdftex]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{array}
+\usepackage{setspace}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.52in}
+\addtolength{\evensidemargin}{-0.52in}
+\addtolength{\textwidth}{1.04in}
+\addtolength{\topmargin}{-.62in}
+\addtolength{\textheight}{1.2in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+\setstretch{1.07}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[2]{
+  \item\small{
+    \textbf{#1}{: #2 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-1pt}\item
+    \begin{tabular*}{0.98\textwidth}{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[2]{\resumeItem{#1}{#2}\vspace{-4pt}}
+
+\renewcommand{\labelitemii}{$\circ$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=*]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[itemsep=3pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+
+\begin{document}
+
+%----------HEADING-----------------
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \textbf{\href{https://arjuncodess.is-a.dev/}{\Large Arjun Vijay Prakash}} & Email: \href{mailto:arjunv.prakash12345@gmail.com}{arjunv.prakash12345@gmail.com}\\
+  \href{https://github.com/arjuncodess}{https://github.com/arjuncodess} $|$ \href{https://arjuncodess.is-a.dev/}{arjuncodess.is-a.dev} & Mobile: +91 8601404303 \\
+\end{tabular*}
+
+%-----------EDUCATION-----------------
+\section{Education}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {\href{https://cmseducation.org/}{City Montessori School}}{Lucknow, India}
+      {High School (11th \& 12th Grade), ISC Board}{Apr 2026 -- Apr 2028}
+      \resumeItemListStart
+        \resumeItem{Coursework}
+          {Artificial Intelligence, Mathematics, Physics, Chemistry; ICSE Class 10 Board Score: 95.4\%.}
+      \resumeItemListEnd
+    \resumeSubheading
+      {\href{https://www.lodhageniusprogramme.com/}{Lodha Genius -- Ashoka University Programme}}{Ashoka University}
+      {Selected Cohort Member, Science Track}{May 2026 -- June 2026}
+      \resumeItemListStart
+        \resumeItem{Programme}
+          {Residential science and research programme with advanced math, science, and faculty-led sessions.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+%-----------EXPERIENCE-----------------
+\section{Experience}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Synthica}{Remote}
+      {Associate Editor, Computer Science}{May 2026 -- Present}
+      \resumeItemListStart
+        \resumeItem{Selection}
+          {Selected from 400+ applicants; 47 associate editors chosen across 8 categories.}
+        \resumeItem{Editorial Review}
+          {Reviewing computer science research submissions and evaluating technical quality for peer review.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {City Montessori School}{Lucknow, India}
+      {Vice President, HackSpace}{May 2026 -- Present}
+      \resumeItemListStart
+        \resumeItem{Leadership}
+          {Leading HackSpace, a student-run technology club for software development and hardware projects.}
+        \resumeItem{Workshops \& Projects}
+          {Organising sessions across apps, web, games, Arduino, robotics, and 3D modelling.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {\href{https://github.com/pilot-ops-crm}{Pilot}}{Remote}
+      {Chief Technology Officer (CTO)}{July 2025 -- Present}
+      \resumeItemListStart
+        \resumeItem{Technical Leadership}
+          {Leading development of an AI-powered Instagram automation platform for creators. Managing DM automation, lead responses, and deal tracking.}
+        \resumeItem{Architecture \& Stack}
+          {Architected the full-stack app with Next.js, React, Node.js, PostgreSQL, Instagram API, and Gemini API.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {\href{https://dev.to/arjuncodess}{Technical Writer}}{Remote}
+      {Freelance Technical Writer}{July 2025 -- Present}
+      \resumeItemListStart
+        \resumeItem{DEV.to}
+          {Built 35,000+ followers and 410,000+ views by writing about web development, AI, and programming.}
+        \resumeItem{Earnings}
+          {Earned \$2,450 through technical writing, including \$1,375 in 2025 and \$500 from the Runner H AI Challenge.}
+      \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------------
+\section{Projects}
+  \resumeSubHeadingListStart
+    \resumeSubItem{\href{https://github.com/ArjunCodess/men2-predictor}{MEN2 Predictor} (\href{https://insef.org/insef/INSEF_Regional_Fair_Online_2025_26_Results.htm}{INSEF Bronze})}
+      {Medical ML pipeline for MEN2 syndrome: 97.20\% accuracy and 100\% sensitivity across 152 patients and 20 studies.}
+    \resumeSubItem{\href{https://github.com/ArjunCodess/analyzr}{Analyzr} (\href{https://www.producthunt.com/products/analyzr-2/launches/getanalyzr}{200+ Product Hunt Upvotes})}
+      {Open-source analytics with one-line setup, real-time tracking, custom events, Discord alerts, and performance monitoring. Built with Next.js, Supabase, and TypeScript.}
+    \resumeSubItem{\href{https://github.com/ArjunCodess/WebCrawlAI}{WebCrawlAI} (119 Stars)}
+      {Gemini-powered scraping for dynamic websites, CAPTCHAs, and JSON extraction. Built with Python, Flask, Selenium, and Thordata.}
+    \resumeSubItem{\href{https://github.com/ArjunCodess/chemistrycheck}{ChemistryCheck}}
+      {RAG-based chat analysis for WhatsApp, Telegram, and Instagram exports. Built with Next.js, Drizzle ORM, Better Auth, and Gemini API.}
+  \resumeSubHeadingListEnd
+
+%-----------ACHIEVEMENTS-----------------
+\section{Achievements}
+  \resumeSubHeadingListStart
+    \resumeSubItem{Harvard CS50 Series}
+      {Completed \href{https://cs50.harvard.edu/certificates/0b5006d6-7765-4383-b72d-adc7067786c0}{CS50x}, \href{https://cs50.harvard.edu/certificates/ce13e906-e90f-4469-b1aa-ff24e88fa4be}{CS50T}, Ready Player 50, and CS50x Puzzle Day 2024/2025 Gold certificates.}
+    \resumeSubItem{FreeCodeCamp Certifications}
+      {\href{https://www.freecodecamp.org/certification/arjuncodess/responsive-web-design}{Responsive Web Design}, \href{https://www.freecodecamp.org/certification/arjuncodess/front-end-development-libraries}{Front-End Development Libraries}, and \href{https://www.freecodecamp.org/certification/arjuncodess/college-algebra-with-python-v8}{College Algebra with Python}.}
+    \resumeSubItem{Competitions}
+      {Top 25 in Xavier University's Invisible Wars Cyber Defense Challenge; Top 100 at HACKHAZARDS.}
+    \resumeSubItem{YC Startup School India}
+      {Confirmed attendee for Y Combinator's Bangalore event.}
+  \resumeSubHeadingListEnd
+
+%--------SKILLS------------
+\section{Skills}
+\vspace{1pt}
+\small{
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{0.31\textwidth}>{\raggedright\arraybackslash}p{0.31\textwidth}>{\raggedright\arraybackslash}p{0.31\textwidth}}
+\textbf{Web / App} & \textbf{AI / Data} & \textbf{Embedded / Hardware} \\
+TypeScript, React, Next.js, Node.js, PostgreSQL, MongoDB, Supabase, Tailwind CSS &
+Python, scikit-learn, XGBoost, LightGBM, SHAP, pandas, NumPy, Gemini API &
+ESP32, Arduino C++, I2C OLED, rotary encoder, DHT11, MQ-135, Wi-Fi/NTP, robotics, 3D modelling \\
+\textbf{Research / Editorial} & \textbf{Leadership / Community} & \\
+Research writing, peer review, editorial standards, technical writing &
+Team management, workshop planning, club leadership & \\
+\end{tabular*}
+}
+
+%-------------------------------------------
+\end{document}
