@@ -679,7 +679,7 @@ export const DATA = {
       title: "Hidden Prompt - Xavier University",
       dates: "2026",
       description:
-        "**First prize** at Hidden Prompt: National AI Vulnerability Challenge 2026, Xavier University, Ohio, USA, with teammate Saksham Yadav.",
+        "**First prize** at Hidden Prompt: National AI Vulnerability Challenge 2026, Xavier University, Ohio, USA, with teammate Saksham Yadav. Received an 11-inch iPad with the A16 chip and 128GB storage as the award.",
     },
     {
       title: "FXB Climate Advocates Program",

@@ -52,7 +52,14 @@ test("curated knowledge includes recent work and preserves submission status", (
     rankLexically("NGTA")[0].content,
     /NeSy 2026.*GenAI4Health 2026/,
   );
-  assert.ok(chunks.some((c) => c.content.includes("Saksham Yadav")));
+  assert.ok(
+    chunks.some(
+      (c) =>
+        c.content.includes("Saksham Yadav") &&
+        c.content.includes("A16") &&
+        c.content.includes("128GB"),
+    ),
+  );
   assert.ok(chunks.some((c) => c.content.includes("600-day streak")));
 });
 

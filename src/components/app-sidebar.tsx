@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 const SUGGESTED_QUESTIONS = [
   "What is NGTA, and which conferences accepted it?",
   "What are MINTS and PRISM researching?",
-  "How did you win Hidden Prompt with Saksham?",
+  "What did you win at Hidden Prompt with Saksham?",
   "What did you learn at Lodha Genius and YC Startup School?",
   "What are Chain Reaction and To My Love about?",
 ];
