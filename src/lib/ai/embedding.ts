@@ -1,87 +1,90 @@
-/**
- * Embedding utilities for RAG
- *
- * Uses Vercel AI SDK with Google Gemini for query embedding generation
- * and performs vector similarity search in PostgreSQL.
- */
+import fs from "node:fs/promises";
+import path from "node:path";
+import {
+  EMBEDDING_MODEL,
+  EMBEDDING_DIMENSIONS,
+  embedTexts,
+  validateEmbedding,
+} from "./config";
+import {
+  getKnowledgeChunks,
+  rankLexically,
+  type KnowledgeChunk,
+} from "./knowledge";
 
-import { embed } from "ai";
-import { google } from "@ai-sdk/google";
-import { sql } from "@vercel/postgres";
-import { formatEmbedding } from "../utils";
+type Index = {
+  model: string;
+  dimensions: number;
+  chunks: (KnowledgeChunk & { embedding: number[] })[];
+};
+const queryCache = new Map<string, { value: number[]; expires: number }>();
 
-/**
- * Generate embedding for a single text query using Vercel AI SDK
- */
 export async function generateEmbedding(text: string): Promise<number[]> {
-  const { embedding } = await embed({
-    model: google.embedding("gemini-embedding-2-preview"),
-    value: text,
-    providerOptions: {
-      google: {
-        outputDimensionality: 768,
-        taskType: "RETRIEVAL_QUERY",
-      },
-    },
-  });
-
+  const key = text.trim().toLowerCase();
+  const cached = queryCache.get(key);
+  if (cached && cached.expires > Date.now()) return cached.value;
+  const [embedding] = await embedTexts([
+    `task: search result | query: ${text}`,
+  ]);
+  if (queryCache.size >= 128)
+    queryCache.delete(queryCache.keys().next().value!);
+  queryCache.set(key, { value: embedding, expires: Date.now() + 3_600_000 });
   return embedding;
 }
 
-/**
- * Find relevant content from the knowledge base
- */
-export async function findRelevantContent(
-  query: string,
-  limit: number = 5,
-): Promise<
-  {
-    id: string;
-    content: string;
-    source: string;
-    similarity: number;
-  }[]
-> {
-  // Generate embedding for the query
-  const queryEmbedding = await generateEmbedding(query);
-  const embeddingStr = formatEmbedding(queryEmbedding);
-
-  // Perform similarity search using cosine distance
-  const result = await sql`
-    SELECT 
-      id,
-      content,
-      source,
-      1 - (embedding <=> ${embeddingStr}::vector) as similarity
-    FROM kb_documents
-    ORDER BY embedding <=> ${embeddingStr}::vector
-    LIMIT ${limit}
-  `;
-
-  return result.rows.map((row) => ({
-    id: String(row.id),
-    content: row.content as string,
-    source: row.source as string,
-    similarity: Number(row.similarity),
-  }));
+export async function findRelevantContent(query: string, limit = 4) {
+  const current = getKnowledgeChunks();
+  try {
+    const index: Index = JSON.parse(
+      await fs.readFile(
+        path.join(process.cwd(), "src/data/embeddings.json"),
+        "utf8",
+      ),
+    );
+    if (
+      index.model !== EMBEDDING_MODEL ||
+      index.dimensions !== EMBEDDING_DIMENSIONS ||
+      JSON.stringify(
+        index.chunks.map(({ id, source, content }) => ({
+          id,
+          source,
+          content,
+        })),
+      ) !== JSON.stringify(current)
+    ) {
+      throw new Error("Embedding index is stale; run pnpm kb:generate");
+    }
+    const queryEmbedding = await generateEmbedding(query);
+    return index.chunks
+      .map((chunk) => {
+        const embedding = validateEmbedding(chunk.embedding);
+        return {
+          ...chunk,
+          similarity: embedding.reduce(
+            (sum, n, i) => sum + n * queryEmbedding[i],
+            0,
+          ),
+        };
+      })
+      .sort((a, b) => b.similarity - a.similarity)
+      .slice(0, limit);
+  } catch (error) {
+    // The small, curated corpus remains available if the inference host sleeps.
+    console.warn(
+      "Semantic retrieval unavailable; using keyword retrieval:",
+      error instanceof Error ? error.message : "unknown error",
+    );
+    return rankLexically(query, current)
+      .filter((chunk) => chunk.similarity > 0)
+      .slice(0, limit);
+  }
 }
 
-/**
- * Build context string from retrieved chunks
- */
 export function buildContext(
-  chunks: { content: string; source: string; similarity: number }[],
+  chunks: { content: string; source: string }[],
 ): string {
-  if (chunks.length === 0) {
-    return "";
-  }
-
   return chunks
-    .map((chunk, i) => {
-      const sourceLabel = chunk.source
-        .replace(/-/g, " ")
-        .replace(/\b\w/g, (l) => l.toUpperCase());
-      return `[Context ${i + 1} - From ${sourceLabel}]\n${chunk.content}`;
-    })
-    .join("\n\n");
+    .map((chunk) => `[${chunk.source}]\n${chunk.content}`)
+    .join("\n\n")
+    .slice(0, 5200);
 }

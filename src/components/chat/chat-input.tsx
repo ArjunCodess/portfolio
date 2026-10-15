@@ -54,6 +54,8 @@ export function ChatInput({
         placeholder={placeholder}
         disabled={disabled || isLoading}
         rows={1}
+        maxLength={2000}
+        aria-label="Ask a question about Arjun"
         className={cn(
           "flex-1 resize-none bg-transparent py-2 text-sm",
           "placeholder:text-muted-foreground",

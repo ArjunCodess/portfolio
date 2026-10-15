@@ -15,11 +15,11 @@ import {
 import { Button } from "@/components/ui/button";
 
 const SUGGESTED_QUESTIONS = [
-  "Tell me about your MEN2 medical research.",
-  "What is Pilot Ops?",
-  "What did you earn in 2025?",
-  "What certifications do you have?",
-  "What's your tech stack?",
+  "What is NGTA, and which conferences accepted it?",
+  "What are MINTS and PRISM researching?",
+  "How did you win Hidden Prompt with Saksham?",
+  "What did you learn at Lodha Genius and YC Startup School?",
+  "What are Chain Reaction and To My Love about?",
 ];
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -32,7 +32,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const isLoading = status === "streaming" || status === "submitted";
 
   const handleSendMessage = () => {
-    if (input.trim()) {
+    if (input.trim() && !isLoading) {
       sendMessage({ text: input });
       setInput("");
     }
@@ -157,7 +157,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               {error && (
                 <div className="flex justify-center">
                   <div className="bg-destructive/10 text-destructive rounded-lg px-4 py-2 text-xs">
-                    Something went wrong. Please try again.
+                    {error.message ||
+                      "Chat is unavailable. Please try later or contact Arjun directly."}
                   </div>
                 </div>
               )}

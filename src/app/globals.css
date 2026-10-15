@@ -1,6 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../tailwind.config.ts";
+
+/* Preserve the existing Tailwind 3 border default after the v4 upgrade. */
+@layer base {
+  *, ::before, ::after { border-color: hsl(var(--border)); }
+}
 
 @layer base {
   :root {

@@ -1,0 +1,5 @@
+sentence-transformers==6.1.0
+transformers==5.19.0
+torch>=2.8,<3
+fastapi>=0.115,<1
+uvicorn>=0.34,<1

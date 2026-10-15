@@ -9,9 +9,9 @@ export const DATA = {
   location: "Lucknow, Uttar Pradesh, India",
   locationLink: "https://www.google.com/maps/place/lucknow",
   description:
-    "I'm a 16-year-old full-stack developer, aspiring researcher, technical writer, and CTO at Pilot.",
+    "I'm a student researcher, full-stack developer, and writer working on medical AI, genomic interpretability, and space monitoring.",
   summary:
-    "I'm Arjun, a 16-year-old [full-stack developer](https://github.com/ArjunCodess) from India. I taught myself to code because I wanted to build stuff, and now I can't stop. I mostly work with Next.js and TypeScript, but I've also been getting into machine learning lately (built a [medical prediction model](https://huggingface.co/spaces/arjuncodess/men2-predictor) that won a national science fair). I write about what I'm learning on [DEV.to](https://dev.to/arjuncodess), which has been a great way to think through problems and help others along the way. Outside of coding, I'm [learning Spanish](https://www.duolingo.com/profile/ArjunCodess), solving [LeetCode problems](https://leetcode.com/ArjunCodess), and I [write about life](https://medium.com/@arjunwritess) on Medium.",
+    "I'm Arjun Vijay Prakash, a 16-year-old researcher and developer from Lucknow, India. My work spans medical AI, mechanistic interpretability, and space monitoring. **NGTA was accepted at NeSy 2026 and GenAI4Health 2026, a NeurIPS 2026 workshop.** I've submitted MINTS to GLBIO 2027 and PRISM to Advances in Space Research. My earlier MEN2 prediction research won an INSEF bronze prize.\n\nI won **first prize at Xavier University's Hidden Prompt: National AI Vulnerability Challenge 2026** with Saksham Yadav. I've attended YC Startup School India, the Lodha Genius Programme at Ashoka University, and the FXB Climate Advocates Program, and completed IYNA's Neuroscience 1 capstone track. Alongside research, I'm CTO at Pilot, an associate editor at Synthica, and a technical writer with [35,000+ followers on DEV.to](https://dev.to/arjuncodess). I also write personal essays on Medium, including [Chain Reaction](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9) and [To My Love](https://arjunwritess.medium.com/list/to-my-love-758949c73be0).",
   avatarUrl: "/me.jpeg",
   skillGroups: [
     {
@@ -216,6 +216,24 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "PRISM",
+      href: "https://github.com/ArjunCodess/PRISM",
+      dates: "2026",
+      active: true,
+      category: "Research",
+      featured: true,
+      description:
+        "**Submitted to Advances in Space Research.** Predictive Risk Intelligence for Space Monitoring, an explainable T-48-hour conjunction-risk copilot.",
+      technologies: ["Research"],
+      links: [
+        {
+          type: "Source Code",
+          href: "https://github.com/ArjunCodess/PRISM",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+    },
+    {
       title: "MEN2 Predictor",
       href: "https://huggingface.co/spaces/arjuncodess/men2-predictor",
       dates: "2025",
@@ -254,7 +272,7 @@ export const DATA = {
       category: "Research",
       featured: true,
       description:
-        "Research project on NARS-guided transformer attention for clinical prediction under extreme missingness. Maps neural uncertainty into NARS truth values and feeds revised confidence back into Transformer attention.",
+        "**Accepted at NeSy 2026 and GenAI4Health 2026, a NeurIPS 2026 workshop.** Research project on NARS-guided transformer attention for clinical prediction under extreme missingness. Maps neural uncertainty into NARS truth values and feeds revised confidence back into Transformer attention.",
       technologies: [
         "Python",
         "Machine Learning",
@@ -280,7 +298,7 @@ export const DATA = {
       category: "Research",
       featured: true,
       description:
-        "Research project on mechanistic interpretability for nucleotide transformers. Tests whether genomic transformer circuits implement biological motif detectors using probes, QK/OV analysis, patching, and SAE feature search.",
+        "**Submitted to GLBIO 2027.** Research project on mechanistic interpretability for nucleotide transformers. Tests whether genomic transformer circuits implement biological motif detectors using probes, QK/OV analysis, patching, and SAE feature search.",
       technologies: [
         "Python",
         "Machine Learning",
@@ -303,7 +321,7 @@ export const DATA = {
       href: "https://getanalyzr.vercel.app",
       dates: "2024",
       active: true,
-      category: "Web",
+      category: "Full stack",
       featured: true,
       description:
         "**200+ Product Hunt upvotes, 31 GitHub stars.** Free, open-source analytics requiring just one line of code. Built-in Discord notifications and real-time tracking for any website.",
@@ -334,7 +352,7 @@ export const DATA = {
       href: "https://webcrawlai.onrender.com/",
       dates: "2024",
       active: true,
-      category: "AI/ML",
+      category: "Full stack",
       featured: false,
       description:
         "**119 GitHub stars.** AI-powered web scraping platform using Gemini AI. Handles dynamic content, CAPTCHAs, and provides clean JSON output.",
@@ -367,7 +385,7 @@ export const DATA = {
       href: "https://chemistrycheck.vercel.app",
       dates: "2025",
       active: true,
-      category: "AI/ML",
+      category: "Full stack",
       featured: true,
       description:
         "AI-powered chat analysis tool with RAG chatbot. Upload WhatsApp, Telegram, or Instagram exports and chat with an AI that has full context of your conversation. Get insights into communication patterns, relationship dynamics, and potential red flags.",
@@ -399,7 +417,7 @@ export const DATA = {
       href: "https://flashreels.vercel.app",
       dates: "2025",
       active: true,
-      category: "AI/ML",
+      category: "Full stack",
       featured: true,
       description:
         "AI-powered video creation platform. Generate professional reels with just a topic — AI handles script, images, voiceover (Edge TTS), and captions (Deepgram) automatically using Remotion.",
@@ -433,7 +451,7 @@ export const DATA = {
       href: "https://audion-audio-cnn.vercel.app",
       dates: "2026",
       active: true,
-      category: "AI/ML",
+      category: "Full stack",
       featured: false,
       description:
         "ML-first audio classification project with a CNN training pipeline and Next.js inference visualizer. Upload audio and inspect predictions, waveforms, spectrograms, and convolutional feature maps.",
@@ -465,7 +483,7 @@ export const DATA = {
       href: "https://astroscope.streamlit.app/",
       dates: "2024",
       active: true,
-      category: "Data Science",
+      category: "Others",
       featured: false,
       description:
         "**7 GitHub stars.** Interactive dashboard visualizing near-Earth asteroid data from NASA's NeoWs API. Shows asteroid sizes, velocities, miss distances, and hazard levels.",
@@ -489,7 +507,7 @@ export const DATA = {
       href: "https://github.com/ArjunCodess/storyblok-mcp",
       dates: "2025",
       active: true,
-      category: "DevTools",
+      category: "Others",
       featured: false,
       description:
         "DEV.to Challenge Entry. Connect AI tools to Storyblok instantly — use natural language to manage your CMS. Built for the Storyblok Headless CMS Challenge.",
@@ -513,7 +531,7 @@ export const DATA = {
       href: "https://vendx-admin.vercel.app",
       dates: "2024",
       active: true,
-      category: "Web",
+      category: "Full stack",
       featured: false,
       description:
         "Full-stack e-commerce platform with admin dashboard and storefront. Manage products, categories, colors, sizes, and orders.",
@@ -546,7 +564,7 @@ export const DATA = {
       href: "https://starfall-kit.vercel.app",
       dates: "2024",
       active: true,
-      category: "DevTools",
+      category: "Others",
       featured: false,
       description:
         "**12 GitHub stars.** Neon-powered full-stack web application starter kit with Next.js, Tailwind CSS, Shadcn/UI, Drizzle ORM, and Clerk auth pre-configured.",
@@ -578,7 +596,7 @@ export const DATA = {
       href: "https://typethelyrics.vercel.app",
       dates: "2024",
       active: true,
-      category: "Games",
+      category: "Others",
       featured: false,
       description:
         "Practice typing skills with synchronized Spotify lyrics. Tracks WPM and accuracy with a leaderboard system.",
@@ -604,7 +622,7 @@ export const DATA = {
       href: "https://mytbh.vercel.app/",
       dates: "2024",
       active: true,
-      category: "Web",
+      category: "Full stack",
       featured: false,
       description:
         "Anonymous Q&A app with AI-powered daily prompts. Friends can ask questions, reply publicly, create threads, and keep conversations going.",
@@ -636,7 +654,7 @@ export const DATA = {
       href: "https://www.youtube.com/watch?v=hjY9Ifs8L6U",
       dates: "2024",
       active: true,
-      category: "Games",
+      category: "Others",
       featured: false,
       description:
         "Python and Pygame-based interactive sorting algorithm visualizer. Watch Bubble Sort, Insertion Sort, Selection Sort, and Heap Sort in real-time.",
@@ -657,6 +675,22 @@ export const DATA = {
     },
   ],
   personalAchievements: [
+    {
+      title: "Hidden Prompt - Xavier University",
+      dates: "2026",
+      description:
+        "**First prize** at Hidden Prompt: National AI Vulnerability Challenge 2026, Xavier University, Ohio, USA, with teammate Saksham Yadav.",
+    },
+    {
+      title: "FXB Climate Advocates Program",
+      dates: "Summer 2026",
+      description: "Attended the Summer 2026 FXB Climate Advocates Program.",
+    },
+    {
+      title: "IYNA Neuroscience 1 Capstone",
+      dates: "2026",
+      description: "Completed IYNA's 2026 Neuroscience 1 capstone track.",
+    },
     {
       title: "INSEF Regional Fair (Online)",
       dates: "2025",
@@ -690,14 +724,13 @@ export const DATA = {
     {
       title: "YC Startup School India",
       dates: "2026",
-      description:
-        "Confirmed attendee for YC Startup School India in Bangalore, selected to attend Y Combinator's India startup event.",
+      description: "Attended YC Startup School India in Bangalore.",
     },
     {
       title: "Lodha Genius - Ashoka University Programme",
       dates: "2026",
       description:
-        "Selected for the highly selective LG-AUP 2026 cohort at Ashoka University.",
+        "Attended the Lodha Genius Programme at Ashoka University and wrote [Chain Reaction](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9), a series about the experience.",
     },
     {
       title: "CS50 Achievements",
@@ -710,7 +743,7 @@ export const DATA = {
     {
       title: "Competitive Programming",
       description:
-        "Solved [400+ LeetCode problems](https://leetcode.com/u/arjuncodess/) (265k rank). Practicing algorithmic thinking and problem-solving daily.",
+        "Solved [400+ LeetCode problems](https://leetcode.com/u/arjuncodess/) (265k rank). Stepped away from daily problem-solving after a 600-day streak.",
     },
     {
       title: "Love Coding",
@@ -725,12 +758,12 @@ export const DATA = {
     {
       title: "Writing & Personal Essays",
       description:
-        "I write about life, feelings, and the questions I can't answer on my [Medium blog](https://medium.com/@arjunwritess). It's a mix of personal essays, reflections, free-verse poetry, and philosophical pieces. Won 2nd place in a writing competition with an entry published in an anthology.",
+        "I write about life, feelings, and the questions I can't answer on my [Medium blog](https://medium.com/@arjunwritess). My series include [Chain Reaction](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9), about the Lodha Genius Programme, and [To My Love](https://arjunwritess.medium.com/list/to-my-love-758949c73be0), a new series. Won 2nd place in a writing competition with an entry published in an anthology.",
     },
     {
       title: "Language Learning",
       description:
-        "[500+ day Duolingo streak](https://www.duolingo.com/profile/ArjunCodess) learning Spanish. Consistent daily practice builds discipline.",
+        "Stopped daily Spanish practice after a [600-day streak](https://www.duolingo.com/profile/ArjunCodess).",
     },
     {
       title: "Electronics & Arduino",
@@ -740,9 +773,43 @@ export const DATA = {
   ],
   openSourceContributions: [
     {
+      title: "Grafana #133074",
+      description: "Keep equal-size points visible",
+      href: "https://github.com/grafana/grafana/pull/133074",
+      type: "major",
+      date: "Sep 2026",
+    },
+    {
+      title: "Grafana #133253",
+      description: "Unload nested plugins safely",
+      href: "https://github.com/grafana/grafana/pull/133253",
+      type: "major",
+      date: "Sep 2026",
+    },
+    {
+      title: "Tempo #7958",
+      description: "Report module failures correctly",
+      href: "https://github.com/grafana/tempo/pull/7958",
+      type: "major",
+      date: "Sep 2026",
+    },
+    {
+      title: "fish-shell #13009",
+      description: "Correct function query status",
+      href: "https://github.com/fish-shell/fish-shell/pull/13009",
+      type: "major",
+      date: "Sep 2026",
+    },
+    {
+      title: "Grafana #133075",
+      description: "Remove unused SVG assets",
+      href: "https://github.com/grafana/grafana/pull/133075",
+      type: "minor",
+      date: "Sep 2026",
+    },
+    {
       title: "Notesnook #8624",
-      description:
-        "Fixed toolbar item indentation when moving between groups + added comprehensive tests for the customize-toolbar component.",
+      description: "Fix toolbar group indentation",
       href: "https://github.com/streetwriters/notesnook/pull/8624",
       type: "major",
       date: "Feb 2026",
@@ -751,8 +818,7 @@ export const DATA = {
     },
     {
       title: "next-cloudinary #601",
-      description:
-        "Fixed CldVideoPlayer fullscreen object-cover issue where videos wouldn't properly fill the screen.",
+      description: "Fix fullscreen video sizing",
       href: "https://github.com/cloudinary-community/next-cloudinary/pull/601",
       type: "major",
       date: "Oct 2025",
@@ -761,8 +827,7 @@ export const DATA = {
     },
     {
       title: "next-cloudinary #602",
-      description:
-        "Fixed CldVideoPlayer route change issue in Next.js 15 App Router with proper lifecycle management.",
+      description: "Fix route-change lifecycle",
       href: "https://github.com/cloudinary-community/next-cloudinary/pull/602",
       type: "major",
       date: "Oct 2025",
@@ -771,8 +836,7 @@ export const DATA = {
     },
     {
       title: "Zero #2013",
-      description:
-        "Redesigned mail header layout with square buttons and enhanced spacing for better visual hierarchy.",
+      description: "Refine mail header layout",
       href: "https://github.com/Mail-0/Zero/pull/2013",
       type: "major",
       date: "Aug 2025",
@@ -781,8 +845,7 @@ export const DATA = {
     },
     {
       title: "terminal-catacomb-crawler #37",
-      description:
-        "Fixed level up UI input freeze and terminal mode handling issues.",
+      description: "Fix level-up input freeze",
       href: "https://github.com/CatacombCrawler/terminal-catacomb-crawler/pull/37",
       type: "minor",
       date: "Oct 2025",
@@ -791,8 +854,7 @@ export const DATA = {
     },
     {
       title: "tix-cli #56",
-      description:
-        "Added Textual-based TUI for interactive task management with keyboard navigation.",
+      description: "Add interactive task TUI",
       href: "https://github.com/TheDevOpsBlueprint/tix-cli/pull/56",
       type: "minor",
       date: "Oct 2025",
@@ -801,8 +863,7 @@ export const DATA = {
     },
     {
       title: "cvimprover-api #31",
-      description:
-        "Added comprehensive input sanitization for user data security (XSS, injection prevention).",
+      description: "Sanitize user input",
       href: "https://github.com/CVImprover/cvimprover-api/pull/31",
       type: "minor",
       date: "Oct 2025",
@@ -811,8 +872,7 @@ export const DATA = {
     },
     {
       title: "tix-cli #60",
-      description:
-        "Updated README with interactive TUI documentation and requirements.",
+      description: "Document the task TUI",
       href: "https://github.com/TheDevOpsBlueprint/tix-cli/pull/60",
       type: "minor",
       date: "Oct 2025",

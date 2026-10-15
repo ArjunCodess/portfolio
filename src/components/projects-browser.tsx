@@ -5,7 +5,7 @@ import { ProjectCard } from "@/components/project-card";
 import { Button } from "@/components/ui/button";
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -15,25 +15,27 @@ function toggleSelection(values: string[], value: string) {
     : [...values, value];
 }
 
-export function ProjectsBrowser() {
+export function ProjectsBrowser({
+  featuredOnly = false,
+}: {
+  featuredOnly?: boolean;
+}) {
+  const projects = featuredOnly
+    ? DATA.projects.filter((p) => p.featured)
+    : DATA.projects;
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
-  const categories = useMemo(
-    () => Array.from(new Set(DATA.projects.map((project) => project.category))),
-    [],
-  );
+  const categories = featuredOnly
+    ? ["Full stack", "Research"]
+    : ["Full stack", "Research", "Others"];
 
   const hasFilters = selectedCategories.length > 0;
 
-  const visibleProjects = useMemo(() => {
-    if (!hasFilters) {
-      return DATA.projects;
-    }
-
-    return DATA.projects.filter((project) =>
-      selectedCategories.includes(project.category),
-    );
-  }, [hasFilters, selectedCategories]);
+  const visibleProjects = hasFilters
+    ? projects.filter((project) =>
+        selectedCategories.includes(project.category),
+      )
+    : projects;
 
   return (
     <div className="mx-auto max-w-[800px] space-y-6">
@@ -61,6 +63,7 @@ export function ProjectsBrowser() {
               return (
                 <Button
                   key={category}
+                  aria-pressed={selected}
                   type="button"
                   size="sm"
                   variant="outline"
@@ -85,7 +88,7 @@ export function ProjectsBrowser() {
       </div>
 
       <p className="text-sm text-muted-foreground">
-        Showing {visibleProjects.length} of {DATA.projects.length} projects
+        Showing {visibleProjects.length} of {projects.length} projects
       </p>
 
       {visibleProjects.length > 0 ? (
