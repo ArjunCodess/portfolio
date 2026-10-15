@@ -1,0 +1,10 @@
+overrides:
+  '@types/react': 19.3.0
+  '@types/react-dom': 19.3.0
+
+# pnpm 11 reads dependency build permissions here, not in package.json.
+allowBuilds:
+  esbuild: true
+  unrs-resolver: true
+  sharp: true
+  protobufjs: true

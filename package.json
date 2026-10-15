@@ -14,7 +14,8 @@
     "typecheck": "tsc --noEmit",
     "test:ai": "tsx scripts/check-ai.ts",
     "db:setup-chat": "tsx scripts/setup-chat.ts",
-    "kb:sync-readmes": "tsx scripts/sync-github-readmes.ts"
+    "kb:sync-readmes": "tsx scripts/sync-github-readmes.ts",
+    "kb:refresh": "tsx scripts/refresh-knowledge.ts"
   },
   "dependencies": {
     "@ai-sdk/google": "^4.0.95",
@@ -71,19 +72,8 @@
     "tsx": "^4.23.15",
     "typescript": "~6.0.3"
   },
-  "pnpm": {
-    "overrides": {
-      "@types/react": "19.3.0",
-      "@types/react-dom": "19.3.0"
-    },
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "protobufjs",
-      "sharp"
-    ]
-  },
   "engines": {
-    "node": ">=22.0.0"
+    "node": "24.x"
   },
   "packageManager": "pnpm@11.1.1"
 }
