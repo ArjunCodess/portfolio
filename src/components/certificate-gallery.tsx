@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, type KeyboardEvent } from "react";
 import { MotionConfig } from "motion/react";
+import { ExternalLink } from "lucide-react";
 import { CERTIFICATE_GROUPS } from "@/data/certificates";
 import { createExpandableCards } from "@/components/vendor/aceternity/expandable-cards";
 import styles from "./certificate-gallery.module.css";
@@ -11,7 +12,7 @@ const groups = CERTIFICATE_GROUPS.map((group) => ({
   Cards: createExpandableCards(
     group.cards.map((card) => ({
       ...card,
-      ctaText: "View certificate",
+      ctaText: <ExternalLink className="size-4" aria-hidden="true" />,
       ctaLink: card.src,
     })),
   ),
@@ -45,6 +46,10 @@ function CertificateGroup({ title, Cards }: (typeof groups)[number]) {
         const close = modal.querySelector<HTMLButtonElement>("button");
         close?.setAttribute("aria-label", "Close certificate");
         close?.focus({ preventScroll: true });
+        const link = modal.querySelector<HTMLAnchorElement>("a");
+        link?.setAttribute("aria-label", "Open certificate in a new tab");
+        link?.setAttribute("title", "Open certificate in a new tab");
+        link?.setAttribute("rel", "noopener noreferrer");
       } else if (!modal && currentModal) {
         currentModal = null;
         previousFocus?.focus({ preventScroll: true });

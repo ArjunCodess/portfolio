@@ -43,7 +43,6 @@ Set `EMBEDDING_SERVICE_URL=http://127.0.0.1:8000` and the same `EMBEDDING_SERVIC
 
 ```sh
 pnpm kb:generate
-pnpm test:ai
 ```
 
 Run `pnpm kb:refresh -- --github-cli` to sync project READMEs, collect all website facts, certificate descriptions and RAG Markdown, then rebuild the database embeddings. Use `--local-only` to skip GitHub, or `--force` to regenerate every vector. Unchanged vectors are otherwise reused from `src/data/embeddings.json`, which is a generation cache. Every successful refresh deletes all `kb_documents` rows and inserts the complete new corpus in one transaction, after every vector has been generated and validated. Failed generation or a failed transaction preserves the previous database index.
@@ -51,6 +50,34 @@ Run `pnpm kb:refresh -- --github-cli` to sync project READMEs, collect all websi
 Runtime retrieval blends Postgres pgvector cosine distance with rare-term and exact-phrase matches, with model, dimensions, and corpus-hash checks. This helps preserve exact names and award aliases without another model call. Queries use the matching search prefix. Source changes require a refresh; stale or unavailable semantic retrieval falls back to current Markdown and website facts. Commit the cache after content updates, and run the refresh against the deployment database.
 
 For production, deploy the provided Docker service on a CPU host with persistent Hugging Face cache storage and set its HTTPS URL and token in Vercel. A continuously running host avoids model cold starts; hosting costs are separate from Gemini's free tier. Do not deploy a public unauthenticated model endpoint. Without the service, or while it sleeps, chat uses keyword retrieval over the same current facts. This fallback is logged and does not claim to use semantic search.
+
+## Environment variables for the embedding service
+
+| Variable | What to put there | Where it belongs |
+| --- | --- | --- |
+| `DEV_ALLOWED_ORIGINS` | Optional comma-separated development hostnames, such as `192.168.0.14,my-laptop.local`. Omit schemes, ports, and paths. Leave it empty for localhost. | Portfolio `.env.local` only; not needed on Vercel. |
+| `EMBEDDING_SERVICE_URL` | `http://127.0.0.1:8000` locally, or the actual HTTPS base URL of your deployed Python service. Do not append `/embed`. | Portfolio `.env.local` and Vercel environment variables. |
+| `EMBEDDING_SERVICE_TOKEN` | A random private shared password, not a Google API key. Use the exact same value on both servers, without `Bearer `. | Portfolio `.env.local`, Vercel, and the Python service environment. |
+
+Generate a token on your own machine:
+
+```sh
+python -c "import secrets; print(secrets.token_urlsafe(32))"
+```
+
+For local use, put that token and the localhost URL in the portfolio's `.env.local`. Start the Python service in another PowerShell terminal, from the repository root:
+
+```powershell
+python -m pip install -r services/embeddings/requirements.txt
+$env:EMBEDDING_SERVICE_TOKEN="paste-your-generated-token"
+python -m uvicorn app:app --app-dir services/embeddings --host 127.0.0.1 --port 8000
+```
+
+The Python process does not automatically read Next.js's `.env.local`, which is why its token must also be set in its own environment. The first start downloads the model weights and can take time. After `http://127.0.0.1:8000/health` responds, run `pnpm kb:refresh -- --local-only`, then restart the Next.js server after changing its environment.
+
+For production, deploy `services/embeddings/Dockerfile` on a separate host with enough memory for the model and persistent cache storage. That host provides the real service URL; there is no production embedding URL until this service is deployed. Set its token there, add the same token and the service's HTTPS URL to Vercel for the relevant Preview/Production environments, then redeploy the portfolio. The service exposes port 8000. Hosting requirements and costs are separate from Gemini's free tier.
+
+Do not use the portfolio's Vercel URL, a Google API URL, or `localhost` as the production embedding address. Vercel's `localhost` points to its own function, not your computer. Keep the token server-side, without a `NEXT_PUBLIC_` prefix. `GOOGLE_GENERATIVE_AI_API_KEY` still powers chat generation; these embedding settings only power semantic retrieval. If the service is unavailable, chat uses keyword retrieval. Let Next.js and Vercel manage `NODE_ENV` automatically.
 
 ## Free-tier chat
 
@@ -69,11 +96,9 @@ The resume source is `public/resume/main.tex`; the download button serves `publi
 ## Validation
 
 ```sh
-pnpm test
 pnpm lint
 pnpm typecheck
 pnpm build
-pnpm test:ai # Requires the actual embedding service and Gemini key.
 ```
 
 ESLint stays on version 9 and TypeScript on version 6 because the installed lint plugins do not support ESLint 10 or TypeScript 7 yet. Other direct dependencies were updated to current releases, including the Tailwind 4 PostCSS migration. The lockfile pins the tested versions.

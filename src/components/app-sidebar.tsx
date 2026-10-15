@@ -19,7 +19,7 @@ const SUGGESTED_QUESTIONS = [
   "What are MINTS and PRISM?",
   "What did you win at Xavier?",
   "What was Lodha Genius like?",
-  'What is "chain reaction" about?',
+  'What is "chain reaction." about?',
 ];
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {

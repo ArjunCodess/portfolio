@@ -9,9 +9,9 @@ export const DATA = {
   location: "Lucknow, Uttar Pradesh, India",
   locationLink: "https://www.google.com/maps/place/lucknow",
   description:
-    "I'm a student researcher, full-stack developer, and writer working on medical AI, genomic interpretability, and space monitoring.",
+    "I'm a researcher and developer working on neuro-symbolic and interpretable AI for healthcare, genomics, and space debris monitoring.",
   summary:
-    "I'm Arjun Vijay Prakash, a 16-year-old researcher and developer from Lucknow, India. My work spans medical AI, mechanistic interpretability, and space monitoring. **NGTA was accepted at NeSy 2026 and GenAI4Health 2026, a NeurIPS 2026 workshop.** I've submitted MINTS to GLBIO 2027 and PRISM to Advances in Space Research. My earlier MEN2 prediction research won an INSEF bronze prize. I won **first prize at Xavier University's AI Vulnerability Challenge**. I've attended YC Startup School India, the Lodha Genius Programme at Ashoka University, and the FXB Climate Advocates Program, and completed IYNA's Neuroscience I capstone track, including a research project and written research review. Alongside research, I'm CTO at Pilot, an associate editor at Synthica, and a technical writer with [35,000+ followers on DEV.to](https://dev.to/arjuncodess). I also write personal essays on Medium, including [\"chain reaction\"](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9) and [\"to my love about you\"](https://arjunwritess.medium.com/list/to-my-love-758949c73be0).",
+    "I'm Arjun Vijay Prakash, a 16-year-old researcher and developer from Lucknow, India. My research spans **neuro-symbolic AI**, mechanistic interpretability, computational genomics, medical AI, and space debris monitoring. **NGTA, my neuro-symbolic clinical prediction project, was accepted at NeSy 2026 and GenAI4Health 2026, a NeurIPS 2026 workshop.** I've submitted MINTS, on mechanistic interpretability in genomic transformers, to GLBIO 2027, and PRISM, an explainable space-debris risk copilot, to Advances in Space Research. My earlier MEN2 prediction research won an INSEF bronze prize. I won **first prize at Xavier University's AI Vulnerability Challenge**. I've attended YC Startup School India, the Lodha Genius Programme at Ashoka University, and the FXB Climate Advocates Program, and completed IYNA's Neuroscience I capstone track, including a research project and written research review. Alongside research, I'm CTO at Pilot, an associate editor at Synthica, and a technical writer with [35,000+ followers on DEV.to](https://dev.to/arjuncodess). I also write personal essays on Medium, including [\"chain reaction.\"](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9) and [\"to my love.\"](https://arjunwritess.medium.com/list/to-my-love-758949c73be0).",
   avatarUrl: "/me.jpeg",
   skillGroups: [
     {
@@ -182,14 +182,14 @@ export const DATA = {
     },
     {
       company: "Technical Writer",
-      badges: ["$2,450 Earned", "35K Followers", "410K+ Views"],
+      badges: ["$2,450 Earned", "35K Followers", "420K+ Views"],
       location: "Remote",
       title: "Freelance Technical Writer",
       logoUrl: "/devto.svg",
       start: "July 2025",
       end: "Present",
       description:
-        "Built a following of [35,000+ followers](https://dev.to/arjuncodess) and 410,000+ views on DEV.to. Earned $2,450 in total through technical writing, including $1,375 in 2025 alone—my first $1K earned as a 16-year-old. Won [$500 from Runner H AI Challenge](https://dev.to/devteam/congrats-to-the-runner-h-ai-agent-prompting-challenge-winners-3aap). Created educational content on web development, AI, and programming.",
+        "Built a following of [35,000+ followers](https://dev.to/arjuncodess) and 420,000+ views on DEV.to. Earned $2,450 in total through technical writing, including $1,375 in 2025 alone—my first $1K earned as a 16-year-old. Won [$500 from Runner H AI Challenge](https://dev.to/devteam/congrats-to-the-runner-h-ai-agent-prompting-challenge-winners-3aap). Created educational content on web development, AI, and programming.",
     },
   ],
   education: [
@@ -774,7 +774,7 @@ export const DATA = {
       title: "Hit 35K+ Followers on DEV.to",
       dates: "2025",
       description:
-        "Built a following of over [35,000](https://dev.to/arjuncodess) with 400,000+ views, sharing insights on coding, AI, and development.",
+        "Built a following of over [35,000](https://dev.to/arjuncodess) with 420,000+ views, sharing insights on coding, AI, and development.",
     },
     {
       title: "YC Startup School India",
@@ -785,7 +785,7 @@ export const DATA = {
       title: "Lodha Genius - Ashoka University Programme",
       dates: "2026",
       description:
-        'Attended the Lodha Genius Programme at Ashoka University and wrote ["chain reaction"](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9), a series about the experience.',
+        'Attended the Lodha Genius Programme at Ashoka University and wrote ["chain reaction."](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9), a series about the experience.',
     },
     {
       title: "CS50 Achievements",
@@ -808,12 +808,12 @@ export const DATA = {
     {
       title: "Technical Writing",
       description:
-        "Writing educational content on web development, AI, and programming. [35K followers on DEV.to](https://dev.to/arjuncodess) with 400K+ views.",
+        "Writing educational content on web development, AI, and programming. [35K followers on DEV.to](https://dev.to/arjuncodess) with 420K+ views.",
     },
     {
       title: "Writing & Personal Essays",
       description:
-        'I write about life, feelings, and the questions I can\'t answer on my [Medium blog](https://medium.com/@arjunwritess). My series include ["chain reaction"](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9), about the Lodha Genius Programme, and ["to my love about you"](https://arjunwritess.medium.com/list/to-my-love-758949c73be0), a new series. Won 2nd place in a writing competition with an entry published in an anthology.',
+        'I write about life, feelings, and the questions I can\'t answer on my [Medium blog](https://medium.com/@arjunwritess). My series include ["chain reaction."](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9), about the Lodha Genius Programme, and ["to my love."](https://arjunwritess.medium.com/list/to-my-love-758949c73be0), a new series. Won 2nd place in a writing competition with an entry published in an anthology.',
     },
     {
       title: "Language Learning",

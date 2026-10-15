@@ -5,7 +5,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 
 
-export type AceternityCard = { title: string; description: string; src: string; ctaText: string; ctaLink: string; content: string | (() => React.ReactNode) };
+export type AceternityCard = { title: string; description: string; src: string; ctaText: React.ReactNode; ctaLink: string; content: string | (() => React.ReactNode) };
 
 // Data adapter only. Rendering/animation below is the downloaded upstream code.
 export function createExpandableCards(cards: AceternityCard[]) {

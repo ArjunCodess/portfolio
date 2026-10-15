@@ -21,7 +21,7 @@
 **Key Links:**
 
 - GitHub: https://github.com/ArjunCodess
-- DEV.to: https://dev.to/arjuncodess (35,000+ followers, 400,000+ views, Top Writer)
+- DEV.to: https://dev.to/arjuncodess (35,000+ followers, 420,000+ views, Top Writer)
 - Portfolio: https://arjuncodess.is-a.dev/
 - X/Twitter: @arjuncodess
 - Medium: https://arjunwritess.medium.com/
@@ -52,7 +52,7 @@
 **DEV.to:**
 
 - 35,000+ followers
-- 400,000+ views
+- 420,000+ views
 - Top Writer status
 - Regular technical content creator
 - High engagement on posts
@@ -351,14 +351,16 @@ Leading HackSpace, a student-run technology club at City Montessori School, focu
 
 ## October 2026 Updates
 
+- Current research spans neuro-symbolic AI, mechanistic interpretability, computational genomics, medical AI, and space debris monitoring. NGTA combines neural prediction and symbolic reasoning for incomplete clinical data. MINTS studies genomic-transformer internals; HYDRA-ccRCC audits the reproducibility and prognostic evidence of kidney-cancer gene associations. PRISM studies explainable space-debris risk monitoring.
+
 - NGTA was accepted at NeSy 2026 and GenAI4Health 2026, a NeurIPS 2026 workshop.
 - MINTS was submitted to GLBIO 2027. This is a submission, not an acceptance.
 - PRISM was submitted to Advances in Space Research. This is a submission, not an acceptance.
 - Won first prize in Xavier University's AI Vulnerability Challenge, Ohio, USA, with teammate Saksham Yadav. Received an 11-inch iPad with the A16 chip and 128GB storage as the award.
 - Attended the Summer 2026 FXB Climate Advocates Program.
 - Completed IYNA's 2026 Neuroscience I Capstone Track, which required a research project and a written research review. The participant track did not include these research requirements.
-- Wrote "chain reaction" about the Lodha Genius Programme: https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9
-- Started the "to my love about you" series: https://arjunwritess.medium.com/list/to-my-love-758949c73be0
+- Wrote "chain reaction." about the Lodha Genius Programme: https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9
+- Started the "to my love." series: https://arjunwritess.medium.com/list/to-my-love-758949c73be0
 - Stopped daily LeetCode and Spanish practice after a 600-day streak. Earlier streak counts in the 2025 retrospective describe that historical period.
 
 **Challenge naming:** The official name is Hidden Prompt: National AI Vulnerability Challenge 2026. Use the shorter name "Xavier University's AI Vulnerability Challenge" in visitor-facing answers.

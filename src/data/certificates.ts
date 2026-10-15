@@ -45,14 +45,14 @@ export const CERTIFICATE_GROUPS = [
       {
         src: "/certificates/cs50/CS50xPuzzleDay2024.png",
         title: "CS50x Puzzle Day 2024",
-        description: "Gold certificate",
+        description: "Gold certificate · All problems solved",
         content:
           "I solved every problem in CS50x Puzzle Day 2024 and earned a gold certificate. The problems ask for careful reasoning rather than familiarity with a programming language, a different kind of challenge from building software.",
       },
       {
         src: "/certificates/cs50/CS50xPuzzleDay2025.png",
         title: "CS50x Puzzle Day 2025",
-        description: "Gold certificate",
+        description: "Gold certificate · All problems solved",
         content:
           "I returned to CS50x Puzzle Day in 2025 and again solved every problem, earning gold for a second year. It sits alongside my coding work as a record of the problem-solving I enjoy outside an editor.",
       },
