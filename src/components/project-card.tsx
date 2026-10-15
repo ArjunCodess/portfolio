@@ -57,44 +57,47 @@ export function ProjectCard({
         "flex flex-col overflow-hidden border hover:shadow-lg transition-all duration-300 ease-out h-full p-4"
       }
     >
-      <Link
-        href={href || "#"}
-        className={cn("block cursor-pointer", className)}
-      >
-        {image && (
+      {image && (
+        <Link href={href || "#"} aria-label={`View ${title}`}>
           <Image
             src={image}
             alt={title}
             width={500}
             height={300}
-            className="h-40 w-full overflow-hidden object-cover object-top rounded-md border"
+            sizes="(max-width: 640px) 90vw, 340px"
+            className="h-40 w-full rounded-md border object-cover object-top"
           />
-        )}
-      </Link>
+        </Link>
+      )}
       <CardHeader className="p-2">
         <div className="space-y-1">
-          <CardTitle className="mt-1 text-base">{title}</CardTitle>
+          <CardTitle className="mt-1 text-base">
+            <Link href={href || "#"} className="hover:underline">
+              {title}
+            </Link>
+          </CardTitle>
           <time className="font-sans text-xs">{dates}</time>
           <div className="hidden font-sans text-xs underline print:visible">
             {link?.replace("https://", "").replace("www.", "").replace("/", "")}
           </div>
-          <Markdown
-            className="prose max-w-full text-pretty font-sans text-xs text-muted-foreground dark:prose-invert"
-            components={{
-              a: ({ href, children }) => (
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-blue-600 dark:text-blue-400 underline"
-                >
-                  {children}
-                </a>
-              ),
-            }}
-          >
-            {description}
-          </Markdown>
+          <div className="prose max-w-full text-pretty font-sans text-xs text-muted-foreground dark:prose-invert">
+            <Markdown
+              components={{
+                a: ({ href, children }) => (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-blue-600 dark:text-blue-400 underline"
+                  >
+                    {children}
+                  </a>
+                ),
+              }}
+            >
+              {description}
+            </Markdown>
+          </div>
         </div>
       </CardHeader>
       <CardContent className="mt-auto flex flex-col px-2">

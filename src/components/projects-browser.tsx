@@ -5,116 +5,144 @@ import { ProjectCard } from "@/components/project-card";
 import { Button } from "@/components/ui/button";
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
-import { useMemo, useState } from "react";
+import { arrangeProjectRows, type ProjectOrder } from "@/lib/project-order";
+import { useState } from "react";
 
 const BLUR_FADE_DELAY = 0.04;
 
-function toggleSelection(values: string[], value: string) {
-  return values.includes(value)
-    ? values.filter((item) => item !== value)
-    : [...values, value];
-}
+export function ProjectsBrowser({
+  featuredOnly = false,
+}: {
+  featuredOnly?: boolean;
+}) {
+  const projects = featuredOnly
+    ? DATA.projects.filter((p) => p.featured)
+    : DATA.projects;
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [order, setOrder] = useState<ProjectOrder>("name-asc");
 
-export function ProjectsBrowser() {
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const categories = featuredOnly
+    ? ["Full stack", "Research"]
+    : ["Full stack", "Research", "Others"];
 
-  const categories = useMemo(
-    () => Array.from(new Set(DATA.projects.map((project) => project.category))),
-    [],
-  );
+  const hasFilters = selectedCategory !== null;
 
-  const hasFilters = selectedCategories.length > 0;
-
-  const visibleProjects = useMemo(() => {
-    if (!hasFilters) {
-      return DATA.projects;
-    }
-
-    return DATA.projects.filter((project) =>
-      selectedCategories.includes(project.category),
-    );
-  }, [hasFilters, selectedCategories]);
+  const visibleProjects = hasFilters
+    ? projects.filter((project) => project.category === selectedCategory)
+    : projects;
+  const rows = arrangeProjectRows(visibleProjects, order);
 
   return (
     <div className="mx-auto max-w-[800px] space-y-6">
-      <div className="space-y-4">
-        <div className="space-y-2">
-          <div className="flex items-center justify-between gap-3">
-            <h2 className="text-sm font-semibold">Categories</h2>
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              className={cn(
-                "h-7 px-2 text-xs",
-                hasFilters ? "" : "invisible pointer-events-none",
-              )}
-              onClick={() => setSelectedCategories([])}
-            >
-              Clear
-            </Button>
-          </div>
-          <div className="flex flex-wrap gap-1.5">
-            {categories.map((category) => {
-              const selected = selectedCategories.includes(category);
-
-              return (
+      {!featuredOnly && (
+        <>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between gap-3">
+                <h2 className="text-sm font-semibold">Categories</h2>
+                <label className="flex items-center gap-2 text-xs text-muted-foreground">
+                  Order
+                  <select
+                    aria-label="Sort projects"
+                    value={order}
+                    onChange={(event) =>
+                      setOrder(event.target.value as ProjectOrder)
+                    }
+                    className="h-8 cursor-pointer rounded-md border border-input bg-background px-2 text-xs text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                  >
+                    <option value="name-asc">Ascending (A–Z)</option>
+                    <option value="name-desc">Descending (Z–A)</option>
+                    <option value="date-desc">Newest first</option>
+                    <option value="date-asc">Oldest first</option>
+                  </select>
+                </label>
+              </div>
+              <div className="flex flex-wrap items-center gap-1.5">
+                {categories.map((category) => {
+                  const selected = selectedCategory === category;
+                  return (
+                    <Button
+                      key={category}
+                      aria-pressed={selected}
+                      type="button"
+                      size="sm"
+                      variant="outline"
+                      className={cn(
+                        "h-7 rounded-md border px-2 text-xs shadow-none transition-colors",
+                        selected
+                          ? "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground"
+                          : "bg-background",
+                      )}
+                      onClick={() =>
+                        setSelectedCategory((current) =>
+                          current === category ? null : category,
+                        )
+                      }
+                    >
+                      {category}
+                    </Button>
+                  );
+                })}
                 <Button
-                  key={category}
                   type="button"
+                  variant="ghost"
                   size="sm"
-                  variant="outline"
                   className={cn(
-                    "h-7 rounded-md border px-2 text-xs shadow-none transition-colors",
-                    selected
-                      ? "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground"
-                      : "bg-background",
+                    "h-7 px-2 text-xs",
+                    hasFilters ? "" : "invisible pointer-events-none",
                   )}
-                  onClick={() =>
-                    setSelectedCategories((current) =>
-                      toggleSelection(current, category),
-                    )
-                  }
+                  onClick={() => setSelectedCategory(null)}
                 >
-                  {category}
+                  Clear
                 </Button>
-              );
-            })}
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <p className="text-sm text-muted-foreground">
-        Showing {visibleProjects.length} of {DATA.projects.length} projects
-      </p>
+          <p className="text-sm text-muted-foreground">
+            Showing {visibleProjects.length} of {projects.length} projects
+          </p>
+        </>
+      )}
 
       {visibleProjects.length > 0 ? (
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {visibleProjects.map((project, id) => {
-            const isLastOdd =
-              visibleProjects.length % 2 === 1 &&
-              id === visibleProjects.length - 1;
-
+        <div className="space-y-3">
+          {rows.map((rowProjects, rowIndex) => {
+            const hasImage = Boolean(
+              "image" in rowProjects[0] && rowProjects[0].image,
+            );
             return (
-              <BlurFade
-                key={project.title}
-                delay={BLUR_FADE_DELAY * 2 + id * 0.05}
-                className={
-                  isLastOdd
-                    ? "sm:col-span-2 sm:mx-auto sm:w-[calc(50%_-_0.375rem)]"
-                    : ""
-                }
+              <div
+                key={rowProjects.map((project) => project.title).join("/")}
+                data-project-images={String(hasImage)}
+                className="grid grid-cols-1 gap-3 sm:grid-cols-2"
               >
-                <ProjectCard
-                  href={project.href}
-                  title={project.title}
-                  description={project.description}
-                  dates={project.dates}
-                  tags={project.technologies}
-                  image={"image" in project ? project.image : undefined}
-                  links={project.links}
-                />
-              </BlurFade>
+                {rowProjects.map((project, id) => {
+                  const isLastOdd = rowProjects.length === 1;
+
+                  return (
+                    <BlurFade
+                      key={project.title}
+                      delay={BLUR_FADE_DELAY * 2 + (rowIndex * 2 + id) * 0.03}
+                      className={
+                        isLastOdd
+                          ? "sm:col-span-2 sm:mx-auto sm:w-[calc(50%_-_0.375rem)]"
+                          : ""
+                      }
+                    >
+                      <ProjectCard
+                        href={project.href}
+                        title={project.title}
+                        description={project.description}
+                        dates={project.dates}
+                        tags={project.technologies}
+                        image={"image" in project ? project.image : undefined}
+                        links={project.links}
+                      />
+                    </BlurFade>
+                  );
+                })}
+              </div>
             );
           })}
         </div>

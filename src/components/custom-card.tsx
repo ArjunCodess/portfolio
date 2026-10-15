@@ -15,23 +15,24 @@ export function CustomCard({ title, description, dates }: Props) {
         )}
         <h2 className="font-semibold leading-none">{title}</h2>
         {description && (
-          <Markdown
-            className="prose dark:prose-invert text-sm text-muted-foreground"
-            components={{
-              a: ({ href, children }) => (
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-blue-600 dark:text-blue-400 underline"
-                >
-                  {children}
-                </a>
-              ),
-            }}
-          >
-            {description}
-          </Markdown>
+          <div className="prose dark:prose-invert text-sm text-muted-foreground">
+            <Markdown
+              components={{
+                a: ({ href, children }) => (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-blue-600 dark:text-blue-400 underline"
+                  >
+                    {children}
+                  </a>
+                ),
+              }}
+            >
+              {description}
+            </Markdown>
+          </div>
         )}
       </div>
     </li>

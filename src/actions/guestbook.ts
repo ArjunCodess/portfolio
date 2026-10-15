@@ -1,7 +1,7 @@
 "use server";
 
 import { auth } from "@/lib/auth";
-import { sql } from "@vercel/postgres";
+import { sql } from "@/lib/db";
 import { revalidatePath } from "next/cache";
 
 export async function getGuestbookEntries() {

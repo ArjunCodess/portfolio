@@ -1,69 +1,119 @@
-import { streamText, UIMessage, convertToModelMessages } from "ai";
+import {
+  streamText,
+  convertToModelMessages,
+  createUIMessageStream,
+  createUIMessageStreamResponse,
+} from "ai";
 import { google } from "@ai-sdk/google";
 import { findRelevantContent, buildContext } from "@/lib/ai/embedding";
+import { CHAT_MODEL } from "@/lib/ai/config";
+import { portfolioSystemPrompt } from "@/lib/ai/chat-prompt";
+import {
+  boundedHistory,
+  chatRequest,
+  ChatLimitError,
+} from "@/lib/ai/chat-policy";
+import { reserveChatBudget } from "@/lib/ai/chat-budget";
 
-export const maxDuration = 30;
+export const runtime = "nodejs";
+export const maxDuration = 60;
+const answers = new Map<string, { text: string; expires: number }>();
 
-const SYSTEM_PROMPT = `you're arjun, a 16 year old developer. visitors are chatting with you on your portfolio site to learn about your projects, skills, and what you've been working on.
-
-how to talk:
-- always use lowercase
-- speak like you're explaining something to a smart friend over coffee
-- be real and direct, not salesy or formal
-- avoid buzzwords, corporate speak, and hyphens connecting phrases
-- keep it short but useful
-- use actual numbers and facts when you have them
-- if you don't know something, just say so honestly
-
-context from your knowledge base:
-{context}
-
-rules:
-- answer based on the context above
-- if something isn't covered, say "i don't have info on that, but feel free to reach out to me directly!"
-- mention specific numbers when you can (stars, earnings, followers, etc)
-- for technical stuff, reference the actual tech stack
-- never make things up`;
+function cachedResponse(text: string) {
+  return createUIMessageStreamResponse({
+    stream: createUIMessageStream({
+      execute({ writer }) {
+        writer.write({ type: "text-start", id: "cached" });
+        writer.write({ type: "text-delta", id: "cached", delta: text });
+        writer.write({ type: "text-end", id: "cached" });
+      },
+    }),
+  });
+}
 
 export async function POST(req: Request) {
   try {
-    const { messages }: { messages: UIMessage[] } = await req.json();
-
-    // Get the latest user message for RAG context retrieval
-    const lastMessage = messages[messages.length - 1];
-    const userQuery =
-      lastMessage?.parts?.find(
-        (part): part is { type: "text"; text: string } => part.type === "text",
-      )?.text ?? "";
-
-    let context = "";
+    const origin = req.headers.get("origin");
+    if (origin && origin !== new URL(req.url).origin)
+      return Response.json({ error: "Invalid origin" }, { status: 403 });
+    if (Number(req.headers.get("content-length")) > 24_000)
+      return Response.json({ error: "Request too large" }, { status: 413 });
+    const raw = await req.text();
+    if (new TextEncoder().encode(raw).length > 24_000)
+      return Response.json({ error: "Request too large" }, { status: 413 });
+    let body: unknown;
     try {
-      const relevantChunks = await findRelevantContent(userQuery, 5);
-      context = buildContext(relevantChunks);
-    } catch (error) {
-      console.error("Error retrieving context:", error);
-      context = "Unable to retrieve context from knowledge base.";
+      body = JSON.parse(raw);
+    } catch {
+      return Response.json({ error: "Invalid JSON" }, { status: 400 });
     }
+    const parsed = chatRequest.safeParse(body);
+    if (!parsed.success)
+      return Response.json(
+        { error: "Send a text question of at most 2,000 characters." },
+        { status: 400 },
+      );
+    const messages = boundedHistory(parsed.data.messages);
+    const query = messages.at(-1)!.parts[0].text.trim();
+    if (!query)
+      return Response.json(
+        { error: "Please enter a question." },
+        { status: 400 },
+      );
+    if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY)
+      return Response.json(
+        {
+          error:
+            "Chat is temporarily unavailable. Please contact Arjun directly.",
+        },
+        { status: 503 },
+      );
 
-    const systemPrompt = SYSTEM_PROMPT.replace(
-      "{context}",
-      context || "No specific context available.",
-    );
-
+    // Only standalone questions are cached; follow-ups depend on conversation.
+    const key =
+      messages.length === 1 ? `${CHAT_MODEL}:${query.toLowerCase()}` : null;
+    const cached = key ? answers.get(key) : undefined;
+    if (cached && cached.expires > Date.now())
+      return cachedResponse(cached.text);
+    await reserveChatBudget(req);
+    const context = buildContext(await findRelevantContent(query));
     const result = streamText({
-      model: google("gemini-3-flash-preview"),
-      system: systemPrompt,
+      model: google(CHAT_MODEL),
+      system: portfolioSystemPrompt(context),
       messages: await convertToModelMessages(messages),
+      maxOutputTokens: 2048,
+      maxRetries: 0,
+      abortSignal: AbortSignal.any([req.signal, AbortSignal.timeout(50_000)]),
+      providerOptions: {
+        google: { thinkingConfig: { thinkingLevel: "medium" } },
+      },
+      onFinish({ text, finishReason }) {
+        if (key && text && finishReason === "stop") {
+          if (answers.size >= 100) answers.delete(answers.keys().next().value!);
+          answers.set(key, { text, expires: Date.now() + 3_600_000 });
+        }
+      },
     });
-
-    return result.toUIMessageStreamResponse();
+    return result.toUIMessageStreamResponse({
+      onError: () =>
+        "Chat is temporarily unavailable or its free quota is used up. Please try later or contact Arjun directly.",
+    });
   } catch (error) {
-    console.error("Chat API error:", error);
-    return new Response(
-      JSON.stringify({
-        error: "An error occurred while processing your request.",
-      }),
-      { status: 500, headers: { "Content-Type": "application/json" } },
+    if (error instanceof ChatLimitError)
+      return Response.json(
+        { error: error.message },
+        { status: 429, headers: { "Retry-After": "60" } },
+      );
+    console.error(
+      "Chat unavailable:",
+      error instanceof Error ? error.name : "unknown error",
+    );
+    return Response.json(
+      {
+        error:
+          "Chat is temporarily unavailable. Please contact Arjun directly.",
+      },
+      { status: 503 },
     );
   }
 }

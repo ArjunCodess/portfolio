@@ -1,87 +1,92 @@
-/**
- * Embedding utilities for RAG
- *
- * Uses Vercel AI SDK with Google Gemini for query embedding generation
- * and performs vector similarity search in PostgreSQL.
- */
+import { neon } from "@neondatabase/serverless";
+import {
+  EMBEDDING_MODEL,
+  EMBEDDING_DIMENSIONS,
+  EMBEDDING_PROFILE,
+  embedTexts,
+} from "./config";
+import {
+  getKnowledgeChunks,
+  rankLexically,
+  getKnowledgeHash,
+} from "./knowledge";
 
-import { embed } from "ai";
-import { google } from "@ai-sdk/google";
-import { sql } from "@vercel/postgres";
-import { formatEmbedding } from "../utils";
+const queryCache = new Map<string, { value: number[]; expires: number }>();
 
-/**
- * Generate embedding for a single text query using Vercel AI SDK
- */
 export async function generateEmbedding(text: string): Promise<number[]> {
-  const { embedding } = await embed({
-    model: google.embedding("gemini-embedding-2-preview"),
-    value: text,
-    providerOptions: {
-      google: {
-        outputDimensionality: 768,
-        taskType: "RETRIEVAL_QUERY",
-      },
-    },
-  });
-
+  const key = text.trim().toLowerCase();
+  const cached = queryCache.get(key);
+  if (cached && cached.expires > Date.now()) return cached.value;
+  const [embedding] = await embedTexts([
+    `task: search result | query: ${text}`,
+  ]);
+  if (queryCache.size >= 128)
+    queryCache.delete(queryCache.keys().next().value!);
+  queryCache.set(key, { value: embedding, expires: Date.now() + 3_600_000 });
   return embedding;
 }
 
-/**
- * Find relevant content from the knowledge base
- */
 export async function findRelevantContent(
   query: string,
-  limit: number = 5,
-): Promise<
-  {
-    id: string;
-    content: string;
-    source: string;
-    similarity: number;
-  }[]
-> {
-  // Generate embedding for the query
-  const queryEmbedding = await generateEmbedding(query);
-  const embeddingStr = formatEmbedding(queryEmbedding);
-
-  // Perform similarity search using cosine distance
-  const result = await sql`
-    SELECT 
-      id,
-      content,
-      source,
-      1 - (embedding <=> ${embeddingStr}::vector) as similarity
-    FROM kb_documents
-    ORDER BY embedding <=> ${embeddingStr}::vector
-    LIMIT ${limit}
-  `;
-
-  return result.rows.map((row) => ({
-    id: String(row.id),
-    content: row.content as string,
-    source: row.source as string,
-    similarity: Number(row.similarity),
-  }));
+  limit = 4,
+  requireSemantic = false,
+) {
+  const current = getKnowledgeChunks();
+  try {
+    if (!process.env.POSTGRES_URL)
+      throw new Error("POSTGRES_URL is required for semantic retrieval");
+    const db = neon(process.env.POSTGRES_URL);
+    const queryEmbedding = await generateEmbedding(query);
+    const vector = `[${queryEmbedding.join(",")}]`;
+    // Exact project names and award aliases can be less reliable in dense
+    // retrieval. Blend rare-term matches with cosine distance over the same
+    // current database rows, without spending another model request.
+    const lexical = rankLexically(query, current)
+      .filter((chunk) => chunk.similarity > 0)
+      .slice(0, 12);
+    const maximum = lexical[0]?.similarity || 1;
+    const boosts = JSON.stringify(
+      Object.fromEntries(
+        lexical.map((chunk) => [chunk.id, chunk.similarity / maximum]),
+      ),
+    );
+    const rows = await db`
+      SELECT metadata->>'chunkId' AS id, source, content,
+        1 - (embedding <=> ${vector}::vector) AS similarity
+      FROM kb_documents
+      WHERE metadata->>'embeddingModel' = ${EMBEDDING_MODEL}
+        AND metadata->>'embeddingProfile' = ${EMBEDDING_PROFILE}
+        AND metadata->>'dimensions' = ${String(EMBEDDING_DIMENSIONS)}
+        AND metadata->>'sourceHash' = ${getKnowledgeHash(current)}
+      ORDER BY (1 - (embedding <=> ${vector}::vector)) +
+        0.4 * COALESCE((${boosts}::jsonb ->> (metadata->>'chunkId'))::double precision, 0) DESC
+      LIMIT ${Math.max(1, Math.min(12, limit))}`;
+    if (!rows.length)
+      throw new Error("Database index is stale; run pnpm kb:refresh");
+    return rows as {
+      id: string;
+      source: string;
+      content: string;
+      similarity: number;
+    }[];
+  } catch (error) {
+    if (requireSemantic) throw error;
+    // The small, curated corpus remains available if the inference host sleeps.
+    console.warn(
+      "Semantic retrieval unavailable; using keyword retrieval:",
+      error instanceof Error ? error.message : "unknown error",
+    );
+    return rankLexically(query, current)
+      .filter((chunk) => chunk.similarity > 0)
+      .slice(0, limit);
+  }
 }
 
-/**
- * Build context string from retrieved chunks
- */
 export function buildContext(
-  chunks: { content: string; source: string; similarity: number }[],
+  chunks: { content: string; source: string }[],
 ): string {
-  if (chunks.length === 0) {
-    return "";
-  }
-
   return chunks
-    .map((chunk, i) => {
-      const sourceLabel = chunk.source
-        .replace(/-/g, " ")
-        .replace(/\b\w/g, (l) => l.toUpperCase());
-      return `[Context ${i + 1} - From ${sourceLabel}]\n${chunk.content}`;
-    })
-    .join("\n\n");
+    .map((chunk) => `[${chunk.source}]\n${chunk.content}`)
+    .join("\n\n")
+    .slice(0, 5200);
 }

@@ -1,4 +1,4 @@
-import CertificateImage from "@/components/certificate-image";
+import { CertificateGallery } from "@/components/certificate-gallery";
 import { CustomCard } from "@/components/custom-card";
 import {
   GitHubContributions,
@@ -7,7 +7,7 @@ import {
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import Float from "@/components/fancy/blocks/float";
-import { ProjectCard } from "@/components/project-card";
+import { ProjectsBrowser } from "@/components/projects-browser";
 import { ResumeCard } from "@/components/resume-card";
 import { SectionHeader } from "@/components/section-header";
 import { ContributionCard } from "@/components/contribution-card";
@@ -70,23 +70,24 @@ export default function Page() {
           <h2 className="text-xl font-bold">About</h2>
         </BlurFade>
         <BlurFade delay={BLUR_FADE_DELAY * 4}>
-          <Markdown
-            className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert"
-            components={{
-              a: ({ href, children }) => (
-                <a
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="font-semibold text-blue-600 dark:text-blue-400 underline"
-                >
-                  {children}
-                </a>
-              ),
-            }}
-          >
-            {DATA.summary}
-          </Markdown>
+          <div className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert">
+            <Markdown
+              components={{
+                a: ({ href, children }) => (
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-blue-600 dark:text-blue-400 underline"
+                  >
+                    {children}
+                  </a>
+                ),
+              }}
+            >
+              {DATA.summary}
+            </Markdown>
+          </div>
         </BlurFade>
       </section>
       <section id="github-contributions">
@@ -204,38 +205,7 @@ export default function Page() {
             }
             delay={BLUR_FADE_DELAY * 11}
           />
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
-            {DATA.projects
-              .filter((project) => project.featured)
-              .map((project, id, featuredProjects) => {
-                const isLastOdd =
-                  featuredProjects.length % 2 === 1 &&
-                  id === featuredProjects.length - 1;
-
-                return (
-                  <BlurFade
-                    key={project.title}
-                    delay={BLUR_FADE_DELAY * 12 + id * 0.05}
-                    className={
-                      isLastOdd
-                        ? "sm:col-span-2 sm:mx-auto sm:w-[calc(50%_-_0.375rem)]"
-                        : ""
-                    }
-                  >
-                    <ProjectCard
-                      href={project.href}
-                      key={project.title}
-                      title={project.title}
-                      description={project.description}
-                      dates={project.dates}
-                      tags={project.technologies}
-                      image={"image" in project ? project.image : undefined}
-                      links={project.links}
-                    />
-                  </BlurFade>
-                );
-              })}
-          </div>
+          <ProjectsBrowser featuredOnly />
         </div>
       </section>
       <section id="open-source">
@@ -252,7 +222,7 @@ export default function Page() {
               <BlurFade delay={BLUR_FADE_DELAY * 12}>
                 <h3 className="text-lg font-semibold mb-2">Major</h3>
               </BlurFade>
-              <div className="grid gap-3">
+              <div className="grid gap-1.5">
                 {DATA.openSourceContributions
                   .filter((c) => c.type === "major")
                   .map((contribution, id) => (
@@ -275,7 +245,7 @@ export default function Page() {
               <BlurFade delay={BLUR_FADE_DELAY * 13}>
                 <h3 className="text-lg font-semibold mb-2">Minor</h3>
               </BlurFade>
-              <div className="grid gap-3">
+              <div className="grid gap-1.5">
                 {DATA.openSourceContributions
                   .filter((c) => c.type === "minor")
                   .map((contribution, id) => (
@@ -301,76 +271,10 @@ export default function Page() {
           <SectionHeader
             badge="Certifications"
             title="Self-Directed Learning"
-            description="I believe in continuous learning. Here are certifications and challenge completions from Harvard CS50 (including Puzzle Day and Ready Player 50) and freeCodeCamp."
+            description="Programs, competitions, and coursework in neuroscience, climate advocacy, AI security, and computer science. Select a card to view its certificate."
             delay={BLUR_FADE_DELAY * 9}
           />
-          <div className="space-y-8">
-            <div className="flex min-h-0 flex-col gap-y-3">
-              <BlurFade delay={BLUR_FADE_DELAY * 10}>
-                <h3 className="text-xl font-bold">
-                  Harvard CS50 Certifications
-                </h3>
-              </BlurFade>
-              <div className="grid grid-cols-2 gap-4">
-                {DATA.cs50_images.map((imageUrl, idx) => {
-                  const isLastElement =
-                    DATA.cs50_images.length % 2 === 1 &&
-                    idx === DATA.cs50_images.length - 1;
-
-                  return (
-                    <BlurFade
-                      key={imageUrl}
-                      delay={BLUR_FADE_DELAY * 11 + idx * 0.05}
-                      inView
-                      className={
-                        isLastElement ? "col-span-2 flex justify-center" : ""
-                      }
-                    >
-                      <div className={isLastElement ? "w-1/2" : ""}>
-                        <CertificateImage
-                          className="size-full object-contain hover:cursor-pointer py-2"
-                          src={imageUrl}
-                          alt={`CS50 Certificate ${idx + 1}`}
-                        />
-                      </div>
-                    </BlurFade>
-                  );
-                })}
-              </div>
-            </div>
-            <div className="flex min-h-0 flex-col gap-y-3">
-              <BlurFade delay={BLUR_FADE_DELAY * 10}>
-                <h3 className="text-xl font-bold">
-                  freeCodeCamp Professional Certifications
-                </h3>
-              </BlurFade>
-              <div className="gap-4 columns-2">
-                {DATA.fcc_images.map((imageUrl, idx) => {
-                  const isLastElement =
-                    DATA.fcc_images.length % 2 === 1 &&
-                    idx === DATA.fcc_images.length - 1;
-
-                  return (
-                    <BlurFade
-                      key={imageUrl}
-                      delay={BLUR_FADE_DELAY * 11 + idx * 0.05}
-                      inView
-                    >
-                      <div
-                        className={`${isLastElement ? "transform -translate-x-1/2" : ""}`}
-                      >
-                        <CertificateImage
-                          className="size-full object-contain hover:cursor-pointer py-2"
-                          src={imageUrl}
-                          alt={`freeCodeCamp Professional Certificate ${idx + 1}`}
-                        />
-                      </div>
-                    </BlurFade>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
+          <CertificateGallery />
         </div>
       </section>
       <section id="personalAchievements">

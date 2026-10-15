@@ -9,9 +9,9 @@ export const DATA = {
   location: "Lucknow, Uttar Pradesh, India",
   locationLink: "https://www.google.com/maps/place/lucknow",
   description:
-    "I'm a 16-year-old full-stack developer, aspiring researcher, technical writer, and CTO at Pilot.",
+    "I'm a researcher and developer working on neuro-symbolic and interpretable AI for healthcare, genomics, and space debris monitoring.",
   summary:
-    "I'm Arjun, a 16-year-old [full-stack developer](https://github.com/ArjunCodess) from India. I taught myself to code because I wanted to build stuff, and now I can't stop. I mostly work with Next.js and TypeScript, but I've also been getting into machine learning lately (built a [medical prediction model](https://huggingface.co/spaces/arjuncodess/men2-predictor) that won a national science fair). I write about what I'm learning on [DEV.to](https://dev.to/arjuncodess), which has been a great way to think through problems and help others along the way. Outside of coding, I'm [learning Spanish](https://www.duolingo.com/profile/ArjunCodess), solving [LeetCode problems](https://leetcode.com/ArjunCodess), and I [write about life](https://medium.com/@arjunwritess) on Medium.",
+    "I'm Arjun, a 16-year-old full-stack developer from India. I taught myself to code because I wanted to build stuff, and now I can't stop. I mostly work with Next.js and TypeScript, but I've also gotten into research: **NGTA was accepted at NeSy 2026 and GenAI4Health 2026, a NeurIPS 2026 workshop**. I also won **first prize at Xavier University's AI Vulnerability Challenge** and was selected for **YC Startup School India (8% acceptance rate)**. I write about what I'm learning on DEV.to, now with **35000+ followers and 420,000+ views**, which has been a great way to think through problems and help others along the way. Outside of coding, I write about life on Medium through **[\"chain reaction.\"](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9)** and **[\"to my love.\"](https://arjunwritess.medium.com/list/to-my-love-758949c73be0)**. I'm also **CTO at Pilot** and an **associate editor at Synthica**, so there's usually something to build or a paper to read.",
   avatarUrl: "/me.jpeg",
   skillGroups: [
     {
@@ -28,7 +28,7 @@ export const DATA = {
         "Tailwind CSS",
         "Drizzle ORM",
         "Better Auth",
-        "Shadcn/UI",
+        "shadcn/ui",
       ],
     },
     {
@@ -178,18 +178,18 @@ export const DATA = {
       start: "July 2025",
       end: "Present",
       description:
-        "Leading development of an AI-powered Instagram automation platform for creators. Architected full-stack application using Next.js, React, Node.js, PostgreSQL, Instagram API, and Gemini API. Building in public with transparent, open-source approach. [Live Website](https://pilot-ops.vercel.app/) | [GitHub](https://github.com/getpilot)",
+        "Leading development of [Pilot](https://pilot-ops.vercel.app/), an AI-powered Instagram automation platform for creators. Architected full-stack application using Next.js, React, Node.js, PostgreSQL, Instagram API, and Gemini API. Building in public with transparent, open-source approach. [Pilot on GitHub](https://github.com/getpilot)",
     },
     {
       company: "Technical Writer",
-      badges: ["$2,450 Earned", "35K Followers", "410K+ Views"],
+      badges: ["$2,450 Earned", "35000+ followers", "420K+ Views"],
       location: "Remote",
       title: "Freelance Technical Writer",
       logoUrl: "/devto.svg",
       start: "July 2025",
       end: "Present",
       description:
-        "Built a following of [35,000+ followers](https://dev.to/arjuncodess) and 410,000+ views on DEV.to. Earned $2,450 in total through technical writing, including $1,375 in 2025 alone—my first $1K earned as a 16-year-old. Won [$500 from Runner H AI Challenge](https://dev.to/devteam/congrats-to-the-runner-h-ai-agent-prompting-challenge-winners-3aap). Created educational content on web development, AI, and programming.",
+        "Built a following of 35000+ followers and 420,000+ views on [DEV.to](https://dev.to/arjuncodess). Earned $2,450 in total through technical writing, including $1,375 in 2025 alone—my first $1K earned as a 16-year-old. Won $500 in the [Runner H AI Challenge](https://dev.to/devteam/congrats-to-the-runner-h-ai-agent-prompting-challenge-winners-3aap). Created educational content on web development, AI, and programming.",
     },
   ],
   education: [
@@ -211,17 +211,95 @@ export const DATA = {
       start: "May 2026",
       end: "June 2026",
       description:
-        "Fully funded residential programme at Ashoka University run with the Lodha Foundation. On campus from May 16 to June 15, 2026, studying advanced science, math, and research with world-class faculty while collaborating with a highly selective cohort from across India. [Programme website](https://www.lodhageniusprogramme.com/).",
+        "Fully funded residential [Lodha Genius Programme](https://www.lodhageniusprogramme.com/) at Ashoka University run with the Lodha Foundation. On campus from May 16 to June 15, 2026, studying advanced science, math, and research with world-class faculty while collaborating with a highly selective cohort from across India.",
     },
   ],
   projects: [
+    {
+      title: "HYDRA-ccRCC",
+      href: "https://github.com/ArjunCodess/HYDRA-ccRCC",
+      dates: "2026",
+      active: true,
+      category: "Research",
+      featured: true,
+      description:
+        "**Planned submission to Bioinformatics Advances.** Reproducible ccRCC transcriptomics research that tests which gene associations survive external cohorts, clinical adjustment, and held-out evaluation. Reports the limits of prognostic claims alongside the evidence.",
+      technologies: ["R", "Transcriptomics", "Survival Analysis"],
+      links: [
+        {
+          type: "Source Code",
+          href: "https://github.com/ArjunCodess/HYDRA-ccRCC",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+    },
+    {
+      title: "PSYCON",
+      href: "https://github.com/ArjunCodess/PSYCON",
+      dates: "2026",
+      active: true,
+      category: "Research",
+      featured: false,
+      description:
+        "**Submitted to IRIS National Fair 2026-27.** Research prototype for studying communication in group discussions, combining speaker diarization, transcription, and a versioned behavioral rubric with evidence that reviewers can trace back to the recording.",
+      technologies: ["Python", "Diarization", "Behavioral Research"],
+      links: [
+        {
+          type: "Source Code",
+          href: "https://github.com/ArjunCodess/PSYCON",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+    },
+    {
+      title: "candlestick",
+      href: "https://candlestick-sh.vercel.app/",
+      dates: "2026",
+      active: true,
+      category: "Full stack",
+      featured: false,
+      description:
+        "Stock research app with watchlists, price-target alerts, daily email digests, and AI-assisted analysis alongside charts and company fundamentals.",
+      technologies: ["TypeScript", "AI", "Financial Data"],
+      links: [
+        {
+          type: "Source Code",
+          href: "https://github.com/ArjunCodess/candlestick",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+    },
+    {
+      title: "PRISM",
+      href: "https://github.com/ArjunCodess/PRISM",
+      dates: "2026",
+      active: true,
+      category: "Research",
+      featured: true,
+      description:
+        "**Submitted to Advances in Space Research.** Forecasts reported conjunction risk 48 hours before closest approach, using ESA event data and controlled simulations to evaluate forecasting accuracy and conformal uncertainty estimates. Includes an explainable interactive exhibit for exploring the original model predictions.",
+      technologies: [
+        "Python",
+        "FastAPI",
+        "Next.js",
+        "Conformal Prediction",
+        "Space Debris",
+      ],
+      links: [
+        {
+          type: "Source Code",
+          href: "https://github.com/ArjunCodess/PRISM",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+    },
     {
       title: "MEN2 Predictor",
       href: "https://huggingface.co/spaces/arjuncodess/men2-predictor",
       dates: "2025",
       active: true,
       category: "Research",
-      featured: true,
+      featured: false,
       description:
         "**INSEF Regional Fair Bronze Prize Winner.** Medical ML pipeline for predicting MEN2 syndrome. Achieves 97.20% accuracy with 100% sensitivity on real clinical data from 152 patients across 20 studies (24 RET variants).",
       technologies: [
@@ -254,7 +332,7 @@ export const DATA = {
       category: "Research",
       featured: true,
       description:
-        "Research project on NARS-guided transformer attention for clinical prediction under extreme missingness. Maps neural uncertainty into NARS truth values and feeds revised confidence back into Transformer attention.",
+        "**Accepted at [NeSy 2026](https://2026.nesyconf.org/call-for-papers/) and GenAI4Health 2026, a NeurIPS 2026 workshop.** NARS-guided Transformer attention for clinical prediction under extreme missingness, feeding revised symbolic confidence back into attention. NeSy plans primary proceedings in PMLR and a Neurosymbolic Artificial Intelligence journal special issue for invited extended versions.",
       technologies: [
         "Python",
         "Machine Learning",
@@ -280,7 +358,7 @@ export const DATA = {
       category: "Research",
       featured: true,
       description:
-        "Research project on mechanistic interpretability for nucleotide transformers. Tests whether genomic transformer circuits implement biological motif detectors using probes, QK/OV analysis, patching, and SAE feature search.",
+        "**Submitted to GLBIO 2027.** Research project on mechanistic interpretability for nucleotide transformers. Tests whether genomic transformer circuits implement biological motif detectors using probes, QK/OV analysis, patching, and SAE feature search.",
       technologies: [
         "Python",
         "Machine Learning",
@@ -303,7 +381,7 @@ export const DATA = {
       href: "https://getanalyzr.vercel.app",
       dates: "2024",
       active: true,
-      category: "Web",
+      category: "Full stack",
       featured: true,
       description:
         "**200+ Product Hunt upvotes, 31 GitHub stars.** Free, open-source analytics requiring just one line of code. Built-in Discord notifications and real-time tracking for any website.",
@@ -312,7 +390,7 @@ export const DATA = {
         "TypeScript",
         "Supabase",
         "Tailwind CSS",
-        "Shadcn/UI",
+        "shadcn/ui",
         "Analytics",
       ],
       links: [
@@ -334,8 +412,8 @@ export const DATA = {
       href: "https://webcrawlai.onrender.com/",
       dates: "2024",
       active: true,
-      category: "AI/ML",
-      featured: false,
+      category: "Full stack",
+      featured: true,
       description:
         "**119 GitHub stars.** AI-powered web scraping platform using Gemini AI. Handles dynamic content, CAPTCHAs, and provides clean JSON output.",
       technologies: [
@@ -367,7 +445,7 @@ export const DATA = {
       href: "https://chemistrycheck.vercel.app",
       dates: "2025",
       active: true,
-      category: "AI/ML",
+      category: "Full stack",
       featured: true,
       description:
         "AI-powered chat analysis tool with RAG chatbot. Upload WhatsApp, Telegram, or Instagram exports and chat with an AI that has full context of your conversation. Get insights into communication patterns, relationship dynamics, and potential red flags.",
@@ -399,7 +477,7 @@ export const DATA = {
       href: "https://flashreels.vercel.app",
       dates: "2025",
       active: true,
-      category: "AI/ML",
+      category: "Full stack",
       featured: true,
       description:
         "AI-powered video creation platform. Generate professional reels with just a topic — AI handles script, images, voiceover (Edge TTS), and captions (Deepgram) automatically using Remotion.",
@@ -433,7 +511,7 @@ export const DATA = {
       href: "https://audion-audio-cnn.vercel.app",
       dates: "2026",
       active: true,
-      category: "AI/ML",
+      category: "Full stack",
       featured: false,
       description:
         "ML-first audio classification project with a CNN training pipeline and Next.js inference visualizer. Upload audio and inspect predictions, waveforms, spectrograms, and convolutional feature maps.",
@@ -465,10 +543,10 @@ export const DATA = {
       href: "https://astroscope.streamlit.app/",
       dates: "2024",
       active: true,
-      category: "Data Science",
+      category: "Others",
       featured: false,
       description:
-        "**7 GitHub stars.** Interactive dashboard visualizing near-Earth asteroid data from NASA's NeoWs API. Shows asteroid sizes, velocities, miss distances, and hazard levels.",
+        "Interactive dashboard visualizing near-Earth asteroid data from NASA's NeoWs API. Shows asteroid sizes, velocities, miss distances, and hazard levels.",
       technologies: ["Python", "Streamlit", "NASA API", "Data Visualization"],
       links: [
         {
@@ -489,7 +567,7 @@ export const DATA = {
       href: "https://github.com/ArjunCodess/storyblok-mcp",
       dates: "2025",
       active: true,
-      category: "DevTools",
+      category: "Others",
       featured: false,
       description:
         "DEV.to Challenge Entry. Connect AI tools to Storyblok instantly — use natural language to manage your CMS. Built for the Storyblok Headless CMS Challenge.",
@@ -513,7 +591,7 @@ export const DATA = {
       href: "https://vendx-admin.vercel.app",
       dates: "2024",
       active: true,
-      category: "Web",
+      category: "Full stack",
       featured: false,
       description:
         "Full-stack e-commerce platform with admin dashboard and storefront. Manage products, categories, colors, sizes, and orders.",
@@ -523,7 +601,7 @@ export const DATA = {
         "Tailwind CSS",
         "Drizzle ORM",
         "Neon",
-        "Shadcn/UI",
+        "shadcn/ui",
         "Clerk",
         "E-commerce",
       ],
@@ -546,10 +624,10 @@ export const DATA = {
       href: "https://starfall-kit.vercel.app",
       dates: "2024",
       active: true,
-      category: "DevTools",
+      category: "Others",
       featured: false,
       description:
-        "**12 GitHub stars.** Neon-powered full-stack web application starter kit with Next.js, Tailwind CSS, Shadcn/UI, Drizzle ORM, and Clerk auth pre-configured.",
+        "**12 GitHub stars.** Neon-powered full-stack web application starter kit with Next.js, Tailwind CSS, shadcn/ui, Drizzle ORM, and Clerk auth pre-configured.",
       technologies: [
         "Next.js",
         "TypeScript",
@@ -578,7 +656,7 @@ export const DATA = {
       href: "https://typethelyrics.vercel.app",
       dates: "2024",
       active: true,
-      category: "Games",
+      category: "Others",
       featured: false,
       description:
         "Practice typing skills with synchronized Spotify lyrics. Tracks WPM and accuracy with a leaderboard system.",
@@ -604,7 +682,7 @@ export const DATA = {
       href: "https://mytbh.vercel.app/",
       dates: "2024",
       active: true,
-      category: "Web",
+      category: "Full stack",
       featured: false,
       description:
         "Anonymous Q&A app with AI-powered daily prompts. Friends can ask questions, reply publicly, create threads, and keep conversations going.",
@@ -636,7 +714,7 @@ export const DATA = {
       href: "https://www.youtube.com/watch?v=hjY9Ifs8L6U",
       dates: "2024",
       active: true,
-      category: "Games",
+      category: "Others",
       featured: false,
       description:
         "Python and Pygame-based interactive sorting algorithm visualizer. Watch Bubble Sort, Insertion Sort, Selection Sort, and Heap Sort in real-time.",
@@ -658,59 +736,76 @@ export const DATA = {
   ],
   personalAchievements: [
     {
+      title: "AI Vulnerability Challenge - Xavier University",
+      dates: "2026",
+      description:
+        "**First prize** at [Xavier University's AI Vulnerability Challenge](https://www.linkedin.com/feed/update/urn:li:activity:7510232515480145920/), with Saksham Yadav as Team Cipher Force. The competition drew 187 teams from 97 schools across 20 cities. Received an 11-inch iPad with the A16 chip and 128GB storage as the award.",
+    },
+    {
+      title: "FXB Climate Advocates Program",
+      dates: "Summer 2026",
+      description: "Attended the Summer 2026 FXB Climate Advocates Program.",
+    },
+    {
+      title: "IYNA Neuroscience 1 Capstone",
+      dates: "2026",
+      description:
+        "Completed IYNA's 2026 Neuroscience I capstone track, including a research project and a written research review. These research requirements distinguish the capstone from the participant track.",
+    },
+    {
       title: "INSEF Regional Fair (Online)",
       dates: "2025",
       description:
-        "[Bronze Prize Winner](https://insef.org/insef/INSEF_Regional_Fair_Online_2025_26_Results.htm) for MEN2 Predictor, a medical ML research project achieving 97.20% accuracy with 100% sensitivity in rare disease prediction.",
+        "Bronze prize for [MEN2 Predictor](https://insef.org/insef/INSEF_Regional_Fair_Online_2025_26_Results.htm), a medical ML research project achieving 97.20% accuracy with 100% sensitivity in rare disease prediction.",
     },
     {
       title: "Runner H AI Agent Prompting Challenge",
       dates: "2025",
       description:
-        "[Won $500](https://dev.to/devteam/congrats-to-the-runner-h-ai-agent-prompting-challenge-winners-3aap) in the DEV.to AI Agent Prompting Challenge for innovative use of AI tools.",
+        "Won $500 in the [DEV.to Runner H AI Agent Prompting Challenge](https://dev.to/devteam/congrats-to-the-runner-h-ai-agent-prompting-challenge-winners-3aap) for innovative use of AI tools.",
     },
     {
       title: "Invisible Wars - Xavier University",
       dates: "2025",
       description:
-        "Ranked [Top 25](https://www.xavier.edu/invisible-wars/) in the High School Cyber Defense Challenge.",
+        "Ranked Top 25 in [Invisible Wars: High School Cyber Defense Challenge](https://www.xavier.edu/invisible-wars/).",
     },
     {
       title: "HACKHAZARDS '25 Hackathon",
       dates: "2025",
       description:
-        "Certified [Top 100](https://devfolio.co/projects/nirvanaai-4093) for Nirvana AI project on Devfolio.",
+        "Certified Top 100 at HACKHAZARDS '25 for [Nirvana AI](https://devfolio.co/projects/nirvanaai-4093) on Devfolio.",
     },
     {
-      title: "Hit 35K+ Followers on DEV.to",
+      title: "Hit 35000+ followers on DEV.to",
       dates: "2025",
       description:
-        "Built a following of over [35,000](https://dev.to/arjuncodess) with 400,000+ views, sharing insights on coding, AI, and development.",
+        "Built a following of 35000+ followers on [DEV.to](https://dev.to/arjuncodess) with 420,000+ views, sharing insights on coding, AI, and development.",
     },
     {
       title: "YC Startup School India",
       dates: "2026",
       description:
-        "Confirmed attendee for YC Startup School India in Bangalore, selected to attend Y Combinator's India startup event.",
+        "Selected for and attended YC Startup School India in Bangalore, with an 8% acceptance rate.",
     },
     {
       title: "Lodha Genius - Ashoka University Programme",
       dates: "2026",
       description:
-        "Selected for the highly selective LG-AUP 2026 cohort at Ashoka University.",
+        'Attended the Lodha Genius Programme at Ashoka University and wrote ["chain reaction."](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9), a series about the experience.',
     },
     {
       title: "CS50 Achievements",
       dates: "2023 - 2025",
       description:
-        "Completed [CS50T](https://cs50.harvard.edu/certificates/ce13e906-e90f-4469-b1aa-ff24e88fa4be) and [CS50x](https://cs50.harvard.edu/certificates/0b5006d6-7765-4383-b72d-adc7067786c0) (Harvard's intro to technology and computer science). Gold certificates in [Puzzle Day 2024](https://cs50.harvard.edu/certificates/83f288c3-144d-45ae-9cfa-a20fadcaf82f) & [2025](https://cs50.harvard.edu/certificates/2f63e5e4-7c6d-48d5-9dbf-6af88fef95f6) (solved all problems). Completed [Ready Player 50](https://cs50.harvard.edu/certificates/784280e3-a410-4c61-af9a-20368a95e56f) (2023) - a prompt injection challenge.",
+        "Completed [CS50T](https://cs50.harvard.edu/certificates/ce13e906-e90f-4469-b1aa-ff24e88fa4be) and [CS50x](https://cs50.harvard.edu/certificates/0b5006d6-7765-4383-b72d-adc7067786c0) (Harvard's intro to technology and computer science). Gold certificates in [Puzzle Day 2024](https://cs50.harvard.edu/certificates/83f288c3-144d-45ae-9cfa-a20fadcaf82f) & [Puzzle Day 2025](https://cs50.harvard.edu/certificates/2f63e5e4-7c6d-48d5-9dbf-6af88fef95f6) (solved all problems). Completed [Ready Player 50](https://cs50.harvard.edu/certificates/784280e3-a410-4c61-af9a-20368a95e56f) (2023) - a prompt injection challenge.",
     },
   ],
   hobbiesInterests: [
     {
       title: "Competitive Programming",
       description:
-        "Solved [400+ LeetCode problems](https://leetcode.com/u/arjuncodess/) (265k rank). Practicing algorithmic thinking and problem-solving daily.",
+        "Solved 400+ problems on [LeetCode](https://leetcode.com/u/arjuncodess/) (265k rank). Stepped away from daily problem-solving after a 600-day streak.",
     },
     {
       title: "Love Coding",
@@ -720,17 +815,17 @@ export const DATA = {
     {
       title: "Technical Writing",
       description:
-        "Writing educational content on web development, AI, and programming. [35K followers on DEV.to](https://dev.to/arjuncodess) with 400K+ views.",
+        "Writing educational content on web development, AI, and programming. 35000+ followers on [DEV.to](https://dev.to/arjuncodess) with 420K+ views.",
     },
     {
       title: "Writing & Personal Essays",
       description:
-        "I write about life, feelings, and the questions I can't answer on my [Medium blog](https://medium.com/@arjunwritess). It's a mix of personal essays, reflections, free-verse poetry, and philosophical pieces. Won 2nd place in a writing competition with an entry published in an anthology.",
+        'I write about life, feelings, and the questions I can\'t answer on my [Medium blog](https://medium.com/@arjunwritess). My series include ["chain reaction."](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9), about the Lodha Genius Programme, and ["to my love."](https://arjunwritess.medium.com/list/to-my-love-758949c73be0), a new series. Won 2nd place in a writing competition with an entry published in an anthology.',
     },
     {
       title: "Language Learning",
       description:
-        "[500+ day Duolingo streak](https://www.duolingo.com/profile/ArjunCodess) learning Spanish. Consistent daily practice builds discipline.",
+        "Stopped daily [Spanish practice](https://www.duolingo.com/profile/ArjunCodess) after a 600-day streak.",
     },
     {
       title: "Electronics & Arduino",
@@ -740,9 +835,43 @@ export const DATA = {
   ],
   openSourceContributions: [
     {
+      title: "Grafana #133074",
+      description: "Keep equal-size points visible",
+      href: "https://github.com/grafana/grafana/pull/133074",
+      type: "major",
+      date: "Sep 2026",
+    },
+    {
+      title: "Grafana #133253",
+      description: "Unload nested plugins safely",
+      href: "https://github.com/grafana/grafana/pull/133253",
+      type: "major",
+      date: "Sep 2026",
+    },
+    {
+      title: "Tempo #7958",
+      description: "Report module failures correctly",
+      href: "https://github.com/grafana/tempo/pull/7958",
+      type: "major",
+      date: "Sep 2026",
+    },
+    {
+      title: "fish-shell #13009",
+      description: "Correct function query status",
+      href: "https://github.com/fish-shell/fish-shell/pull/13009",
+      type: "major",
+      date: "Sep 2026",
+    },
+    {
+      title: "Grafana #133075",
+      description: "Remove unused SVG assets",
+      href: "https://github.com/grafana/grafana/pull/133075",
+      type: "minor",
+      date: "Sep 2026",
+    },
+    {
       title: "Notesnook #8624",
-      description:
-        "Fixed toolbar item indentation when moving between groups + added comprehensive tests for the customize-toolbar component.",
+      description: "Fix toolbar group indentation",
       href: "https://github.com/streetwriters/notesnook/pull/8624",
       type: "major",
       date: "Feb 2026",
@@ -751,8 +880,7 @@ export const DATA = {
     },
     {
       title: "next-cloudinary #601",
-      description:
-        "Fixed CldVideoPlayer fullscreen object-cover issue where videos wouldn't properly fill the screen.",
+      description: "Fix fullscreen video sizing",
       href: "https://github.com/cloudinary-community/next-cloudinary/pull/601",
       type: "major",
       date: "Oct 2025",
@@ -761,8 +889,7 @@ export const DATA = {
     },
     {
       title: "next-cloudinary #602",
-      description:
-        "Fixed CldVideoPlayer route change issue in Next.js 15 App Router with proper lifecycle management.",
+      description: "Fix route-change lifecycle",
       href: "https://github.com/cloudinary-community/next-cloudinary/pull/602",
       type: "major",
       date: "Oct 2025",
@@ -771,8 +898,7 @@ export const DATA = {
     },
     {
       title: "Zero #2013",
-      description:
-        "Redesigned mail header layout with square buttons and enhanced spacing for better visual hierarchy.",
+      description: "Refine mail header layout",
       href: "https://github.com/Mail-0/Zero/pull/2013",
       type: "major",
       date: "Aug 2025",
@@ -781,8 +907,7 @@ export const DATA = {
     },
     {
       title: "terminal-catacomb-crawler #37",
-      description:
-        "Fixed level up UI input freeze and terminal mode handling issues.",
+      description: "Fix level-up input freeze",
       href: "https://github.com/CatacombCrawler/terminal-catacomb-crawler/pull/37",
       type: "minor",
       date: "Oct 2025",
@@ -791,8 +916,7 @@ export const DATA = {
     },
     {
       title: "tix-cli #56",
-      description:
-        "Added Textual-based TUI for interactive task management with keyboard navigation.",
+      description: "Add interactive task TUI",
       href: "https://github.com/TheDevOpsBlueprint/tix-cli/pull/56",
       type: "minor",
       date: "Oct 2025",
@@ -801,8 +925,7 @@ export const DATA = {
     },
     {
       title: "cvimprover-api #31",
-      description:
-        "Added comprehensive input sanitization for user data security (XSS, injection prevention).",
+      description: "Sanitize user input",
       href: "https://github.com/CVImprover/cvimprover-api/pull/31",
       type: "minor",
       date: "Oct 2025",
@@ -811,8 +934,7 @@ export const DATA = {
     },
     {
       title: "tix-cli #60",
-      description:
-        "Updated README with interactive TUI documentation and requirements.",
+      description: "Document the task TUI",
       href: "https://github.com/TheDevOpsBlueprint/tix-cli/pull/60",
       type: "minor",
       date: "Oct 2025",

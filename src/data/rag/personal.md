@@ -1,6 +1,7 @@
 # ArjunCodess - Complete RAG Knowledge Base
 
-> **Generated:** January 4, 2026
+> **Originally generated:** January 4, 2026
+> **Updated:** October 15, 2026. Preserve personal background and history when updating current facts.
 > This file contains personal bio, achievements, skills, interests, and context
 
 ---
@@ -20,7 +21,7 @@
 **Key Links:**
 
 - GitHub: https://github.com/ArjunCodess
-- DEV.to: https://dev.to/arjuncodess (35,000+ followers, 400,000+ views, Top Writer)
+- DEV.to: https://dev.to/arjuncodess (35000+ followers, 420,000+ views, Top Writer)
 - Portfolio: https://arjuncodess.is-a.dev/
 - X/Twitter: @arjuncodess
 - Medium: https://arjunwritess.medium.com/
@@ -41,8 +42,8 @@
 ### 2026 Milestones
 
 - Total lifetime technical writing earnings reached $2,450 USD
-- Confirmed attendee for YC Startup School India in Bangalore
-- Selected for the Lodha Genius-Ashoka University Programme (LG-AUP) 2026 cohort
+- Selected for and attended YC Startup School India in Bangalore (8% acceptance rate)
+- Attended the Lodha Genius-Ashoka University Programme (LG-AUP) 2026 cohort
 - Selected as Associate Editor, Computer Science for Synthica Journal after a competitive review process of 400+ applications, with 47 associate editors chosen across 8 categories
 - Became Vice President of HackSpace, the student-run technology club at City Montessori School
 
@@ -50,8 +51,8 @@
 
 **DEV.to:**
 
-- 35,000+ followers
-- 400,000+ views
+- 35000+ followers
+- 420,000+ views
 - Top Writer status
 - Regular technical content creator
 - High engagement on posts
@@ -172,18 +173,18 @@ Leading HackSpace, a student-run technology club at City Montessori School, focu
 
 **Lodha Genius-Ashoka University Programme (LG-AUP)**
 
-- Status: Selected for the 2026 cohort
+- Status: Attended the 2026 programme
 - Track: Science Track
 - Institution: Ashoka University
 - Significance: Highly selective academic enrichment programme
 
 **YC Startup School India**
 
-- Status: Confirmed attendee
+- Status: Attended
 - Organizer: Y Combinator
 - Event Date: April 18, 2026
 - Location: Electronic City, Bangalore
-- Significance: Selected to attend YC's first Startup School event in India
+- Significance: Selected to attend YC's first Startup School event in India, with an 8% acceptance rate. This is the event's selection rate, not the YC accelerator's acceptance rate.
 
 ### Harvard CS50 Series (2023-2025)
 
@@ -243,7 +244,7 @@ Leading HackSpace, a student-run technology club at City Montessori School, focu
 - React, Next.js (primary)
 - TypeScript (strong preference)
 - Tailwind CSS (UI styling)
-- Shadcn/ui, Lucide React (component libraries)
+- shadcn/ui, Lucide React (component libraries)
 
 **Backend:**
 
@@ -340,10 +341,35 @@ Leading HackSpace, a student-run technology club at City Montessori School, focu
 
 ### Other Skills
 
-- Technical writing (35K followers, strong communicator)
+- Technical writing (35000+ followers, strong communicator)
 - Open source contribution
 - Competitive programming (concepts)
 - UI/UX design thinking
 - API design
 
 ---
+
+## October 2026 Updates
+
+- Current research spans neuro-symbolic AI, mechanistic interpretability, computational genomics, medical AI, and space debris monitoring. NGTA combines neural prediction and symbolic reasoning for incomplete clinical data. MINTS studies genomic-transformer internals; HYDRA-ccRCC audits the reproducibility and prognostic evidence of kidney-cancer gene associations. PRISM studies explainable space-debris risk monitoring.
+
+- NGTA was accepted at NeSy 2026 and GenAI4Health 2026, a NeurIPS 2026 workshop.
+- NeSy 2026 plans its primary proceedings in Proceedings of Machine Learning Research (PMLR). Its accepted-paper authors will be invited to submit extended versions to a planned special issue of the Neurosymbolic Artificial Intelligence journal. This conference publication plan does not mean NGTA is already published in PMLR or accepted by the journal. Source: https://2026.nesyconf.org/call-for-papers/
+- MINTS was submitted to GLBIO 2027. This is a submission, not an acceptance.
+- HYDRA-ccRCC is planned for submission to Bioinformatics Advances. It has not been submitted or accepted there.
+- PRISM was submitted to Advances in Space Research. This is a submission, not an acceptance.
+- PSYCON was submitted to IRIS National Fair 2026-27. This is a submission, not a selection or award.
+- Won first prize in Xavier University's AI Vulnerability Challenge, Ohio, USA, with teammate Saksham Yadav. Received an 11-inch iPad with the A16 chip and 128GB storage as the award.
+- Attended the Summer 2026 FXB Climate Advocates Program.
+- Completed IYNA's 2026 Neuroscience I Capstone Track, which required a research project and a written research review. The participant track did not include these research requirements.
+- Wrote "chain reaction." about the Lodha Genius Programme: https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9
+- Started the "to my love." series: https://arjunwritess.medium.com/list/to-my-love-758949c73be0
+- Stopped daily LeetCode and Spanish practice after a 600-day streak. Earlier streak counts in the 2025 retrospective describe that historical period.
+
+**Challenge naming:** The official name is Hidden Prompt: National AI Vulnerability Challenge 2026. Use the shorter name "Xavier University's AI Vulnerability Challenge" in visitor-facing answers.
+
+### Hidden Prompt 2026 result sources
+
+- Arjun and Saksham Yadav competed as Team Cipher Force and won first prize at Xavier University's AI Vulnerability Challenge in 2026. The competition had 187 teams, 97 schools, and 20 cities, according to organizer Sandeep Bhalla. These are competition-wide figures, not counts of finalists.
+- Official result announcement: https://www.linkedin.com/feed/update/urn:li:activity:7510232515480145920/
+- Arjun's post sharing the team result: https://www.linkedin.com/feed/update/urn:li:activity:7509883352477392896/

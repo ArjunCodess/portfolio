@@ -37,3 +37,12 @@ next-env.d.ts
 
 # cache
 .cache
+
+# Python inference service
+__pycache__/
+.venv/
+
+# Atomic embedding generation
+src/data/embeddings.json.tmp
+
+src/data/rag/github-*.md.tmp

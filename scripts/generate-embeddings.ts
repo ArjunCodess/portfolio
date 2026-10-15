@@ -1,226 +1,112 @@
-/**
- * Generate Embeddings Script
- *
- * Reads KB files from src/data/rag/, chunks them, generates embeddings
- * using Vercel AI SDK with Google Gemini, and stores them in the database.
- *
- * Run with: pnpm tsx scripts/generate-embeddings.ts
- */
-
 import dotenv from "dotenv";
-dotenv.config({ path: ".env.local" });
+import fs from "node:fs/promises";
+import { setTimeout } from "node:timers/promises";
+import { replaceDatabaseEmbeddings } from "../src/lib/ai/vector-store";
+import { getKnowledgeChunks } from "../src/lib/ai/knowledge";
+import {
+  EMBEDDING_MODEL,
+  EMBEDDING_PROFILE,
+  EMBEDDING_DIMENSIONS,
+  embedTexts,
+  validateEmbedding,
+} from "../src/lib/ai/config";
 
-import fs from "fs";
-import path from "path";
-import { sql } from "@vercel/postgres";
-import { embedMany } from "ai";
-import { google } from "@ai-sdk/google";
-import { formatEmbedding } from "@/lib/utils";
-
-// Embedding model - Gemini gemini-embedding-2-preview (768 dimensions)
-const EMBEDDING_MODEL = "gemini-embedding-2-preview";
-
-interface Chunk {
-  content: string;
-  source: string;
-  metadata: {
-    chunkIndex: number;
-    wordCount: number;
-    section?: string;
-  };
-}
-
-interface EmbeddingResult {
-  chunk: Chunk;
-  embedding: number[];
-}
-
-/**
- * Read all KB files from src/data/rag
- */
-function readKBFiles(): { content: string; source: string }[] {
-  const ragDir = path.join(process.cwd(), "src/data/rag");
-  const files = fs.readdirSync(ragDir).filter((f) => f.endsWith(".md"));
-
-  return files.map((file) => {
-    const filePath = path.join(ragDir, file);
-    const content = fs.readFileSync(filePath, "utf-8");
-    const source = file.replace(".md", "");
-    return { content, source };
-  });
-}
-
-/**
- * Chunk text into smaller pieces with overlap
- * Target: 600-800 chars, 100 char overlap
- */
-function chunkText(text: string, source: string): Chunk[] {
-  const chunks: Chunk[] = [];
-
-  // Split by paragraphs first
-  const paragraphs = text.split(/\n\n+/);
-
-  let currentChunk = "";
-  let chunkIndex = 0;
-
-  for (const paragraph of paragraphs) {
-    const trimmedPara = paragraph.trim();
-    if (!trimmedPara) continue;
-
-    // If adding this paragraph would exceed target size, save current chunk
-    if (
-      currentChunk.length + trimmedPara.length > 800 &&
-      currentChunk.length > 300
-    ) {
-      chunks.push({
-        content: currentChunk.trim(),
-        source,
-        metadata: {
-          chunkIndex: chunkIndex++,
-          wordCount: currentChunk.split(/\s+/).length,
-        },
-      });
-
-      // Keep last 100 chars for overlap
-      const overlap = currentChunk.slice(-100);
-      currentChunk = overlap + "\n\n" + trimmedPara;
-    } else {
-      currentChunk += (currentChunk ? "\n\n" : "") + trimmedPara;
-    }
-  }
-
-  // Add remaining content
-  if (currentChunk.trim().length > 100) {
-    chunks.push({
-      content: currentChunk.trim(),
-      source,
-      metadata: {
-        chunkIndex: chunkIndex++,
-        wordCount: currentChunk.split(/\s+/).length,
-      },
-    });
-  }
-
-  return chunks;
-}
-
-/**
- * Generate embeddings for all chunks using Vercel AI SDK
- * Batches requests in groups of 100 to comply with Gemini API limits
- */
-async function generateEmbeddings(chunks: Chunk[]): Promise<EmbeddingResult[]> {
-  console.log(`⏳ Generating embeddings using Gemini ${EMBEDDING_MODEL}...`);
-
-  const results: EmbeddingResult[] = [];
-  const batchSize = 100; // Gemini API limit
-
-  for (let i = 0; i < chunks.length; i += batchSize) {
-    const batchChunks = chunks.slice(i, i + batchSize);
-    const texts = batchChunks.map((c) => c.content);
-
-    console.log(
-      `  Processing batch ${Math.floor(i / batchSize) + 1}/${Math.ceil(chunks.length / batchSize)} (${batchChunks.length} chunks)...`,
-    );
-
-    // Use embedMany for batch embedding
-    const { embeddings } = await embedMany({
-      model: google.embedding(EMBEDDING_MODEL),
-      values: texts,
-      providerOptions: {
-        google: {
-          outputDimensionality: 768,
-          taskType: "RETRIEVAL_DOCUMENT",
-        },
-      },
-    });
-
-    // Map embeddings back to chunks
-    for (let j = 0; j < batchChunks.length; j++) {
-      results.push({
-        chunk: batchChunks[j],
-        embedding: embeddings[j],
-      });
-    }
-  }
-
-  console.log(`Generated ${results.length} embeddings`);
-  return results;
-}
-
-/**
- * Store embeddings in database
- */
-async function storeEmbeddings(results: EmbeddingResult[]): Promise<void> {
-  console.log(`⏳ Storing ${results.length} embeddings to database...`);
-
-  // Clear existing data
-  await sql`DELETE FROM kb_documents`;
-  console.log("  Cleared existing data");
-
-  // Insert in batches
-  const batchSize = 50;
-  let inserted = 0;
-
-  for (let i = 0; i < results.length; i += batchSize) {
-    const batch = results.slice(i, i + batchSize);
-
-    for (const result of batch) {
-      const embeddingStr = formatEmbedding(result.embedding);
-
-      await sql`
-        INSERT INTO kb_documents (content, embedding, source, metadata)
-        VALUES (
-          ${result.chunk.content},
-          ${embeddingStr}::vector,
-          ${result.chunk.source},
-          ${JSON.stringify(result.chunk.metadata)}::jsonb
-        )
-      `;
-      inserted++;
-    }
-
-    console.log(`  Inserted ${inserted}/${results.length} rows`);
-  }
-
-  console.log(`✅ Successfully stored ${inserted} embeddings`);
-}
-
-/**
- * Main execution
- */
+dotenv.config({ path: ".env.local", quiet: true });
 async function main() {
-  console.log("🚀 Starting embedding generation with Vercel AI SDK...\n");
-
-  try {
-    // 1. Read KB files
-    console.log("📖 Reading KB files...");
-    const files = readKBFiles();
-    console.log(
-      `  Found ${files.length} files: ${files.map((f) => f.source).join(", ")}\n`,
-    );
-
-    // 2. Chunk documents
-    console.log("✂️ Chunking documents...");
-    const allChunks: Chunk[] = [];
-    for (const file of files) {
-      const chunks = chunkText(file.content, file.source);
-      allChunks.push(...chunks);
-      console.log(`  ${file.source}: ${chunks.length} chunks`);
+  const chunks = getKnowledgeChunks();
+  const existing = new Map<string, number[]>();
+  // The committed cache is complete; the ignored checkpoint holds partial progress.
+  for (const file of [
+    "src/data/embeddings.json",
+    ".cache/embedding-progress.json",
+  ]) {
+    if (process.argv.includes("--force")) break;
+    try {
+      const old = JSON.parse(await fs.readFile(file, "utf8"));
+      if (
+        old.model !== EMBEDDING_MODEL ||
+        old.profile !== EMBEDDING_PROFILE ||
+        old.dimensions !== EMBEDDING_DIMENSIONS
+      )
+        continue;
+      for (const chunk of old.chunks)
+        existing.set(
+          JSON.stringify([chunk.id, chunk.source, chunk.content]),
+          validateEmbedding(chunk.embedding),
+        );
+    } catch {
+      // A missing or invalid cache never prevents a fresh generation.
     }
-    console.log(`  Total: ${allChunks.length} chunks\n`);
-
-    // 3. Generate embeddings
-    const results = await generateEmbeddings(allChunks);
-    console.log(`\n✅ Generated ${results.length} embeddings\n`);
-
-    // 4. Store to database
-    await storeEmbeddings(results);
-
-    console.log("\n🎉 Embedding generation complete!");
-  } catch (error) {
-    console.error("❌ Error:", error);
-    process.exit(1);
   }
+  const perMinute = Number(process.env.EMBEDDING_REFRESH_RPM_LIMIT || "80");
+  if (!Number.isFinite(perMinute) || perMinute < 1 || perMinute > 100)
+    throw new Error("EMBEDDING_REFRESH_RPM_LIMIT must be between 1 and 100");
+  await fs.mkdir(".cache", { recursive: true });
+  const key = (c: { id: string; source: string; content: string }) =>
+    JSON.stringify([c.id, c.source, c.content]);
+  const changed = chunks.filter((c) => !existing.has(key(c)));
+  const batchSize = Math.min(8, Math.floor(perMinute));
+  for (let i = 0; i < changed.length; i += batchSize) {
+    const batch = changed.slice(i, i + batchSize);
+    const started = Date.now();
+    const vectors = await embedTexts(
+      batch.map((c) => `title: ${c.source} | text: ${c.content}`),
+      120_000,
+    );
+    batch.forEach((chunk, j) => existing.set(key(chunk), vectors[j]));
+    await fs.writeFile(
+      ".cache/embedding-progress.json.tmp",
+      JSON.stringify({
+        model: EMBEDDING_MODEL,
+        profile: EMBEDDING_PROFILE,
+        dimensions: EMBEDDING_DIMENSIONS,
+        chunks: chunks
+          .filter((chunk) => existing.has(key(chunk)))
+          .map((chunk) => ({ ...chunk, embedding: existing.get(key(chunk))! })),
+      }),
+    );
+    await fs.rename(
+      ".cache/embedding-progress.json.tmp",
+      ".cache/embedding-progress.json",
+    );
+    console.log(
+      `Embedded ${Math.min(i + batch.length, changed.length)}/${changed.length} changed chunks`,
+    );
+    // Google's batch endpoint counts each input against the per-minute allowance.
+    if (i + batch.length < changed.length)
+      await setTimeout(
+        Math.max(
+          0,
+          Math.ceil((batch.length * 60_000) / perMinute) -
+            (Date.now() - started),
+        ),
+      );
+  }
+  const indexed = chunks.map((chunk) => ({
+    ...chunk,
+    embedding: existing.get(key(chunk))!,
+  }));
+  const database = await replaceDatabaseEmbeddings(indexed);
+  console.log(
+    `Replaced all database embeddings: ${database.count} rows; corpus ${database.sourceHash}`,
+  );
+  // Write only after every embedding succeeds. Never delete the working index first.
+  await fs.writeFile(
+    "src/data/embeddings.json.tmp",
+    JSON.stringify({
+      model: EMBEDDING_MODEL,
+      profile: EMBEDDING_PROFILE,
+      dimensions: EMBEDDING_DIMENSIONS,
+      chunks: indexed,
+    }),
+  );
+  await fs.rename("src/data/embeddings.json.tmp", "src/data/embeddings.json");
+  await fs.rm(".cache/embedding-progress.json", { force: true });
+  console.log(
+    `Indexed ${indexed.length} curated chunks with ${EMBEDDING_MODEL}; embedded ${changed.length} changed chunks`,
+  );
 }
-
-main();
+main().catch((error) => {
+  console.error(error instanceof Error ? error.message : "Operation failed");
+  process.exitCode = 1;
+});

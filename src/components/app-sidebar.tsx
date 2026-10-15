@@ -15,11 +15,11 @@ import {
 import { Button } from "@/components/ui/button";
 
 const SUGGESTED_QUESTIONS = [
-  "Tell me about your MEN2 medical research.",
-  "What is Pilot Ops?",
-  "What did you earn in 2025?",
-  "What certifications do you have?",
-  "What's your tech stack?",
+  "Where was NGTA accepted?",
+  "What are MINTS and PRISM?",
+  "What did you win at Xavier?",
+  "What was Lodha Genius like?",
+  'What is "chain reaction." about?',
 ];
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -32,7 +32,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const isLoading = status === "streaming" || status === "submitted";
 
   const handleSendMessage = () => {
-    if (input.trim()) {
+    if (input.trim() && !isLoading) {
       sendMessage({ text: input });
       setInput("");
     }
@@ -93,10 +93,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                       <button
                         key={index}
                         onClick={() => handleSuggestedQuestion(question)}
-                        className="text-foreground/90 w-full text-left px-4 py-3 text-sm rounded-xl bg-muted border border-border flex items-center justify-between group transition-opacity hover:opacity-60"
+                        className="cursor-pointer text-foreground/90 w-full text-left px-4 py-3 text-sm rounded-xl bg-muted border border-border flex items-center justify-between group transition-opacity hover:opacity-60"
                       >
-                        <span>{question}</span>
-                        <ArrowRight className="h-4 w-4" />
+                        <span className="min-w-0 flex-1">{question}</span>
+                        <ArrowRight className="h-4 w-4 shrink-0" />
                       </button>
                     ))}
                   </div>
@@ -157,7 +157,8 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               {error && (
                 <div className="flex justify-center">
                   <div className="bg-destructive/10 text-destructive rounded-lg px-4 py-2 text-xs">
-                    Something went wrong. Please try again.
+                    {error.message ||
+                      "Chat is unavailable. Please try later or contact Arjun directly."}
                   </div>
                 </div>
               )}
