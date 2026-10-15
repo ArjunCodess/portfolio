@@ -1,12 +1,13 @@
 /* Portfolio styles only; the downloaded Aceternity renderer stays unchanged. */
 .cards {
   --certificate-space: 1rem;
-}
-.cards > :global(ul) {
-  max-width: none;
+  display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: stretch;
   gap: 1.25rem;
+}
+.cards > :global(ul) {
+  display: contents;
 }
 .cards > :global(ul) > div {
   height: 100%;
@@ -27,7 +28,7 @@
   outline: 2px solid hsl(var(--ring));
   outline-offset: 4px;
 }
-.cards > :global(ul) > div:last-child:nth-child(odd) {
+.cards > :global(ul:last-of-type:nth-of-type(odd)) > div {
   grid-column: 1 / -1;
   width: calc((100% - 1.25rem) / 2);
   justify-self: center;
@@ -188,12 +189,10 @@
 @media (max-width: 639px) {
   .cards {
     --certificate-space: 1rem;
-  }
-  .cards > :global(ul) {
     grid-template-columns: minmax(0, 1fr);
     gap: 1rem;
   }
-  .cards > :global(ul) > div:last-child:nth-child(odd) {
+  .cards > :global(ul:last-of-type:nth-of-type(odd)) > div {
     grid-column: auto;
     width: 100%;
   }

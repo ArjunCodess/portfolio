@@ -9,16 +9,21 @@ import styles from "./certificate-gallery.module.css";
 
 const groups = CERTIFICATE_GROUPS.map((group) => ({
   title: group.title,
-  Cards: createExpandableCards(
-    group.cards.map((card) => ({
-      ...card,
-      ctaText: <ExternalLink className="size-4" aria-hidden="true" />,
-      ctaLink: card.src,
-    })),
-  ),
+  // The upstream demo keys caption animations by description + useId().
+  // One stable instance per certificate keeps repeated captions independent.
+  cards: group.cards.map((card) => ({
+    title: card.title,
+    Card: createExpandableCards([
+      {
+        ...card,
+        ctaText: <ExternalLink className="size-4" aria-hidden="true" />,
+        ctaLink: card.src,
+      },
+    ]),
+  })),
 }));
 
-function CertificateGroup({ title, Cards }: (typeof groups)[number]) {
+function CertificateGroup({ title, cards }: (typeof groups)[number]) {
   const root = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const element = root.current!;
@@ -101,7 +106,9 @@ function CertificateGroup({ title, Cards }: (typeof groups)[number]) {
         data-certificate-cards
         onKeyDown={onKeyDown}
       >
-        <Cards />
+        {cards.map(({ title, Card }) => (
+          <Card key={title} />
+        ))}
       </div>
     </section>
   );
