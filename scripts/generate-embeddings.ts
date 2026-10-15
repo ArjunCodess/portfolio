@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import fs from "node:fs/promises";
+import { replaceDatabaseEmbeddings } from "../src/lib/ai/vector-store";
 import { getKnowledgeChunks } from "../src/lib/ai/knowledge";
 import {
   EMBEDDING_MODEL,
@@ -17,6 +18,7 @@ async function main() {
       await fs.readFile("src/data/embeddings.json", "utf8"),
     );
     if (
+      !process.argv.includes("--force") &&
       old.model === EMBEDDING_MODEL &&
       old.dimensions === EMBEDDING_DIMENSIONS
     ) {
@@ -47,6 +49,10 @@ async function main() {
     ...chunk,
     embedding: existing.get(key(chunk))!,
   }));
+  const database = await replaceDatabaseEmbeddings(indexed);
+  console.log(
+    `Replaced all database embeddings: ${database.count} rows; corpus ${database.sourceHash}`,
+  );
   // Write only after every embedding succeeds. Never delete the working index first.
   await fs.writeFile(
     "src/data/embeddings.json.tmp",

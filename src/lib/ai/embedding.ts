@@ -1,22 +1,11 @@
-import fs from "node:fs/promises";
-import path from "node:path";
-import {
-  EMBEDDING_MODEL,
-  EMBEDDING_DIMENSIONS,
-  embedTexts,
-  validateEmbedding,
-} from "./config";
+import { neon } from "@neondatabase/serverless";
+import { EMBEDDING_MODEL, EMBEDDING_DIMENSIONS, embedTexts } from "./config";
 import {
   getKnowledgeChunks,
   rankLexically,
-  type KnowledgeChunk,
+  getKnowledgeHash,
 } from "./knowledge";
 
-type Index = {
-  model: string;
-  dimensions: number;
-  chunks: (KnowledgeChunk & { embedding: number[] })[];
-};
 const queryCache = new Map<string, { value: number[]; expires: number }>();
 
 export async function generateEmbedding(text: string): Promise<number[]> {
@@ -32,43 +21,50 @@ export async function generateEmbedding(text: string): Promise<number[]> {
   return embedding;
 }
 
-export async function findRelevantContent(query: string, limit = 4) {
+export async function findRelevantContent(
+  query: string,
+  limit = 4,
+  requireSemantic = false,
+) {
   const current = getKnowledgeChunks();
   try {
-    const index: Index = JSON.parse(
-      await fs.readFile(
-        path.join(process.cwd(), "src/data/embeddings.json"),
-        "utf8",
+    if (!process.env.POSTGRES_URL)
+      throw new Error("POSTGRES_URL is required for semantic retrieval");
+    const db = neon(process.env.POSTGRES_URL);
+    const queryEmbedding = await generateEmbedding(query);
+    const vector = `[${queryEmbedding.join(",")}]`;
+    // Exact project names and award aliases can be less reliable in dense
+    // retrieval. Blend rare-term matches with cosine distance over the same
+    // current database rows, without spending another model request.
+    const lexical = rankLexically(query, current)
+      .filter((chunk) => chunk.similarity > 0)
+      .slice(0, 12);
+    const maximum = lexical[0]?.similarity || 1;
+    const boosts = JSON.stringify(
+      Object.fromEntries(
+        lexical.map((chunk) => [chunk.id, chunk.similarity / maximum]),
       ),
     );
-    if (
-      index.model !== EMBEDDING_MODEL ||
-      index.dimensions !== EMBEDDING_DIMENSIONS ||
-      JSON.stringify(
-        index.chunks.map(({ id, source, content }) => ({
-          id,
-          source,
-          content,
-        })),
-      ) !== JSON.stringify(current)
-    ) {
-      throw new Error("Embedding index is stale; run pnpm kb:generate");
-    }
-    const queryEmbedding = await generateEmbedding(query);
-    return index.chunks
-      .map((chunk) => {
-        const embedding = validateEmbedding(chunk.embedding);
-        return {
-          ...chunk,
-          similarity: embedding.reduce(
-            (sum, n, i) => sum + n * queryEmbedding[i],
-            0,
-          ),
-        };
-      })
-      .sort((a, b) => b.similarity - a.similarity)
-      .slice(0, limit);
+    const rows = await db`
+      SELECT metadata->>'chunkId' AS id, source, content,
+        1 - (embedding <=> ${vector}::vector) AS similarity
+      FROM kb_documents
+      WHERE metadata->>'embeddingModel' = ${EMBEDDING_MODEL}
+        AND metadata->>'dimensions' = ${String(EMBEDDING_DIMENSIONS)}
+        AND metadata->>'sourceHash' = ${getKnowledgeHash(current)}
+      ORDER BY (1 - (embedding <=> ${vector}::vector)) +
+        0.4 * COALESCE((${boosts}::jsonb ->> (metadata->>'chunkId'))::double precision, 0) DESC
+      LIMIT ${Math.max(1, Math.min(12, limit))}`;
+    if (!rows.length)
+      throw new Error("Database index is stale; run pnpm kb:refresh");
+    return rows as {
+      id: string;
+      source: string;
+      content: string;
+      similarity: number;
+    }[];
   } catch (error) {
+    if (requireSemantic) throw error;
     // The small, curated corpus remains available if the inference host sleeps.
     console.warn(
       "Semantic retrieval unavailable; using keyword retrieval:",

@@ -106,6 +106,15 @@ test("long knowledge paragraphs retain their final words", () => {
   assert.ok(pieces.every((piece) => piece.length <= 1400));
 });
 
+test("Markdown facts stay on the same chunk when a complete line fits", () => {
+  const fact = "- failed a subject (it's history)";
+  const chunks = chunkKnowledgeText(
+    `${"earlier details\n".repeat(65)}${fact}\nmore details`,
+    1000,
+  );
+  assert.ok(chunks.some((chunk) => chunk.includes(fact)));
+});
+
 test("chat validation rejects files, system instructions, oversized text, and assistant-ending histories", () => {
   const make = (role: string, parts: unknown[]) => ({
     messages: [{ id: "1", role, parts }],

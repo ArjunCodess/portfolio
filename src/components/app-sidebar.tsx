@@ -15,11 +15,11 @@ import {
 import { Button } from "@/components/ui/button";
 
 const SUGGESTED_QUESTIONS = [
-  "What is NGTA, and which conferences accepted it?",
-  "What are MINTS and PRISM researching?",
-  "What did you win at Xavier University's AI Vulnerability Challenge?",
-  "What did you learn at Lodha Genius and YC Startup School?",
-  "What are chain reaction and to my love about?",
+  "Where was NGTA accepted?",
+  "What are MINTS and PRISM?",
+  "What did you win at Xavier?",
+  "What was Lodha Genius like?",
+  'What is "chain reaction" about?',
 ];
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -93,10 +93,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                       <button
                         key={index}
                         onClick={() => handleSuggestedQuestion(question)}
-                        className="text-foreground/90 w-full text-left px-4 py-3 text-sm rounded-xl bg-muted border border-border flex items-center justify-between group transition-opacity hover:opacity-60"
+                        className="cursor-pointer text-foreground/90 w-full text-left px-4 py-3 text-sm rounded-xl bg-muted border border-border flex items-center justify-between group transition-opacity hover:opacity-60"
                       >
-                        <span>{question}</span>
-                        <ArrowRight className="h-4 w-4" />
+                        <span className="min-w-0 flex-1">{question}</span>
+                        <ArrowRight className="h-4 w-4 shrink-0" />
                       </button>
                     ))}
                   </div>

@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { ExpandableImage } from "@/components/expandable-image";
+import Image from "next/image";
 import Link from "next/link";
 import Markdown from "react-markdown";
 
@@ -58,12 +58,16 @@ export function ProjectCard({
       }
     >
       {image && (
-        <ExpandableImage
-          src={image}
-          title={`${title} preview`}
-          className="border-0 p-0"
-          hideCaption
-        />
+        <Link href={href || "#"} aria-label={`View ${title}`}>
+          <Image
+            src={image}
+            alt={title}
+            width={500}
+            height={300}
+            sizes="(max-width: 640px) 90vw, 340px"
+            className="h-40 w-full rounded-md border object-cover object-top"
+          />
+        </Link>
       )}
       <CardHeader className="p-2">
         <div className="space-y-1">

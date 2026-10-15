@@ -96,33 +96,47 @@ export function ProjectsBrowser({
       )}
 
       {visibleProjects.length > 0 ? (
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          {visibleProjects.map((project, id) => {
-            const isLastOdd =
-              visibleProjects.length % 2 === 1 &&
-              id === visibleProjects.length - 1;
-
-            return (
-              <BlurFade
-                key={project.title}
-                delay={BLUR_FADE_DELAY * 2 + id * 0.05}
-                className={
-                  isLastOdd
-                    ? "sm:col-span-2 sm:mx-auto sm:w-[calc(50%_-_0.375rem)]"
-                    : ""
-                }
-              >
-                <ProjectCard
-                  href={project.href}
-                  title={project.title}
-                  description={project.description}
-                  dates={project.dates}
-                  tags={project.technologies}
-                  image={"image" in project ? project.image : undefined}
-                  links={project.links}
-                />
-              </BlurFade>
+        <div className="space-y-3">
+          {[false, true].map((hasImage) => {
+            const rowProjects = visibleProjects.filter(
+              (project) =>
+                Boolean("image" in project && project.image) === hasImage,
             );
+            return rowProjects.length > 0 ? (
+              <div
+                key={String(hasImage)}
+                data-project-images={String(hasImage)}
+                className="grid grid-cols-1 gap-3 sm:grid-cols-2"
+              >
+                {rowProjects.map((project, id) => {
+                  const isLastOdd =
+                    rowProjects.length % 2 === 1 &&
+                    id === rowProjects.length - 1;
+
+                  return (
+                    <BlurFade
+                      key={project.title}
+                      delay={BLUR_FADE_DELAY * 2 + id * 0.05}
+                      className={
+                        isLastOdd
+                          ? "sm:col-span-2 sm:mx-auto sm:w-[calc(50%_-_0.375rem)]"
+                          : ""
+                      }
+                    >
+                      <ProjectCard
+                        href={project.href}
+                        title={project.title}
+                        description={project.description}
+                        dates={project.dates}
+                        tags={project.technologies}
+                        image={"image" in project ? project.image : undefined}
+                        links={project.links}
+                      />
+                    </BlurFade>
+                  );
+                })}
+              </div>
+            ) : null;
           })}
         </div>
       ) : (

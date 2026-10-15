@@ -1,0 +1,91 @@
+/* All portfolio-specific styling lives outside the downloaded Aceternity renderer. */
+.cards > :global(ul) {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.cards > :global(ul) > div {
+  height: 100%;
+  padding: 0.75rem;
+  border: 1px solid hsl(var(--border));
+  background: hsl(var(--card));
+}
+.cards > :global(ul) > div:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 4px;
+}
+.cards > :global(ul) > div:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  width: calc((100% - 1rem) / 2);
+  justify-self: center;
+}
+.cards > :global(ul) img {
+  height: 16rem;
+  width: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+.cards > :global(ul) :global(h3) {
+  color: hsl(var(--foreground));
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+.cards > :global(ul) :global(p) {
+  color: hsl(var(--muted-foreground));
+  font-size: 0.75rem;
+  line-height: 1.5;
+  margin-top: 0.25rem;
+}
+.cards :global(div.fixed.grid) {
+  padding: 1rem;
+}
+.cards :global(div.fixed.grid) > div {
+  height: auto;
+  width: 100%;
+  max-width: 34rem;
+  max-height: 90dvh;
+  overflow-y: auto;
+  border-radius: 1rem;
+  background: hsl(var(--background));
+}
+.cards :global(div.fixed.grid) > button {
+  display: flex;
+}
+.cards :global(div.fixed.grid) img {
+  height: min(14rem, 34dvh);
+  padding: 1rem;
+  object-fit: contain;
+  object-position: center;
+}
+.cards :global(div.fixed.grid) :global(h3) {
+  color: hsl(var(--foreground));
+}
+.cards :global(div.fixed.grid) :global(p) {
+  color: hsl(var(--muted-foreground));
+}
+.cards :global(div.fixed.grid) :global(a) {
+  flex-shrink: 0;
+  margin-left: 1rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  font-size: 0.75rem;
+}
+.cards :global([class*="mask:linear-gradient"]) {
+  height: auto;
+  overflow: visible;
+  padding-bottom: 1.5rem;
+  mask: none;
+}
+@media (max-width: 639px) {
+  .cards > :global(ul) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cards > :global(ul) > div:last-child:nth-child(odd) {
+    grid-column: auto;
+    width: 100%;
+  }
+  .cards > :global(ul) img {
+    height: 17rem;
+  }
+}

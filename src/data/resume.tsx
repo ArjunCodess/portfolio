@@ -11,7 +11,7 @@ export const DATA = {
   description:
     "I'm a student researcher, full-stack developer, and writer working on medical AI, genomic interpretability, and space monitoring.",
   summary:
-    "I'm Arjun Vijay Prakash, a 16-year-old researcher and developer from Lucknow, India. My work spans medical AI, mechanistic interpretability, and space monitoring. **NGTA was accepted at NeSy 2026 and GenAI4Health 2026, a NeurIPS 2026 workshop.** I've submitted MINTS to GLBIO 2027 and PRISM to Advances in Space Research. My earlier MEN2 prediction research won an INSEF bronze prize. I won **first prize at Xavier University's AI Vulnerability Challenge** with Saksham Yadav. I've attended YC Startup School India, the Lodha Genius Programme at Ashoka University, and the FXB Climate Advocates Program, and completed IYNA's Neuroscience 1 capstone track. Alongside research, I'm CTO at Pilot, an associate editor at Synthica, and a technical writer with [35,000+ followers on DEV.to](https://dev.to/arjuncodess). I also write personal essays on Medium, including [chain reaction](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9) and [to my love](https://arjunwritess.medium.com/list/to-my-love-758949c73be0).",
+    "I'm Arjun Vijay Prakash, a 16-year-old researcher and developer from Lucknow, India. My work spans medical AI, mechanistic interpretability, and space monitoring. **NGTA was accepted at NeSy 2026 and GenAI4Health 2026, a NeurIPS 2026 workshop.** I've submitted MINTS to GLBIO 2027 and PRISM to Advances in Space Research. My earlier MEN2 prediction research won an INSEF bronze prize. I won **first prize at Xavier University's AI Vulnerability Challenge**. I've attended YC Startup School India, the Lodha Genius Programme at Ashoka University, and the FXB Climate Advocates Program, and completed IYNA's Neuroscience I capstone track, including a research project and written research review. Alongside research, I'm CTO at Pilot, an associate editor at Synthica, and a technical writer with [35,000+ followers on DEV.to](https://dev.to/arjuncodess). I also write personal essays on Medium, including [\"chain reaction\"](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9) and [\"to my love about you\"](https://arjunwritess.medium.com/list/to-my-love-758949c73be0).",
   avatarUrl: "/me.jpeg",
   skillGroups: [
     {
@@ -216,6 +216,60 @@ export const DATA = {
   ],
   projects: [
     {
+      title: "HYDRA-ccRCC",
+      href: "https://github.com/ArjunCodess/HYDRA-ccRCC",
+      dates: "2026",
+      active: true,
+      category: "Research",
+      featured: true,
+      description:
+        "Reproducible ccRCC transcriptomics research that tests which gene associations survive external cohorts, clinical adjustment, and held-out evaluation. Reports the limits of prognostic claims alongside the evidence.",
+      technologies: ["R", "Transcriptomics", "Survival Analysis"],
+      links: [
+        {
+          type: "Source Code",
+          href: "https://github.com/ArjunCodess/HYDRA-ccRCC",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+    },
+    {
+      title: "PSYCON",
+      href: "https://github.com/ArjunCodess/PSYCON",
+      dates: "2026",
+      active: true,
+      category: "Research",
+      featured: false,
+      description:
+        "Research prototype for studying communication in group discussions, combining speaker diarization, transcription, and a versioned behavioral rubric with evidence that reviewers can trace back to the recording.",
+      technologies: ["Python", "Diarization", "Behavioral Research"],
+      links: [
+        {
+          type: "Source Code",
+          href: "https://github.com/ArjunCodess/PSYCON",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+    },
+    {
+      title: "candlestick",
+      href: "https://candlestick-sh.vercel.app/",
+      dates: "2026",
+      active: true,
+      category: "Full stack",
+      featured: false,
+      description:
+        "Stock research app with watchlists, price-target alerts, daily email digests, and AI-assisted analysis alongside charts and company fundamentals.",
+      technologies: ["TypeScript", "AI", "Financial Data"],
+      links: [
+        {
+          type: "Source Code",
+          href: "https://github.com/ArjunCodess/candlestick",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+    },
+    {
       title: "PRISM",
       href: "https://github.com/ArjunCodess/PRISM",
       dates: "2026",
@@ -239,7 +293,7 @@ export const DATA = {
       dates: "2025",
       active: true,
       category: "Research",
-      featured: true,
+      featured: false,
       description:
         "**INSEF Regional Fair Bronze Prize Winner.** Medical ML pipeline for predicting MEN2 syndrome. Achieves 97.20% accuracy with 100% sensitivity on real clinical data from 152 patients across 20 studies (24 RET variants).",
       technologies: [
@@ -353,7 +407,7 @@ export const DATA = {
       dates: "2024",
       active: true,
       category: "Full stack",
-      featured: false,
+      featured: true,
       description:
         "**119 GitHub stars.** AI-powered web scraping platform using Gemini AI. Handles dynamic content, CAPTCHAs, and provides clean JSON output.",
       technologies: [
@@ -689,7 +743,8 @@ export const DATA = {
     {
       title: "IYNA Neuroscience 1 Capstone",
       dates: "2026",
-      description: "Completed IYNA's 2026 Neuroscience 1 capstone track.",
+      description:
+        "Completed IYNA's 2026 Neuroscience I capstone track, including a research project and a written research review. These research requirements distinguish the capstone from the participant track.",
     },
     {
       title: "INSEF Regional Fair (Online)",
@@ -730,7 +785,7 @@ export const DATA = {
       title: "Lodha Genius - Ashoka University Programme",
       dates: "2026",
       description:
-        "Attended the Lodha Genius Programme at Ashoka University and wrote [chain reaction](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9), a series about the experience.",
+        'Attended the Lodha Genius Programme at Ashoka University and wrote ["chain reaction"](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9), a series about the experience.',
     },
     {
       title: "CS50 Achievements",
@@ -758,7 +813,7 @@ export const DATA = {
     {
       title: "Writing & Personal Essays",
       description:
-        "I write about life, feelings, and the questions I can't answer on my [Medium blog](https://medium.com/@arjunwritess). My series include [chain reaction](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9), about the Lodha Genius Programme, and [to my love](https://arjunwritess.medium.com/list/to-my-love-758949c73be0), a new series. Won 2nd place in a writing competition with an entry published in an anthology.",
+        'I write about life, feelings, and the questions I can\'t answer on my [Medium blog](https://medium.com/@arjunwritess). My series include ["chain reaction"](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9), about the Lodha Genius Programme, and ["to my love about you"](https://arjunwritess.medium.com/list/to-my-love-758949c73be0), a new series. Won 2nd place in a writing competition with an entry published in an anthology.',
     },
     {
       title: "Language Learning",

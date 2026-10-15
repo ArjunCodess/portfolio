@@ -1,10 +1,10 @@
 # Arjun Vijay Prakash's portfolio
 
-Next.js 16.4, React 19.3, TypeScript, Tailwind CSS 4, Motion, and AI SDK 7. The site includes categorized projects, compact open-source contributions, expandable certificate and project images adapted from [Aceternity UI](https://ui.aceternity.com/components/expandable-card), a guestbook, and a grounded chat assistant.
+Next.js 16.4, React 19.3, TypeScript, Tailwind CSS 4, Motion, and AI SDK 7. The site includes categorized projects, compact open-source contributions, expandable certificate cards adapted from [Aceternity UI](https://ui.aceternity.com/components/expandable-card), a guestbook, and a grounded chat assistant.
 
 ## Development
 
-Use Node.js 22 or newer and pnpm 11.1.1.
+Use Node.js 24 and pnpm 11.1.1. Dependency overrides and explicit build-script permissions are in `pnpm-workspace.yaml`, as required by pnpm 11.
 
 ```sh
 pnpm install
@@ -15,7 +15,7 @@ pnpm dev
 
 `POSTGRES_URL` uses Neon's serverless driver for the existing guestbook and the new chat budget table. The old Vercel Postgres driver is deprecated. `db:setup-chat` adds only the budget table and removes expired budget counters. Run it once per database before enabling chat, and during deployments to clean expired counters.
 
-## Content without GitHub fetch scripts
+## Portfolio and chat knowledge
 
 Edit `src/data/resume.tsx`. The website and current chat knowledge chunks both read this file. Additional Markdown in `src/data/rag/*.md` supplies the personal history, life writing, and detailed project/contribution context that does not fit on the website. Every Markdown file is included in both semantic and keyword retrieval; keep these files when updating the site. The GitHub activity graph still refreshes through its cached API. The 2025 wrapped document remains retrievable as a dated historical account. Project and contribution snapshots also retain their dates, so earlier statistics and habits are not presented as current facts.
 
@@ -46,7 +46,9 @@ pnpm kb:generate
 pnpm test:ai
 ```
 
-The generator reuses unchanged vectors and embeds changed curated chunks with document prefixes and atomically replaces `src/data/embeddings.json` after the whole batch succeeds. Commit the new index whenever the portfolio data changes. Queries use the matching search prefix. Retrieval validates model identity, dimensionality, finite values, and source freshness; it never compares vectors from different embedding models. No existing vector database rows are deleted or migrated.
+Run `pnpm kb:refresh -- --github-cli` to sync project READMEs, collect all website facts, certificate descriptions and RAG Markdown, then rebuild the database embeddings. Use `--local-only` to skip GitHub, or `--force` to regenerate every vector. Unchanged vectors are otherwise reused from `src/data/embeddings.json`, which is a generation cache. Every successful refresh deletes all `kb_documents` rows and inserts the complete new corpus in one transaction, after every vector has been generated and validated. Failed generation or a failed transaction preserves the previous database index.
+
+Runtime retrieval blends Postgres pgvector cosine distance with rare-term and exact-phrase matches, with model, dimensions, and corpus-hash checks. This helps preserve exact names and award aliases without another model call. Queries use the matching search prefix. Source changes require a refresh; stale or unavailable semantic retrieval falls back to current Markdown and website facts. Commit the cache after content updates, and run the refresh against the deployment database.
 
 For production, deploy the provided Docker service on a CPU host with persistent Hugging Face cache storage and set its HTTPS URL and token in Vercel. A continuously running host avoids model cold starts; hosting costs are separate from Gemini's free tier. Do not deploy a public unauthenticated model endpoint. Without the service, or while it sleeps, chat uses keyword retrieval over the same current facts. This fallback is logged and does not claim to use semantic search.
 
@@ -60,7 +62,7 @@ Postgres atomically reserves a persistent request budget before calling the mode
 
 ## Certificates and resume
 
-The three 2026 certificates are in `public/certificates`; the IYNA and Hidden Prompt PDFs have PNG previews. The cards support keyboard opening, Escape, outside-click dismissal, trapped focus, and reduced motion. Original files are retained.
+The three 2026 certificate previews are served from `public/certificates`, including PNG renders of the IYNA and Hidden Prompt certificates. The original Aceternity grid renderer is preserved in `src/components/vendor/aceternity`, with its downloaded source for comparison. A data adapter and an outer certificate wrapper provide portfolio styling and accessibility; projects use ordinary image links. The cards support keyboard opening, Escape, outside-click dismissal, trapped focus, and reduced motion.
 
 The resume source is `public/resume/main.tex`; the download button serves `public/resume/resume.pdf`. Compile the TeX source with a LaTeX installation and replace that PDF after resume changes. Build auxiliary files in `.cache`, not in the public directory.
 

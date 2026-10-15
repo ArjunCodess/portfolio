@@ -356,9 +356,9 @@ Leading HackSpace, a student-run technology club at City Montessori School, focu
 - PRISM was submitted to Advances in Space Research. This is a submission, not an acceptance.
 - Won first prize in Xavier University's AI Vulnerability Challenge, Ohio, USA, with teammate Saksham Yadav. Received an 11-inch iPad with the A16 chip and 128GB storage as the award.
 - Attended the Summer 2026 FXB Climate Advocates Program.
-- Completed IYNA's 2026 Neuroscience 1 Capstone Track.
-- Wrote chain reaction about the Lodha Genius Programme: https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9
-- Started the to my love series: https://arjunwritess.medium.com/list/to-my-love-758949c73be0
+- Completed IYNA's 2026 Neuroscience I Capstone Track, which required a research project and a written research review. The participant track did not include these research requirements.
+- Wrote "chain reaction" about the Lodha Genius Programme: https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9
+- Started the "to my love about you" series: https://arjunwritess.medium.com/list/to-my-love-758949c73be0
 - Stopped daily LeetCode and Spanish practice after a 600-day streak. Earlier streak counts in the 2025 retrospective describe that historical period.
 
 **Challenge naming:** The official name is Hidden Prompt: National AI Vulnerability Challenge 2026. Use the shorter name "Xavier University's AI Vulnerability Challenge" in visitor-facing answers.
