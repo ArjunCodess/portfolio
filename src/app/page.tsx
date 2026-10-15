@@ -1,5 +1,4 @@
-import { ExpandableImage } from "@/components/expandable-image";
-import CertificateImage from "@/components/certificate-image";
+import { CertificateGallery } from "@/components/certificate-gallery";
 import { CustomCard } from "@/components/custom-card";
 import {
   GitHubContributions,
@@ -275,88 +274,7 @@ export default function Page() {
             description="Programs, competitions, and coursework in neuroscience, climate advocacy, AI security, and computer science. Select a card to view its certificate."
             delay={BLUR_FADE_DELAY * 9}
           />
-          <div className="grid gap-3 sm:grid-cols-2">
-            <ExpandableImage
-              src="/certificates/fxb-2026.png"
-              title="FXB Climate Advocates"
-              description="Summer 2026"
-            />
-            <ExpandableImage
-              src="/certificates/iyna-2026.png"
-              title="IYNA Neuroscience 1 Capstone"
-              description="Completed in 2026"
-            />
-            <ExpandableImage
-              src="/certificates/hidden-prompt-2026.png"
-              title="Hidden Prompt: First prize"
-              description="Xavier University, 2026, with Saksham Yadav"
-            />
-          </div>
-          <div className="space-y-8">
-            <div className="flex min-h-0 flex-col gap-y-3">
-              <BlurFade delay={BLUR_FADE_DELAY * 10}>
-                <h3 className="text-xl font-bold">
-                  Harvard CS50 Certifications
-                </h3>
-              </BlurFade>
-              <div className="grid grid-cols-2 gap-4">
-                {DATA.cs50_images.map((imageUrl, idx) => {
-                  const isLastElement =
-                    DATA.cs50_images.length % 2 === 1 &&
-                    idx === DATA.cs50_images.length - 1;
-
-                  return (
-                    <BlurFade
-                      key={imageUrl}
-                      delay={BLUR_FADE_DELAY * 11 + idx * 0.05}
-                      inView
-                      className={
-                        isLastElement ? "col-span-2 flex justify-center" : ""
-                      }
-                    >
-                      <div className={isLastElement ? "w-1/2" : ""}>
-                        <CertificateImage
-                          src={imageUrl}
-                          alt={`CS50 Certificate ${idx + 1}`}
-                        />
-                      </div>
-                    </BlurFade>
-                  );
-                })}
-              </div>
-            </div>
-            <div className="flex min-h-0 flex-col gap-y-3">
-              <BlurFade delay={BLUR_FADE_DELAY * 10}>
-                <h3 className="text-xl font-bold">
-                  freeCodeCamp Professional Certifications
-                </h3>
-              </BlurFade>
-              <div className="gap-4 columns-2">
-                {DATA.fcc_images.map((imageUrl, idx) => {
-                  const isLastElement =
-                    DATA.fcc_images.length % 2 === 1 &&
-                    idx === DATA.fcc_images.length - 1;
-
-                  return (
-                    <BlurFade
-                      key={imageUrl}
-                      delay={BLUR_FADE_DELAY * 11 + idx * 0.05}
-                      inView
-                    >
-                      <div
-                        className={`${isLastElement ? "transform -translate-x-1/2" : ""}`}
-                      >
-                        <CertificateImage
-                          src={imageUrl}
-                          alt={`freeCodeCamp Professional Certificate ${idx + 1}`}
-                        />
-                      </div>
-                    </BlurFade>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
+          <CertificateGallery />
         </div>
       </section>
       <section id="personalAchievements">

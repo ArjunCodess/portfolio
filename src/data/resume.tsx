@@ -11,7 +11,7 @@ export const DATA = {
   description:
     "I'm a student researcher, full-stack developer, and writer working on medical AI, genomic interpretability, and space monitoring.",
   summary:
-    "I'm Arjun Vijay Prakash, a 16-year-old researcher and developer from Lucknow, India. My work spans medical AI, mechanistic interpretability, and space monitoring. **NGTA was accepted at NeSy 2026 and GenAI4Health 2026, a NeurIPS 2026 workshop.** I've submitted MINTS to GLBIO 2027 and PRISM to Advances in Space Research. My earlier MEN2 prediction research won an INSEF bronze prize.\n\nI won **first prize at Xavier University's Hidden Prompt: National AI Vulnerability Challenge 2026** with Saksham Yadav. I've attended YC Startup School India, the Lodha Genius Programme at Ashoka University, and the FXB Climate Advocates Program, and completed IYNA's Neuroscience 1 capstone track. Alongside research, I'm CTO at Pilot, an associate editor at Synthica, and a technical writer with [35,000+ followers on DEV.to](https://dev.to/arjuncodess). I also write personal essays on Medium, including [Chain Reaction](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9) and [To My Love](https://arjunwritess.medium.com/list/to-my-love-758949c73be0).",
+    "I'm Arjun Vijay Prakash, a 16-year-old researcher and developer from Lucknow, India. My work spans medical AI, mechanistic interpretability, and space monitoring. **NGTA was accepted at NeSy 2026 and GenAI4Health 2026, a NeurIPS 2026 workshop.** I've submitted MINTS to GLBIO 2027 and PRISM to Advances in Space Research. My earlier MEN2 prediction research won an INSEF bronze prize. I won **first prize at Xavier University's AI Vulnerability Challenge** with Saksham Yadav. I've attended YC Startup School India, the Lodha Genius Programme at Ashoka University, and the FXB Climate Advocates Program, and completed IYNA's Neuroscience 1 capstone track. Alongside research, I'm CTO at Pilot, an associate editor at Synthica, and a technical writer with [35,000+ followers on DEV.to](https://dev.to/arjuncodess). I also write personal essays on Medium, including [chain reaction](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9) and [to my love](https://arjunwritess.medium.com/list/to-my-love-758949c73be0).",
   avatarUrl: "/me.jpeg",
   skillGroups: [
     {
@@ -676,10 +676,10 @@ export const DATA = {
   ],
   personalAchievements: [
     {
-      title: "Hidden Prompt - Xavier University",
+      title: "AI Vulnerability Challenge - Xavier University",
       dates: "2026",
       description:
-        "**First prize** at Hidden Prompt: National AI Vulnerability Challenge 2026, Xavier University, Ohio, USA, with teammate Saksham Yadav. Received an 11-inch iPad with the A16 chip and 128GB storage as the award.",
+        "**First prize** at AI Vulnerability Challenge, Xavier University, Ohio, USA, with teammate Saksham Yadav. Received an 11-inch iPad with the A16 chip and 128GB storage as the award.",
     },
     {
       title: "FXB Climate Advocates Program",
@@ -730,7 +730,7 @@ export const DATA = {
       title: "Lodha Genius - Ashoka University Programme",
       dates: "2026",
       description:
-        "Attended the Lodha Genius Programme at Ashoka University and wrote [Chain Reaction](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9), a series about the experience.",
+        "Attended the Lodha Genius Programme at Ashoka University and wrote [chain reaction](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9), a series about the experience.",
     },
     {
       title: "CS50 Achievements",
@@ -758,7 +758,7 @@ export const DATA = {
     {
       title: "Writing & Personal Essays",
       description:
-        "I write about life, feelings, and the questions I can't answer on my [Medium blog](https://medium.com/@arjunwritess). My series include [Chain Reaction](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9), about the Lodha Genius Programme, and [To My Love](https://arjunwritess.medium.com/list/to-my-love-758949c73be0), a new series. Won 2nd place in a writing competition with an entry published in an anthology.",
+        "I write about life, feelings, and the questions I can't answer on my [Medium blog](https://medium.com/@arjunwritess). My series include [chain reaction](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9), about the Lodha Genius Programme, and [to my love](https://arjunwritess.medium.com/list/to-my-love-758949c73be0), a new series. Won 2nd place in a writing competition with an entry published in an anthology.",
     },
     {
       title: "Language Learning",

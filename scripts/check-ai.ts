@@ -20,7 +20,11 @@ async function main() {
   for (const [query, expected] of [
     ["Which conferences accepted NGTA?", "NGTA"],
     ["Where was MINTS submitted?", "MINTS"],
-    ["Who was Arjun's teammate in Hidden Prompt?", "Hidden Prompt"],
+    [
+      "Who was Arjun's teammate in Xavier University's AI Vulnerability Challenge?",
+      "Saksham Yadav",
+    ],
+    ["Who was Arjun's teammate in Hidden Prompt?", "Saksham Yadav"],
     ["What did Arjun write about Lodha Genius?", "Lodha"],
     ["Who is Pilot's CMO?", "Sai"],
     ["How many journal pages did Arjun write in 2025?", "39 journal pages"],

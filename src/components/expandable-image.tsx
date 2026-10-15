@@ -1,110 +1,185 @@
 "use client";
 
-// Adapted from Aceternity UI's expandable card. Radix adds focus trapping,
-// Escape, outside clicks, and focus restoration to the shared-layout animation.
+// Aceternity UI expandable card pattern: the card, image, title, and subtitle
+// share layout IDs between the grid and expanded states. Radix adds focus
+// trapping, Escape/outside dismissal, scroll locking, and focus restoration.
+// Reference: https://ui.aceternity.com/components/expandable-card
 import * as Dialog from "@radix-ui/react-dialog";
-import { motion, useReducedMotion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import Image from "next/image";
-import { useId } from "react";
-import { X, Maximize2 } from "lucide-react";
+import { useId, useState } from "react";
+import { Maximize2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+export type ExpandableImageProps = {
+  src: string;
+  title: string;
+  description?: string;
+  content?: string;
+  className?: string;
+  hideCaption?: boolean;
+};
 
 export function ExpandableImage({
   src,
   title,
   description,
+  content,
   className,
   hideCaption = false,
-}: {
-  src: string;
-  title: string;
-  description?: string;
-  className?: string;
-  hideCaption?: boolean;
-}) {
+}: ExpandableImageProps) {
+  const [open, setOpen] = useState(false);
   const id = useId();
   const reducedMotion = useReducedMotion();
+  const sharedId = (part: string) =>
+    reducedMotion ? undefined : `${part}-${id}`;
+  const transition = {
+    duration: reducedMotion ? 0 : 0.3,
+    ease: "easeInOut" as const,
+  };
+
   return (
-    <Dialog.Root>
+    <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
-        <button
+        <motion.button
+          layoutId={sharedId("card")}
+          transition={transition}
           type="button"
           aria-label={`Expand ${title}`}
           className={cn(
-            "group w-full rounded-lg border bg-card p-3 text-left transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-4",
+            "group flex h-full w-full flex-col rounded-xl border bg-card p-3 text-left transition-colors hover:bg-muted focus-visible:outline-2 focus-visible:outline-offset-4",
             className,
           )}
         >
-          <motion.div layoutId={reducedMotion ? undefined : `image-${id}`}>
+          <motion.div
+            layoutId={sharedId("image")}
+            transition={transition}
+            className="w-full"
+          >
             <Image
               src={src}
               alt={title}
               width={900}
               height={650}
-              sizes="(max-width: 640px) 90vw, 350px"
-              className="h-40 w-full rounded-md object-contain"
+              sizes="(max-width: 640px) 90vw, 340px"
+              className="h-36 w-full rounded-md object-contain"
             />
           </motion.div>
-          <span
+          <motion.span
+            layoutId={sharedId("title")}
+            transition={transition}
             className={cn(
               hideCaption
                 ? "sr-only"
-                : "mt-3 flex items-center justify-between gap-3 text-sm font-medium",
+                : "mt-3 flex w-full items-center justify-between gap-3 text-sm font-medium",
             )}
           >
             {title}
             <Maximize2
               aria-hidden="true"
-              className="size-3 text-muted-foreground"
+              className="size-3 shrink-0 text-muted-foreground"
             />
-          </span>
-          {description && (
-            <span className="mt-1 block text-xs text-muted-foreground">
-              {description}
-            </span>
-          )}
-        </button>
-      </Dialog.Trigger>
-      <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-[60] bg-black/70 backdrop-blur-sm" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 z-[60] max-h-[90dvh] w-[calc(100%-2rem)] max-w-4xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-xl border bg-background p-4 sm:p-6">
-          <div className="mb-4 flex items-start justify-between gap-4">
-            <div>
-              <Dialog.Title className="font-semibold">{title}</Dialog.Title>
-              <Dialog.Description className="mt-1 text-sm text-muted-foreground">
-                {description ||
-                  "Certificate preview. Open the original for full resolution."}
-              </Dialog.Description>
-            </div>
-            <Dialog.Close
-              className="rounded-md p-2 hover:bg-muted focus-visible:outline-2"
-              aria-label="Close image"
+          </motion.span>
+          {description && !hideCaption && (
+            <motion.span
+              layoutId={sharedId("description")}
+              transition={transition}
+              className="mt-1 block text-xs text-muted-foreground"
             >
-              <X className="size-5" />
-            </Dialog.Close>
-          </div>
-          <motion.div
-            layoutId={reducedMotion ? undefined : `image-${id}`}
-            transition={{ duration: 0.2 }}
-          >
-            <Image
-              src={src}
-              alt={title}
-              width={1600}
-              height={1150}
-              sizes="90vw"
-              className="max-h-[65dvh] w-full object-contain"
-            />
-          </motion.div>
-          <a
-            href={src}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-block text-sm underline underline-offset-4"
-          >
-            Open original image
-          </a>
-        </Dialog.Content>
+              {description}
+            </motion.span>
+          )}
+        </motion.button>
+      </Dialog.Trigger>
+      <Dialog.Portal forceMount>
+        <AnimatePresence>
+          {open && (
+            <div key="expanded" className="fixed inset-0 z-[60]">
+              <Dialog.Overlay forceMount asChild>
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={transition}
+                  className="absolute inset-0 bg-black/50"
+                />
+              </Dialog.Overlay>
+              <div className="pointer-events-none absolute inset-0 grid place-items-center p-4">
+                <Dialog.Content forceMount asChild>
+                  <motion.div
+                    layoutId={sharedId("card")}
+                    layoutRoot
+                    transition={transition}
+                    className="pointer-events-auto relative flex max-h-[90dvh] w-full max-w-lg flex-col overflow-y-auto rounded-xl border bg-background p-5 sm:p-6"
+                  >
+                    <Dialog.Close
+                      aria-label="Close image"
+                      className="absolute right-3 top-3 z-10 rounded-full bg-background p-2 text-muted-foreground hover:bg-muted hover:text-foreground focus-visible:outline-2"
+                    >
+                      <X className="size-4" />
+                    </Dialog.Close>
+                    <motion.div
+                      layoutId={sharedId("image")}
+                      transition={transition}
+                      className="mx-auto w-full max-w-sm"
+                    >
+                      <Image
+                        src={src}
+                        alt={title}
+                        width={900}
+                        height={650}
+                        sizes="(max-width: 480px) 80vw, 384px"
+                        className="h-44 w-full rounded-md object-contain sm:h-52"
+                      />
+                    </motion.div>
+                    <div className="mt-5 flex flex-col gap-1">
+                      <Dialog.Title asChild>
+                        <motion.h3
+                          layoutId={sharedId("title")}
+                          transition={transition}
+                          className="pr-4 text-base font-semibold"
+                        >
+                          {title}
+                        </motion.h3>
+                      </Dialog.Title>
+                      {description && (
+                        <motion.p
+                          layoutId={sharedId("description")}
+                          transition={transition}
+                          className="text-xs text-muted-foreground"
+                        >
+                          {description}
+                        </motion.p>
+                      )}
+                    </div>
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{
+                        ...transition,
+                        delay: reducedMotion ? 0 : 0.1,
+                      }}
+                    >
+                      <Dialog.Description className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                        {content ||
+                          "Project screenshot. Open the original image to view it at full resolution."}
+                      </Dialog.Description>
+                      <a
+                        href={src}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-5 inline-flex min-h-9 items-center rounded-md bg-primary px-3 text-xs font-medium text-primary-foreground focus-visible:outline-2 focus-visible:outline-offset-4"
+                      >
+                        Open original image
+                      </a>
+                    </motion.div>
+                  </motion.div>
+                </Dialog.Content>
+              </div>
+            </div>
+          )}
+        </AnimatePresence>
       </Dialog.Portal>
     </Dialog.Root>
   );

@@ -39,57 +39,61 @@ export function ProjectsBrowser({
 
   return (
     <div className="mx-auto max-w-[800px] space-y-6">
-      <div className="space-y-4">
-        <div className="space-y-2">
-          <div className="flex items-center justify-between gap-3">
-            <h2 className="text-sm font-semibold">Categories</h2>
-            <Button
-              type="button"
-              variant="ghost"
-              size="sm"
-              className={cn(
-                "h-7 px-2 text-xs",
-                hasFilters ? "" : "invisible pointer-events-none",
-              )}
-              onClick={() => setSelectedCategories([])}
-            >
-              Clear
-            </Button>
-          </div>
-          <div className="flex flex-wrap gap-1.5">
-            {categories.map((category) => {
-              const selected = selectedCategories.includes(category);
-
-              return (
+      {!featuredOnly && (
+        <>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <div className="flex items-center justify-between gap-3">
+                <h2 className="text-sm font-semibold">Categories</h2>
                 <Button
-                  key={category}
-                  aria-pressed={selected}
                   type="button"
+                  variant="ghost"
                   size="sm"
-                  variant="outline"
                   className={cn(
-                    "h-7 rounded-md border px-2 text-xs shadow-none transition-colors",
-                    selected
-                      ? "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground"
-                      : "bg-background",
+                    "h-7 px-2 text-xs",
+                    hasFilters ? "" : "invisible pointer-events-none",
                   )}
-                  onClick={() =>
-                    setSelectedCategories((current) =>
-                      toggleSelection(current, category),
-                    )
-                  }
+                  onClick={() => setSelectedCategories([])}
                 >
-                  {category}
+                  Clear
                 </Button>
-              );
-            })}
-          </div>
-        </div>
-      </div>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {categories.map((category) => {
+                  const selected = selectedCategories.includes(category);
 
-      <p className="text-sm text-muted-foreground">
-        Showing {visibleProjects.length} of {projects.length} projects
-      </p>
+                  return (
+                    <Button
+                      key={category}
+                      aria-pressed={selected}
+                      type="button"
+                      size="sm"
+                      variant="outline"
+                      className={cn(
+                        "h-7 rounded-md border px-2 text-xs shadow-none transition-colors",
+                        selected
+                          ? "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground"
+                          : "bg-background",
+                      )}
+                      onClick={() =>
+                        setSelectedCategories((current) =>
+                          toggleSelection(current, category),
+                        )
+                      }
+                    >
+                      {category}
+                    </Button>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          <p className="text-sm text-muted-foreground">
+            Showing {visibleProjects.length} of {projects.length} projects
+          </p>
+        </>
+      )}
 
       {visibleProjects.length > 0 ? (
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">

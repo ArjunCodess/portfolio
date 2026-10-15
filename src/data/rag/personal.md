@@ -354,9 +354,11 @@ Leading HackSpace, a student-run technology club at City Montessori School, focu
 - NGTA was accepted at NeSy 2026 and GenAI4Health 2026, a NeurIPS 2026 workshop.
 - MINTS was submitted to GLBIO 2027. This is a submission, not an acceptance.
 - PRISM was submitted to Advances in Space Research. This is a submission, not an acceptance.
-- Won first prize in Xavier University's Hidden Prompt: National AI Vulnerability Challenge 2026, Ohio, USA, with teammate Saksham Yadav. Received an 11-inch iPad with the A16 chip and 128GB storage as the award.
+- Won first prize in Xavier University's AI Vulnerability Challenge, Ohio, USA, with teammate Saksham Yadav. Received an 11-inch iPad with the A16 chip and 128GB storage as the award.
 - Attended the Summer 2026 FXB Climate Advocates Program.
 - Completed IYNA's 2026 Neuroscience 1 Capstone Track.
-- Wrote Chain Reaction about the Lodha Genius Programme: https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9
-- Started the To My Love series: https://arjunwritess.medium.com/list/to-my-love-758949c73be0
+- Wrote chain reaction about the Lodha Genius Programme: https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9
+- Started the to my love series: https://arjunwritess.medium.com/list/to-my-love-758949c73be0
 - Stopped daily LeetCode and Spanish practice after a 600-day streak. Earlier streak counts in the 2025 retrospective describe that historical period.
+
+**Challenge naming:** The official name is Hidden Prompt: National AI Vulnerability Challenge 2026. Use the shorter name "Xavier University's AI Vulnerability Challenge" in visitor-facing answers.

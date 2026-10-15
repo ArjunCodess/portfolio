@@ -17,9 +17,9 @@ import { Button } from "@/components/ui/button";
 const SUGGESTED_QUESTIONS = [
   "What is NGTA, and which conferences accepted it?",
   "What are MINTS and PRISM researching?",
-  "What did you win at Hidden Prompt with Saksham?",
+  "What did you win at Xavier University's AI Vulnerability Challenge?",
   "What did you learn at Lodha Genius and YC Startup School?",
-  "What are Chain Reaction and To My Love about?",
+  "What are chain reaction and to my love about?",
 ];
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
