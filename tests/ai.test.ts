@@ -115,6 +115,14 @@ test("Markdown facts stay on the same chunk when a complete line fits", () => {
   assert.ok(chunks.some((chunk) => chunk.includes(fact)));
 });
 
+test("Windows and Linux Markdown produce identical knowledge chunks", () => {
+  const content = `${"## Research\nA complete research detail.\n".repeat(80)}a final memory`;
+  assert.deepEqual(
+    chunkKnowledgeText(content.replace(/\n/g, "\r\n")),
+    chunkKnowledgeText(content),
+  );
+});
+
 test("chat validation rejects files, system instructions, oversized text, and assistant-ending histories", () => {
   const make = (role: string, parts: unknown[]) => ({
     messages: [{ id: "1", role, parts }],

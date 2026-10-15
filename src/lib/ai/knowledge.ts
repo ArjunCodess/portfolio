@@ -11,7 +11,9 @@ export function chunkKnowledgeText(
   maxLength = 1400,
 ): string[] {
   const chunks: string[] = [];
-  let rest = content.trim();
+  // Git uses CRLF on Windows and LF on Vercel. Normalize before chunking
+  // so the corpus hash and chunk boundaries match on both platforms.
+  let rest = content.replace(/\r\n?/g, "\n").trim();
   while (rest.length > maxLength) {
     const newline = rest.lastIndexOf("\n", maxLength);
     // Prefer complete Markdown lines so a short factual bullet isn't split
