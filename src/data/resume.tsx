@@ -178,7 +178,7 @@ export const DATA = {
       start: "July 2025",
       end: "Present",
       description:
-        "Leading development of an AI-powered Instagram automation platform for creators. Architected full-stack application using Next.js, React, Node.js, PostgreSQL, Instagram API, and Gemini API. Building in public with transparent, open-source approach. [Live Website](https://pilot-ops.vercel.app/) | [GitHub](https://github.com/getpilot)",
+        "Leading development of [Pilot](https://pilot-ops.vercel.app/), an AI-powered Instagram automation platform for creators. Architected full-stack application using Next.js, React, Node.js, PostgreSQL, Instagram API, and Gemini API. Building in public with transparent, open-source approach. [Pilot on GitHub](https://github.com/getpilot)",
     },
     {
       company: "Technical Writer",
@@ -189,7 +189,7 @@ export const DATA = {
       start: "July 2025",
       end: "Present",
       description:
-        "Built a following of [35000+ followers](https://dev.to/arjuncodess) and 420,000+ views on DEV.to. Earned $2,450 in total through technical writing, including $1,375 in 2025 alone—my first $1K earned as a 16-year-old. Won [$500 from Runner H AI Challenge](https://dev.to/devteam/congrats-to-the-runner-h-ai-agent-prompting-challenge-winners-3aap). Created educational content on web development, AI, and programming.",
+        "Built a following of 35000+ followers and 420,000+ views on [DEV.to](https://dev.to/arjuncodess). Earned $2,450 in total through technical writing, including $1,375 in 2025 alone—my first $1K earned as a 16-year-old. Won $500 in the [Runner H AI Challenge](https://dev.to/devteam/congrats-to-the-runner-h-ai-agent-prompting-challenge-winners-3aap). Created educational content on web development, AI, and programming.",
     },
   ],
   education: [
@@ -211,7 +211,7 @@ export const DATA = {
       start: "May 2026",
       end: "June 2026",
       description:
-        "Fully funded residential programme at Ashoka University run with the Lodha Foundation. On campus from May 16 to June 15, 2026, studying advanced science, math, and research with world-class faculty while collaborating with a highly selective cohort from across India. [Programme website](https://www.lodhageniusprogramme.com/).",
+        "Fully funded residential [Lodha Genius Programme](https://www.lodhageniusprogramme.com/) at Ashoka University run with the Lodha Foundation. On campus from May 16 to June 15, 2026, studying advanced science, math, and research with world-class faculty while collaborating with a highly selective cohort from across India.",
     },
   ],
   projects: [
@@ -332,7 +332,7 @@ export const DATA = {
       category: "Research",
       featured: true,
       description:
-        "**Accepted at NeSy 2026 and GenAI4Health 2026, a NeurIPS 2026 workshop.** Research project on NARS-guided transformer attention for clinical prediction under extreme missingness. Maps neural uncertainty into NARS truth values and feeds revised confidence back into Transformer attention.",
+        "**Accepted at [NeSy 2026](https://2026.nesyconf.org/call-for-papers/) and GenAI4Health 2026, a NeurIPS 2026 workshop.** NARS-guided Transformer attention for clinical prediction under extreme missingness, feeding revised symbolic confidence back into attention. NeSy plans primary proceedings in PMLR and a Neurosymbolic Artificial Intelligence journal special issue for invited extended versions.",
       technologies: [
         "Python",
         "Machine Learning",
@@ -739,7 +739,7 @@ export const DATA = {
       title: "AI Vulnerability Challenge - Xavier University",
       dates: "2026",
       description:
-        "**[First prize](https://www.linkedin.com/feed/update/urn:li:activity:7510232515480145920/)** at AI Vulnerability Challenge, Xavier University, with Saksham Yadav as Team Cipher Force. The competition drew 187 teams from 97 schools across 20 cities. Received an 11-inch iPad with the A16 chip and 128GB storage as the award.",
+        "**First prize** at [Xavier University's AI Vulnerability Challenge](https://www.linkedin.com/feed/update/urn:li:activity:7510232515480145920/), with Saksham Yadav as Team Cipher Force. The competition drew 187 teams from 97 schools across 20 cities. Received an 11-inch iPad with the A16 chip and 128GB storage as the award.",
     },
     {
       title: "FXB Climate Advocates Program",
@@ -756,31 +756,31 @@ export const DATA = {
       title: "INSEF Regional Fair (Online)",
       dates: "2025",
       description:
-        "[Bronze Prize Winner](https://insef.org/insef/INSEF_Regional_Fair_Online_2025_26_Results.htm) for MEN2 Predictor, a medical ML research project achieving 97.20% accuracy with 100% sensitivity in rare disease prediction.",
+        "Bronze prize for [MEN2 Predictor](https://insef.org/insef/INSEF_Regional_Fair_Online_2025_26_Results.htm), a medical ML research project achieving 97.20% accuracy with 100% sensitivity in rare disease prediction.",
     },
     {
       title: "Runner H AI Agent Prompting Challenge",
       dates: "2025",
       description:
-        "[Won $500](https://dev.to/devteam/congrats-to-the-runner-h-ai-agent-prompting-challenge-winners-3aap) in the DEV.to AI Agent Prompting Challenge for innovative use of AI tools.",
+        "Won $500 in the [DEV.to Runner H AI Agent Prompting Challenge](https://dev.to/devteam/congrats-to-the-runner-h-ai-agent-prompting-challenge-winners-3aap) for innovative use of AI tools.",
     },
     {
       title: "Invisible Wars - Xavier University",
       dates: "2025",
       description:
-        "Ranked [Top 25](https://www.xavier.edu/invisible-wars/) in the High School Cyber Defense Challenge.",
+        "Ranked Top 25 in [Invisible Wars: High School Cyber Defense Challenge](https://www.xavier.edu/invisible-wars/).",
     },
     {
       title: "HACKHAZARDS '25 Hackathon",
       dates: "2025",
       description:
-        "Certified [Top 100](https://devfolio.co/projects/nirvanaai-4093) for Nirvana AI project on Devfolio.",
+        "Certified Top 100 at HACKHAZARDS '25 for [Nirvana AI](https://devfolio.co/projects/nirvanaai-4093) on Devfolio.",
     },
     {
       title: "Hit 35000+ followers on DEV.to",
       dates: "2025",
       description:
-        "Built a following of [35000+ followers](https://dev.to/arjuncodess) with 420,000+ views, sharing insights on coding, AI, and development.",
+        "Built a following of 35000+ followers on [DEV.to](https://dev.to/arjuncodess) with 420,000+ views, sharing insights on coding, AI, and development.",
     },
     {
       title: "YC Startup School India",
@@ -798,14 +798,14 @@ export const DATA = {
       title: "CS50 Achievements",
       dates: "2023 - 2025",
       description:
-        "Completed [CS50T](https://cs50.harvard.edu/certificates/ce13e906-e90f-4469-b1aa-ff24e88fa4be) and [CS50x](https://cs50.harvard.edu/certificates/0b5006d6-7765-4383-b72d-adc7067786c0) (Harvard's intro to technology and computer science). Gold certificates in [Puzzle Day 2024](https://cs50.harvard.edu/certificates/83f288c3-144d-45ae-9cfa-a20fadcaf82f) & [2025](https://cs50.harvard.edu/certificates/2f63e5e4-7c6d-48d5-9dbf-6af88fef95f6) (solved all problems). Completed [Ready Player 50](https://cs50.harvard.edu/certificates/784280e3-a410-4c61-af9a-20368a95e56f) (2023) - a prompt injection challenge.",
+        "Completed [CS50T](https://cs50.harvard.edu/certificates/ce13e906-e90f-4469-b1aa-ff24e88fa4be) and [CS50x](https://cs50.harvard.edu/certificates/0b5006d6-7765-4383-b72d-adc7067786c0) (Harvard's intro to technology and computer science). Gold certificates in [Puzzle Day 2024](https://cs50.harvard.edu/certificates/83f288c3-144d-45ae-9cfa-a20fadcaf82f) & [Puzzle Day 2025](https://cs50.harvard.edu/certificates/2f63e5e4-7c6d-48d5-9dbf-6af88fef95f6) (solved all problems). Completed [Ready Player 50](https://cs50.harvard.edu/certificates/784280e3-a410-4c61-af9a-20368a95e56f) (2023) - a prompt injection challenge.",
     },
   ],
   hobbiesInterests: [
     {
       title: "Competitive Programming",
       description:
-        "Solved [400+ LeetCode problems](https://leetcode.com/u/arjuncodess/) (265k rank). Stepped away from daily problem-solving after a 600-day streak.",
+        "Solved 400+ problems on [LeetCode](https://leetcode.com/u/arjuncodess/) (265k rank). Stepped away from daily problem-solving after a 600-day streak.",
     },
     {
       title: "Love Coding",
@@ -815,7 +815,7 @@ export const DATA = {
     {
       title: "Technical Writing",
       description:
-        "Writing educational content on web development, AI, and programming. [35000+ followers on DEV.to](https://dev.to/arjuncodess) with 420K+ views.",
+        "Writing educational content on web development, AI, and programming. 35000+ followers on [DEV.to](https://dev.to/arjuncodess) with 420K+ views.",
     },
     {
       title: "Writing & Personal Essays",
@@ -825,7 +825,7 @@ export const DATA = {
     {
       title: "Language Learning",
       description:
-        "Stopped daily Spanish practice after a [600-day streak](https://www.duolingo.com/profile/ArjunCodess).",
+        "Stopped daily [Spanish practice](https://www.duolingo.com/profile/ArjunCodess) after a 600-day streak.",
     },
     {
       title: "Electronics & Arduino",

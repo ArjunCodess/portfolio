@@ -354,6 +354,7 @@ Leading HackSpace, a student-run technology club at City Montessori School, focu
 - Current research spans neuro-symbolic AI, mechanistic interpretability, computational genomics, medical AI, and space debris monitoring. NGTA combines neural prediction and symbolic reasoning for incomplete clinical data. MINTS studies genomic-transformer internals; HYDRA-ccRCC audits the reproducibility and prognostic evidence of kidney-cancer gene associations. PRISM studies explainable space-debris risk monitoring.
 
 - NGTA was accepted at NeSy 2026 and GenAI4Health 2026, a NeurIPS 2026 workshop.
+- NeSy 2026 plans its primary proceedings in Proceedings of Machine Learning Research (PMLR). Its accepted-paper authors will be invited to submit extended versions to a planned special issue of the Neurosymbolic Artificial Intelligence journal. This conference publication plan does not mean NGTA is already published in PMLR or accepted by the journal. Source: https://2026.nesyconf.org/call-for-papers/
 - MINTS was submitted to GLBIO 2027. This is a submission, not an acceptance.
 - HYDRA-ccRCC is planned for submission to Bioinformatics Advances. It has not been submitted or accepted there.
 - PRISM was submitted to Advances in Space Research. This is a submission, not an acceptance.
