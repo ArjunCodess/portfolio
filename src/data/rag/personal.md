@@ -357,6 +357,7 @@ Leading HackSpace, a student-run technology club at City Montessori School, focu
 - MINTS was submitted to GLBIO 2027. This is a submission, not an acceptance.
 - HYDRA-ccRCC is planned for submission to Bioinformatics Advances. It has not been submitted or accepted there.
 - PRISM was submitted to Advances in Space Research. This is a submission, not an acceptance.
+- PSYCON was submitted to IRIS National Fair 2026-27. This is a submission, not a selection or award.
 - Won first prize in Xavier University's AI Vulnerability Challenge, Ohio, USA, with teammate Saksham Yadav. Received an 11-inch iPad with the A16 chip and 128GB storage as the award.
 - Attended the Summer 2026 FXB Climate Advocates Program.
 - Completed IYNA's 2026 Neuroscience I Capstone Track, which required a research project and a written research review. The participant track did not include these research requirements.

@@ -241,7 +241,7 @@ export const DATA = {
       category: "Research",
       featured: false,
       description:
-        "Research prototype for studying communication in group discussions, combining speaker diarization, transcription, and a versioned behavioral rubric with evidence that reviewers can trace back to the recording.",
+        "**Submitted to IRIS National Fair 2026-27.** Research prototype for studying communication in group discussions, combining speaker diarization, transcription, and a versioned behavioral rubric with evidence that reviewers can trace back to the recording.",
       technologies: ["Python", "Diarization", "Behavioral Research"],
       links: [
         {
