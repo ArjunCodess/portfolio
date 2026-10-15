@@ -244,7 +244,7 @@ Leading HackSpace, a student-run technology club at City Montessori School, focu
 - React, Next.js (primary)
 - TypeScript (strong preference)
 - Tailwind CSS (UI styling)
-- Shadcn/ui, Lucide React (component libraries)
+- shadcn/ui, Lucide React (component libraries)
 
 **Backend:**
 

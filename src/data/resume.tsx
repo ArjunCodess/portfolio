@@ -28,7 +28,7 @@ export const DATA = {
         "Tailwind CSS",
         "Drizzle ORM",
         "Better Auth",
-        "Shadcn/UI",
+        "shadcn/ui",
       ],
     },
     {
@@ -384,7 +384,7 @@ export const DATA = {
         "TypeScript",
         "Supabase",
         "Tailwind CSS",
-        "Shadcn/UI",
+        "shadcn/ui",
         "Analytics",
       ],
       links: [
@@ -595,7 +595,7 @@ export const DATA = {
         "Tailwind CSS",
         "Drizzle ORM",
         "Neon",
-        "Shadcn/UI",
+        "shadcn/ui",
         "Clerk",
         "E-commerce",
       ],
@@ -621,7 +621,7 @@ export const DATA = {
       category: "Others",
       featured: false,
       description:
-        "**12 GitHub stars.** Neon-powered full-stack web application starter kit with Next.js, Tailwind CSS, Shadcn/UI, Drizzle ORM, and Clerk auth pre-configured.",
+        "**12 GitHub stars.** Neon-powered full-stack web application starter kit with Next.js, Tailwind CSS, shadcn/ui, Drizzle ORM, and Clerk auth pre-configured.",
       technologies: [
         "Next.js",
         "TypeScript",

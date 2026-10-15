@@ -2908,7 +2908,7 @@ A quick look at what Starfall offers:
 
 - **Next.js:** A powerful React framework that makes it easy to build SEO-friendly, fast web apps. Enables us to easily do server-side rendering and build static websites.
 - **Tailwind CSS:** A utility-first CSS framework for rapidly building custom designs.
-- **Shadcn/UI:** A kit of prebuilt UI components This is perfect for creating visually attractive user interfaces.
+- **shadcn/ui:** A kit of prebuilt UI components This is perfect for creating visually attractive user interfaces.
 - **Aceternity UI:** for other design elements that can make the overall application a little more aesthetically appealing.
 - **Neon:** A serverless PostgreSQL database. It’s easy to manage and scales as your app scales.
 - **Drizzle ORM:** An ORM (Object-Relational Mapping) tool that simplifies database operations, making it easier to interact with the database.
@@ -2931,7 +2931,7 @@ Starfall's architecture is built for growth.
 It uses best practices for organizing folders, designing components, and managing state. This helps keep your project easy to maintain as it expands. Security features are also built-in to keep your project safe.
 
 ### 3. **Beautifully Designed UI**
-Starfall makes your app look modern, thanks to Shadcn/UI and Aceternity UI.
+Starfall makes your app look modern, thanks to shadcn/ui and Aceternity UI.
    
 You can easily switch between dark and light modes. Plus, you can customize gradients and blur effects for a unique look.
 
@@ -3011,7 +3011,7 @@ Throughout this process, I learned how to integrate these tools effectively. It 
 
 Starfall is packed with features that streamline full-stack web development.
 
-The starter kit includes a complete full-stack to-do-list app with Next.js, Tailwind CSS, Shadcn/UI, Aceternity UI, Neon, Drizzle ORM, Clerk, and TypeScript.
+The starter kit includes a complete full-stack to-do-list app with Next.js, Tailwind CSS, shadcn/ui, Aceternity UI, Neon, Drizzle ORM, Clerk, and TypeScript.
 
 These tools work together to help you build fast, secure, and scalable applications quickly.
 

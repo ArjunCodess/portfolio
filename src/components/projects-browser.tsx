@@ -10,12 +10,6 @@ import { useState } from "react";
 
 const BLUR_FADE_DELAY = 0.04;
 
-function toggleSelection(values: string[], value: string) {
-  return values.includes(value)
-    ? values.filter((item) => item !== value)
-    : [...values, value];
-}
-
 export function ProjectsBrowser({
   featuredOnly = false,
 }: {
@@ -24,19 +18,17 @@ export function ProjectsBrowser({
   const projects = featuredOnly
     ? DATA.projects.filter((p) => p.featured)
     : DATA.projects;
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [order, setOrder] = useState<ProjectOrder>("name-asc");
 
   const categories = featuredOnly
     ? ["Full stack", "Research"]
     : ["Full stack", "Research", "Others"];
 
-  const hasFilters = selectedCategories.length > 0;
+  const hasFilters = selectedCategory !== null;
 
   const visibleProjects = hasFilters
-    ? projects.filter((project) =>
-        selectedCategories.includes(project.category),
-      )
+    ? projects.filter((project) => project.category === selectedCategory)
     : projects;
   const rows = arrangeProjectRows(visibleProjects, order);
 
@@ -67,7 +59,7 @@ export function ProjectsBrowser({
               </div>
               <div className="flex flex-wrap items-center gap-1.5">
                 {categories.map((category) => {
-                  const selected = selectedCategories.includes(category);
+                  const selected = selectedCategory === category;
                   return (
                     <Button
                       key={category}
@@ -82,8 +74,8 @@ export function ProjectsBrowser({
                           : "bg-background",
                       )}
                       onClick={() =>
-                        setSelectedCategories((current) =>
-                          toggleSelection(current, category),
+                        setSelectedCategory((current) =>
+                          current === category ? null : category,
                         )
                       }
                     >
@@ -99,7 +91,7 @@ export function ProjectsBrowser({
                     "h-7 px-2 text-xs",
                     hasFilters ? "" : "invisible pointer-events-none",
                   )}
-                  onClick={() => setSelectedCategories([])}
+                  onClick={() => setSelectedCategory(null)}
                 >
                   Clear
                 </Button>
