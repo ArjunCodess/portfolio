@@ -47,9 +47,9 @@ Runtime retrieval blends pgvector cosine distance with rare-term and exact-phras
 
 ## Free-tier chat
 
-The default is the `gemini-flash-lite-latest` alias, verified with a live request on October 15, 2026. The alias follows Google's latest Flash-Lite release; its underlying version and quotas may change. `GEMINI_CHAT_MODEL` can select another available model, such as `gemini-3.8-flash`, after checking its quota in AI Studio.
+The default is the `gemini-flash-latest` alias. The alias follows Google's latest Flash release; its underlying version and quotas may change. `GEMINI_CHAT_MODEL` can select another available model, such as `gemini-3.8-flash`, after checking its quota in AI Studio.
 
-Chat sends at most six recent messages, 5,200 characters of context, and 320 output tokens, with minimal thinking and no automatic provider retries. The server accepts text only, limits each message to 2,000 characters, and rejects oversized requests. Repeated standalone answers are cached for one hour per process; follow-up conversations are not shared. Query embeddings also have a bounded one-hour cache.
+Chat sends at most six recent messages, 5,200 characters of context, and a 2,048-token generation cap, with medium thinking and replies limited to 120 words. Provider requests are not automatically retried. The server accepts text only, limits each message to 2,000 characters, and rejects oversized requests. Repeated standalone answers are cached for one hour per process; follow-up conversations are not shared. Query embeddings also have a bounded one-hour cache.
 
 Postgres atomically reserves a persistent request budget before calling the model: five requests per visitor per minute, twenty per visitor per day, and defaults of eight requests per minute and one hundred per day across all instances. These are application limits, not a claim about Google's quota. Set `CHAT_RPM_LIMIT` and `CHAT_DAILY_LIMIT` below this project's actual available allowance, accounting for other apps using the same Google project. Failed requests consume a reservation to prevent retry storms. A missing budget table or unavailable database disables chat rather than allowing unmetered provider calls. Visitor keys hash the Vercel-provided IP with the current day. Cached answers consume no model request.
 

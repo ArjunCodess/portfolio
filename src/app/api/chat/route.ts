@@ -16,7 +16,7 @@ import {
 import { reserveChatBudget } from "@/lib/ai/chat-budget";
 
 export const runtime = "nodejs";
-export const maxDuration = 30;
+export const maxDuration = 60;
 const answers = new Map<string, { text: string; expires: number }>();
 
 function cachedResponse(text: string) {
@@ -81,11 +81,11 @@ export async function POST(req: Request) {
       model: google(CHAT_MODEL),
       system: portfolioSystemPrompt(context),
       messages: await convertToModelMessages(messages),
-      maxOutputTokens: 320,
+      maxOutputTokens: 2048,
       maxRetries: 0,
-      abortSignal: AbortSignal.any([req.signal, AbortSignal.timeout(25_000)]),
+      abortSignal: AbortSignal.any([req.signal, AbortSignal.timeout(50_000)]),
       providerOptions: {
-        google: { thinkingConfig: { thinkingLevel: "minimal" } },
+        google: { thinkingConfig: { thinkingLevel: "medium" } },
       },
       onFinish({ text, finishReason }) {
         if (key && text && finishReason === "stop") {

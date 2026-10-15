@@ -5,7 +5,7 @@ export const EMBEDDING_MODEL = "gemini-embedding-2";
 export const EMBEDDING_DIMENSIONS = 768;
 export const EMBEDDING_PROFILE = `${EMBEDDING_MODEL}:768:search-v1`;
 export const CHAT_MODEL =
-  process.env.GEMINI_CHAT_MODEL || "gemini-flash-lite-latest";
+  process.env.GEMINI_CHAT_MODEL || "gemini-flash-latest";
 
 export function validateEmbedding(value: unknown): number[] {
   if (
