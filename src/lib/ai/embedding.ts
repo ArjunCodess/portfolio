@@ -1,5 +1,10 @@
 import { neon } from "@neondatabase/serverless";
-import { EMBEDDING_MODEL, EMBEDDING_DIMENSIONS, embedTexts } from "./config";
+import {
+  EMBEDDING_MODEL,
+  EMBEDDING_DIMENSIONS,
+  EMBEDDING_PROFILE,
+  embedTexts,
+} from "./config";
 import {
   getKnowledgeChunks,
   rankLexically,
@@ -50,6 +55,7 @@ export async function findRelevantContent(
         1 - (embedding <=> ${vector}::vector) AS similarity
       FROM kb_documents
       WHERE metadata->>'embeddingModel' = ${EMBEDDING_MODEL}
+        AND metadata->>'embeddingProfile' = ${EMBEDDING_PROFILE}
         AND metadata->>'dimensions' = ${String(EMBEDDING_DIMENSIONS)}
         AND metadata->>'sourceHash' = ${getKnowledgeHash(current)}
       ORDER BY (1 - (embedding <=> ${vector}::vector)) +

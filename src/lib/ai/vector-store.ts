@@ -1,6 +1,7 @@
 import { neon } from "@neondatabase/serverless";
 import {
   EMBEDDING_MODEL,
+  EMBEDDING_PROFILE,
   EMBEDDING_DIMENSIONS,
   validateEmbedding,
 } from "./config";
@@ -24,6 +25,7 @@ export async function replaceDatabaseEmbeddings(chunks: IndexedChunk[]) {
     metadata: {
       chunkId: chunk.id,
       embeddingModel: EMBEDDING_MODEL,
+      embeddingProfile: EMBEDDING_PROFILE,
       dimensions: EMBEDDING_DIMENSIONS,
       sourceHash,
     },

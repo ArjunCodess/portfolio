@@ -15,6 +15,7 @@ import {
 } from "@/lib/ai/chat-policy";
 import { reserveChatBudget } from "@/lib/ai/chat-budget";
 
+export const runtime = "nodejs";
 export const maxDuration = 30;
 const answers = new Map<string, { text: string; expires: number }>();
 

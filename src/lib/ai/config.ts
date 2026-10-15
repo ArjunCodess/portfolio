@@ -1,5 +1,9 @@
-export const EMBEDDING_MODEL = "google/embeddinggemma-2";
+import { embedMany } from "ai";
+import { google } from "@ai-sdk/google";
+
+export const EMBEDDING_MODEL = "gemini-embedding-2";
 export const EMBEDDING_DIMENSIONS = 768;
+export const EMBEDDING_PROFILE = `${EMBEDDING_MODEL}:768:search-v1`;
 export const CHAT_MODEL =
   process.env.GEMINI_CHAT_MODEL || "gemini-flash-lite-latest";
 
@@ -10,7 +14,7 @@ export function validateEmbedding(value: unknown): number[] {
     !value.every((n) => typeof n === "number" && Number.isFinite(n))
   ) {
     throw new Error(
-      "Expected a finite 768-dimensional EmbeddingGemma 2 vector",
+      "Expected a finite 768-dimensional Gemini embedding vector",
     );
   }
   const norm = Math.hypot(...value);
@@ -22,28 +26,26 @@ export async function embedTexts(
   texts: string[],
   timeoutMs = 20_000,
 ): Promise<number[][]> {
-  const endpoint = process.env.EMBEDDING_SERVICE_URL;
-  if (!endpoint) throw new Error("EMBEDDING_SERVICE_URL is not configured");
-  const response = await fetch(`${endpoint.replace(/\/$/, "")}/embed`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      ...(process.env.EMBEDDING_SERVICE_TOKEN
-        ? { Authorization: `Bearer ${process.env.EMBEDDING_SERVICE_TOKEN}` }
-        : {}),
-    },
-    body: JSON.stringify({ model: EMBEDDING_MODEL, input: texts }),
-    signal: AbortSignal.timeout(timeoutMs),
-  });
-  if (!response.ok)
-    throw new Error(`Embedding service returned ${response.status}`);
-  const data = await response.json();
   if (
-    data.model !== EMBEDDING_MODEL ||
-    !Array.isArray(data.embeddings) ||
-    data.embeddings.length !== texts.length
-  ) {
-    throw new Error("Embedding service model or batch mismatch");
-  }
-  return data.embeddings.map(validateEmbedding);
+    !texts.length ||
+    texts.length > 8 ||
+    texts.some((text) => !text.trim() || text.length > 8000)
+  )
+    throw new Error(
+      "Expected 1 to 8 non-empty embedding inputs, each at most 8,000 characters",
+    );
+  if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY)
+    throw new Error("GOOGLE_GENERATIVE_AI_API_KEY is required for embeddings");
+  // Gemini Embedding 2 expects task prefixes in the text, not a taskType option.
+  const { embeddings } = await embedMany({
+    model: google.embedding(EMBEDDING_MODEL),
+    values: texts,
+    dimensions: EMBEDDING_DIMENSIONS,
+    maxRetries: 0,
+    maxParallelCalls: 1,
+    abortSignal: AbortSignal.timeout(timeoutMs),
+  });
+  if (embeddings.length !== texts.length)
+    throw new Error("Embedding batch mismatch");
+  return embeddings.map(validateEmbedding);
 }

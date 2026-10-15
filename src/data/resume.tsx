@@ -546,7 +546,7 @@ export const DATA = {
       category: "Others",
       featured: false,
       description:
-        "**7 GitHub stars.** Interactive dashboard visualizing near-Earth asteroid data from NASA's NeoWs API. Shows asteroid sizes, velocities, miss distances, and hazard levels.",
+        "Interactive dashboard visualizing near-Earth asteroid data from NASA's NeoWs API. Shows asteroid sizes, velocities, miss distances, and hazard levels.",
       technologies: ["Python", "Streamlit", "NASA API", "Data Visualization"],
       links: [
         {

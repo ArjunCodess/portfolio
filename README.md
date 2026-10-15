@@ -29,55 +29,21 @@ For a workflow with no GitHub REST API quota, copy the README from a local check
 
 For this portfolio, reviewed content in Git is the simplest option. Other options are a Sanity collection with a publish webhook that regenerates the index, or an authenticated admin form backed by Postgres. Both allow editing without a code commit, but add authentication and publishing infrastructure. Neither needs to scrape GitHub READMEs.
 
-## EmbeddingGemma 2
+## Embeddings through the Gemini API
 
-EmbeddingGemma 2 is an open model, separate from the Gemini API. `services/embeddings/app.py` runs `google/embeddinggemma-2` with Sentence Transformers, disables unnecessary audio/vision encoders, and produces normalized 768-dimensional vectors. Model weights stay out of the Next.js deployment.
-
-```sh
-python -m pip install -r services/embeddings/requirements.txt
-# Set EMBEDDING_SERVICE_TOKEN to a private shared secret in the service environment.
-python -m uvicorn app:app --app-dir services/embeddings --host 127.0.0.1 --port 8000
-```
-
-Set `EMBEDDING_SERVICE_URL=http://127.0.0.1:8000` and the same `EMBEDDING_SERVICE_TOKEN` in `.env.local`, then run:
+The Next.js backend calls `gemini-embedding-2` directly through the existing Google AI SDK provider, using `GOOGLE_GENERATIVE_AI_API_KEY`. Embeddings have 768 dimensions and are normalized before storage and retrieval. Python, local model weights, and a separate inference host are no longer needed. Remove `EMBEDDING_SERVICE_URL` and `EMBEDDING_SERVICE_TOKEN` from local and Vercel environments; they are no longer read.
 
 ```sh
 pnpm kb:generate
 ```
 
-Run `pnpm kb:refresh -- --github-cli` to sync project READMEs, collect all website facts, certificate descriptions and RAG Markdown, then rebuild the database embeddings. Use `--local-only` to skip GitHub, or `--force` to regenerate every vector. Unchanged vectors are otherwise reused from `src/data/embeddings.json`, which is a generation cache. Every successful refresh deletes all `kb_documents` rows and inserts the complete new corpus in one transaction, after every vector has been generated and validated. Failed generation or a failed transaction preserves the previous database index.
+Run `pnpm kb:refresh -- --github-cli` to sync project READMEs, collect website facts, certificate descriptions and RAG Markdown, then regenerate the database embeddings. Use `--local-only` to skip GitHub, or `--force` to regenerate every vector. Unchanged vectors are reused only when the model, dimensions, and retrieval profile match. `src/data/embeddings.json` stores this generation cache. No embedding generation runs during builds or ordinary page loads. Refreshes default to 80 texts per minute, including batched inputs; lower `EMBEDDING_REFRESH_RPM_LIMIT` if your project has less allowance. Partial progress is saved in `.cache/embedding-progress.json`, so rerunning after a quota reset resumes completed chunks. `--force` ignores both caches.
 
-Runtime retrieval blends Postgres pgvector cosine distance with rare-term and exact-phrase matches, with model, dimensions, and corpus-hash checks. This helps preserve exact names and award aliases without another model call. Queries use the matching search prefix. Source changes require a refresh; stale or unavailable semantic retrieval falls back to current Markdown and website facts. Commit the cache after content updates, and run the refresh against the deployment database.
+Each refresh generates and validates the complete corpus before deleting and replacing all `kb_documents` rows in one transaction. Failed generation or a failed transaction preserves the previous database index. Changing embedding models requires a full refresh; vectors from different models cannot be mixed even when their dimensions match.
 
-For production, deploy the provided Docker service on a CPU host with persistent Hugging Face cache storage and set its HTTPS URL and token in Vercel. A continuously running host avoids model cold starts; hosting costs are separate from Gemini's free tier. Do not deploy a public unauthenticated model endpoint. Without the service, or while it sleeps, chat uses keyword retrieval over the same current facts. This fallback is logged and does not claim to use semantic search.
+Runtime retrieval blends pgvector cosine distance with rare-term and exact-phrase matches, with model, profile, dimensions, and corpus-hash checks. Documents and queries use Google's recommended search prefixes. A bounded one-hour query cache avoids repeated embedding calls. Embedding API requests have timeouts and no automatic retries; quota errors or stale indexes fall back to keyword retrieval over the same current facts. The embedding API has its own quotas, separate from chat generation. Check this project's limits in AI Studio before refreshing a large corpus.
 
-## Environment variables for the embedding service
-
-| Variable | What to put there | Where it belongs |
-| --- | --- | --- |
-| `DEV_ALLOWED_ORIGINS` | Optional comma-separated development hostnames, such as `192.168.0.14,my-laptop.local`. Omit schemes, ports, and paths. Leave it empty for localhost. | Portfolio `.env.local` only; not needed on Vercel. |
-| `EMBEDDING_SERVICE_URL` | `http://127.0.0.1:8000` locally, or the actual HTTPS base URL of your deployed Python service. Do not append `/embed`. | Portfolio `.env.local` and Vercel environment variables. |
-| `EMBEDDING_SERVICE_TOKEN` | A random private shared password, not a Google API key. Use the exact same value on both servers, without `Bearer `. | Portfolio `.env.local`, Vercel, and the Python service environment. |
-
-Generate a token on your own machine:
-
-```sh
-python -c "import secrets; print(secrets.token_urlsafe(32))"
-```
-
-For local use, put that token and the localhost URL in the portfolio's `.env.local`. Start the Python service in another PowerShell terminal, from the repository root:
-
-```powershell
-python -m pip install -r services/embeddings/requirements.txt
-$env:EMBEDDING_SERVICE_TOKEN="paste-your-generated-token"
-python -m uvicorn app:app --app-dir services/embeddings --host 127.0.0.1 --port 8000
-```
-
-The Python process does not automatically read Next.js's `.env.local`, which is why its token must also be set in its own environment. The first start downloads the model weights and can take time. After `http://127.0.0.1:8000/health` responds, run `pnpm kb:refresh -- --local-only`, then restart the Next.js server after changing its environment.
-
-For production, deploy `services/embeddings/Dockerfile` on a separate host with enough memory for the model and persistent cache storage. That host provides the real service URL; there is no production embedding URL until this service is deployed. Set its token there, add the same token and the service's HTTPS URL to Vercel for the relevant Preview/Production environments, then redeploy the portfolio. The service exposes port 8000. Hosting requirements and costs are separate from Gemini's free tier.
-
-Do not use the portfolio's Vercel URL, a Google API URL, or `localhost` as the production embedding address. Vercel's `localhost` points to its own function, not your computer. Keep the token server-side, without a `NEXT_PUBLIC_` prefix. `GOOGLE_GENERATIVE_AI_API_KEY` still powers chat generation; these embedding settings only power semantic retrieval. If the service is unavailable, chat uses keyword retrieval. Let Next.js and Vercel manage `NODE_ENV` automatically.
+`DEV_ALLOWED_ORIGINS` remains optional and development-only. Use comma-separated hostnames such as `192.168.0.14,my-laptop.local`, without schemes or ports, if accessing the development server over your LAN. Leave it empty for localhost and omit it on Vercel. Let Next.js and Vercel manage `NODE_ENV` automatically.
 
 ## Free-tier chat
 
