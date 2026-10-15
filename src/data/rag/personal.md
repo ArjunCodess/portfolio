@@ -21,7 +21,7 @@
 **Key Links:**
 
 - GitHub: https://github.com/ArjunCodess
-- DEV.to: https://dev.to/arjuncodess (35,000+ followers, 420,000+ views, Top Writer)
+- DEV.to: https://dev.to/arjuncodess (35000+ followers, 420,000+ views, Top Writer)
 - Portfolio: https://arjuncodess.is-a.dev/
 - X/Twitter: @arjuncodess
 - Medium: https://arjunwritess.medium.com/
@@ -42,7 +42,7 @@
 ### 2026 Milestones
 
 - Total lifetime technical writing earnings reached $2,450 USD
-- Attended YC Startup School India in Bangalore
+- Selected for and attended YC Startup School India in Bangalore (8% acceptance rate)
 - Attended the Lodha Genius-Ashoka University Programme (LG-AUP) 2026 cohort
 - Selected as Associate Editor, Computer Science for Synthica Journal after a competitive review process of 400+ applications, with 47 associate editors chosen across 8 categories
 - Became Vice President of HackSpace, the student-run technology club at City Montessori School
@@ -51,7 +51,7 @@
 
 **DEV.to:**
 
-- 35,000+ followers
+- 35000+ followers
 - 420,000+ views
 - Top Writer status
 - Regular technical content creator
@@ -184,7 +184,7 @@ Leading HackSpace, a student-run technology club at City Montessori School, focu
 - Organizer: Y Combinator
 - Event Date: April 18, 2026
 - Location: Electronic City, Bangalore
-- Significance: Selected to attend YC's first Startup School event in India
+- Significance: Selected to attend YC's first Startup School event in India, with an 8% acceptance rate. This is the event's selection rate, not the YC accelerator's acceptance rate.
 
 ### Harvard CS50 Series (2023-2025)
 
@@ -341,7 +341,7 @@ Leading HackSpace, a student-run technology club at City Montessori School, focu
 
 ### Other Skills
 
-- Technical writing (35K followers, strong communicator)
+- Technical writing (35000+ followers, strong communicator)
 - Open source contribution
 - Competitive programming (concepts)
 - UI/UX design thinking
@@ -366,3 +366,9 @@ Leading HackSpace, a student-run technology club at City Montessori School, focu
 - Stopped daily LeetCode and Spanish practice after a 600-day streak. Earlier streak counts in the 2025 retrospective describe that historical period.
 
 **Challenge naming:** The official name is Hidden Prompt: National AI Vulnerability Challenge 2026. Use the shorter name "Xavier University's AI Vulnerability Challenge" in visitor-facing answers.
+
+### Hidden Prompt 2026 result sources
+
+- Arjun and Saksham Yadav competed as Team Cipher Force and won first prize at Xavier University's AI Vulnerability Challenge in 2026. The competition had 187 teams, 97 schools, and 20 cities, according to organizer Sandeep Bhalla. These are competition-wide figures, not counts of finalists.
+- Official result announcement: https://www.linkedin.com/feed/update/urn:li:activity:7510232515480145920/
+- Arjun's post sharing the team result: https://www.linkedin.com/feed/update/urn:li:activity:7509883352477392896/

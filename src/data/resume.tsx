@@ -11,7 +11,7 @@ export const DATA = {
   description:
     "I'm a researcher and developer working on neuro-symbolic and interpretable AI for healthcare, genomics, and space debris monitoring.",
   summary:
-    "I'm Arjun, a 16-year-old full-stack developer from India. I taught myself to code because I wanted to build stuff, and now I can't stop. I mostly work with Next.js and TypeScript, but I've also gotten into research: **NGTA was accepted at NeSy 2026 and GenAI4Health 2026, a NeurIPS 2026 workshop**. I also won **first prize at Xavier University's AI Vulnerability Challenge**. I write about what I'm learning on DEV.to, now with **35,000+ followers and 420,000+ views**, which has been a great way to think through problems and help others along the way. Outside of coding, I write about life on Medium through **[\"chain reaction.\"](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9)** and **[\"to my love.\"](https://arjunwritess.medium.com/list/to-my-love-758949c73be0)**. I'm also **CTO at Pilot** and an **associate editor at Synthica**, so there's usually something to build or a paper to read.",
+    "I'm Arjun, a 16-year-old full-stack developer from India. I taught myself to code because I wanted to build stuff, and now I can't stop. I mostly work with Next.js and TypeScript, but I've also gotten into research: **NGTA was accepted at NeSy 2026 and GenAI4Health 2026, a NeurIPS 2026 workshop**. I also won **first prize at Xavier University's AI Vulnerability Challenge** and was selected for **YC Startup School India (8% acceptance rate)**. I write about what I'm learning on DEV.to, now with **35000+ followers and 420,000+ views**, which has been a great way to think through problems and help others along the way. Outside of coding, I write about life on Medium through **[\"chain reaction.\"](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9)** and **[\"to my love.\"](https://arjunwritess.medium.com/list/to-my-love-758949c73be0)**. I'm also **CTO at Pilot** and an **associate editor at Synthica**, so there's usually something to build or a paper to read.",
   avatarUrl: "/me.jpeg",
   skillGroups: [
     {
@@ -182,14 +182,14 @@ export const DATA = {
     },
     {
       company: "Technical Writer",
-      badges: ["$2,450 Earned", "35K Followers", "420K+ Views"],
+      badges: ["$2,450 Earned", "35000+ followers", "420K+ Views"],
       location: "Remote",
       title: "Freelance Technical Writer",
       logoUrl: "/devto.svg",
       start: "July 2025",
       end: "Present",
       description:
-        "Built a following of [35,000+ followers](https://dev.to/arjuncodess) and 420,000+ views on DEV.to. Earned $2,450 in total through technical writing, including $1,375 in 2025 alone—my first $1K earned as a 16-year-old. Won [$500 from Runner H AI Challenge](https://dev.to/devteam/congrats-to-the-runner-h-ai-agent-prompting-challenge-winners-3aap). Created educational content on web development, AI, and programming.",
+        "Built a following of [35000+ followers](https://dev.to/arjuncodess) and 420,000+ views on DEV.to. Earned $2,450 in total through technical writing, including $1,375 in 2025 alone—my first $1K earned as a 16-year-old. Won [$500 from Runner H AI Challenge](https://dev.to/devteam/congrats-to-the-runner-h-ai-agent-prompting-challenge-winners-3aap). Created educational content on web development, AI, and programming.",
     },
   ],
   education: [
@@ -739,7 +739,7 @@ export const DATA = {
       title: "AI Vulnerability Challenge - Xavier University",
       dates: "2026",
       description:
-        "**First prize** at AI Vulnerability Challenge, Xavier University, Ohio, USA, with teammate Saksham Yadav. Received an 11-inch iPad with the A16 chip and 128GB storage as the award.",
+        "**[First prize](https://www.linkedin.com/feed/update/urn:li:activity:7510232515480145920/)** at AI Vulnerability Challenge, Xavier University, with Saksham Yadav as Team Cipher Force. The competition drew 187 teams from 97 schools across 20 cities. Received an 11-inch iPad with the A16 chip and 128GB storage as the award.",
     },
     {
       title: "FXB Climate Advocates Program",
@@ -777,15 +777,16 @@ export const DATA = {
         "Certified [Top 100](https://devfolio.co/projects/nirvanaai-4093) for Nirvana AI project on Devfolio.",
     },
     {
-      title: "Hit 35K+ Followers on DEV.to",
+      title: "Hit 35000+ followers on DEV.to",
       dates: "2025",
       description:
-        "Built a following of over [35,000](https://dev.to/arjuncodess) with 420,000+ views, sharing insights on coding, AI, and development.",
+        "Built a following of [35000+ followers](https://dev.to/arjuncodess) with 420,000+ views, sharing insights on coding, AI, and development.",
     },
     {
       title: "YC Startup School India",
       dates: "2026",
-      description: "Attended YC Startup School India in Bangalore.",
+      description:
+        "Selected for and attended YC Startup School India in Bangalore, with an 8% acceptance rate.",
     },
     {
       title: "Lodha Genius - Ashoka University Programme",
@@ -814,7 +815,7 @@ export const DATA = {
     {
       title: "Technical Writing",
       description:
-        "Writing educational content on web development, AI, and programming. [35K followers on DEV.to](https://dev.to/arjuncodess) with 420K+ views.",
+        "Writing educational content on web development, AI, and programming. [35000+ followers on DEV.to](https://dev.to/arjuncodess) with 420K+ views.",
     },
     {
       title: "Writing & Personal Essays",

@@ -47,7 +47,7 @@ Runtime retrieval blends pgvector cosine distance with rare-term and exact-phras
 
 ## Free-tier chat
 
-The default is the `gemini-flash-latest` alias. The alias follows Google's latest Flash release; its underlying version and quotas may change. `GEMINI_CHAT_MODEL` can select another available model, such as `gemini-3.8-flash`, after checking its quota in AI Studio.
+The default is the `gemini-flash-lite-latest` alias. The alias follows Google's latest Flash-Lite release; its underlying version and quotas may change. `GEMINI_CHAT_MODEL` can select another available model, such as `gemini-3.8-flash`, after checking its quota in AI Studio.
 
 Chat sends at most six recent messages, 5,200 characters of context, and a 2,048-token generation cap, with medium thinking and replies limited to 120 words. Provider requests are not automatically retried. The server accepts text only, limits each message to 2,000 characters, and rejects oversized requests. Repeated standalone answers are cached for one hour per process; follow-up conversations are not shared. Query embeddings also have a bounded one-hour cache.
 
