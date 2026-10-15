@@ -277,7 +277,7 @@ export const DATA = {
       category: "Research",
       featured: true,
       description:
-        "**Submitted to Advances in Space Research.** Predictive Risk Intelligence for Space Monitoring, an explainable T-48-hour conjunction-risk copilot.",
+        "**Submitted to Advances in Space Research.** Space-debris monitoring research that forecasts reported conjunction risk 48 hours before closest approach. Evaluates risk forecasting and conformal prediction on ESA event data and controlled simulations, examining uncertainty, high-risk coverage, and falsely reassuring forecasts. Includes an explainable Next.js and FastAPI exhibit for exploring the original model predictions.",
       technologies: ["Research"],
       links: [
         {
