@@ -36,8 +36,12 @@ async function main() {
     const batch = changed.slice(i, i + 8);
     const vectors = await embedTexts(
       batch.map((c) => `title: ${c.source} | text: ${c.content}`),
+      120_000,
     );
     batch.forEach((chunk, j) => existing.set(key(chunk), vectors[j]));
+    console.log(
+      `Embedded ${Math.min(i + batch.length, changed.length)}/${changed.length} changed chunks`,
+    );
   }
   const indexed = chunks.map((chunk) => ({
     ...chunk,

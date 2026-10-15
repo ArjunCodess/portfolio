@@ -1,0 +1,362 @@
+# ArjunCodess - Complete RAG Knowledge Base
+
+> **Originally generated:** January 4, 2026
+> **Updated:** October 15, 2026. Preserve personal background and history when updating current facts.
+> This file contains personal bio, achievements, skills, interests, and context
+
+---
+
+## Personal Identity & Bio
+
+**Full Name:** Arjun Vijay Prakash
+**Handle:** @ArjunCodess
+**Age:** 16 years old
+**Location:** Lucknow, India
+**Mobile:** +91 8601404303
+**Email:** arjunv.prakash12345@gmail.com
+**Education:** City Montessori School, High School (11th & 12th Grade), ISC Board, Apr 2026-Apr 2028. Pursuing Artificial Intelligence, Mathematics, Physics, and Chemistry. Completed ICSE Class 10 with a board score of 95.4%.
+**Current Status:** Full-stack developer, aspiring researcher, technical writer, Startup CTO, Associate Editor for Synthica Journal, Vice President of HackSpace at City Montessori School
+**Total Lifetime Earnings:** $2,450 USD ($1,375 earned in 2025—first $1K earned as a 16-year-old)
+
+**Key Links:**
+
+- GitHub: https://github.com/ArjunCodess
+- DEV.to: https://dev.to/arjuncodess (35,000+ followers, 400,000+ views, Top Writer)
+- Portfolio: https://arjuncodess.is-a.dev/
+- X/Twitter: @arjuncodess
+- Medium: https://arjunwritess.medium.com/
+
+---
+
+## 2025 Wrapped - Achievements & Timeline
+
+### Financial
+
+**2025 Earnings:** $1,375 USD
+
+**Breakdown:**
+
+- Technical writing (primary and only income source)
+- DEV.to content creation
+
+### 2026 Milestones
+
+- Total lifetime technical writing earnings reached $2,450 USD
+- Attended YC Startup School India in Bangalore
+- Attended the Lodha Genius-Ashoka University Programme (LG-AUP) 2026 cohort
+- Selected as Associate Editor, Computer Science for Synthica Journal after a competitive review process of 400+ applications, with 47 associate editors chosen across 8 categories
+- Became Vice President of HackSpace, the student-run technology club at City Montessori School
+
+### Community Recognition
+
+**DEV.to:**
+
+- 35,000+ followers
+- 400,000+ views
+- Top Writer status
+- Regular technical content creator
+- High engagement on posts
+
+**GitHub:**
+
+- 1,589 contributions in 2025
+- 15+ repositories
+- Most starred: WebCrawlAI (119 stars)
+
+**Product Hunt:**
+
+- Analyzr: 200+ upvotes (https://www.producthunt.com/products/analyzr-2/launches/getanalyzr)
+- Featured product launches
+- Regular contributor
+
+### Competitions & Awards
+
+1. **INSEF Regional Fair (Online)**
+   - Project: MEN2 Predictor (medical ML research)
+   - Status: Bronze Prize Winner
+   - Achievement: Medical research recognition at science fair level
+   - Results: https://insef.org/insef/INSEF_Regional_Fair_Online_2025_26_Results.htm
+
+2. **Invisible Wars - Xavier University**
+   - Achievement: Top 25 ranking
+   - Category: High School Cyber Defense Challenge (2025)
+   - URL: https://www.xavier.edu/invisible-wars/
+
+3. **HACKHAZARDS '25 Hackathon**
+   - Project: Nirvana AI
+   - Achievement: Top 100 certification
+   - Team: Built with friends
+   - Platform: Devfolio
+
+4. **CS50 Puzzle Day 2024 & 2025**
+   - Gold Certificates (solved all problems)
+   - Puzzle Day 2024: https://cs50.harvard.edu/certificates/83f288c3-144d-45ae-9cfa-a20fadcaf82f
+   - Puzzle Day 2025: https://cs50.harvard.edu/certificates/2f63e5e4-7c6d-48d5-9dbf-6af88fef95f6
+
+---
+
+## Current Role: CTO @ Pilot
+
+**Organization:** Pilot (getpilot on GitHub)
+**Your Position:** CTO (Chief Technology Officer)
+**Co-founders:** 3 people, all age 15-16
+
+- You: CTO (technical leadership)
+- @realvshkh: CEO
+- Sai: CMO
+
+**What is Pilot:**
+AI-powered Instagram automation platform for creators. Helps creators manage DMs, automate lead responses, and track deals.
+
+**Core Philosophy:**
+
+- Built in public (transparent development)
+- Open source codebase
+- Anti-VC, anti-exploitation approach
+- Honest storytelling, no hype
+
+**Tech Stack (Pilot):**
+
+- Frontend: Next.js, React
+- Backend: Node.js API
+- AI: Gemini API integration
+- APIs: Instagram Official API
+- Database: PostgreSQL
+- Infrastructure: Modern cloud deployment
+
+**Key Repositories:**
+
+- Main app: https://github.com/getpilot/app
+- Marketing website: https://github.com/getpilot/website
+- Organization: https://github.com/getpilot
+
+**Status (Jan 2026):**
+
+- Active development
+- Building in public
+- Community building phase
+- Solving real creator problems
+
+---
+
+## Editorial & Leadership Roles
+
+### Associate Editor, Computer Science - Synthica Journal
+
+**Organization:** Synthica
+**Position:** Associate Editor, Computer Science
+**Type:** Volunteer editorial role
+**Location:** Remote
+**Start:** May 2026
+
+Selected as Associate Editor for Synthica Journal after a competitive review process of over 400 applications, with only 47 associate editors chosen across 8 categories. Responsible for reviewing and evaluating computer science research submissions, maintaining editorial standards, and contributing to the peer review process in the computer science category. This volunteer editorial position involves collaborating with the Synthica Editorial Team to advance open-access academic publishing in computer science research.
+
+**Relevant skills:** Research skills, research writing, peer review, editorial standards, computer science research evaluation
+
+### Vice President - HackSpace, City Montessori School
+
+**Organization:** City Montessori School
+**Position:** Vice President
+**Type:** Student leadership role
+**Location:** On-site
+**Start:** May 2026
+
+Leading HackSpace, a student-run technology club at City Montessori School, focused on hands-on learning in software development and hardware innovation. Organises workshops, projects, and collaborative sessions covering diverse tech domains, including app development, web programming, game development, Arduino, robotics, and 3D modelling.
+
+**Relevant skills:** Leadership, team management, workshop organization, software development, hardware innovation
+
+---
+
+## Certifications & Learning
+
+### Selective Programs (2026)
+
+**Lodha Genius-Ashoka University Programme (LG-AUP)**
+
+- Status: Attended the 2026 programme
+- Track: Science Track
+- Institution: Ashoka University
+- Significance: Highly selective academic enrichment programme
+
+**YC Startup School India**
+
+- Status: Attended
+- Organizer: Y Combinator
+- Event Date: April 18, 2026
+- Location: Electronic City, Bangalore
+- Significance: Selected to attend YC's first Startup School event in India
+
+### Harvard CS50 Series (2023-2025)
+
+**Ready Player 50 (Prompt Injection Challenge)**
+
+- Date: October 6, 2023
+- Certificate: https://cs50.harvard.edu/certificates/784280e3-a410-4c61-af9a-20368a95e56f
+- Achievement: Completed all levels
+
+**CS50T (Introduction to Technology)**
+
+- Date: November 28, 2023
+- Certificate: https://cs50.harvard.edu/certificates/ce13e906-e90f-4469-b1aa-ff24e88fa4be
+- Focus: Harvard's classic intro to technology
+
+**CS50x (Introduction to Computer Science) - FULL COURSE**
+
+- Date: December 30, 2023
+- Certificate: https://cs50.harvard.edu/certificates/0b5006d6-7765-4383-b72d-adc7067786c0
+- Significance: Harvard's classic intro to computer science
+
+**CS50x Puzzle Day 2024 (Gold Certificate)**
+
+- Date: April 11, 2024
+- Certificate: https://cs50.harvard.edu/certificates/83f288c3-144d-45ae-9cfa-a20fadcaf82f
+- Achievement: Solved all problems (First Place)
+
+**CS50x Puzzle Day 2025 (Gold Certificate)**
+
+- Date: April 13, 2025
+- Certificate: https://cs50.harvard.edu/certificates/2f63e5e4-7c6d-48d5-9dbf-6af88fef95f6
+- Achievement: Solved all problems (First Place)
+
+### FreeCodeCamp Certifications
+
+1. **Responsive Web Design**
+   - Link: https://www.freecodecamp.org/certification/arjuncodess/responsive-web-design
+
+2. **Front-End Development Libraries**
+   - Link: https://www.freecodecamp.org/certification/arjuncodess/front-end-development-libraries
+   - Covers: React, jQuery, Bootstrap
+
+3. **College Algebra with Python v8**
+   - Link: https://www.freecodecamp.org/certification/arjuncodess/college-algebra-with-python-v8
+   - Focus: Math + Python programming
+
+**Significance:** Self-directed learning across multiple domains (frontend, math, Python)
+
+---
+
+## Technical Skills & Expertise
+
+### Full-Stack Development
+
+**Frontend:**
+
+- React, Next.js (primary)
+- TypeScript (strong preference)
+- Tailwind CSS (UI styling)
+- Shadcn/ui, Lucide React (component libraries)
+
+**Backend:**
+
+- Node.js, API design
+- Next.js API routes
+- Express (implied)
+
+**Databases:**
+
+- PostgreSQL (primary)
+- Supabase (managed PostgreSQL)
+- Neon (serverless PostgreSQL)
+
+**Deployment & Infrastructure:**
+
+- Vercel (preferred for Next.js)
+- Google Cloud Run
+- Render
+- Neon serverless
+
+**ORMs & Tools:**
+
+- Drizzle ORM (learning focus)
+- Prisma (previous experience)
+
+### Machine Learning & AI
+
+**Libraries & Frameworks (used in MEN2 Predictor):**
+
+- NumPy (numerical computing)
+- pandas (data processing)
+- scikit-learn (ML models)
+- Matplotlib (visualization)
+- SciPy (scientific computing)
+- XGBoost (gradient boosting)
+- LightGBM (gradient boosting)
+- SHAP (model explainability)
+- LIME (model explainability)
+- DiCE-ML (counterfactual explanations)
+
+**APIs & Integrations:**
+
+- Gemini API (primary AI integration)
+- Claude API (LLMs)
+- Spotify API (music/lyrics)
+- NASA NeoWs API (data)
+
+**Specializations:**
+
+- Medical ML (MEN2 biomarker prediction - 97.20% accuracy, 100% recall)
+- RAG systems (Retrieval-Augmented Generation)
+- AI integration in web apps
+- Data analysis
+
+**Emerging Tech:**
+
+- MCP Servers (Model Context Protocol)
+- Streaming responses
+- LLM fine-tuning concepts
+
+### Data Science
+
+**Analysis:**
+
+- Statistical biomarker analysis
+- Clustering algorithms
+- Dimensionality reduction
+
+**Visualization:**
+
+- Streamlit (interactive dashboards)
+- Data presentation
+- Scientific visualization
+
+**Domains:**
+
+- Medical/healthcare data
+- Astronomical data (NASA APIs)
+- User behavior analytics
+
+### DevOps & Cloud
+
+**Platforms:**
+
+- Google Cloud (Cloud Run, Antigravity IDE)
+- Vercel deployment
+- GitHub Actions (CI/CD)
+
+**Tools:**
+
+- Git, GitHub (version control)
+- Docker (containerization, likely)
+- Environment management
+
+### Other Skills
+
+- Technical writing (35K followers, strong communicator)
+- Open source contribution
+- Competitive programming (concepts)
+- UI/UX design thinking
+- API design
+
+---
+
+## October 2026 Updates
+
+- NGTA was accepted at NeSy 2026 and GenAI4Health 2026, a NeurIPS 2026 workshop.
+- MINTS was submitted to GLBIO 2027. This is a submission, not an acceptance.
+- PRISM was submitted to Advances in Space Research. This is a submission, not an acceptance.
+- Won first prize in Xavier University's Hidden Prompt: National AI Vulnerability Challenge 2026, Ohio, USA, with teammate Saksham Yadav. Received an 11-inch iPad with the A16 chip and 128GB storage as the award.
+- Attended the Summer 2026 FXB Climate Advocates Program.
+- Completed IYNA's 2026 Neuroscience 1 Capstone Track.
+- Wrote Chain Reaction about the Lodha Genius Programme: https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9
+- Started the To My Love series: https://arjunwritess.medium.com/list/to-my-love-758949c73be0
+- Stopped daily LeetCode and Spanish practice after a 600-day streak. Earlier streak counts in the 2025 retrospective describe that historical period.

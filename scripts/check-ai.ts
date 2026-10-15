@@ -22,6 +22,9 @@ async function main() {
     ["Where was MINTS submitted?", "MINTS"],
     ["Who was Arjun's teammate in Hidden Prompt?", "Hidden Prompt"],
     ["What did Arjun write about Lodha Genius?", "Lodha"],
+    ["Who is Pilot's CMO?", "Sai"],
+    ["How many journal pages did Arjun write in 2025?", "39 journal pages"],
+    ["Which school subject did Arjun fail in 2025?", "history"],
   ]) {
     const chunks = await findRelevantContent(query);
     assert.ok(

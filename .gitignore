@@ -44,3 +44,5 @@ __pycache__/
 
 # Atomic embedding generation
 src/data/embeddings.json.tmp
+
+src/data/rag/github-*.md.tmp

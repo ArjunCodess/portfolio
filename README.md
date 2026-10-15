@@ -17,7 +17,15 @@ pnpm dev
 
 ## Content without GitHub fetch scripts
 
-Edit `src/data/resume.tsx`. The website and chat knowledge chunks both read this file, so project status, achievements, and contribution descriptions have one source. The GitHub activity graph still refreshes through its cached API. The 2025 wrapped document is historical reference, not current chat context.
+Edit `src/data/resume.tsx`. The website and current chat knowledge chunks both read this file. Additional Markdown in `src/data/rag/*.md` supplies the personal history, life writing, and detailed project/contribution context that does not fit on the website. Every Markdown file is included in both semantic and keyword retrieval; keep these files when updating the site. The GitHub activity graph still refreshes through its cached API. The 2025 wrapped document remains retrievable as a dated historical account. Project and contribution snapshots also retain their dates, so earlier statistics and habits are not presented as current facts.
+
+### Optional GitHub README updates
+
+`pnpm kb:sync-readmes` fetches one README per project repository, sequentially, using `GITHUB_TOKEN` or `GH_TOKEN`. To use your existing GitHub CLI login instead of an environment token, run `pnpm kb:sync-readmes -- --github-cli`. To refresh one project, run `pnpm kb:sync-readmes -- ArjunCodess/NGTA`, adding `--github-cli` if needed. A fine-grained token needs Contents: read permission on the selected repositories. The script saves separate `src/data/rag/github-*.md` snapshots; it never writes `personal.md`, `projects.md`, `open-source.md`, or the life-writing files.
+
+Responses are cached in `.cache/github-readmes.json`. Later requests send `If-None-Match`; authenticated 304 responses do not consume GitHub's primary allowance. The script stops on 403/429, reports retry/reset headers, preserves working snapshots, and never loops through automatic retries. Secondary limits can still apply. No GitHub requests run during visitor chats, page loads, builds, or embedding generation. Review snapshot diffs before running `pnpm kb:generate`; unchanged vectors are reused.
+
+For a workflow with no GitHub REST API quota, copy the README from a local checkout into a Markdown knowledge file. Another option is a repository push webhook that queues a refresh only when its README changes; webhook delivery needs a separate authenticated endpoint and duplicate handling. For this portfolio, an occasional manual conditional sync is simpler than maintaining that service.
 
 For this portfolio, reviewed content in Git is the simplest option. Other options are a Sanity collection with a publish webhook that regenerates the index, or an authenticated admin form backed by Postgres. Both allow editing without a code commit, but add authentication and publishing infrastructure. Neither needs to scrape GitHub READMEs.
 

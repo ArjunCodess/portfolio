@@ -6,6 +6,7 @@ import {
   validateEmbedding,
 } from "../src/lib/ai/config";
 import { getKnowledgeChunks, rankLexically } from "../src/lib/ai/knowledge";
+import { chunkKnowledgeText } from "../src/lib/ai/knowledge";
 import { boundedHistory, chatRequest } from "../src/lib/ai/chat-policy";
 
 test("embedding validation rejects incompatible vectors before similarity search", () => {
@@ -61,6 +62,48 @@ test("curated knowledge includes recent work and preserves submission status", (
     ),
   );
   assert.ok(chunks.some((c) => c.content.includes("600-day streak")));
+});
+
+test("RAG retains personal details and life writing absent from the website", () => {
+  const chunks = getKnowledgeChunks();
+  assert.ok(
+    chunks.some(
+      (c) =>
+        c.source.startsWith("rag/personal/") && c.content.includes("Sai: CMO"),
+    ),
+  );
+  assert.ok(
+    chunks.some(
+      (c) =>
+        c.source.startsWith("rag/2025-wrapped/") &&
+        c.content.includes("39 journal pages"),
+    ),
+  );
+  assert.ok(
+    chunks.some(
+      (c) =>
+        c.source.startsWith("rag/2025-wrapped/") &&
+        c.content.includes("it's history"),
+    ),
+  );
+  for (const name of ["personal", "projects", "open-source", "2025-wrapped"]) {
+    assert.ok(
+      chunks.some((c) => c.source.startsWith(`rag/${name}/`)),
+      `${name} must be available to retrieval`,
+    );
+  }
+  assert.ok(
+    rankLexically("journal pages")
+      .slice(0, 4)
+      .some((c) => c.content.includes("39 journal pages")),
+  );
+});
+
+test("long knowledge paragraphs retain their final words", () => {
+  const content = `${"personal history ".repeat(300)}a final memory`;
+  const pieces = chunkKnowledgeText(content);
+  assert.equal(pieces.join(" "), content);
+  assert.ok(pieces.every((piece) => piece.length <= 1400));
 });
 
 test("chat validation rejects files, system instructions, oversized text, and assistant-ending histories", () => {

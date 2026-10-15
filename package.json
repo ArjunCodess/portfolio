@@ -13,7 +13,8 @@
     "test": "tsx --test tests/*.test.ts",
     "typecheck": "tsc --noEmit",
     "test:ai": "tsx scripts/check-ai.ts",
-    "db:setup-chat": "tsx scripts/setup-chat.ts"
+    "db:setup-chat": "tsx scripts/setup-chat.ts",
+    "kb:sync-readmes": "tsx scripts/sync-github-readmes.ts"
   },
   "dependencies": {
     "@ai-sdk/google": "^4.0.95",

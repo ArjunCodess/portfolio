@@ -1,6 +1,7 @@
 """Text-only EmbeddingGemma 2 service; keep model weights outside Next.js."""
 import hmac
 import os
+import torch
 from contextlib import asynccontextmanager
 from threading import Lock
 
@@ -14,9 +15,13 @@ lock = Lock()
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    # Avoid oversubscribing small CPU hosts with PyTorch's large thread default.
+    torch.set_num_threads(max(1, int(os.environ.get("TORCH_NUM_THREADS", "4"))))
     # float16 is unsupported by this model. CPU uses float32.
     app.state.model = SentenceTransformer(
-        MODEL, config_kwargs={"vision_config": None, "audio_config": None}
+        MODEL,
+        config_kwargs={"vision_config": None, "audio_config": None},
+        model_kwargs={"dtype": torch.float32} if not torch.cuda.is_available() else {},
     )
     yield
 

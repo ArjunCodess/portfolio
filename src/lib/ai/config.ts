@@ -18,7 +18,10 @@ export function validateEmbedding(value: unknown): number[] {
   return value.map((n) => n / norm);
 }
 
-export async function embedTexts(texts: string[]): Promise<number[][]> {
+export async function embedTexts(
+  texts: string[],
+  timeoutMs = 20_000,
+): Promise<number[][]> {
   const endpoint = process.env.EMBEDDING_SERVICE_URL;
   if (!endpoint) throw new Error("EMBEDDING_SERVICE_URL is not configured");
   const response = await fetch(`${endpoint.replace(/\/$/, "")}/embed`, {
@@ -30,7 +33,7 @@ export async function embedTexts(texts: string[]): Promise<number[][]> {
         : {}),
     },
     body: JSON.stringify({ model: EMBEDDING_MODEL, input: texts }),
-    signal: AbortSignal.timeout(20_000),
+    signal: AbortSignal.timeout(timeoutMs),
   });
   if (!response.ok)
     throw new Error(`Embedding service returned ${response.status}`);
