@@ -355,6 +355,7 @@ Leading HackSpace, a student-run technology club at City Montessori School, focu
 
 - NGTA was accepted at NeSy 2026 and GenAI4Health 2026, a NeurIPS 2026 workshop.
 - MINTS was submitted to GLBIO 2027. This is a submission, not an acceptance.
+- HYDRA-ccRCC is planned for submission to Bioinformatics Advances. It has not been submitted or accepted there.
 - PRISM was submitted to Advances in Space Research. This is a submission, not an acceptance.
 - Won first prize in Xavier University's AI Vulnerability Challenge, Ohio, USA, with teammate Saksham Yadav. Received an 11-inch iPad with the A16 chip and 128GB storage as the award.
 - Attended the Summer 2026 FXB Climate Advocates Program.
