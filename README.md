@@ -1,70 +1,250 @@
-# Arjun Vijay Prakash's portfolio
+<h1 align="center">Portfolio</h1>
 
-Next.js 16.4, React 19.3, TypeScript, Tailwind CSS 4, Motion, and AI SDK 7. The site includes categorized projects, compact open-source contributions, expandable certificate cards adapted from [Aceternity UI](https://ui.aceternity.com/components/expandable-card), a guestbook, and a grounded chat assistant.
+<p align="center">
+  My personal portfolio, built with Next.js, showcasing my projects, research, open-source contributions, writing, and achievements.
+</p>
 
-## Development
+---
 
-Use Node.js 24 and pnpm 11.1.1. Dependency overrides and explicit build-script permissions are in `pnpm-workspace.yaml`, as required by pnpm 11.
+## 🌐 Live Site
 
-```sh
+**[arjuncodess.is-a.dev](https://arjuncodess.is-a.dev)**
+
+## 🧐 About
+
+Hi, I'm **Arjun Vijay Prakash**, a 16-year-old full-stack developer, researcher, technical writer, and CTO at [Pilot](https://github.com/getpilot) from Lucknow, India. I work on neuro-symbolic AI, mechanistic interpretability, computational genomics, medical AI, and space debris monitoring. I'm also an associate editor at Synthica.
+
+- **NGTA accepted at NeSy 2026 and GenAI4Health 2026**, a NeurIPS 2026 workshop.
+- **First prize at Xavier University's AI Vulnerability Challenge**, competing with Saksham Yadav as Team Cipher Force. The competition brought together 187 teams from 97 schools across 20 cities. [Official result](https://www.linkedin.com/feed/update/urn:li:activity:7510232515480145920/).
+- **Selected for YC Startup School India**, with an 8% event acceptance rate.
+- **35000+ followers and 420,000+ views** on [DEV.to](https://dev.to/arjuncodess), with **$2,450 earned** through technical writing.
+- **Open-source contributions** to Grafana, Tempo, fish-shell, Notesnook, next-cloudinary, and Zero.
+- **Lodha Genius Programme at Ashoka University**, followed by my Medium series ["chain reaction."](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9). I also write ["to my love."](https://arjunwritess.medium.com/list/to-my-love-758949c73be0).
+
+### Current Research
+
+- **[NGTA](https://github.com/ArjunCodess/NGTA):** NARS-guided Transformer attention for clinical prediction under extreme missingness. NeSy plans primary proceedings in PMLR and a Neurosymbolic Artificial Intelligence journal special issue for invited extended versions. These are [conference publication plans](https://2026.nesyconf.org/call-for-papers/), not confirmation that NGTA is published or accepted by the journal.
+- **[MINTS](https://github.com/ArjunCodess/MINTS):** Mechanistic interpretability for genomic transformers. Submitted to GLBIO 2027.
+- **[PRISM](https://github.com/ArjunCodess/PRISM):** Forecasting reported conjunction risk for space debris monitoring. Submitted to Advances in Space Research.
+- **[HYDRA-ccRCC](https://github.com/ArjunCodess/HYDRA-ccRCC):** Kidney-cancer transcriptomics and prognostic evidence auditing. Planned submission to Bioinformatics Advances.
+- **[PSYCON](https://github.com/ArjunCodess/PSYCON):** Evidence-linked analysis of communication in group discussions. Submitted to IRIS National Fair 2026-27.
+
+## ✨ Features
+
+- **Next.js App Router** with Turbopack and React 19.
+- **Animations** using Motion, with the page and bottom navbar shifting left when chat opens.
+- **Dark/light mode** with system preference detection and responsive layouts.
+- **Certificate gallery** using Aceternity UI's expandable cards, with full-image previews, keyboard controls, and external certificate links.
+- **Project showcase** featuring four full-stack and four research projects on the homepage. The `/projects` archive adds exclusive category filters, sorting, and an Others category.
+- **Compact open-source cards** with short descriptions and direct contribution links.
+- **Guestbook** and a cached GitHub activity graph.
+- **AI chatbot with RAG**, combining semantic search with keyword matching over portfolio facts and personal Markdown.
+- **Resume download** serving the updated PDF from `public/resume/resume.pdf`.
+
+## 🧠 AI Chatbot & RAG Architecture
+
+The chatbot answers questions about my projects, research, background, and writing using the portfolio's own content. Embeddings and chat generation both call Google's APIs directly from Next.js; no Python service or local model hosting is required.
+
+### How it Works
+
+1. **Ingestion pipeline** (`scripts/generate-embeddings.ts`) reads current website data from `src/data/resume.tsx`, certificate descriptions, and every Markdown file in `src/data/rag/`. Line-aware chunking keeps short factual statements together. The `gemini-embedding-2` API produces normalized 768-dimensional vectors.
+2. **Index refresh** reuses unchanged vectors from `src/data/embeddings.json` when their model, dimensions, and retrieval profile match. After every vector is generated and validated, one Postgres transaction deletes the old `kb_documents` rows and inserts the complete new index. A failed generation or transaction preserves the previous database index.
+3. **Retrieval** embeds the question using the same model and searches pgvector with cosine similarity, blended with rare-term and exact-phrase matches. The top four results supply context. Model, profile, dimensions, and corpus-hash checks prevent mismatched or stale vectors from being used. Keyword retrieval remains available when semantic search is unavailable.
+4. **Generation** uses `gemini-flash-lite-latest` with **medium thinking** through AI SDK 7. Answers stream to the chat sidebar in lowercase prose while preserving proper names, with instructions to distinguish submissions, acceptances, and publication plans.
+
+### Free-Tier Usage
+
+Chat uses at most six recent messages, 5,200 characters of retrieved context, and a 2,048-token generation cap, with replies limited to 120 words. Standalone answers and query embeddings have bounded, one-hour caches. Provider requests have timeouts and no automatic retries.
+
+Postgres reserves request budgets across instances: five requests per visitor per minute, twenty per visitor per day, and configurable global limits that default to eight per minute and one hundred per day. Set `CHAT_RPM_LIMIT` and `CHAT_DAILY_LIMIT` below your Google project's actual allowance. A missing budget table or unavailable database disables chat rather than bypassing these limits.
+
+Embedding refreshes default to **80 texts per minute**, counting each text in a batch. `EMBEDDING_REFRESH_RPM_LIMIT` can lower that pace. Partial progress is saved in `.cache/embedding-progress.json`, so an interrupted refresh can resume without generating completed chunks again. Embedding quotas are separate from chat quotas.
+
+## 🛠️ Tech Stack
+
+### Core
+
+- **Framework:** Next.js 16.4, App Router, Turbopack.
+- **UI:** React 19.3 and TypeScript 6.
+- **Styling:** Tailwind CSS 4 and shadcn/ui.
+- **Animations:** Motion 14, Magic UI, and Aceternity UI expandable cards.
+
+### AI & Data
+
+- **LLM:** Google Gemini, defaulting to `gemini-flash-lite-latest` with medium thinking.
+- **SDK:** AI SDK 7 and its Google provider.
+- **Embeddings:** `gemini-embedding-2`, 768 dimensions, through the Gemini API.
+- **Database:** Postgres through Neon's serverless driver, with pgvector for semantic search.
+- **Knowledge:** Current portfolio data, certificate descriptions, and preserved Markdown history.
+
+### Deployment
+
+- **Platform:** Vercel, using Node.js 24.
+- **Analytics:** Vercel Analytics and Speed Insights.
+- **Package manager:** pnpm 11.1.1. Dependency overrides and explicit build permissions live in `pnpm-workspace.yaml`.
+
+## 🏁 Getting Started
+
+### Prerequisites
+
+- Node.js 24.x.
+- pnpm 11.1.1.
+- A Postgres database with pgvector support.
+- A Google API key with access to the configured chat and embedding models.
+
+### Installation
+
+See [.env.example](.env.example) for the environment variables.
+
+```bash
+git clone https://github.com/ArjunCodess/portfolio.git
+cd portfolio
 pnpm install
-# Copy .env.example to .env.local and set the existing credentials.
+cp .env.example .env.local
+```
+
+Set `POSTGRES_URL` and `GOOGLE_GENERATIVE_AI_API_KEY` in `.env.local`. Add the GitHub OAuth and auth credentials from `.env.example` if using guestbook sign-in. Next.js and Vercel set `NODE_ENV` automatically.
+
+```bash
+# Create the persistent chat-budget table.
 pnpm db:setup-chat
+
+# Generate the knowledge index using your Google API key.
+pnpm kb:generate
+
 pnpm dev
 ```
 
-`POSTGRES_URL` uses Neon's serverless driver for the existing guestbook and the new chat budget table. The old Vercel Postgres driver is deprecated. `db:setup-chat` adds only the budget table and removes expired budget counters. Run it once per database before enabling chat, and during deployments to clean expired counters.
+Visit `http://localhost:3000`.
 
-## Portfolio and chat knowledge
+### Setting up the Knowledge Base (RAG)
 
-Edit `src/data/resume.tsx`. The website and current chat knowledge chunks both read this file. Additional Markdown in `src/data/rag/*.md` supplies the personal history, life writing, and detailed project/contribution context that does not fit on the website. Every Markdown file is included in both semantic and keyword retrieval; keep these files when updating the site. The GitHub activity graph still refreshes through its cached API. The 2025 wrapped document remains retrievable as a dated historical account. Project and contribution snapshots also retain their dates, so earlier statistics and habits are not presented as current facts.
-
-### Optional GitHub README updates
-
-`pnpm kb:sync-readmes` fetches one README per project repository, sequentially, using `GITHUB_TOKEN` or `GH_TOKEN`. To use your existing GitHub CLI login instead of an environment token, run `pnpm kb:sync-readmes -- --github-cli`. To refresh one project, run `pnpm kb:sync-readmes -- ArjunCodess/NGTA`, adding `--github-cli` if needed. A fine-grained token needs Contents: read permission on the selected repositories. The script saves separate `src/data/rag/github-*.md` snapshots; it never writes `personal.md`, `projects.md`, `open-source.md`, or the life-writing files.
-
-Responses are cached in `.cache/github-readmes.json`. Later requests send `If-None-Match`; authenticated 304 responses do not consume GitHub's primary allowance. The script stops on 403/429, reports retry/reset headers, preserves working snapshots, and never loops through automatic retries. Secondary limits can still apply. No GitHub requests run during visitor chats, page loads, builds, or embedding generation. Review snapshot diffs before running `pnpm kb:generate`; unchanged vectors are reused.
-
-For a workflow with no GitHub REST API quota, copy the README from a local checkout into a Markdown knowledge file. Another option is a repository push webhook that queues a refresh only when its README changes; webhook delivery needs a separate authenticated endpoint and duplicate handling. For this portfolio, an occasional manual conditional sync is simpler than maintaining that service.
-
-For this portfolio, reviewed content in Git is the simplest option. Other options are a Sanity collection with a publish webhook that regenerates the index, or an authenticated admin form backed by Postgres. Both allow editing without a code commit, but add authentication and publishing infrastructure. Neither needs to scrape GitHub READMEs.
-
-## Embeddings through the Gemini API
-
-The Next.js backend calls `gemini-embedding-2` directly through the existing Google AI SDK provider, using `GOOGLE_GENERATIVE_AI_API_KEY`. Embeddings have 768 dimensions and are normalized before storage and retrieval. Python, local model weights, and a separate inference host are no longer needed. Remove `EMBEDDING_SERVICE_URL` and `EMBEDDING_SERVICE_TOKEN` from local and Vercel environments; they are no longer read.
-
-```sh
+```bash
+# Refresh embeddings from local portfolio data and Markdown.
 pnpm kb:generate
+
+# Optionally sync project READMEs, then refresh embeddings.
+pnpm kb:refresh -- --github-cli
+
+# Skip GitHub and refresh local content only.
+pnpm kb:refresh -- --local-only
+
+# Regenerate every vector instead of reusing cached progress.
+pnpm kb:refresh -- --local-only --force
 ```
 
-Run `pnpm kb:refresh -- --github-cli` to sync project READMEs, collect website facts, certificate descriptions and RAG Markdown, then regenerate the database embeddings. Use `--local-only` to skip GitHub, or `--force` to regenerate every vector. Unchanged vectors are reused only when the model, dimensions, and retrieval profile match. `src/data/embeddings.json` stores this generation cache. No embedding generation runs during builds or ordinary page loads. Refreshes default to 80 texts per minute, including batched inputs; lower `EMBEDDING_REFRESH_RPM_LIMIT` if your project has less allowance. Partial progress is saved in `.cache/embedding-progress.json`, so rerunning after a quota reset resumes completed chunks. `--force` ignores both caches.
+`pnpm db:generate-embeddings` is also available as an alias for generation. Commit `src/data/embeddings.json` after content changes and run the refresh against the deployment database. Builds, visitor chats, and ordinary page loads never sync GitHub READMEs or regenerate the corpus.
 
-Each refresh generates and validates the complete corpus before deleting and replacing all `kb_documents` rows in one transaction. Failed generation or a failed transaction preserves the previous database index. Changing embedding models requires a full refresh; vectors from different models cannot be mixed even when their dimensions match.
+The Google API key powers both chat generation and embeddings. `EMBEDDING_SERVICE_URL` and `EMBEDDING_SERVICE_TOKEN` are no longer used. Set `GEMINI_CHAT_MODEL=gemini-flash-lite-latest` in Vercel if an older model override is present.
 
-Runtime retrieval blends pgvector cosine distance with rare-term and exact-phrase matches, with model, profile, dimensions, and corpus-hash checks. Documents and queries use Google's recommended search prefixes. A bounded one-hour query cache avoids repeated embedding calls. Embedding API requests have timeouts and no automatic retries; quota errors or stale indexes fall back to keyword retrieval over the same current facts. The embedding API has its own quotas, separate from chat generation. Check this project's limits in AI Studio before refreshing a large corpus.
+`DEV_ALLOWED_ORIGINS` is optional and development-only. For LAN access, use comma-separated hostnames such as `192.168.0.14,my-laptop.local`, without schemes or ports. Leave it empty for localhost and omit it in Vercel.
 
-`DEV_ALLOWED_ORIGINS` remains optional and development-only. Use comma-separated hostnames such as `192.168.0.14,my-laptop.local`, without schemes or ports, if accessing the development server over your LAN. Leave it empty for localhost and omit it on Vercel. Let Next.js and Vercel manage `NODE_ENV` automatically.
+### Code Formatting & Checks
 
-## Free-tier chat
-
-The default is the `gemini-flash-lite-latest` alias. The alias follows Google's latest Flash-Lite release; its underlying version and quotas may change. `GEMINI_CHAT_MODEL` can select another available model, such as `gemini-3.8-flash`, after checking its quota in AI Studio.
-
-Chat sends at most six recent messages, 5,200 characters of context, and a 2,048-token generation cap, with medium thinking and replies limited to 120 words. Provider requests are not automatically retried. The server accepts text only, limits each message to 2,000 characters, and rejects oversized requests. Repeated standalone answers are cached for one hour per process; follow-up conversations are not shared. Query embeddings also have a bounded one-hour cache.
-
-Postgres atomically reserves a persistent request budget before calling the model: five requests per visitor per minute, twenty per visitor per day, and defaults of eight requests per minute and one hundred per day across all instances. These are application limits, not a claim about Google's quota. Set `CHAT_RPM_LIMIT` and `CHAT_DAILY_LIMIT` below this project's actual available allowance, accounting for other apps using the same Google project. Failed requests consume a reservation to prevent retry storms. A missing budget table or unavailable database disables chat rather than allowing unmetered provider calls. Visitor keys hash the Vercel-provided IP with the current day. Cached answers consume no model request.
-
-## Certificates and resume
-
-The three 2026 certificate previews are served from `public/certificates`, including PNG renders of the IYNA and Hidden Prompt certificates. The original Aceternity grid renderer is preserved in `src/components/vendor/aceternity`, with its downloaded source for comparison. A data adapter and an outer certificate wrapper provide portfolio styling and accessibility; projects use ordinary image links. The cards support keyboard opening, Escape, outside-click dismissal, trapped focus, and reduced motion.
-
-The resume source is `public/resume/main.tex`; the download button serves `public/resume/resume.pdf`. Compile the TeX source with a LaTeX installation and replace that PDF after resume changes. Build auxiliary files in `.cache`, not in the public directory.
-
-## Validation
-
-```sh
+```bash
+pnpm pretty
 pnpm lint
 pnpm typecheck
 pnpm build
 ```
 
-ESLint stays on version 9 and TypeScript on version 6 because the installed lint plugins do not support ESLint 10 or TypeScript 7 yet. Other direct dependencies were updated to current releases, including the Tailwind 4 PostCSS migration. The lockfile pins the tested versions.
+## 🎨 Customization Guide
+
+### 1. Update Personal Information (`src/data/resume.tsx`)
+
+Edit the `DATA` constant to change your name, social links, work, education, projects, achievements, and interests. Use descriptive inline link labels: link an activity, platform, project, or challenge name rather than a streak, ranking, prize amount, or follower count.
+
+Projects use `Full stack`, `Research`, or `Others` categories. The homepage shows featured full-stack and research projects; category filters live on `/projects`. Matching image and no-image cards stay in the same rows, with unmatched cards placed last.
+
+### 2. Update the AI Knowledge Base (RAG)
+
+Keep and edit `src/data/rag/personal.md`, `projects.md`, `open-source.md`, and the life-writing files. Every Markdown file participates in retrieval, including historical accounts whose dates help distinguish past facts from current ones. Add new files for details that do not fit on the website, then run `pnpm kb:generate`.
+
+Optional README syncing replaces the old project/contribution fetch scripts:
+
+```bash
+# Use your existing GitHub CLI login.
+pnpm kb:sync-readmes -- --github-cli
+
+# Refresh one repository only.
+pnpm kb:sync-readmes -- ArjunCodess/NGTA --github-cli
+```
+
+Alternatively, set `GITHUB_TOKEN` or `GH_TOKEN` with Contents: read access to the selected repositories. The script fetches sequentially, caches responses in `.cache/github-readmes.json`, and uses ETags for conditional requests. Authenticated 304 responses do not consume GitHub's primary allowance; secondary limits can still apply. It stops on 403/429 without automatic retries and preserves working snapshots.
+
+Synced READMEs are stored separately as `src/data/rag/github-*.md`; the script does not overwrite personal history or the older project/contribution files. Review snapshot changes before generating embeddings. To avoid GitHub REST API quota entirely, copy a README from a local checkout into a knowledge file. The GitHub activity graph remains independent of this workflow.
+
+### 3. Update Certificates & Resume
+
+Certificate data lives in `src/data/certificates.ts`, and images live in `public/certificates/`. The original Aceternity renderer is preserved under `src/components/vendor/aceternity`; the portfolio wrapper handles styling, accessibility, and an isolated instance per certificate to prevent animation-ID collisions.
+
+The resume source is `public/resume/main.tex`. Compile it with a LaTeX installation, review the resulting PDF, and replace `public/resume/resume.pdf` for the download button. Keep build auxiliaries in `.cache`.
+
+## 📁 Project Structure
+
+```text
+scripts/
+├── generate-embeddings.ts   # Generate, validate, and replace the vector index
+├── sync-github-readmes.ts   # Optional conditional README sync
+├── refresh-knowledge.ts    # Sync and generation workflow
+└── setup-chat.ts           # Persistent chat-budget table
+src/
+├── app/
+│   ├── api/chat/           # Streaming portfolio assistant
+│   ├── projects/           # Filterable project archive
+│   └── ...
+├── components/
+│   ├── ui/                 # shadcn/ui components
+│   ├── vendor/aceternity/   # Preserved expandable-card renderer
+│   └── ...
+├── data/
+│   ├── resume.tsx          # Current portfolio facts
+│   ├── certificates.ts    # Certificate content
+│   ├── embeddings.json    # Complete generation cache
+│   └── rag/               # Personal history and detailed knowledge
+└── lib/ai/                 # Retrieval, prompts, budgets, and vector storage
+public/
+├── certificates/           # Certificate images
+└── resume/                 # LaTeX source and downloadable PDF
+```
+
+## 📄 Key Sections
+
+- **About:** Personal introduction, current research, and major achievements.
+- **Skills:** Technologies used across development and research.
+- **Work Experience:** Pilot, Synthica, technical writing, and school technology leadership.
+- **Education:** Academic background and the Lodha Genius Programme.
+- **Projects:** Featured work on the homepage and the full categorized archive.
+- **Open Source:** Compact contribution cards with direct pull-request links.
+- **Certifications:** Expandable program, Harvard CS50, and freeCodeCamp certificates.
+- **Achievements:** Competition results, selected programs, and writing milestones.
+- **Hobbies:** Writing, hardware, and personal interests, with past daily habits described as past.
+
+## 🚀 Deployment
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/ArjunCodess/portfolio)
+
+Use Node.js **24.x** and the project's pnpm version. Add the credentials from `.env.example`, run `pnpm db:setup-chat` for the deployment database, and refresh that database's knowledge index before enabling chat. Let Vercel run the normal `pnpm build` command. No separate embedding host is required.
+
+## 📫 Contact
+
+- **Email:** arjunv.prakash12345@gmail.com
+- **GitHub:** [@ArjunCodess](https://github.com/ArjunCodess)
+- **Twitter/X:** [@ArjunCodess](https://x.com/ArjunCodess)
+- **DEV.to:** [@arjuncodess](https://dev.to/arjuncodess)
+- **Medium:** [@arjunwritess](https://medium.com/@arjunwritess)
+- **Linktree:** [linktr.ee/arjuncodess](https://linktr.ee/arjuncodess)
+
+## 📝 License
+
+This project is open source and available under the MIT License.
+
+---
+
+<div align="center">
+
+**Built with ❤️ by Arjun Vijay Prakash**
+
+_Full-stack Developer | Researcher | Technical Writer | CTO @ Pilot_
+
+</div>
