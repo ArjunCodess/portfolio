@@ -63,7 +63,7 @@ export async function reserveChatBudget(req: Request, signal: AbortSignal) {
   if (denied.length) {
     const retryAfter = Math.max(...denied.map(({ retry }) => retry));
     throw new ChatLimitError(
-      "chat limit reached. please try again later.",
+      "Chat limit reached. Please try again later.",
       retryAfter,
     );
   }

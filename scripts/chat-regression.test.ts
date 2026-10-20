@@ -11,7 +11,6 @@ import {
 import { POST } from "../src/app/api/chat/route";
 import { reserveChatBudget } from "../src/lib/ai/chat-budget";
 import { ChatLimitError } from "../src/lib/ai/chat-policy";
-import { lowercaseProse } from "../src/lib/ai/chat-output";
 
 const originalEnv = { ...process.env };
 afterEach(() => {
@@ -87,22 +86,6 @@ function request(query: string) {
     }),
   });
 }
-
-test("lowercase output preserves urls across every possible chunk boundary", async () => {
-  const original =
-    "NGTA: [GitHub](https://github.com/ArjunCodess/NGTA) and PRISM. https://Example.com/CaseSensitive";
-  const expected =
-    "ngta: [github](https://github.com/ArjunCodess/NGTA) and prism. https://Example.com/CaseSensitive";
-  for (let split = 0; split < original.length; split++) {
-    async function* input() {
-      yield original.slice(0, split);
-      yield original.slice(split);
-    }
-    let answer = "";
-    for await (const delta of lowercaseProse(input())) answer += delta;
-    assert.equal(answer, expected, `boundary ${split}`);
-  }
-});
 
 test("long conversations omit reasoning and stay below the body byte limit", () => {
   const messages: UIMessage[] = Array.from({ length: 101 }, (_, i) => ({
@@ -271,7 +254,7 @@ test("partial answers fail without appending another model's answer", async () =
   const calls = provider([completion("unfinished", "length")]);
   await assert.rejects(
     generateChatAnswer(question, "context", signal()),
-    /interrupted/,
+    /interrupted/i,
   );
   assert.equal(calls.length, 1);
 });
@@ -324,7 +307,7 @@ test("successful UI streams contain only answer text and cache the completed ans
   assert.equal(response.status, 200);
   const body = await response.text();
   assert.ok(body.includes('"type":"text-delta"'));
-  assert.ok(body.includes("arjun builds ai tools."));
+  assert.ok(body.includes("Arjun builds AI tools."));
   assert.ok(body.includes('"type":"finish"'));
   assert.ok(!body.includes("private reasoning"));
   assert.equal((await POST(request("success test"))).status, 200);
@@ -341,8 +324,12 @@ test("aborted requests never call Groq", async () => {
   assert.equal(calls.length, 0);
 });
 
-test("the browser SDK reconstructs a complete assistant message from the route", async () => {
-  provider([completion("A visible answer.")]);
+test("the browser SDK preserves capitalization in streamed answers", async () => {
+  provider([
+    completion(
+      "Arjun builds NGTA with Python. https://Example.com/CaseSensitive",
+    ),
+  ]);
   const transport = new DefaultChatTransport({
     fetch: async () => POST(request("client protocol test")),
   });
@@ -363,7 +350,10 @@ test("the browser SDK reconstructs a complete assistant message from the route",
   assert.equal(final?.parts.length, 1);
   assert.equal(final?.parts[0].type, "text");
   if (final?.parts[0].type === "text") {
-    assert.equal(final.parts[0].text, "a visible answer.");
+    assert.equal(
+      final.parts[0].text,
+      "Arjun builds NGTA with Python. https://Example.com/CaseSensitive",
+    );
     assert.equal(final.parts[0].state, "done");
   }
 });

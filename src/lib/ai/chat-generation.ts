@@ -73,7 +73,7 @@ export async function* streamChatAnswer(
       // never append a second answer after partial text.
       if (visible)
         throw new ChatGenerationError(
-          "the answer was interrupted. please try again.",
+          "The answer was interrupted. Please try again.",
           503,
         );
       if (
@@ -85,13 +85,13 @@ export async function* streamChatAnswer(
   }
   if (APICallError.isInstance(lastError) && lastError.statusCode === 429) {
     throw new ChatGenerationError(
-      "chat is busy or its free quota is used up. please try again later.",
+      "Chat is busy or its free quota is used up. Please try again later.",
       429,
       lastError.responseHeaders?.["retry-after"] || "60",
     );
   }
   throw new ChatGenerationError(
-    "chat couldn't complete an answer. please try again.",
+    "Chat couldn't complete an answer. Please try again.",
     503,
   );
 }

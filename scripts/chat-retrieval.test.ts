@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import { chatFollowups } from "../src/lib/ai/chat-followups";
+import type { UIMessage } from "ai";
 import { afterEach, mock, test } from "node:test";
 import { DATA } from "../src/data/resume";
 import {
@@ -20,6 +22,22 @@ import {
 } from "../src/lib/ai/knowledge";
 
 const originalEnv = { ...process.env };
+
+test("follow-up suggestions offer three distinct questions with proper project capitalization", () => {
+  const question = "Which technologies does ngta use?";
+  const suggestions = chatFollowups([
+    { id: "1", role: "user", parts: [{ type: "text", text: question }] },
+  ] as UIMessage[]);
+  assert.equal(suggestions.length, 3);
+  assert.equal(new Set(suggestions).size, 3);
+  assert.ok(suggestions.every((suggestion) => suggestion.includes("NGTA")));
+  assert.ok(
+    !suggestions.some(
+      (suggestion) => suggestion.toLowerCase() === question.toLowerCase(),
+    ),
+  );
+  assert.equal(chatFollowups([]).length, 3);
+});
 afterEach(() => {
   mock.restoreAll();
   process.env = { ...originalEnv };
@@ -57,7 +75,7 @@ test("follow-ups resolve projects, pairs, and ordered references", () => {
   const pair = "compare MINTS and PRISM";
   assert.equal(
     planRetrieval(turns(pair, "where was it submitted?")).clarification,
-    "which project do you mean: mints or prism?",
+    "Which project do you mean: MINTS or PRISM?",
   );
   assert.deepEqual(
     planRetrieval(turns(pair, "tell me about both")).entities.map(
@@ -163,7 +181,7 @@ test("source links are grounded, relevant, and deduplicated", () => {
     "source url: https://github.com/ArjunCodess/PRISM\nsource url: https://github.com/ArjunCodess/prism\nsource url: https://github.com/ArjunCodess/MINTS";
   assert.deepEqual(
     contextSources(context, "prism forecasts conjunction risk"),
-    [{ label: "prism", url: "https://github.com/ArjunCodess/PRISM" }],
+    [{ label: "PRISM", url: "https://github.com/ArjunCodess/PRISM" }],
   );
   assert.deepEqual(contextSources(context, "this detail isn't recorded"), []);
 });

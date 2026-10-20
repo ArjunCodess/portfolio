@@ -78,7 +78,7 @@ export function planRetrieval(messages: Turn[]) {
           entities: [],
           comparison: false,
           catalog: false,
-          clarification: `which project do you mean: ${entities.map((p) => p.name.toLowerCase()).join(" or ")}?`,
+          clarification: `Which project do you mean: ${entities.map((p) => p.name).join(" or ")}?`,
         };
       }
     }
@@ -145,16 +145,17 @@ export function contextSources(context: string, answer: string) {
   return urls
     .map((url) => ({
       url,
-      label: (
+      label:
         projects.find((project) => project.url === url)?.name ||
         new URL(url).pathname.split("/").filter(Boolean).at(-1) ||
-        "source"
-      ).toLowerCase(),
+        "source",
     }))
     .filter(
       (source, index, all) =>
         contains(answer, source.label) &&
-        all.findIndex((other) => other.label === source.label) === index,
+        all.findIndex(
+          (other) => other.label.toLowerCase() === source.label.toLowerCase(),
+        ) === index,
     )
     .slice(0, 3);
 }

@@ -21,7 +21,6 @@ import {
 } from "@/lib/ai/chat-retrieval";
 import { getKnowledgeChunks, getKnowledgeHash } from "@/lib/ai/knowledge";
 import { CHAT_PROMPT_VERSION } from "@/lib/ai/chat-prompt";
-import { lowercaseProse } from "@/lib/ai/chat-output";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -45,36 +44,36 @@ export async function POST(req: Request) {
   try {
     const origin = req.headers.get("origin");
     if (origin && origin !== new URL(req.url).origin)
-      return Response.json({ error: "invalid origin" }, { status: 403 });
+      return Response.json({ error: "Invalid origin" }, { status: 403 });
     if (Number(req.headers.get("content-length")) > 24_000)
-      return Response.json({ error: "request too large" }, { status: 413 });
+      return Response.json({ error: "Request too large" }, { status: 413 });
     const raw = await req.text();
     if (new TextEncoder().encode(raw).length > 24_000)
-      return Response.json({ error: "request too large" }, { status: 413 });
+      return Response.json({ error: "Request too large" }, { status: 413 });
     let body: unknown;
     try {
       body = JSON.parse(raw);
     } catch {
-      return Response.json({ error: "invalid json" }, { status: 400 });
+      return Response.json({ error: "Invalid JSON" }, { status: 400 });
     }
     const parsed = chatRequest.safeParse(body);
     if (!parsed.success)
       return Response.json(
-        { error: "send a text question of at most 2,000 characters." },
+        { error: "Send a text question of at most 2,000 characters." },
         { status: 400 },
       );
     const messages = boundedHistory(parsed.data.messages);
     const query = messages.at(-1)!.parts[0].text.trim();
     if (!query)
       return Response.json(
-        { error: "please enter a question." },
+        { error: "Please enter a question." },
         { status: 400 },
       );
     if (!process.env.GROQ_API_KEY)
       return Response.json(
         {
           error:
-            "chat is temporarily unavailable. please contact arjun directly.",
+            "Chat is temporarily unavailable. Please contact Arjun directly.",
         },
         { status: 503 },
       );
@@ -93,17 +92,19 @@ export async function POST(req: Request) {
     if (plan.clarification) return answerResponse(plan.clarification);
     if (/^(hi|hello|hey)[!.\s]*$/i.test(query))
       return answerResponse(
-        "hi, i'm arjun's portfolio assistant. ask me about his projects, research, or background.",
+        "Hi, I'm Arjun's portfolio assistant. Ask me about his projects, research, or background.",
       );
     const context = await retrieveChatContext(plan, signal);
-    const answer = lowercaseProse(
-      streamChatAnswer(await convertToModelMessages(messages), context, signal),
+    const answer = streamChatAnswer(
+      await convertToModelMessages(messages),
+      context,
+      signal,
     );
     // wait for actual text so preflight failures retain their http status.
     const first = await answer.next();
     if (first.done)
       throw new ChatGenerationError(
-        "chat couldn't complete an answer. please try again.",
+        "Chat couldn't complete an answer. Please try again.",
         503,
       );
     return createUIMessageStreamResponse({
@@ -111,7 +112,7 @@ export async function POST(req: Request) {
         onError: (error) =>
           error instanceof ChatGenerationError
             ? error.message
-            : "the answer was interrupted. please try again.",
+            : "The answer was interrupted. Please try again.",
         async execute({ writer }) {
           const id = crypto.randomUUID();
           writer.write({ type: "start", messageId: crypto.randomUUID() });
@@ -128,7 +129,7 @@ export async function POST(req: Request) {
               (source) => !text.includes(source.url),
             );
             if (missingSources.length) {
-              const delta = `\n\nsources: ${missingSources.map((source) => `[${source.label}](${source.url})`).join(", ")}`;
+              const delta = `\n\nSources: ${missingSources.map((source) => `[${source.label}](${source.url})`).join(", ")}`;
               text += delta;
               writer.write({ type: "text-delta", id, delta });
             }
@@ -168,7 +169,7 @@ export async function POST(req: Request) {
     return Response.json(
       {
         error:
-          "chat is temporarily unavailable. please contact arjun directly.",
+          "Chat is temporarily unavailable. Please contact Arjun directly.",
       },
       { status: 503 },
     );

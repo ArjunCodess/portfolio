@@ -4,6 +4,7 @@ import * as React from "react";
 import { useChat, type UIMessage } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
 import { chatHistory } from "@/lib/ai/chat-history";
+import { chatFollowups } from "@/lib/ai/chat-followups";
 import { useState } from "react";
 import { ChatMessage } from "@/components/chat/chat-message";
 import { ChatInput } from "@/components/chat/chat-input";
@@ -17,11 +18,11 @@ import {
 import { Button } from "@/components/ui/button";
 
 const SUGGESTED_QUESTIONS = [
-  "where was ngta accepted?",
-  "compare mints and prism",
-  "which projects use python?",
-  "what did you win at xavier?",
-  'what is "chain reaction." about?',
+  "Where was NGTA accepted?",
+  "Compare MINTS and PRISM",
+  "Which projects use Python?",
+  "What did you win at Xavier?",
+  'What is "chain reaction." about?',
 ];
 
 const chatTransport = new DefaultChatTransport({
@@ -46,7 +47,7 @@ function chatErrorMessage(error: Error) {
   } catch {
     // Network and stream errors may already be plain text.
   }
-  return error.message || "chat is unavailable. please try again.";
+  return error.message || "Chat is unavailable. Please try again.";
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -59,6 +60,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const messagesEndRef = React.useRef<HTMLDivElement>(null);
 
   const isLoading = status === "streaming" || status === "submitted";
+  const followups = chatFollowups(messages);
 
   const handleSendMessage = () => {
     if (input.trim() && !isLoading) {
@@ -96,7 +98,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             className="rounded-full h-8 w-8 hover:bg-muted"
           >
             <X className="h-4 w-4" />
-            <span className="sr-only">close</span>
+            <span className="sr-only">Close</span>
           </Button>
         </div>
 
@@ -107,17 +109,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               <div className="flex-1 flex flex-col items-center justify-center space-y-6">
                 <div className="text-center space-y-2">
                   <h2 className="text-2xl text-foreground font-semibold">
-                    ask me anything
+                    Ask me anything
                   </h2>
                   <p className="text-sm text-muted-foreground max-w-[350px] mx-auto">
-                    i&apos;m arjun&apos;s portfolio assistant. ask me about his
+                    I&apos;m Arjun&apos;s portfolio assistant. Ask me about his
                     projects, skills, and experience.
                   </p>
                 </div>
 
                 <div className="w-full space-y-8 pt-4">
                   <h3 className="text-xs font-semibold text-muted-foreground tracking-wider text-center mb-3">
-                    suggested questions
+                    Suggested questions
                   </h3>
                   <div className="flex flex-col gap-2">
                     {SUGGESTED_QUESTIONS.map((question, index) => (
@@ -198,7 +200,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                       disabled={isLoading}
                       className="ml-2 underline disabled:opacity-50"
                     >
-                      try again
+                      Try again
                     </button>
                   </div>
                 </div>
@@ -210,7 +212,25 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </div>
 
         {/* Input area */}
-        <div className="p-4 shrink-0">
+        <div className="min-w-0 p-4 shrink-0">
+          <div
+            key={followups.join("|")}
+            role="group"
+            aria-label="Suggested follow-up questions"
+            className="-mx-4 mb-3 flex gap-2 overflow-x-auto px-4 pb-2 [scrollbar-width:thin]"
+          >
+            {followups.map((question) => (
+              <button
+                key={question}
+                type="button"
+                disabled={isLoading}
+                onClick={() => handleSuggestedQuestion(question)}
+                className="min-h-9 shrink-0 rounded-full border border-border bg-muted/50 px-3 py-2 text-xs text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {question}
+              </button>
+            ))}
+          </div>
           <ChatInput
             value={input}
             onChange={setInput}
