@@ -2,6 +2,8 @@
 
 import * as React from "react";
 import { useChat, type UIMessage } from "@ai-sdk/react";
+import { DefaultChatTransport } from "ai";
+import { chatHistory } from "@/lib/ai/chat-history";
 import { useState } from "react";
 import { ChatMessage } from "@/components/chat/chat-message";
 import { ChatInput } from "@/components/chat/chat-input";
@@ -22,8 +24,35 @@ const SUGGESTED_QUESTIONS = [
   'What is "chain reaction." about?',
 ];
 
+const chatTransport = new DefaultChatTransport({
+  prepareSendMessagesRequest: ({ messages }) => ({
+    body: {
+      messages: chatHistory(messages),
+    },
+  }),
+});
+
+function chatErrorMessage(error: Error) {
+  try {
+    const body: unknown = JSON.parse(error.message);
+    if (
+      body &&
+      typeof body === "object" &&
+      "error" in body &&
+      typeof body.error === "string"
+    ) {
+      return body.error;
+    }
+  } catch {
+    // Network and stream errors may already be plain text.
+  }
+  return error.message || "Chat is unavailable. Please try again.";
+}
+
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
-  const { messages, sendMessage, status, error } = useChat();
+  const { messages, sendMessage, regenerate, status, error } = useChat({
+    transport: chatTransport,
+  });
 
   const { toggleSidebar, isMobile } = useSidebar();
   const [input, setInput] = useState("");
@@ -39,7 +68,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   };
 
   const handleSuggestedQuestion = (question: string) => {
-    sendMessage({ text: question });
+    if (!isLoading) sendMessage({ text: question });
   };
 
   // Auto-scroll to bottom when new messages arrive
@@ -117,6 +146,9 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                     .map((part: { type: "text"; text: string }) => part.text)
                     .join("") || "";
 
+                if (message.role === "assistant" && !textContent.trim())
+                  return null;
+
                 return (
                   <ChatMessage
                     key={message.id}
@@ -157,8 +189,15 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               {error && (
                 <div className="flex justify-center">
                   <div className="bg-destructive/10 text-destructive rounded-lg px-4 py-2 text-xs">
-                    {error.message ||
-                      "Chat is unavailable. Please try later or contact Arjun directly."}
+                    {chatErrorMessage(error)}
+                    <button
+                      type="button"
+                      onClick={() => regenerate()}
+                      disabled={isLoading}
+                      className="ml-2 underline disabled:opacity-50"
+                    >
+                      Try again
+                    </button>
                   </div>
                 </div>
               )}

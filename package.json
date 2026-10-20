@@ -11,6 +11,7 @@
     "pretty": "prettier --write \"./**/*.{js,jsx,mjs,cjs,ts,tsx,json}\"",
     "kb:generate": "tsx scripts/generate-embeddings.ts",
     "typecheck": "tsc --noEmit",
+    "test:chat": "tsx --test scripts/chat-regression.test.ts",
     "db:setup-chat": "tsx scripts/setup-chat.ts",
     "kb:sync-readmes": "tsx scripts/sync-github-readmes.ts",
     "kb:refresh": "tsx scripts/refresh-knowledge.ts"

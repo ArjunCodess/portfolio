@@ -13,13 +13,17 @@ import {
 
 const queryCache = new Map<string, { value: number[]; expires: number }>();
 
-export async function generateEmbedding(text: string): Promise<number[]> {
+export async function generateEmbedding(
+  text: string,
+  timeoutMs = 20_000,
+): Promise<number[]> {
   const key = text.trim().toLowerCase();
   const cached = queryCache.get(key);
   if (cached && cached.expires > Date.now()) return cached.value;
-  const [embedding] = await embedTexts([
-    `task: search result | query: ${text}`,
-  ]);
+  const [embedding] = await embedTexts(
+    [`task: search result | query: ${text}`],
+    timeoutMs,
+  );
   if (queryCache.size >= 128)
     queryCache.delete(queryCache.keys().next().value!);
   queryCache.set(key, { value: embedding, expires: Date.now() + 3_600_000 });
@@ -30,13 +34,20 @@ export async function findRelevantContent(
   query: string,
   limit = 4,
   requireSemantic = false,
+  signal?: AbortSignal,
 ) {
   const current = getKnowledgeChunks();
   try {
     if (!process.env.POSTGRES_URL)
       throw new Error("POSTGRES_URL is required for semantic retrieval");
-    const db = neon(process.env.POSTGRES_URL);
-    const queryEmbedding = await generateEmbedding(query);
+    const queryEmbedding = await generateEmbedding(query, 4000);
+    const db = neon(process.env.POSTGRES_URL, {
+      fetchOptions: {
+        signal: signal
+          ? AbortSignal.any([signal, AbortSignal.timeout(3000)])
+          : AbortSignal.timeout(3000),
+      },
+    });
     const vector = `[${queryEmbedding.join(",")}]`;
     // Exact project names and award aliases can be less reliable in dense
     // retrieval. Blend rare-term matches with cosine distance over the same

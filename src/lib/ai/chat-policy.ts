@@ -7,17 +7,22 @@ const message = z
     parts: z
       .array(
         z.union([
-          z.object({ type: z.literal("text"), text: z.string().max(2000) }),
+          z.object({ type: z.literal("text"), text: z.string().max(8000) }),
           z.object({ type: z.literal("step-start") }),
+          z.object({
+            type: z.literal("reasoning"),
+            text: z.string().max(16000),
+          }),
         ]),
       )
       .min(1)
-      .max(4),
+      .max(12),
   })
   .refine(
     (m) =>
       m.parts.filter((p) => p.type === "text").length === 1 &&
-      (m.role === "assistant" || m.parts.every((p) => p.type === "text")),
+      (m.role === "assistant" ||
+        m.parts.every((p) => p.type === "text" && p.text.length <= 2000)),
   );
 export const chatRequest = z
   .object({ messages: z.array(message).min(1).max(40) })
@@ -35,4 +40,11 @@ export function boundedHistory(messages: z.infer<typeof message>[]) {
   }));
 }
 
-export class ChatLimitError extends Error {}
+export class ChatLimitError extends Error {
+  constructor(
+    message: string,
+    public readonly retryAfter = 60,
+  ) {
+    super(message);
+  }
+}

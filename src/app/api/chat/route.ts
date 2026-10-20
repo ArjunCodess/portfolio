@@ -1,13 +1,14 @@
 import {
-  streamText,
   convertToModelMessages,
   createUIMessageStream,
   createUIMessageStreamResponse,
 } from "ai";
-import { groq } from "@ai-sdk/groq";
 import { findRelevantContent, buildContext } from "@/lib/ai/embedding";
 import { CHAT_MODEL } from "@/lib/ai/config";
-import { portfolioSystemPrompt } from "@/lib/ai/chat-prompt";
+import {
+  ChatGenerationError,
+  generateChatAnswer,
+} from "@/lib/ai/chat-generation";
 import {
   boundedHistory,
   chatRequest,
@@ -19,13 +20,15 @@ export const runtime = "nodejs";
 export const maxDuration = 60;
 const answers = new Map<string, { text: string; expires: number }>();
 
-function cachedResponse(text: string) {
+function answerResponse(text: string) {
   return createUIMessageStreamResponse({
     stream: createUIMessageStream({
       execute({ writer }) {
+        writer.write({ type: "start", messageId: crypto.randomUUID() });
         writer.write({ type: "text-start", id: "cached" });
         writer.write({ type: "text-delta", id: "cached", delta: text });
         writer.write({ type: "text-end", id: "cached" });
+        writer.write({ type: "finish", finishReason: "stop" });
       },
     }),
   });
@@ -74,35 +77,37 @@ export async function POST(req: Request) {
       messages.length === 1 ? `${CHAT_MODEL}:${query.toLowerCase()}` : null;
     const cached = key ? answers.get(key) : undefined;
     if (cached && cached.expires > Date.now())
-      return cachedResponse(cached.text);
-    await reserveChatBudget(req);
-    const context = buildContext(await findRelevantContent(query));
-    const result = streamText({
-      model: groq(CHAT_MODEL),
-      system: portfolioSystemPrompt(context),
-      messages: await convertToModelMessages(messages),
-      maxOutputTokens: 2048,
-      maxRetries: 0,
-      abortSignal: AbortSignal.any([req.signal, AbortSignal.timeout(50_000)]),
-      providerOptions: {
-        groq: { reasoningEffort: "low" },
-      },
-      onFinish({ text, finishReason }) {
-        if (key && text && finishReason === "stop") {
-          if (answers.size >= 100) answers.delete(answers.keys().next().value!);
-          answers.set(key, { text, expires: Date.now() + 3_600_000 });
-        }
-      },
-    });
-    return result.toUIMessageStreamResponse({
-      onError: () =>
-        "Chat is temporarily unavailable or its free quota is used up. Please try later or contact Arjun directly.",
-    });
+      return answerResponse(cached.text);
+    const signal = AbortSignal.any([req.signal, AbortSignal.timeout(45_000)]);
+    await reserveChatBudget(req, signal);
+    const context = buildContext(
+      await findRelevantContent(query, 4, false, signal),
+    );
+    const text = await generateChatAnswer(
+      await convertToModelMessages(messages),
+      context,
+      signal,
+    );
+    if (key) {
+      if (answers.size >= 100) answers.delete(answers.keys().next().value!);
+      answers.set(key, { text, expires: Date.now() + 3_600_000 });
+    }
+    return answerResponse(text);
   } catch (error) {
+    if (error instanceof ChatGenerationError)
+      return Response.json(
+        { error: error.message },
+        {
+          status: error.status,
+          headers: error.retryAfter
+            ? { "Retry-After": error.retryAfter }
+            : undefined,
+        },
+      );
     if (error instanceof ChatLimitError)
       return Response.json(
         { error: error.message },
-        { status: 429, headers: { "Retry-After": "60" } },
+        { status: 429, headers: { "Retry-After": String(error.retryAfter) } },
       );
     console.error(
       "Chat unavailable:",
