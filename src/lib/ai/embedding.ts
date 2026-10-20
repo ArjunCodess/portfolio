@@ -16,13 +16,16 @@ const queryCache = new Map<string, { value: number[]; expires: number }>();
 export async function generateEmbedding(
   text: string,
   timeoutMs = 20_000,
+  signal?: AbortSignal,
 ): Promise<number[]> {
+  signal?.throwIfAborted();
   const key = text.trim().toLowerCase();
   const cached = queryCache.get(key);
   if (cached && cached.expires > Date.now()) return cached.value;
   const [embedding] = await embedTexts(
     [`task: search result | query: ${text}`],
     timeoutMs,
+    signal,
   );
   if (queryCache.size >= 128)
     queryCache.delete(queryCache.keys().next().value!);
@@ -36,11 +39,15 @@ export async function findRelevantContent(
   requireSemantic = false,
   signal?: AbortSignal,
 ) {
+  signal?.throwIfAborted();
   const current = getKnowledgeChunks();
+  const lexical = rankLexically(query, current)
+    .filter((chunk) => chunk.similarity > 0)
+    .slice(0, 24);
   try {
     if (!process.env.POSTGRES_URL)
       throw new Error("POSTGRES_URL is required for semantic retrieval");
-    const queryEmbedding = await generateEmbedding(query, 4000);
+    const queryEmbedding = await generateEmbedding(query, 4000, signal);
     const db = neon(process.env.POSTGRES_URL, {
       fetchOptions: {
         signal: signal
@@ -49,18 +56,6 @@ export async function findRelevantContent(
       },
     });
     const vector = `[${queryEmbedding.join(",")}]`;
-    // Exact project names and award aliases can be less reliable in dense
-    // retrieval. Blend rare-term matches with cosine distance over the same
-    // current database rows, without spending another model request.
-    const lexical = rankLexically(query, current)
-      .filter((chunk) => chunk.similarity > 0)
-      .slice(0, 12);
-    const maximum = lexical[0]?.similarity || 1;
-    const boosts = JSON.stringify(
-      Object.fromEntries(
-        lexical.map((chunk) => [chunk.id, chunk.similarity / maximum]),
-      ),
-    );
     const rows = await db`
       SELECT metadata->>'chunkId' AS id, source, content,
         1 - (embedding <=> ${vector}::vector) AS similarity
@@ -69,35 +64,59 @@ export async function findRelevantContent(
         AND metadata->>'embeddingProfile' = ${EMBEDDING_PROFILE}
         AND metadata->>'dimensions' = ${String(EMBEDDING_DIMENSIONS)}
         AND metadata->>'sourceHash' = ${getKnowledgeHash(current)}
-      ORDER BY (1 - (embedding <=> ${vector}::vector)) +
-        0.4 * COALESCE((${boosts}::jsonb ->> (metadata->>'chunkId'))::double precision, 0) DESC
-      LIMIT ${Math.max(1, Math.min(12, limit))}`;
+      ORDER BY embedding <=> ${vector}::vector
+      LIMIT 24`;
     if (!rows.length)
       throw new Error("Database index is stale; run pnpm kb:refresh");
-    return rows as {
+    const semantic = rows as {
       id: string;
       source: string;
       content: string;
       similarity: number;
     }[];
+    return fuseRankings(lexical, semantic).slice(0, limit);
   } catch (error) {
+    signal?.throwIfAborted();
     if (requireSemantic) throw error;
     // The small, curated corpus remains available if the inference host sleeps.
     console.warn(
       "Semantic retrieval unavailable; using keyword retrieval:",
       error instanceof Error ? error.message : "unknown error",
     );
-    return rankLexically(query, current)
-      .filter((chunk) => chunk.similarity > 0)
-      .slice(0, limit);
+    return lexical.slice(0, limit);
   }
 }
 
 export function buildContext(
   chunks: { content: string; source: string }[],
+  budget = 5200,
 ): string {
-  return chunks
-    .map((chunk) => `[${chunk.source}]\n${chunk.content}`)
-    .join("\n\n")
-    .slice(0, 5200);
+  const blocks: string[] = [];
+  let remaining = budget;
+  for (const chunk of chunks) {
+    const block = `[${chunk.source}]\n${chunk.content}`;
+    if (block.length + 2 > remaining) continue;
+    blocks.push(block);
+    remaining -= block.length + 2;
+  }
+  return blocks.join("\n\n");
+}
+
+export function fuseRankings<T extends { id: string }>(...rankings: T[][]) {
+  const scores = new Map<string, { chunk: T; score: number }>();
+  for (const ranking of rankings) {
+    const seen = new Set<string>();
+    ranking.forEach((chunk, index) => {
+      if (seen.has(chunk.id)) return;
+      seen.add(chunk.id);
+      const previous = scores.get(chunk.id);
+      scores.set(chunk.id, {
+        chunk,
+        score: (previous?.score || 0) + 1 / (60 + index + 1),
+      });
+    });
+  }
+  return [...scores.values()]
+    .sort((a, b) => b.score - a.score)
+    .map(({ chunk }) => chunk);
 }

@@ -69,7 +69,12 @@ function getMarkdownChunks(): KnowledgeChunk[] {
 
 // The website supplies current facts; Markdown retains deeper personal history,
 // life writing, and project details that do not fit on the public profile.
+let knowledgeCache: KnowledgeChunk[] | undefined;
+
 export function getKnowledgeChunks(): KnowledgeChunk[] {
+  // production knowledge changes with each deployment.
+  if (process.env.NODE_ENV === "production" && knowledgeCache)
+    return knowledgeCache;
   const sections = [
     {
       source: "about",
@@ -118,17 +123,57 @@ export function getKnowledgeChunks(): KnowledgeChunk[] {
       content: piece.trim(),
     }));
   });
-  return [...curated, ...getMarkdownChunks()];
+  const chunks = [...curated, ...getMarkdownChunks()];
+  if (process.env.NODE_ENV === "production") knowledgeCache = chunks;
+  return chunks;
 }
 
+const hashes = new WeakMap<KnowledgeChunk[], string>();
+
 export function getKnowledgeHash(chunks: KnowledgeChunk[]): string {
-  return createHash("sha256")
+  const cached = hashes.get(chunks);
+  if (cached) return cached;
+  const hash = createHash("sha256")
     .update(
       JSON.stringify(
         chunks.map(({ id, source, content }) => ({ id, source, content })),
       ),
     )
     .digest("hex");
+  hashes.set(chunks, hash);
+  return hash;
+}
+
+function tokens(text: string) {
+  return text.toLowerCase().match(/[\p{L}\p{N}+#]+/gu) || [];
+}
+
+const lexicalIndexes = new WeakMap<
+  KnowledgeChunk[],
+  ReturnType<typeof lexicalIndex>
+>();
+
+function lexicalIndex(chunks: KnowledgeChunk[]) {
+  const frequencies = new Map<string, number>();
+  const documents = chunks.map((chunk) => {
+    const words = tokens(chunk.content);
+    const counts = new Map<string, number>();
+    for (const word of words) counts.set(word, (counts.get(word) || 0) + 1);
+    for (const word of counts.keys())
+      frequencies.set(word, (frequencies.get(word) || 0) + 1);
+    return {
+      counts,
+      length: words.length,
+      source: new Set(tokens(chunk.source)),
+    };
+  });
+  return {
+    documents,
+    frequencies,
+    average:
+      documents.reduce((sum, doc) => sum + doc.length, 0) /
+        (documents.length || 1) || 1,
+  };
 }
 
 export function rankLexically(query: string, chunks = getKnowledgeChunks()) {
@@ -153,40 +198,47 @@ export function rankLexically(query: string, chunks = getKnowledgeChunks()) {
     "that",
     "this",
     "are",
+    "a",
+    "an",
+    "i",
+    "me",
+    "is",
+    "in",
+    "to",
+    "of",
+    "it",
+    "its",
+    "be",
+    "on",
+    "at",
+    "can",
+    "tell",
+    "projects",
+    "project",
   ]);
-  const words = [
-    ...new Set(query.toLowerCase().match(/[\p{L}\p{N}]{3,}/gu) || []),
-  ].filter((word) => !stopWords.has(word));
-  const texts = chunks.map((chunk) =>
-    `${chunk.source} ${chunk.content}`.toLowerCase(),
+  const words = [...new Set(tokens(query))].filter(
+    (word) => !stopWords.has(word),
   );
-  const weights = new Map(
-    words.map((word) => {
-      const frequency = texts.filter((text) => text.includes(word)).length;
-      return [
-        word,
-        Math.log(1 + (chunks.length - frequency + 0.5) / (frequency + 0.5)),
-      ];
-    }),
-  );
+  let index = lexicalIndexes.get(chunks);
+  if (!index) {
+    index = lexicalIndex(chunks);
+    lexicalIndexes.set(chunks, index);
+  }
+  const { documents, frequencies, average } = index;
   return chunks
-    .map((chunk) => {
-      const content = chunk.content.toLowerCase();
-      const source = chunk.source.toLowerCase();
-      const phraseBoost =
-        words.length > 1 && content.includes(words.join(" "))
-          ? words.reduce((sum, word) => sum + (weights.get(word) || 0), 0)
-          : 0;
-      const score =
-        phraseBoost +
-        words.reduce(
-          (sum, word) =>
-            sum +
-            (weights.get(word) || 0) *
-              ((source.includes(word) ? 1.5 : 0) +
-                (content.includes(word) ? 1 : 0)),
-          0,
+    .map((chunk, i) => {
+      const doc = documents[i];
+      const score = words.reduce((sum, word) => {
+        const frequency = frequencies.get(word) || 0;
+        const idf = Math.log(
+          1 + (chunks.length - frequency + 0.5) / (frequency + 0.5),
         );
+        const count = doc.counts.get(word) || 0;
+        const bm25 =
+          (count * 2.2) /
+          (count + 1.2 * (0.25 + (0.75 * doc.length) / average));
+        return sum + idf * (bm25 + (doc.source.has(word) ? 1.5 : 0));
+      }, 0);
       return {
         ...chunk,
         similarity: score,

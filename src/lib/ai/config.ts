@@ -24,6 +24,7 @@ export function validateEmbedding(value: unknown): number[] {
 export async function embedTexts(
   texts: string[],
   timeoutMs = 20_000,
+  signal?: AbortSignal,
 ): Promise<number[][]> {
   if (
     !texts.length ||
@@ -42,7 +43,9 @@ export async function embedTexts(
     dimensions: EMBEDDING_DIMENSIONS,
     maxRetries: 0,
     maxParallelCalls: 1,
-    abortSignal: AbortSignal.timeout(timeoutMs),
+    abortSignal: signal
+      ? AbortSignal.any([signal, AbortSignal.timeout(timeoutMs)])
+      : AbortSignal.timeout(timeoutMs),
   });
   if (embeddings.length !== texts.length)
     throw new Error("Embedding batch mismatch");
