@@ -4,8 +4,7 @@ import { google } from "@ai-sdk/google";
 export const EMBEDDING_MODEL = "gemini-embedding-2";
 export const EMBEDDING_DIMENSIONS = 768;
 export const EMBEDDING_PROFILE = `${EMBEDDING_MODEL}:768:search-v1`;
-export const CHAT_MODEL =
-  process.env.GEMINI_CHAT_MODEL || "gemini-flash-lite-latest";
+export const CHAT_MODEL = process.env.GROQ_CHAT_MODEL || "openai/gpt-oss-120b";
 
 export function validateEmbedding(value: unknown): number[] {
   if (

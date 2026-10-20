@@ -43,20 +43,20 @@ Hi, I'm **Arjun Vijay Prakash**, a 16-year-old full-stack developer, researcher,
 
 ## 🧠 AI Chatbot & RAG Architecture
 
-The chatbot answers questions about my projects, research, background, and writing using the portfolio's own content. Embeddings and chat generation both call Google's APIs directly from Next.js; no Python service or local model hosting is required.
+The chatbot answers questions about my projects, research, background, and writing using the portfolio's own content. Chat generation calls Groq and embeddings call Google's API directly from Next.js; no Python service or local model hosting is required.
 
 ### How it Works
 
 1. **Ingestion pipeline** (`scripts/generate-embeddings.ts`) reads current website data from `src/data/resume.tsx`, certificate descriptions, and every Markdown file in `src/data/rag/`. Line-aware chunking keeps short factual statements together. The `gemini-embedding-2` API produces normalized 768-dimensional vectors.
 2. **Index refresh** reuses unchanged vectors from `src/data/embeddings.json` when their model, dimensions, and retrieval profile match. After every vector is generated and validated, one Postgres transaction deletes the old `kb_documents` rows and inserts the complete new index. A failed generation or transaction preserves the previous database index.
 3. **Retrieval** embeds the question using the same model and searches pgvector with cosine similarity, blended with rare-term and exact-phrase matches. The top four results supply context. Model, profile, dimensions, and corpus-hash checks prevent mismatched or stale vectors from being used. Keyword retrieval remains available when semantic search is unavailable.
-4. **Generation** uses `gemini-flash-lite-latest` with **medium thinking** through AI SDK 7. Answers stream to the chat sidebar in lowercase prose while preserving proper names, with instructions to distinguish submissions, acceptances, and publication plans.
+4. **Generation** uses `openai/gpt-oss-120b` on Groq with low reasoning effort through AI SDK 7. Answers stream to the chat sidebar in lowercase prose while preserving proper names, with instructions to distinguish submissions, acceptances, and publication plans.
 
 ### Free-Tier Usage
 
 Chat uses at most six recent messages, 5,200 characters of retrieved context, and a 2,048-token generation cap, with replies limited to 120 words. Standalone answers and query embeddings have bounded, one-hour caches. Provider requests have timeouts and no automatic retries.
 
-Postgres reserves request budgets across instances: five requests per visitor per minute, twenty per visitor per day, and configurable global limits that default to eight per minute and one hundred per day. Set `CHAT_RPM_LIMIT` and `CHAT_DAILY_LIMIT` below your Google project's actual allowance. A missing budget table or unavailable database disables chat rather than bypassing these limits.
+Postgres reserves request budgets across instances: five requests per visitor per minute, twenty per visitor per day, and configurable global limits that default to eight per minute and one hundred per day. Set `CHAT_RPM_LIMIT` and `CHAT_DAILY_LIMIT` below your Groq account's actual allowance, accounting for token limits as well as request limits. A missing budget table or unavailable database disables chat rather than bypassing these limits.
 
 Embedding refreshes default to **80 texts per minute**, counting each text in a batch. `EMBEDDING_REFRESH_RPM_LIMIT` can lower that pace. Partial progress is saved in `.cache/embedding-progress.json`, so an interrupted refresh can resume without generating completed chunks again. Embedding quotas are separate from chat quotas.
 
@@ -71,8 +71,8 @@ Embedding refreshes default to **80 texts per minute**, counting each text in a 
 
 ### AI & Data
 
-- **LLM:** Google Gemini, defaulting to `gemini-flash-lite-latest` with medium thinking.
-- **SDK:** AI SDK 7 and its Google provider.
+- **LLM:** Groq, defaulting to `openai/gpt-oss-120b` with low reasoning effort.
+- **SDK:** AI SDK 7 with Groq and Google providers.
 - **Embeddings:** `gemini-embedding-2`, 768 dimensions, through the Gemini API.
 - **Database:** Postgres through Neon's serverless driver, with pgvector for semantic search.
 - **Knowledge:** Current portfolio data, certificate descriptions, and preserved Markdown history.
@@ -90,7 +90,7 @@ Embedding refreshes default to **80 texts per minute**, counting each text in a 
 - Node.js 24.x.
 - pnpm 11.1.1.
 - A Postgres database with pgvector support.
-- A Google API key with access to the configured chat and embedding models.
+- A Groq API key for chat and a Google API key for embeddings.
 
 ### Installation
 
@@ -103,7 +103,7 @@ pnpm install
 cp .env.example .env.local
 ```
 
-Set `POSTGRES_URL` and `GOOGLE_GENERATIVE_AI_API_KEY` in `.env.local`. Add the GitHub OAuth and auth credentials from `.env.example` if using guestbook sign-in. Next.js and Vercel set `NODE_ENV` automatically.
+Set `POSTGRES_URL`, `GROQ_API_KEY`, and `GOOGLE_GENERATIVE_AI_API_KEY` in `.env.local`. Add the GitHub OAuth and auth credentials from `.env.example` if using guestbook sign-in. Next.js and Vercel set `NODE_ENV` automatically.
 
 ```bash
 # Create the persistent chat-budget table.
@@ -135,7 +135,7 @@ pnpm kb:refresh -- --local-only --force
 
 `pnpm db:generate-embeddings` is also available as an alias for generation. Commit `src/data/embeddings.json` after content changes and run the refresh against the deployment database. Builds, visitor chats, and ordinary page loads never sync GitHub READMEs or regenerate the corpus.
 
-The Google API key powers both chat generation and embeddings. `EMBEDDING_SERVICE_URL` and `EMBEDDING_SERVICE_TOKEN` are no longer used. Set `GEMINI_CHAT_MODEL=gemini-flash-lite-latest` in Vercel if an older model override is present.
+Set `GROQ_API_KEY` in Vercel for chat generation, and keep `GOOGLE_GENERATIVE_AI_API_KEY` for semantic retrieval and index generation. `GROQ_CHAT_MODEL` optionally overrides the default `openai/gpt-oss-120b`; the old `GEMINI_CHAT_MODEL` setting is no longer used. Missing or unavailable Google embeddings fall back to keyword retrieval. No embedding regeneration is needed when changing the chat model.
 
 `DEV_ALLOWED_ORIGINS` is optional and development-only. For LAN access, use comma-separated hostnames such as `192.168.0.14,my-laptop.local`, without schemes or ports. Leave it empty for localhost and omit it in Vercel.
 

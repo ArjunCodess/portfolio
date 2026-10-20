@@ -31,7 +31,7 @@ export async function reserveChatBudget(req: Request) {
   const expires = new Date(now + 2 * 86_400_000).toISOString();
   await reserve(`visitor:${identity}:${minute}`, 5, expires);
   await reserve(`visitor:${identity}:${day}`, 20, expires);
-  // Conservative defaults. Align with this project's actual AI Studio quotas.
+  // Conservative defaults. Align with Groq's token and request quotas.
   const rpm = Math.max(1, Number(process.env.CHAT_RPM_LIMIT) || 8);
   const rpd = Math.max(1, Number(process.env.CHAT_DAILY_LIMIT) || 100);
   await reserve(`global:minute:${minute}`, rpm, expires);

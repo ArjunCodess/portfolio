@@ -4,7 +4,7 @@ import {
   createUIMessageStream,
   createUIMessageStreamResponse,
 } from "ai";
-import { google } from "@ai-sdk/google";
+import { groq } from "@ai-sdk/groq";
 import { findRelevantContent, buildContext } from "@/lib/ai/embedding";
 import { CHAT_MODEL } from "@/lib/ai/config";
 import { portfolioSystemPrompt } from "@/lib/ai/chat-prompt";
@@ -60,7 +60,7 @@ export async function POST(req: Request) {
         { error: "Please enter a question." },
         { status: 400 },
       );
-    if (!process.env.GOOGLE_GENERATIVE_AI_API_KEY)
+    if (!process.env.GROQ_API_KEY)
       return Response.json(
         {
           error:
@@ -78,14 +78,14 @@ export async function POST(req: Request) {
     await reserveChatBudget(req);
     const context = buildContext(await findRelevantContent(query));
     const result = streamText({
-      model: google(CHAT_MODEL),
+      model: groq(CHAT_MODEL),
       system: portfolioSystemPrompt(context),
       messages: await convertToModelMessages(messages),
       maxOutputTokens: 2048,
       maxRetries: 0,
       abortSignal: AbortSignal.any([req.signal, AbortSignal.timeout(50_000)]),
       providerOptions: {
-        google: { thinkingConfig: { thinkingLevel: "medium" } },
+        groq: { reasoningEffort: "low" },
       },
       onFinish({ text, finishReason }) {
         if (key && text && finishReason === "stop") {

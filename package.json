@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@ai-sdk/google": "^4.0.95",
+    "@ai-sdk/groq": "^4.0.63",
     "@ai-sdk/react": "^4.0.143",
     "@neondatabase/serverless": "^1.2.0",
     "@radix-ui/react-alert-dialog": "^1.2.1",
