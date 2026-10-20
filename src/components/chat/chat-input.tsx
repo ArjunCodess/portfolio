@@ -20,7 +20,7 @@ export function ChatInput({
   onSubmit,
   isLoading = false,
   disabled = false,
-  placeholder = "Ask me anything about Arjun...",
+  placeholder = "ask me about arjun...",
 }: ChatInputProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -55,7 +55,7 @@ export function ChatInput({
         disabled={disabled || isLoading}
         rows={1}
         maxLength={2000}
-        aria-label="Ask a question about Arjun"
+        aria-label="ask a question about arjun"
         className={cn(
           "flex-1 resize-none bg-transparent py-2 text-sm",
           "placeholder:text-muted-foreground",
@@ -68,6 +68,7 @@ export function ChatInput({
         size="icon"
         onClick={onSubmit}
         disabled={disabled || isLoading || !value?.trim()}
+        aria-label="send message"
         className="shrink-0 rounded-full"
       >
         {isLoading ? (

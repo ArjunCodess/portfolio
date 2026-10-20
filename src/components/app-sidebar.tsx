@@ -17,11 +17,11 @@ import {
 import { Button } from "@/components/ui/button";
 
 const SUGGESTED_QUESTIONS = [
-  "Where was NGTA accepted?",
-  "What are MINTS and PRISM?",
-  "What did you win at Xavier?",
-  "What was Lodha Genius like?",
-  'What is "chain reaction." about?',
+  "where was ngta accepted?",
+  "compare mints and prism",
+  "which projects use python?",
+  "what did you win at xavier?",
+  'what is "chain reaction." about?',
 ];
 
 const chatTransport = new DefaultChatTransport({
@@ -46,7 +46,7 @@ function chatErrorMessage(error: Error) {
   } catch {
     // Network and stream errors may already be plain text.
   }
-  return error.message || "Chat is unavailable. Please try again.";
+  return error.message || "chat is unavailable. please try again.";
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -71,10 +71,12 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     if (!isLoading) sendMessage({ text: question });
   };
 
-  // Auto-scroll to bottom when new messages arrive
+  // avoid restarting smooth scrolling for every streamed token.
   React.useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    messagesEndRef.current?.scrollIntoView({
+      behavior: isLoading ? "auto" : "smooth",
+    });
+  }, [messages, isLoading]);
 
   return (
     <Sidebar
@@ -94,7 +96,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             className="rounded-full h-8 w-8 hover:bg-muted"
           >
             <X className="h-4 w-4" />
-            <span className="sr-only">Close</span>
+            <span className="sr-only">close</span>
           </Button>
         </div>
 
@@ -105,17 +107,17 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               <div className="flex-1 flex flex-col items-center justify-center space-y-6">
                 <div className="text-center space-y-2">
                   <h2 className="text-2xl text-foreground font-semibold">
-                    Ask me anything
+                    ask me anything
                   </h2>
                   <p className="text-sm text-muted-foreground max-w-[350px] mx-auto">
-                    I&apos;m Arjun&apos;s second brain. Ask me anything about
-                    his projects, skills, and experience.
+                    i&apos;m arjun&apos;s portfolio assistant. ask me about his
+                    projects, skills, and experience.
                   </p>
                 </div>
 
                 <div className="w-full space-y-8 pt-4">
-                  <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider text-center mb-3">
-                    Suggested Questions
+                  <h3 className="text-xs font-semibold text-muted-foreground tracking-wider text-center mb-3">
+                    suggested questions
                   </h3>
                   <div className="flex flex-col gap-2">
                     {SUGGESTED_QUESTIONS.map((question, index) => (
@@ -196,7 +198,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                       disabled={isLoading}
                       className="ml-2 underline disabled:opacity-50"
                     >
-                      Try again
+                      try again
                     </button>
                   </div>
                 </div>

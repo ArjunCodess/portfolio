@@ -1,4 +1,4 @@
-import { APICallError, generateText, type ModelMessage } from "ai";
+import { APICallError, streamText, type ModelMessage } from "ai";
 import { groq } from "@ai-sdk/groq";
 import { CHAT_MODEL } from "./config";
 import { portfolioSystemPrompt } from "./chat-prompt";
@@ -13,7 +13,7 @@ export class ChatGenerationError extends Error {
   }
 }
 
-export async function generateChatAnswer(
+export async function* streamChatAnswer(
   messages: ModelMessage[],
   context: string,
   signal: AbortSignal,
@@ -27,37 +27,55 @@ export async function generateChatAnswer(
   let lastError: unknown;
   for (const model of models) {
     signal.throwIfAborted();
+    let visible = false;
     try {
-      const result = await generateText({
+      const result = streamText({
         model: groq(model),
         system: portfolioSystemPrompt(context),
         messages,
         maxOutputTokens: 2048,
         maxRetries: 0,
+        onError: () => {},
         abortSignal: AbortSignal.any([signal, AbortSignal.timeout(18_000)]),
         providerOptions: {
           groq: { reasoningEffort: "low" },
         },
       });
-      // Reasoning can exhaust the output budget before any answer is produced.
-      // Never cache or return an empty, truncated, or failed generation as success.
-      if (result.text.trim() && result.finishReason === "stop") {
-        return result.text.trim();
+      let finish: string | undefined;
+      let leading = "";
+      for await (const part of result.stream) {
+        signal.throwIfAborted();
+        if (part.type === "error") throw part.error;
+        if (part.type === "abort") throw new Error("generation aborted");
+        if (part.type === "finish") finish = part.finishReason;
+        if (part.type === "text-delta") {
+          const delta = visible ? part.text : leading + part.text;
+          if (!visible && !delta.trim()) {
+            leading = delta;
+            continue;
+          }
+          if (delta) {
+            visible = true;
+            yield delta;
+          }
+        }
       }
-      lastError = new Error(`Incomplete generation: ${result.finishReason}`);
-      console.warn("Chat generation incomplete", {
-        model,
-        finishReason: result.finishReason,
-        hasText: Boolean(result.text.trim()),
-      });
+      if (visible && finish === "stop") return;
+      throw new Error(`incomplete generation: ${finish}`);
     } catch (error) {
+      signal.throwIfAborted();
       lastError = error;
-      console.warn("Chat generation failed", {
+      console.warn("chat generation failed", {
         model,
         status: APICallError.isInstance(error) ? error.statusCode : undefined,
         name: error instanceof Error ? error.name : "unknown",
       });
-      // A different model cannot repair invalid credentials or a bad payload.
+      // never append a second answer after partial text.
+      if (visible)
+        throw new ChatGenerationError(
+          "the answer was interrupted. please try again.",
+          503,
+        );
       if (
         APICallError.isInstance(error) &&
         [400, 401, 403].includes(error.statusCode ?? 0)
@@ -67,13 +85,24 @@ export async function generateChatAnswer(
   }
   if (APICallError.isInstance(lastError) && lastError.statusCode === 429) {
     throw new ChatGenerationError(
-      "Chat is busy or its free quota is used up. Please try again later.",
+      "chat is busy or its free quota is used up. please try again later.",
       429,
       lastError.responseHeaders?.["retry-after"] || "60",
     );
   }
   throw new ChatGenerationError(
-    "Chat couldn't complete an answer. Please try again.",
+    "chat couldn't complete an answer. please try again.",
     503,
   );
+}
+
+export async function generateChatAnswer(
+  messages: ModelMessage[],
+  context: string,
+  signal: AbortSignal,
+) {
+  let answer = "";
+  for await (const delta of streamChatAnswer(messages, context, signal))
+    answer += delta;
+  return answer.trim();
 }
