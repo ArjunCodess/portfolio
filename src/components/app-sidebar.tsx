@@ -213,24 +213,26 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
 
         {/* Input area */}
         <div className="min-w-0 p-4 shrink-0">
-          <div
-            key={followups.join("|")}
-            role="group"
-            aria-label="Suggested follow-up questions"
-            className="-mx-4 mb-3 flex gap-2 overflow-x-auto px-4 pb-2 [scrollbar-width:thin]"
-          >
-            {followups.map((question) => (
-              <button
-                key={question}
-                type="button"
-                disabled={isLoading}
-                onClick={() => handleSuggestedQuestion(question)}
-                className="min-h-9 shrink-0 rounded-full border border-border bg-muted/50 px-3 py-2 text-xs text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50"
-              >
-                {question}
-              </button>
-            ))}
-          </div>
+          {messages.length > 0 && (
+            <div
+              key={followups.join("|")}
+              role="group"
+              aria-label="Suggested follow-up questions"
+              className="-mx-4 mb-3 flex gap-2 overflow-x-auto px-4 pb-2 [scrollbar-width:thin]"
+            >
+              {followups.map((question) => (
+                <button
+                  key={question}
+                  type="button"
+                  disabled={isLoading}
+                  onClick={() => handleSuggestedQuestion(question)}
+                  className="min-h-9 shrink-0 rounded-full border border-border bg-muted/50 px-3 py-2 text-xs text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  {question}
+                </button>
+              ))}
+            </div>
+          )}
           <ChatInput
             value={input}
             onChange={setInput}
