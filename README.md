@@ -18,7 +18,7 @@ Hi, I'm **Arjun Vijay Prakash**, a 16-year-old full-stack developer, researcher,
 - **First prize at Xavier University's AI Vulnerability Challenge**, competing with Saksham Yadav as Team Cipher Force. The competition brought together 187 teams from 97 schools across 20 cities. [Official result](https://www.linkedin.com/feed/update/urn:li:activity:7510232515480145920/).
 - **Selected for YC Startup School India**, with an 8% event acceptance rate.
 - **35000+ followers and 420,000+ views** on [DEV.to](https://dev.to/arjuncodess), with **$2,450 earned** through technical writing.
-- **Open-source contributions** to Grafana, Tempo, fish-shell, Notesnook, next-cloudinary, and Zero.
+- **Open-source contributions** with 15 merged PRs across Effect, Storybook, Grafana, fish-shell, Tempo, Notesnook, next-cloudinary, Zero, and Animata, grouped into major and minor contributions.
 - **Lodha Genius Programme at Ashoka University**, followed by my Medium series ["chain reaction."](https://arjunwritess.medium.com/list/chain-reaction-575bef231dc9). I also write ["to my love."](https://arjunwritess.medium.com/list/to-my-love-758949c73be0).
 
 ### Current Research

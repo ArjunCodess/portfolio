@@ -213,56 +213,36 @@ export default function Page() {
           <SectionHeader
             badge="Open Source"
             title="Contributing to the Community"
-            description="I believe in giving back. Here are my contributions to open source projects, from bug fixes to new features."
+            description="Merged features and fixes for established open source projects."
             delay={BLUR_FADE_DELAY * 11.5}
           />
           <div className="max-w-[800px] mx-auto space-y-6">
-            {/* Major Contributions */}
-            <div>
-              <BlurFade delay={BLUR_FADE_DELAY * 12}>
-                <h3 className="text-lg font-semibold mb-2">Major</h3>
-              </BlurFade>
-              <div className="grid gap-1.5">
-                {DATA.openSourceContributions
-                  .filter((c) => c.type === "major")
-                  .map((contribution, id) => (
-                    <BlurFade
-                      key={contribution.href}
-                      delay={BLUR_FADE_DELAY * 12.5 + id * 0.05}
-                    >
-                      <ContributionCard
-                        title={contribution.title}
-                        description={contribution.description}
-                        href={contribution.href}
-                        date={contribution.date}
-                      />
-                    </BlurFade>
-                  ))}
+            {(["major", "minor"] as const).map((type) => (
+              <div key={type}>
+                <BlurFade delay={BLUR_FADE_DELAY * 12}>
+                  <h3 className="text-lg font-semibold mb-2">
+                    {type === "major" ? "Major" : "Minor"}
+                  </h3>
+                </BlurFade>
+                <div className="grid gap-1.5">
+                  {DATA.openSourceContributions
+                    .filter((contribution) => contribution.type === type)
+                    .map((contribution, id) => (
+                      <BlurFade
+                        key={contribution.href}
+                        delay={BLUR_FADE_DELAY * 12.5 + id * 0.05}
+                      >
+                        <ContributionCard
+                          title={contribution.title}
+                          description={contribution.description}
+                          href={contribution.href}
+                          date={contribution.date}
+                        />
+                      </BlurFade>
+                    ))}
+                </div>
               </div>
-            </div>
-            {/* Minor Contributions */}
-            <div>
-              <BlurFade delay={BLUR_FADE_DELAY * 13}>
-                <h3 className="text-lg font-semibold mb-2">Minor</h3>
-              </BlurFade>
-              <div className="grid gap-1.5">
-                {DATA.openSourceContributions
-                  .filter((c) => c.type === "minor")
-                  .map((contribution, id) => (
-                    <BlurFade
-                      key={contribution.href}
-                      delay={BLUR_FADE_DELAY * 13.5 + id * 0.05}
-                    >
-                      <ContributionCard
-                        title={contribution.title}
-                        description={contribution.description}
-                        href={contribution.href}
-                        date={contribution.date}
-                      />
-                    </BlurFade>
-                  ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
