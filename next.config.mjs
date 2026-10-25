@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: { agentUpgrade: "security" },
   reactStrictMode: true,
   allowedDevOrigins:
     process.env.DEV_ALLOWED_ORIGINS?.split(",")
