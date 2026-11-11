@@ -835,6 +835,20 @@ export const DATA = {
   ],
   openSourceContributions: [
     {
+      title: "Better Auth #12413",
+      description: "Keep auth running without SCIM transactions (co-authored)",
+      href: "https://github.com/better-auth/better-auth/pull/12413",
+      type: "major",
+      date: "Nov 2026",
+    },
+    {
+      title: "Better Auth #11904",
+      description: "Support OAuth on private HTTP networks (co-authored)",
+      href: "https://github.com/better-auth/better-auth/pull/11904",
+      type: "major",
+      date: "Nov 2026",
+    },
+    {
       title: "Effect #8349",
       description: "Render domain errors in CLI output",
       href: "https://github.com/Effect-TS/effect/pull/8349",
