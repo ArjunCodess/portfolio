@@ -150,11 +150,18 @@ export default function Page() {
               <ResumeCard
                 key={work.company}
                 logoUrl={work.logoUrl}
+                logoClassName={
+                  "logoClassName" in work ? work.logoClassName : undefined
+                }
                 altText={work.company}
                 title={work.company}
                 subtitle={work.title}
                 badges={work.badges}
-                period={formatPeriod(work.start, work.end ?? "Present")}
+                period={
+                  work.start
+                    ? formatPeriod(work.start, work.end ?? "Present")
+                    : work.end
+                }
                 description={work.description}
               />
             </BlurFade>

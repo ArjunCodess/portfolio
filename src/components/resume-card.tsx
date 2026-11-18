@@ -3,10 +3,12 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 import Markdown from "react-markdown";
 
 interface ResumeCardProps {
   logoUrl: string;
+  logoClassName?: string;
   altText: string;
   title: string;
   subtitle?: string;
@@ -17,6 +19,7 @@ interface ResumeCardProps {
 
 export const ResumeCard = ({
   logoUrl,
+  logoClassName,
   altText,
   title,
   subtitle,
@@ -28,7 +31,11 @@ export const ResumeCard = ({
     <Card className="flex">
       <div className="flex-none">
         <Avatar className="border size-12 m-auto bg-muted-background dark:bg-foreground">
-          <AvatarImage src={logoUrl} alt={altText} className="object-contain" />
+          <AvatarImage
+            src={logoUrl}
+            alt={altText}
+            className={cn("object-contain", logoClassName)}
+          />
           <AvatarFallback>{altText[0]}</AvatarFallback>
         </Avatar>
       </div>
@@ -61,7 +68,7 @@ export const ResumeCard = ({
           {subtitle && <div className="font-sans text-xs mt-1">{subtitle}</div>}
         </CardHeader>
         {description && (
-          <div className="mt-2 text-xs sm:text-sm text-muted-foreground">
+          <div className="mt-2 space-y-2 text-xs sm:text-sm text-muted-foreground">
             <Markdown
               components={{
                 a: ({ href, children }) => (
