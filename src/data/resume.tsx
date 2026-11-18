@@ -157,7 +157,7 @@ export const DATA = {
       end: "Present",
       description: [
         "**building small ai systems that learn the structure of difficult problems across science, reasoning, and intelligence.**",
-        "I built and released Opal v1, our first model. We're building more small models, each for a specific task.",
+        "I built and released Opal v1, our first model.",
         "[Lab website](https://thetinyintelligencelab.vercel.app) · [Opal v1 release](https://thetinyintelligencelab.vercel.app/blog/opal-v1) · [Hugging Face](https://huggingface.co/TheTinyIntelLab) · [GitHub](https://github.com/TheTinyIntelLab)",
       ].join("\n\n"),
     },
